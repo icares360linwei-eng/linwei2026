@@ -2,7 +2,7 @@
 <meta name="description" content="源裕兴设计系统全典 V38.0.0 · 原子设计版 · 守正 · 开物 · 共生">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200..900&family=Noto+Sans+SC:wght@300..700&family=LXGW+WenKai+TC:wght@300;400;700&family=Inter:wght@200;300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200..900&family=Noto+Sans+SC:wght@200..700&family=LXGW+WenKai+TC:wght@300;400;700&family=Manrope:wght@200..800&family=JetBrains+Mono:wght@400;500&display=swap">
 <style>
 /* ============================================================
    源裕兴设计系统全典 · Design Tokens · V38.0.0（原子设计版 · Atomic Edition）
@@ -83,23 +83,33 @@
   --gold-900: #2E1F00;
   --font-display: 'LXGW WenKai TC', 'LXGW WenKai', 'Noto Serif SC', 'Songti SC', serif;
   --font-serif: 'Noto Serif SC', 'Source Han Serif SC', 'Songti SC', 'SimSun', serif;
-  --font-sans: 'Noto Sans SC', 'Source Han Sans SC', 'PingFang SC', 'Microsoft YaHei', 'Inter', system-ui, sans-serif;
-  --font-western: 'Inter', 'Noto Sans SC', system-ui, sans-serif;
+  --font-sans: 'Noto Sans SC', 'Source Han Sans SC', 'PingFang SC', 'Microsoft YaHei', 'Manrope', system-ui, sans-serif;
+  --font-western: 'Manrope', 'Noto Sans SC', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, 'Noto Sans SC', monospace;
-  --fs-display-l: clamp(2.75rem, 1.5125rem + 3.32vw, 4.5rem);
-  --lh-display-l: 1.08;
+  --fs-display-2xl: clamp(3.25rem, 1.7875rem + 7.18vw, 8.25rem);
+  --lh-display-2xl: 0.94;
+  --fw-display-2xl: 200;
+  --ls-display-2xl: -0.035em;
+  --ff-display-2xl: var(--font-serif);
+  --fs-display-xl: clamp(2.75rem, 1.5125rem + 4.99vw, 6rem);
+  --lh-display-xl: 1;
+  --fw-display-xl: 200;
+  --ls-display-xl: -0.03em;
+  --ff-display-xl: var(--font-serif);
+  --fs-display-l: clamp(2.5rem, 1.375rem + 3.47vw, 4.5rem);
+  --lh-display-l: 1.06;
   --fw-display-l: 200;
-  --ls-display-l: -0.02em;
+  --ls-display-l: -0.025em;
   --ff-display-l: var(--font-serif);
-  --fs-display-m: clamp(2.375rem, 1.3063rem + 2.72vw, 3.75rem);
+  --fs-display-m: clamp(2.125rem, 1.1688rem + 2.31vw, 3.25rem);
   --lh-display-m: 1.1;
-  --fw-display-m: 200;
-  --ls-display-m: -0.015em;
+  --fw-display-m: 300;
+  --ls-display-m: -0.02em;
   --ff-display-m: var(--font-serif);
-  --fs-display-s: clamp(1.875rem, 1.0313rem + 1.77vw, 2.625rem);
-  --lh-display-s: 1.12;
+  --fs-display-s: clamp(1.75rem, 0.9625rem + 1.71vw, 2.5rem);
+  --lh-display-s: 1.14;
   --fw-display-s: 300;
-  --ls-display-s: -0.01em;
+  --ls-display-s: -0.015em;
   --ff-display-s: var(--font-serif);
   --fs-h1: clamp(1.75rem, 0.9625rem + 1.43vw, 2.25rem);
   --lh-h1: 1.15;
@@ -305,6 +315,15 @@
   --chart-4: #DA433B;
   --chart-5: #2D54A0;
   --chart-6: #007D4A;
+  --c-void: var(--ink-200);
+  --c-glass: color-mix(in oklab, var(--ink-50) 72%, transparent);
+  --c-glassBorder: color-mix(in oklab, var(--ink-900) 10%, transparent);
+  --c-glassHi: color-mix(in oklab, var(--ink-50) 90%, transparent);
+  --c-glow: color-mix(in oklab, var(--e-500) 26%, transparent);
+  --c-glowSoft: color-mix(in oklab, var(--e-400) 16%, transparent);
+  --c-auroraA: color-mix(in oklab, var(--e-300) 40%, transparent);
+  --c-auroraB: color-mix(in oklab, var(--gold-300) 30%, transparent);
+  --c-rule: color-mix(in oklab, var(--ink-900) 12%, transparent);
   --c-background: var(--ink-100);
   --c-onBackground: var(--ink-900);
   --c-surface: var(--ink-50);
@@ -620,11 +639,20 @@
   --chart-4: #EF584E;
   --chart-5: #547ECD;
   --chart-6: #1E9059;
-  --c-background: var(--ink-900);
+  --c-void: oklch(12% 0.008 66);
+  --c-glass: color-mix(in oklab, var(--ink-50) 6%, transparent);
+  --c-glassBorder: color-mix(in oklab, var(--ink-50) 12%, transparent);
+  --c-glassHi: color-mix(in oklab, var(--ink-50) 10%, transparent);
+  --c-glow: color-mix(in oklab, var(--e-300) 34%, transparent);
+  --c-glowSoft: color-mix(in oklab, var(--e-400) 22%, transparent);
+  --c-auroraA: color-mix(in oklab, var(--e-500) 46%, transparent);
+  --c-auroraB: color-mix(in oklab, var(--gold-600) 34%, transparent);
+  --c-rule: color-mix(in oklab, var(--ink-50) 14%, transparent);
+  --c-background: oklch(15.5% 0.009 66);
   --c-onBackground: var(--ink-100);
-  --c-surface: var(--ink-800);
+  --c-surface: oklch(19.5% 0.010 66);
   --c-surfaceVariant: var(--ink-700);
-  --c-surfaceContainer: color-mix(in oklab, var(--ink-800) 60%, var(--ink-900));
+  --c-surfaceContainer: oklch(23% 0.011 66);
   --c-surfaceHover: color-mix(in oklab, var(--ink-50) 6%, var(--ink-800));
   --c-onSurface: var(--ink-100);
   --c-onSurfaceStrong: var(--ink-50);
@@ -710,11 +738,20 @@
     --chart-4: #EF584E;
     --chart-5: #547ECD;
     --chart-6: #1E9059;
-    --c-background: var(--ink-900);
+    --c-void: oklch(12% 0.008 66);
+    --c-glass: color-mix(in oklab, var(--ink-50) 6%, transparent);
+    --c-glassBorder: color-mix(in oklab, var(--ink-50) 12%, transparent);
+    --c-glassHi: color-mix(in oklab, var(--ink-50) 10%, transparent);
+    --c-glow: color-mix(in oklab, var(--e-300) 34%, transparent);
+    --c-glowSoft: color-mix(in oklab, var(--e-400) 22%, transparent);
+    --c-auroraA: color-mix(in oklab, var(--e-500) 46%, transparent);
+    --c-auroraB: color-mix(in oklab, var(--gold-600) 34%, transparent);
+    --c-rule: color-mix(in oklab, var(--ink-50) 14%, transparent);
+    --c-background: oklch(15.5% 0.009 66);
     --c-onBackground: var(--ink-100);
-    --c-surface: var(--ink-800);
+    --c-surface: oklch(19.5% 0.010 66);
     --c-surfaceVariant: var(--ink-700);
-    --c-surfaceContainer: color-mix(in oklab, var(--ink-800) 60%, var(--ink-900));
+    --c-surfaceContainer: oklch(23% 0.011 66);
     --c-surfaceHover: color-mix(in oklab, var(--ink-50) 6%, var(--ink-800));
     --c-onSurface: var(--ink-100);
     --c-onSurfaceStrong: var(--ink-50);
@@ -1965,7 +2002,7 @@ body.show-grid .site::after { content: ""; position: fixed; top: 0; bottom: 0; l
 }
 
 </style>
-<div class="sino site" id="sino" data-theme="stg" data-color-scheme="auto">
+<div class="sino site" id="sino" data-theme="stg" data-color-scheme="dark">
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
   <defs>
     <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.4-3.4"/></symbol>
@@ -2063,9 +2100,9 @@ body.show-grid .site::after { content: ""; position: fixed; top: 0; bottom: 0; l
         <button class="m-entity__item" type="button" data-entity-btn="edu" aria-pressed="false" data-tip="EDU · 崇仁教育 · 朱砂红"><span class="a-dot" style="--sw:var(--edu-600)"></span>EDU</button>
       </div>
       <div class="m-segmented" role="group" aria-label="色彩方案">
-        <button class="m-segmented__item" type="button" data-scheme-btn="auto" aria-pressed="true" data-tip="跟随系统"><svg class="a-icon"><use href="#i-monitor"/></svg></button>
+        <button class="m-segmented__item" type="button" data-scheme-btn="auto" aria-pressed="false" data-tip="跟随系统"><svg class="a-icon"><use href="#i-monitor"/></svg></button>
         <button class="m-segmented__item" type="button" data-scheme-btn="light" aria-pressed="false" data-tip="浅色 · 宣纸"><svg class="a-icon"><use href="#i-sun"/></svg></button>
-        <button class="m-segmented__item" type="button" data-scheme-btn="dark" aria-pressed="false" data-tip="暗色 · 玄墨"><svg class="a-icon"><use href="#i-moon"/></svg></button>
+        <button class="m-segmented__item" type="button" data-scheme-btn="dark" aria-pressed="true" data-tip="暗色 · 玄墨"><svg class="a-icon"><use href="#i-moon"/></svg></button>
       </div>
       <button class="a-btn a-btn--icon a-btn--ghost a-btn--square a-btn--s" type="button" data-grid-toggle aria-pressed="false" aria-label="显示 12 列栅格（G）" data-tip="栅格 · G"><svg class="a-icon"><use href="#i-grid"/></svg></button>
       <button class="a-btn a-btn--ghost a-btn--s" type="button" data-cmdk><svg class="a-icon"><use href="#i-search"/></svg><span>搜索</span><span class="a-kbd">⌘K</span></button>
@@ -2083,7 +2120,7 @@ body.show-grid .site::after { content: ""; position: fixed; top: 0; bottom: 0; l
     <a href="#/templates" data-nav="templates"><i>L4</i>模板</a>
     <a href="#/pages" data-nav="pages"><i>L5</i>页面 · 五实体</a>
     <a href="#/governance" data-nav="governance"><i>G</i>治理</a>
-    <div class="nav-sheet__tools"><div class="m-segmented" role="group" aria-label="色彩方案"><button class="m-segmented__item" type="button" data-scheme-btn="auto" aria-pressed="true"><svg class="a-icon"><use href="#i-monitor"/></svg>自动</button><button class="m-segmented__item" type="button" data-scheme-btn="light" aria-pressed="false"><svg class="a-icon"><use href="#i-sun"/></svg>浅色</button><button class="m-segmented__item" type="button" data-scheme-btn="dark" aria-pressed="false"><svg class="a-icon"><use href="#i-moon"/></svg>暗色</button></div><div class="m-entity" role="group" aria-label="五实体主题切换"><button class="m-entity__item" type="button" data-entity-btn="stg" aria-pressed="true"><span class="a-dot" style="--sw:var(--stg-600)"></span>STG</button><button class="m-entity__item" type="button" data-entity-btn="ste" aria-pressed="false"><span class="a-dot" style="--sw:var(--ste-600)"></span>STE</button><button class="m-entity__item" type="button" data-entity-btn="sti" aria-pressed="false"><span class="a-dot" style="--sw:var(--sti-600)"></span>STI</button><button class="m-entity__item" type="button" data-entity-btn="sth" aria-pressed="false"><span class="a-dot" style="--sw:var(--sth-600)"></span>STH</button><button class="m-entity__item" type="button" data-entity-btn="edu" aria-pressed="false"><span class="a-dot" style="--sw:var(--edu-600)"></span>EDU</button></div></div>
+    <div class="nav-sheet__tools"><div class="m-segmented" role="group" aria-label="色彩方案"><button class="m-segmented__item" type="button" data-scheme-btn="auto" aria-pressed="false"><svg class="a-icon"><use href="#i-monitor"/></svg>自动</button><button class="m-segmented__item" type="button" data-scheme-btn="light" aria-pressed="false"><svg class="a-icon"><use href="#i-sun"/></svg>浅色</button><button class="m-segmented__item" type="button" data-scheme-btn="dark" aria-pressed="true"><svg class="a-icon"><use href="#i-moon"/></svg>暗色</button></div><div class="m-entity" role="group" aria-label="五实体主题切换"><button class="m-entity__item" type="button" data-entity-btn="stg" aria-pressed="true"><span class="a-dot" style="--sw:var(--stg-600)"></span>STG</button><button class="m-entity__item" type="button" data-entity-btn="ste" aria-pressed="false"><span class="a-dot" style="--sw:var(--ste-600)"></span>STE</button><button class="m-entity__item" type="button" data-entity-btn="sti" aria-pressed="false"><span class="a-dot" style="--sw:var(--sti-600)"></span>STI</button><button class="m-entity__item" type="button" data-entity-btn="sth" aria-pressed="false"><span class="a-dot" style="--sw:var(--sth-600)"></span>STH</button><button class="m-entity__item" type="button" data-entity-btn="edu" aria-pressed="false"><span class="a-dot" style="--sw:var(--edu-600)"></span>EDU</button></div></div>
   </div>
 </div>
 <main id="main">
@@ -2101,7 +2138,7 @@ body.show-grid .site::after { content: ""; position: fixed; top: 0; bottom: 0; l
     </div>
     <div class="hm-seal"><span class="a-seal">守正</span><span class="hm-seal__v">一墨成城 · 纸上的流场</span></div>
     <div class="hm-stats">
-      <div class="hm-stat"><b><span data-count="559">559</span></b><span>设计令牌，由 tokens.json 构建生成：207 原始 · 145 语义 · 207 组件</span></div>
+      <div class="hm-stat"><b><span data-count="578">578</span></b><span>设计令牌，由 tokens.json 构建生成：217 原始 · 154 语义 · 207 组件</span></div>
       <div class="hm-stat"><b>6<small>层</small></b><span>原子设计层级 L0–L5，组合方向只向上</span></div>
       <div class="hm-stat"><b>5<small>实体</small></b><span>STG · STE · STI · STH · EDU，一套语法五种色彩身份</span></div>
       <div class="hm-stat"><b>25<small>项</small></b><span>WCAG AA 构建门禁：20 项语义色实测 + 5 实体可访问主色</span></div>
@@ -2198,10 +2235,10 @@ body.show-grid .site::after { content: ""; position: fixed; top: 0; bottom: 0; l
   
 
   <div class="stat-strip">
-    <div class="m-kpi"><div class="m-kpi__label">原始令牌 Primitive</div><div class="m-kpi__value">207</div><div class="m-kpi__foot"><span class="muted t-caption">色阶 · 字阶 · 间距 · 圆角 · 动效 · 层级 · 断点</span></div></div>
-    <div class="m-kpi"><div class="m-kpi__label">语义令牌 Semantic</div><div class="m-kpi__value">145</div><div class="m-kpi__foot"><span class="muted t-caption">浅色一套完整定义 · 暗色三态重映射 · 五实体映射</span></div></div>
+    <div class="m-kpi"><div class="m-kpi__label">原始令牌 Primitive</div><div class="m-kpi__value">217</div><div class="m-kpi__foot"><span class="muted t-caption">色阶 · 字阶 · 间距 · 圆角 · 动效 · 层级 · 断点</span></div></div>
+    <div class="m-kpi"><div class="m-kpi__label">语义令牌 Semantic</div><div class="m-kpi__value">154</div><div class="m-kpi__foot"><span class="muted t-caption">浅色一套完整定义 · 暗色三态重映射 · 五实体映射</span></div></div>
     <div class="m-kpi"><div class="m-kpi__label">组件令牌 Component</div><div class="m-kpi__value">207</div><div class="m-kpi__foot"><span class="muted t-caption">25 个组件族，只引用语义层</span></div></div>
-    <div class="m-kpi"><div class="m-kpi__label">合计</div><div class="m-kpi__value">559</div><div class="m-kpi__foot"><span class="muted t-caption">由 tokens.json 构建生成，人工零维护</span></div></div>
+    <div class="m-kpi"><div class="m-kpi__label">合计</div><div class="m-kpi__value">578</div><div class="m-kpi__foot"><span class="muted t-caption">由 tokens.json 构建生成，人工零维护</span></div></div>
   </div>
 
   <!-- ───────── 色彩 ───────── -->
@@ -2353,9 +2390,11 @@ body.show-grid .site::after { content: ""; position: fixed; top: 0; bottom: 0; l
     <tr><td class="mono">--font-mono</td><td>JetBrains Mono</td><td>代码 / 数据 / Token</td><td class="mono">--c-primary: var(--e-primary-light);</td></tr>
   </tbody></table></div>
   <div class="cx-grid" style="margin-top:20px">
-    <div class="c8"><div class="cx-spec"><div class="cx-spec__bar"><b>15 级字阶</b><span>基准 16px · Display / H1 流体上探，承接档不放大</span></div><div class="cx-spec__body cx-spec__body--col" style="gap:0;padding-top:4px;padding-bottom:4px"><div class="type-row" data-role="display-l"><div class="type-row__meta"><span class="mono">display-l</span><span>72px · 1.08 · 200 · serif · -0.02em</span><span class="muted">首页 Hero</span></div><div class="type-row__specimen" style="font-family:var(--ff-display-l);font-size:var(--fs-display-l);line-height:var(--lh-display-l);font-weight:var(--fw-display-l);letter-spacing:var(--ls-display-l)">守正开物</div></div>
-<div class="type-row" data-role="display-m"><div class="type-row__meta"><span class="mono">display-m</span><span>60px · 1.1 · 200 · serif · -0.015em</span><span class="muted">次级 Hero</span></div><div class="type-row__specimen" style="font-family:var(--ff-display-m);font-size:var(--fs-display-m);line-height:var(--lh-display-m);font-weight:var(--fw-display-m);letter-spacing:var(--ls-display-m)">守正开物</div></div>
-<div class="type-row" data-role="display-s"><div class="type-row__meta"><span class="mono">display-s</span><span>42px · 1.12 · 300 · serif · -0.01em</span><span class="muted">小型展示标题</span></div><div class="type-row__specimen" style="font-family:var(--ff-display-s);font-size:var(--fs-display-s);line-height:var(--lh-display-s);font-weight:var(--fw-display-s);letter-spacing:var(--ls-display-s)">守正开物</div></div>
+    <div class="c8"><div class="cx-spec"><div class="cx-spec__bar"><b>15 级字阶</b><span>基准 16px · Display / H1 流体上探，承接档不放大</span></div><div class="cx-spec__body cx-spec__body--col" style="gap:0;padding-top:4px;padding-bottom:4px"><div class="type-row" data-role="display-2xl"><div class="type-row__meta"><span class="mono">display-2xl</span><span>132px · 0.94 · 200 · serif · -0.035em</span><span class="muted">首页 Hero · 全站唯一之锋</span></div><div class="type-row__specimen" style="font-family:var(--ff-display-2xl);font-size:var(--fs-display-2xl);line-height:var(--lh-display-2xl);font-weight:var(--fw-display-2xl);letter-spacing:var(--ls-display-2xl)">守正开物</div></div>
+<div class="type-row" data-role="display-xl"><div class="type-row__meta"><span class="mono">display-xl</span><span>96px · 1 · 200 · serif · -0.03em</span><span class="muted">章节封面主标题</span></div><div class="type-row__specimen" style="font-family:var(--ff-display-xl);font-size:var(--fs-display-xl);line-height:var(--lh-display-xl);font-weight:var(--fw-display-xl);letter-spacing:var(--ls-display-xl)">守正开物</div></div>
+<div class="type-row" data-role="display-l"><div class="type-row__meta"><span class="mono">display-l</span><span>72px · 1.06 · 200 · serif · -0.025em</span><span class="muted">区块主标题</span></div><div class="type-row__specimen" style="font-family:var(--ff-display-l);font-size:var(--fs-display-l);line-height:var(--lh-display-l);font-weight:var(--fw-display-l);letter-spacing:var(--ls-display-l)">守正开物</div></div>
+<div class="type-row" data-role="display-m"><div class="type-row__meta"><span class="mono">display-m</span><span>52px · 1.1 · 300 · serif · -0.02em</span><span class="muted">次级 Hero</span></div><div class="type-row__specimen" style="font-family:var(--ff-display-m);font-size:var(--fs-display-m);line-height:var(--lh-display-m);font-weight:var(--fw-display-m);letter-spacing:var(--ls-display-m)">守正开物</div></div>
+<div class="type-row" data-role="display-s"><div class="type-row__meta"><span class="mono">display-s</span><span>40px · 1.14 · 300 · serif · -0.015em</span><span class="muted">小型展示标题</span></div><div class="type-row__specimen" style="font-family:var(--ff-display-s);font-size:var(--fs-display-s);line-height:var(--lh-display-s);font-weight:var(--fw-display-s);letter-spacing:var(--ls-display-s)">守正 · 开物 · 共生</div></div>
 <div class="type-row" data-role="h1"><div class="type-row__meta"><span class="mono">h1</span><span>36px · 1.15 · 300 · serif · -0.01em</span><span class="muted">页面标题</span></div><div class="type-row__specimen" style="font-family:var(--ff-h1);font-size:var(--fs-h1);line-height:var(--lh-h1);font-weight:var(--fw-h1);letter-spacing:var(--ls-h1)">守正 · 开物 · 共生</div></div>
 <div class="type-row" data-role="h2"><div class="type-row__meta"><span class="mono">h2</span><span>30px · 1.2 · 400 · serif · 0.01em</span><span class="muted">章标题</span></div><div class="type-row__specimen" style="font-family:var(--ff-h2);font-size:var(--fs-h2);line-height:var(--lh-h2);font-weight:var(--fw-h2);letter-spacing:var(--ls-h2)">守正 · 开物 · 共生</div></div>
 <div class="type-row" data-role="h3"><div class="type-row__meta"><span class="mono">h3</span><span>24px · 1.25 · 400 · serif · 0.01em</span><span class="muted">节标题</span></div><div class="type-row__specimen" style="font-family:var(--ff-h3);font-size:var(--fs-h3);line-height:var(--lh-h3);font-weight:var(--fw-h3);letter-spacing:var(--ls-h3)">守正 · 开物 · 共生</div></div>
@@ -3072,7 +3111,7 @@ $border-radius: var(--radius-md);
     <div class="chg__item"><span class="chg__k chg__k--chg">Changed</span><span>暗色模式由「Ink 反转」改为三态解析（本典 / 宿主 / 系统），显式优先；浅色完整定义在裸选择器上。</span></div>
     <div class="chg__item"><span class="chg__k chg__k--add">Added</span><span>数据墨色六槽：与实体同色相、色度 ≥ 0.11，5! 顺序枚举后取 stg → 藤黄 → sth → edu → sti → ste（相邻对最差 CVD ΔE 13.9）；每图配表格孪生。</span></div>
     <div class="chg__item"><span class="chg__k chg__k--add">Added</span><span>原子设计六层结构（L0–L5）、类名前缀 a-/m-/o-/t-/p-、原子五律与 lint 规则；tokens.json 成为唯一可信源，build.mjs 推导色阶并实测门禁。</span></div>
-    <div class="chg__item"><span class="chg__k chg__k--chg">Changed</span><span>令牌计数由文字稿的 486（86 + 142 + 258）改为构建实际生成的 559（207 + 145 + 207），随构建自动更新。</span></div>
+    <div class="chg__item"><span class="chg__k chg__k--chg">Changed</span><span>令牌计数由文字稿的 486（86 + 142 + 258）改为构建实际生成的 578（217 + 154 + 207），随构建自动更新。</span></div>
     <div class="chg__item"><span class="chg__k chg__k--chg">Changed</span><span>正文色由 Ink 700 改为 Ink 800（14.15:1），标题 Ink 900；次要文字 Ink 600。</span></div>
     <div class="chg__item"><span class="chg__k chg__k--add">Added</span><span>标杆解析：Ledgerix 的看板秩序 → T1；PRODIGIES 的单一信号色与状态矩阵 → 藤黄戒律 / 8 状态机；Sui 的一体化色板与功能性渐变 → 五实体映射 / 太极流纹母题。</span></div>
   </div>
@@ -3141,7 +3180,7 @@ $border-radius: var(--radius-md);
 </div>
 
 <script>
-window.SINO_DATA = {"version":"38.0.0","edition":"原子设计版 · Atomic Edition","counts":{"primitive":207,"semantic":145,"component":207,"total":559},"entity":{"stg":{"sino.name":"绛紫","sino.entity":"STG","sino.full":"源裕兴集团母体","sino.role":"战略中枢 · 合规治理","sino.meaning":"包容万象、多元统一","anchor":"#851EA3","scale":{"50":"#F8E9FE","100":"#F3D6FD","200":"#E7B5F9","300":"#D58CEE","400":"#BD64DA","500":"#A242C1","600":"#851EA3","700":"#6D0587","800":"#530068","900":"#3A004A"},"oklch":{"50":"oklch(95.2% 0.032 316)","100":"oklch(91.2% 0.061 317)","200":"oklch(84.0% 0.107 317)","300":"oklch(74.9% 0.156 317)","400":"oklch(65.3% 0.188 317)","500":"oklch(56.2% 0.201 317)","600":"oklch(46.8% 0.204 317)","700":"oklch(39.7% 0.189 317)","800":"oklch(32.7% 0.159 317)","900":"oklch(25.8% 0.126 317)"},"primaryLightStep":600,"primaryLight":"#851EA3","primaryLightVsInk50":7.51,"ink50OnPrimaryLight":7.51,"primaryDarkStep":300,"primaryDark":"#D58CEE","primaryDarkVsInk800":6.12,"ink900OnPrimaryDark":7.55,"brandVsInk50":7.51,"brandVsInk800":1.88},"ste":{"sino.name":"苍木绿","sino.entity":"STE","sino.full":"九派能源","sino.role":"清洁能源 · 碳中和","sino.meaning":"生生不息、自然循环","anchor":"#196B42","scale":{"50":"#E7F3EB","100":"#D2E8DA","200":"#B0D6BD","300":"#85BD9A","400":"#5DA279","500":"#3B875C","600":"#196B42","700":"#025631","800":"#004023","900":"#002C17"},"oklch":{"50":"oklch(95.3% 0.017 157)","100":"oklch(91.1% 0.030 158)","200":"oklch(84.2% 0.053 156)","300":"oklch(75.0% 0.077 157)","400":"oklch(65.5% 0.094 157)","500":"oklch(56.3% 0.101 156)","600":"oklch(46.9% 0.102 156)","700":"oklch(39.9% 0.095 156)","800":"oklch(32.7% 0.079 156)","900":"oklch(25.8% 0.061 157)"},"primaryLightStep":600,"primaryLight":"#196B42","primaryLightVsInk50":6.32,"ink50OnPrimaryLight":6.32,"primaryDarkStep":300,"primaryDark":"#85BD9A","primaryDarkVsInk800":6.77,"ink900OnPrimaryDark":8.35,"brandVsInk50":6.32,"brandVsInk800":2.24},"sti":{"sino.name":"深空蓝","sino.entity":"STI","sino.full":"进出口贸易","sino.role":"全球贸易 · 报关物流","sino.meaning":"深远的全球视野","anchor":"#1E4082","scale":{"50":"#E7EEFB","100":"#D2DFF7","200":"#AEC5EC","300":"#84A3DB","400":"#5C80C1","500":"#3B60A4","600":"#1E4082","700":"#0F2D68","800":"#051C4D","900":"#010D30"},"oklch":{"50":"oklch(94.8% 0.019 263)","100":"oklch(90.1% 0.036 263)","200":"oklch(81.9% 0.061 261)","300":"oklch(71.4% 0.089 262)","400":"oklch(60.1% 0.108 262)","500":"oklch(49.6% 0.117 262)","600":"oklch(38.6% 0.118 262)","700":"oklch(31.5% 0.110 262)","800":"oklch(24.6% 0.095 262)","900":"oklch(17.6% 0.073 262)"},"primaryLightStep":600,"primaryLight":"#1E4082","primaryLightVsInk50":9.65,"ink50OnPrimaryLight":9.65,"primaryDarkStep":300,"primaryDark":"#84A3DB","primaryDarkVsInk800":5.73,"ink900OnPrimaryDark":7.06,"brandVsInk50":9.65,"brandVsInk800":1.47},"sth":{"sino.name":"沧浪青","sino.entity":"STH","sino.full":"健康科技","sino.role":"医疗器械 · 健康监测","sino.meaning":"澄澈通透的生命质感","anchor":"#208F9B","scale":{"50":"#E6F4F6","100":"#D2EDF0","200":"#B1E0E6","300":"#87CED7","400":"#5FB9C4","500":"#3FA5B1","600":"#208F9B","700":"#097983","800":"#09636C","900":"#124D54"},"oklch":{"50":"oklch(95.7% 0.015 207)","100":"oklch(92.7% 0.029 205)","200":"oklch(87.6% 0.049 206)","300":"oklch(80.8% 0.072 206)","400":"oklch(73.4% 0.087 206)","500":"oklch(66.8% 0.094 206)","600":"oklch(59.7% 0.095 206)","700":"oklch(52.6% 0.088 205)","800":"oklch(45.7% 0.076 206)","900":"oklch(38.7% 0.059 207)"},"primaryLightStep":700,"primaryLight":"#097983","primaryLightVsInk50":5,"ink50OnPrimaryLight":5,"primaryDarkStep":300,"primaryDark":"#87CED7","primaryDarkVsInk800":8.23,"ink900OnPrimaryDark":10.14,"brandVsInk50":3.73,"brandVsInk800":3.8},"edu":{"sino.name":"朱砂红","sino.entity":"EDU","sino.full":"崇仁教育","sino.role":"教育启智 · 家校协同","sino.meaning":"炽热的教育初心","anchor":"#B81E1E","scale":{"50":"#FFEAE7","100":"#FFD9D4","200":"#FFBAB1","300":"#FF8E81","400":"#EF6559","500":"#D6423A","600":"#B81E1E","700":"#9A030D","800":"#7A0007","900":"#590305"},"oklch":{"50":"oklch(95.3% 0.023 27)","100":"oklch(91.6% 0.043 27)","200":"oklch(85.0% 0.082 27)","300":"oklch(76.6% 0.139 28)","400":"oklch(67.7% 0.173 28)","500":"oklch(59.2% 0.186 27)","600":"oklch(50.5% 0.188 27)","700":"oklch(43.3% 0.175 27)","800":"oklch(36.4% 0.149 27)","900":"oklch(29.4% 0.116 27)"},"primaryLightStep":600,"primaryLight":"#B81E1E","primaryLightVsInk50":6.28,"ink50OnPrimaryLight":6.28,"primaryDarkStep":300,"primaryDark":"#FF8E81","primaryDarkVsInk800":6.56,"ink900OnPrimaryDark":8.08,"brandVsInk50":6.28,"brandVsInk800":2.25}},"gold":{"anchor":"#C9A96E","scale":{"50":"#FCF6EB","100":"#F7EBD7","200":"#EBD6B2","300":"#DBBE8B","400":"#C9A96E","500":"#AA8A4C","600":"#8C6C2D","700":"#6C5013","800":"#4C3605","900":"#2E1F00"},"oklch":{"50":"oklch(97.5% 0.016 83)","100":"oklch(94.4% 0.029 81)","200":"oklch(88.4% 0.053 81)","300":"oklch(81.4% 0.075 81)","400":"oklch(75.0% 0.085 82)","500":"oklch(65.0% 0.089 83)","600":"oklch(55.0% 0.090 82)","700":"oklch(45.0% 0.084 82)","800":"oklch(34.9% 0.068 82)","900":"oklch(25.1% 0.052 82)"}},"ink":{"50":"#FFFBF5","100":"#FAF7F2","200":"#F0EBE3","300":"#D9D3C8","400":"#BFB8AB","500":"#8C8578","600":"#6B6459","700":"#4A443C","800":"#2D2823","900":"#1A1612"},"matrix":[{"entity":"stg","name":"绛紫","hex600":"#851EA3","oklch":"oklch(46.8% 0.204 317)","onInk50":7.51,"onInk800":1.88,"primaryLight":"#851EA3","primaryLightStep":600,"primaryLightOnInk50":7.51,"primaryDark":"#D58CEE","primaryDarkStep":300,"primaryDarkOnInk800":6.12},{"entity":"ste","name":"苍木绿","hex600":"#196B42","oklch":"oklch(46.9% 0.102 156)","onInk50":6.32,"onInk800":2.24,"primaryLight":"#196B42","primaryLightStep":600,"primaryLightOnInk50":6.32,"primaryDark":"#85BD9A","primaryDarkStep":300,"primaryDarkOnInk800":6.77},{"entity":"sti","name":"深空蓝","hex600":"#1E4082","oklch":"oklch(38.6% 0.118 262)","onInk50":9.65,"onInk800":1.47,"primaryLight":"#1E4082","primaryLightStep":600,"primaryLightOnInk50":9.65,"primaryDark":"#84A3DB","primaryDarkStep":300,"primaryDarkOnInk800":5.73},{"entity":"sth","name":"沧浪青","hex600":"#208F9B","oklch":"oklch(59.7% 0.095 206)","onInk50":3.73,"onInk800":3.8,"primaryLight":"#097983","primaryLightStep":700,"primaryLightOnInk50":5,"primaryDark":"#87CED7","primaryDarkStep":300,"primaryDarkOnInk800":8.23},{"entity":"edu","name":"朱砂红","hex600":"#B81E1E","oklch":"oklch(50.5% 0.188 27)","onInk50":6.28,"onInk800":2.25,"primaryLight":"#B81E1E","primaryLightStep":600,"primaryLightOnInk50":6.28,"primaryDark":"#FF8E81","primaryDarkStep":300,"primaryDarkOnInk800":6.56}],"chart":{"$description":"数据墨色 · 由 build/chart-order.mjs 枚举生成（dataviz 六检验证通过），顺序即 CVD 安全机制，不得手改","order":["stg","gold","sth","edu","sti","ste"],"light":["#8F2BAE","#AF8221","#0098A6","#DA433B","#2D54A0","#007D4A"],"dark":["#C261E3","#AA7E1A","#009BA9","#EF584E","#547ECD","#1E9059"],"worstAdjacentCVD":13.9,"surfaces":{"light":"#FFFBF5","dark":"#2D2823"}},"type":{"$description":"15 级字阶（基准 16px）。力起·秀承：Display/H1 用力（大、紧），H2 以下用秀（阶梯缓、行高舒）。V38 修正：H4 由 28px 改为 22px 使阶梯单调；Body L 行高 1.60→1.80（长文卷舒）。","display-l":{"size":72,"lh":1.08,"weight":200,"family":"serif","ls":"-0.02em","fluidMin":44,"use":"首页 Hero"},"display-m":{"size":60,"lh":1.1,"weight":200,"family":"serif","ls":"-0.015em","fluidMin":38,"use":"次级 Hero"},"display-s":{"size":42,"lh":1.12,"weight":300,"family":"serif","ls":"-0.01em","fluidMin":30,"use":"小型展示标题"},"h1":{"size":36,"lh":1.15,"weight":300,"family":"serif","ls":"-0.01em","fluidMin":28,"use":"页面标题"},"h2":{"size":30,"lh":1.2,"weight":400,"family":"serif","ls":"0.01em","use":"章标题"},"h3":{"size":24,"lh":1.25,"weight":400,"family":"serif","ls":"0.01em","use":"节标题"},"h4":{"size":22,"lh":1.3,"weight":500,"family":"serif","ls":"0","use":"子区块标题"},"h5":{"size":20,"lh":1.35,"weight":500,"family":"sans","ls":"0","use":"卡片标题"},"h6":{"size":18,"lh":1.4,"weight":500,"family":"sans","ls":"0","use":"小标题"},"body-l":{"size":16,"lh":1.8,"weight":400,"family":"sans","ls":"0","use":"正文阅读（长文用 serif）"},"body-m":{"size":15,"lh":1.7,"weight":400,"family":"sans","ls":"0","use":"界面文字"},"body-s":{"size":14,"lh":1.75,"weight":400,"family":"sans","ls":"0","use":"辅助文字"},"caption":{"size":12,"lh":1.6,"weight":400,"family":"sans","ls":"0.01em","use":"标签 / 说明"},"caption-xs":{"size":10,"lh":1.5,"weight":500,"family":"sans","ls":"0.06em","use":"法律文本 / 眼标（仅印刷与法务）"},"code":{"size":13,"lh":1.7,"weight":400,"family":"mono","ls":"0","use":"代码行内 / Token"}}};
+window.SINO_DATA = {"version":"38.0.0","edition":"原子设计版 · Atomic Edition","counts":{"primitive":217,"semantic":154,"component":207,"total":578},"entity":{"stg":{"sino.name":"绛紫","sino.entity":"STG","sino.full":"源裕兴集团母体","sino.role":"战略中枢 · 合规治理","sino.meaning":"包容万象、多元统一","anchor":"#851EA3","scale":{"50":"#F8E9FE","100":"#F3D6FD","200":"#E7B5F9","300":"#D58CEE","400":"#BD64DA","500":"#A242C1","600":"#851EA3","700":"#6D0587","800":"#530068","900":"#3A004A"},"oklch":{"50":"oklch(95.2% 0.032 316)","100":"oklch(91.2% 0.061 317)","200":"oklch(84.0% 0.107 317)","300":"oklch(74.9% 0.156 317)","400":"oklch(65.3% 0.188 317)","500":"oklch(56.2% 0.201 317)","600":"oklch(46.8% 0.204 317)","700":"oklch(39.7% 0.189 317)","800":"oklch(32.7% 0.159 317)","900":"oklch(25.8% 0.126 317)"},"primaryLightStep":600,"primaryLight":"#851EA3","primaryLightVsInk50":7.51,"ink50OnPrimaryLight":7.51,"primaryDarkStep":300,"primaryDark":"#D58CEE","primaryDarkVsInk800":6.12,"ink900OnPrimaryDark":7.55,"brandVsInk50":7.51,"brandVsInk800":1.88},"ste":{"sino.name":"苍木绿","sino.entity":"STE","sino.full":"九派能源","sino.role":"清洁能源 · 碳中和","sino.meaning":"生生不息、自然循环","anchor":"#196B42","scale":{"50":"#E7F3EB","100":"#D2E8DA","200":"#B0D6BD","300":"#85BD9A","400":"#5DA279","500":"#3B875C","600":"#196B42","700":"#025631","800":"#004023","900":"#002C17"},"oklch":{"50":"oklch(95.3% 0.017 157)","100":"oklch(91.1% 0.030 158)","200":"oklch(84.2% 0.053 156)","300":"oklch(75.0% 0.077 157)","400":"oklch(65.5% 0.094 157)","500":"oklch(56.3% 0.101 156)","600":"oklch(46.9% 0.102 156)","700":"oklch(39.9% 0.095 156)","800":"oklch(32.7% 0.079 156)","900":"oklch(25.8% 0.061 157)"},"primaryLightStep":600,"primaryLight":"#196B42","primaryLightVsInk50":6.32,"ink50OnPrimaryLight":6.32,"primaryDarkStep":300,"primaryDark":"#85BD9A","primaryDarkVsInk800":6.77,"ink900OnPrimaryDark":8.35,"brandVsInk50":6.32,"brandVsInk800":2.24},"sti":{"sino.name":"深空蓝","sino.entity":"STI","sino.full":"进出口贸易","sino.role":"全球贸易 · 报关物流","sino.meaning":"深远的全球视野","anchor":"#1E4082","scale":{"50":"#E7EEFB","100":"#D2DFF7","200":"#AEC5EC","300":"#84A3DB","400":"#5C80C1","500":"#3B60A4","600":"#1E4082","700":"#0F2D68","800":"#051C4D","900":"#010D30"},"oklch":{"50":"oklch(94.8% 0.019 263)","100":"oklch(90.1% 0.036 263)","200":"oklch(81.9% 0.061 261)","300":"oklch(71.4% 0.089 262)","400":"oklch(60.1% 0.108 262)","500":"oklch(49.6% 0.117 262)","600":"oklch(38.6% 0.118 262)","700":"oklch(31.5% 0.110 262)","800":"oklch(24.6% 0.095 262)","900":"oklch(17.6% 0.073 262)"},"primaryLightStep":600,"primaryLight":"#1E4082","primaryLightVsInk50":9.65,"ink50OnPrimaryLight":9.65,"primaryDarkStep":300,"primaryDark":"#84A3DB","primaryDarkVsInk800":5.73,"ink900OnPrimaryDark":7.06,"brandVsInk50":9.65,"brandVsInk800":1.47},"sth":{"sino.name":"沧浪青","sino.entity":"STH","sino.full":"健康科技","sino.role":"医疗器械 · 健康监测","sino.meaning":"澄澈通透的生命质感","anchor":"#208F9B","scale":{"50":"#E6F4F6","100":"#D2EDF0","200":"#B1E0E6","300":"#87CED7","400":"#5FB9C4","500":"#3FA5B1","600":"#208F9B","700":"#097983","800":"#09636C","900":"#124D54"},"oklch":{"50":"oklch(95.7% 0.015 207)","100":"oklch(92.7% 0.029 205)","200":"oklch(87.6% 0.049 206)","300":"oklch(80.8% 0.072 206)","400":"oklch(73.4% 0.087 206)","500":"oklch(66.8% 0.094 206)","600":"oklch(59.7% 0.095 206)","700":"oklch(52.6% 0.088 205)","800":"oklch(45.7% 0.076 206)","900":"oklch(38.7% 0.059 207)"},"primaryLightStep":700,"primaryLight":"#097983","primaryLightVsInk50":5,"ink50OnPrimaryLight":5,"primaryDarkStep":300,"primaryDark":"#87CED7","primaryDarkVsInk800":8.23,"ink900OnPrimaryDark":10.14,"brandVsInk50":3.73,"brandVsInk800":3.8},"edu":{"sino.name":"朱砂红","sino.entity":"EDU","sino.full":"崇仁教育","sino.role":"教育启智 · 家校协同","sino.meaning":"炽热的教育初心","anchor":"#B81E1E","scale":{"50":"#FFEAE7","100":"#FFD9D4","200":"#FFBAB1","300":"#FF8E81","400":"#EF6559","500":"#D6423A","600":"#B81E1E","700":"#9A030D","800":"#7A0007","900":"#590305"},"oklch":{"50":"oklch(95.3% 0.023 27)","100":"oklch(91.6% 0.043 27)","200":"oklch(85.0% 0.082 27)","300":"oklch(76.6% 0.139 28)","400":"oklch(67.7% 0.173 28)","500":"oklch(59.2% 0.186 27)","600":"oklch(50.5% 0.188 27)","700":"oklch(43.3% 0.175 27)","800":"oklch(36.4% 0.149 27)","900":"oklch(29.4% 0.116 27)"},"primaryLightStep":600,"primaryLight":"#B81E1E","primaryLightVsInk50":6.28,"ink50OnPrimaryLight":6.28,"primaryDarkStep":300,"primaryDark":"#FF8E81","primaryDarkVsInk800":6.56,"ink900OnPrimaryDark":8.08,"brandVsInk50":6.28,"brandVsInk800":2.25}},"gold":{"anchor":"#C9A96E","scale":{"50":"#FCF6EB","100":"#F7EBD7","200":"#EBD6B2","300":"#DBBE8B","400":"#C9A96E","500":"#AA8A4C","600":"#8C6C2D","700":"#6C5013","800":"#4C3605","900":"#2E1F00"},"oklch":{"50":"oklch(97.5% 0.016 83)","100":"oklch(94.4% 0.029 81)","200":"oklch(88.4% 0.053 81)","300":"oklch(81.4% 0.075 81)","400":"oklch(75.0% 0.085 82)","500":"oklch(65.0% 0.089 83)","600":"oklch(55.0% 0.090 82)","700":"oklch(45.0% 0.084 82)","800":"oklch(34.9% 0.068 82)","900":"oklch(25.1% 0.052 82)"}},"ink":{"50":"#FFFBF5","100":"#FAF7F2","200":"#F0EBE3","300":"#D9D3C8","400":"#BFB8AB","500":"#8C8578","600":"#6B6459","700":"#4A443C","800":"#2D2823","900":"#1A1612"},"matrix":[{"entity":"stg","name":"绛紫","hex600":"#851EA3","oklch":"oklch(46.8% 0.204 317)","onInk50":7.51,"onInk800":1.88,"primaryLight":"#851EA3","primaryLightStep":600,"primaryLightOnInk50":7.51,"primaryDark":"#D58CEE","primaryDarkStep":300,"primaryDarkOnInk800":6.12},{"entity":"ste","name":"苍木绿","hex600":"#196B42","oklch":"oklch(46.9% 0.102 156)","onInk50":6.32,"onInk800":2.24,"primaryLight":"#196B42","primaryLightStep":600,"primaryLightOnInk50":6.32,"primaryDark":"#85BD9A","primaryDarkStep":300,"primaryDarkOnInk800":6.77},{"entity":"sti","name":"深空蓝","hex600":"#1E4082","oklch":"oklch(38.6% 0.118 262)","onInk50":9.65,"onInk800":1.47,"primaryLight":"#1E4082","primaryLightStep":600,"primaryLightOnInk50":9.65,"primaryDark":"#84A3DB","primaryDarkStep":300,"primaryDarkOnInk800":5.73},{"entity":"sth","name":"沧浪青","hex600":"#208F9B","oklch":"oklch(59.7% 0.095 206)","onInk50":3.73,"onInk800":3.8,"primaryLight":"#097983","primaryLightStep":700,"primaryLightOnInk50":5,"primaryDark":"#87CED7","primaryDarkStep":300,"primaryDarkOnInk800":8.23},{"entity":"edu","name":"朱砂红","hex600":"#B81E1E","oklch":"oklch(50.5% 0.188 27)","onInk50":6.28,"onInk800":2.25,"primaryLight":"#B81E1E","primaryLightStep":600,"primaryLightOnInk50":6.28,"primaryDark":"#FF8E81","primaryDarkStep":300,"primaryDarkOnInk800":6.56}],"chart":{"$description":"数据墨色 · 由 build/chart-order.mjs 枚举生成（dataviz 六检验证通过），顺序即 CVD 安全机制，不得手改","order":["stg","gold","sth","edu","sti","ste"],"light":["#8F2BAE","#AF8221","#0098A6","#DA433B","#2D54A0","#007D4A"],"dark":["#C261E3","#AA7E1A","#009BA9","#EF584E","#547ECD","#1E9059"],"worstAdjacentCVD":13.9,"surfaces":{"light":"#FFFBF5","dark":"#2D2823"}},"type":{"$description":"15 级字阶（基准 16px）。力起·秀承：Display/H1 用力（大、紧），H2 以下用秀（阶梯缓、行高舒）。V38 修正：H4 由 28px 改为 22px 使阶梯单调；Body L 行高 1.60→1.80（长文卷舒）。","display-2xl":{"size":132,"lh":0.94,"weight":200,"family":"serif","ls":"-0.035em","fluidMin":52,"use":"首页 Hero · 全站唯一之锋"},"display-xl":{"size":96,"lh":1,"weight":200,"family":"serif","ls":"-0.03em","fluidMin":44,"use":"章节封面主标题"},"display-l":{"size":72,"lh":1.06,"weight":200,"family":"serif","ls":"-0.025em","fluidMin":40,"use":"区块主标题"},"display-m":{"size":52,"lh":1.1,"weight":300,"family":"serif","ls":"-0.02em","fluidMin":34,"use":"次级 Hero"},"display-s":{"size":40,"lh":1.14,"weight":300,"family":"serif","ls":"-0.015em","fluidMin":28,"use":"小型展示标题"},"h1":{"size":36,"lh":1.15,"weight":300,"family":"serif","ls":"-0.01em","fluidMin":28,"use":"页面标题"},"h2":{"size":30,"lh":1.2,"weight":400,"family":"serif","ls":"0.01em","use":"章标题"},"h3":{"size":24,"lh":1.25,"weight":400,"family":"serif","ls":"0.01em","use":"节标题"},"h4":{"size":22,"lh":1.3,"weight":500,"family":"serif","ls":"0","use":"子区块标题"},"h5":{"size":20,"lh":1.35,"weight":500,"family":"sans","ls":"0","use":"卡片标题"},"h6":{"size":18,"lh":1.4,"weight":500,"family":"sans","ls":"0","use":"小标题"},"body-l":{"size":16,"lh":1.8,"weight":400,"family":"sans","ls":"0","use":"正文阅读（长文用 serif）"},"body-m":{"size":15,"lh":1.7,"weight":400,"family":"sans","ls":"0","use":"界面文字"},"body-s":{"size":14,"lh":1.75,"weight":400,"family":"sans","ls":"0","use":"辅助文字"},"caption":{"size":12,"lh":1.6,"weight":400,"family":"sans","ls":"0.01em","use":"标签 / 说明"},"caption-xs":{"size":10,"lh":1.5,"weight":500,"family":"sans","ls":"0.06em","use":"法律文本 / 眼标（仅印刷与法务）"},"code":{"size":13,"lh":1.7,"weight":400,"family":"mono","ls":"0","use":"代码行内 / Token"}}};
 /* ==== art.js ==== */
 /* ============================================================
    art.js · 太极流纹 · 生成式流场（Canvas 2D，零依赖）
@@ -3239,7 +3278,7 @@ window.SINO_DATA = {"version":"38.0.0","edition":"原子设计版 · Atomic Edit
     },
     init() {
       this.setEntity(store.get('sino.entity') || root.dataset.theme || 'stg');
-      this.setScheme(store.get('sino.scheme') || 'auto');
+      this.setScheme(store.get('sino.scheme') || 'dark');
       document.addEventListener('click', ev => {
         const e = ev.target.closest('[data-entity-btn]'); if (e) return this.setEntity(e.dataset.entityBtn);
         const s = ev.target.closest('[data-scheme-btn]'); if (s) return this.setScheme(s.dataset.schemeBtn);

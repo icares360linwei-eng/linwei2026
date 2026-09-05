@@ -334,7 +334,7 @@ const gen = {
 body = body.replace(/<!--\s*@gen:([a-z0-9-]+)\s*-->/g, (_, k) => { if (!gen[k]) throw new Error('未知生成器：' + k); return gen[k](); });
 
 const title = '源裕兴设计系统全典';
-const fontsHref = 'https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200..900&family=Noto+Sans+SC:wght@300..700&family=LXGW+WenKai+TC:wght@300;400;700&family=Inter:wght@200;300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap';
+const fontsHref = 'https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200..900&family=Noto+Sans+SC:wght@200..700&family=LXGW+WenKai+TC:wght@300;400;700&family=Manrope:wght@200..800&family=JetBrains+Mono:wght@400;500&display=swap';
 const styles = css + '\n' + cssFiles.map(f => `/* ==== ${f} ==== */\n` + read(path.join(SRC, 'css', f))).join('\n');
 const scripts = `window.SINO_DATA = ${JSON.stringify({ version: T.$version, edition: T.$edition, counts: resolved.counts, entity: resolved.entity, gold: resolved.gold, ink, matrix, chart: CHART, type: T.primitive.type })};\n` + jsFiles.map(f => `/* ==== ${f} ==== */\n` + read(path.join(SRC, 'js', f))).join('\n');
 

@@ -2,12 +2,12 @@
   "$name": "源裕兴设计系统全典 · Design Tokens",
   "$version": "38.0.0",
   "$edition": "原子设计版 · Atomic Edition",
-  "builtAt": "2026-09-05T13:40:49.986Z",
+  "builtAt": "2026-09-05T14:11:36.087Z",
   "counts": {
-    "primitive": 207,
-    "semantic": 145,
+    "primitive": 217,
+    "semantic": 154,
     "component": 207,
-    "total": 559
+    "total": 578
   },
   "ink": {
     "50": "#FFFBF5",
@@ -634,31 +634,49 @@
   },
   "type": {
     "$description": "15 级字阶（基准 16px）。力起·秀承：Display/H1 用力（大、紧），H2 以下用秀（阶梯缓、行高舒）。V38 修正：H4 由 28px 改为 22px 使阶梯单调；Body L 行高 1.60→1.80（长文卷舒）。",
+    "display-2xl": {
+      "size": 132,
+      "lh": 0.94,
+      "weight": 200,
+      "family": "serif",
+      "ls": "-0.035em",
+      "fluidMin": 52,
+      "use": "首页 Hero · 全站唯一之锋"
+    },
+    "display-xl": {
+      "size": 96,
+      "lh": 1,
+      "weight": 200,
+      "family": "serif",
+      "ls": "-0.03em",
+      "fluidMin": 44,
+      "use": "章节封面主标题"
+    },
     "display-l": {
       "size": 72,
-      "lh": 1.08,
+      "lh": 1.06,
       "weight": 200,
       "family": "serif",
-      "ls": "-0.02em",
-      "fluidMin": 44,
-      "use": "首页 Hero"
+      "ls": "-0.025em",
+      "fluidMin": 40,
+      "use": "区块主标题"
     },
     "display-m": {
-      "size": 60,
+      "size": 52,
       "lh": 1.1,
-      "weight": 200,
+      "weight": 300,
       "family": "serif",
-      "ls": "-0.015em",
-      "fluidMin": 38,
+      "ls": "-0.02em",
+      "fluidMin": 34,
       "use": "次级 Hero"
     },
     "display-s": {
-      "size": 42,
-      "lh": 1.12,
+      "size": 40,
+      "lh": 1.14,
       "weight": 300,
       "family": "serif",
-      "ls": "-0.01em",
-      "fluidMin": 30,
+      "ls": "-0.015em",
+      "fluidMin": 28,
       "use": "小型展示标题"
     },
     "h1": {
