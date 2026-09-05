@@ -1,0 +1,161 @@
+<section class="cx-section" id="atoms" data-title="L1 · 原子">
+  <div class="cx-head">
+    <div>
+      <div class="cx-head__layer"><span class="cx-head__num">LAYER 1</span><span class="cx-head__en">Atoms</span></div>
+      <h2 class="cx-head__title">原子：不可再分的功能单元</h2>
+      <p class="cx-head__lead" style="margin-top:16px">原子是拆到底就失去功能的界面元素：一个按钮、一个输入框、一枚图标、一方印章。它们只消费组件令牌，从不包含其他原子；每个原子都定义尺寸档、变体与完整的 8 状态机，并自带键盘可达与焦点可见。</p>
+    </div>
+    <div class="cx-head__phi"><span class="m-phi__tag m-phi__tag--shouzheng">守正</span></div>
+  </div>
+
+  <!-- 按钮 -->
+  <div class="cx-sub" id="atom-button"><span class="cx-sub__n">1.1</span><h3 class="cx-sub__t">按钮 Button</h3><span class="cx-sub__d">7 型 × 4 档 × 8 态 · 全圆角</span></div>
+  <div class="cx-spec">
+    <div class="cx-spec__bar"><b>类型</b><span>主操作每屏一个；藤黄 CTA 只用于品牌溢价时刻</span><span class="spacer"></span><button class="a-btn a-btn--text a-btn--s" type="button" data-code-toggle aria-expanded="false"><svg class="a-icon"><use href="#i-code"/></svg>代码</button></div>
+    <div class="cx-spec__body">
+      <button class="a-btn a-btn--primary" type="button">保存并提交</button>
+      <button class="a-btn a-btn--secondary" type="button">次要操作</button>
+      <button class="a-btn a-btn--text" type="button">文字按钮</button>
+      <button class="a-btn a-btn--ghost" type="button"><svg class="a-icon"><use href="#i-filter"/></svg>幽灵 · 工具栏</button>
+      <button class="a-btn a-btn--gold" type="button"><svg class="a-icon"><use href="#i-sparkles"/></svg>藤黄 CTA</button>
+      <button class="a-btn a-btn--danger" type="button">删除订单 #1024</button>
+      <button class="a-btn a-btn--link" type="button">链接式按钮</button>
+    </div>
+    <div class="cx-spec__code" hidden><pre><code>&lt;button class="a-btn a-btn--primary" type="button"&gt;保存并提交&lt;/button&gt;
+&lt;button class="a-btn a-btn--secondary" type="button"&gt;次要操作&lt;/button&gt;
+&lt;button class="a-btn a-btn--gold" type="button"&gt;
+  &lt;svg class="a-icon"&gt;&lt;use href="#i-sparkles"/&gt;&lt;/svg&gt;藤黄 CTA
+&lt;/button&gt;
+&lt;!-- 令牌：--btn-primary-bg → --c-primary → --e-primary-light → --stg-600 --&gt;</code></pre></div>
+  </div>
+  <div class="cx-grid" style="margin-top:16px">
+    <div class="c7">
+      <div class="cx-spec"><div class="cx-spec__bar"><b>尺寸</b><span>XL 48 · L 40 · M 36（默认）· S 28</span></div><div class="cx-spec__body">
+        <button class="a-btn a-btn--primary a-btn--xl" type="button">XL · 48px</button><button class="a-btn a-btn--primary a-btn--l" type="button">L · 40px</button><button class="a-btn a-btn--primary" type="button">M · 36px</button><button class="a-btn a-btn--primary a-btn--s" type="button">S · 28px</button>
+        <span class="a-divider a-divider--vertical"></span>
+        <button class="a-btn a-btn--icon a-btn--ghost a-btn--l" type="button" aria-label="通知"><svg class="a-icon"><use href="#i-bell"/></svg></button>
+        <button class="a-btn a-btn--icon a-btn--secondary" type="button" aria-label="编辑"><svg class="a-icon"><use href="#i-edit"/></svg></button>
+        <button class="a-btn a-btn--icon a-btn--ghost a-btn--square a-btn--s" type="button" aria-label="更多"><svg class="a-icon"><use href="#i-more"/></svg></button>
+      </div></div>
+    </div>
+    <div class="c5">
+      <div class="cx-spec"><div class="cx-spec__bar"><b>状态</b><span>hover 抬升 1px · active 0.98 · disabled 0.4 · loading 太极</span></div><div class="cx-spec__body">
+        <button class="a-btn a-btn--primary" type="button" disabled>已禁用</button>
+        <button class="a-btn a-btn--primary is-loading" type="button" aria-busy="true">提交中</button>
+        <button class="a-btn a-btn--secondary" type="button" data-loading-demo>点击体验加载</button>
+        <button class="a-btn a-btn--primary" type="button" data-toast="success" data-toast-title="已保存" data-toast-desc="所有更改已同步">成功反馈</button>
+      </div></div>
+    </div>
+  </div>
+  <div class="cx-anatomy" style="margin-top:16px">
+    <ul class="cx-anatomy__list">
+      <li><b>状态机</b>&nbsp;idle → hover → focus-visible → active → loading → success → error → disabled；焦点环 2px 主色 + 5px 22% 光环，永不用 <code>outline: none</code> 裸删。</li>
+      <li><b>图标</b>&nbsp;按钮内图标 18px，与文字按视觉中线对齐；图标按钮必须有 <code>aria-label</code>。</li>
+      <li><b>文案</b>&nbsp;动词 + 宾语：「删除订单 #1024」而非「是」；「保存并提交」而非「确定」。</li>
+      <li><b>五实体</b>&nbsp;主按钮底色随 <code>data-theme</code> 切换，STH 自动落到可访问的 700 阶；Danger 恒为朱砂，不随实体漂移。</li>
+    </ul>
+    <div class="cx-note cx-note--fix"><svg class="a-icon"><use href="#i-alert"/></svg><div><b>V38 修正：</b>废止 V37 的「绛紫 → 金色渐变主按钮」——渐变金色端与白字仅约 2.2:1；主按钮改为实色可访问主色。</div></div>
+  </div>
+
+  <!-- 图标 -->
+  <div class="cx-sub" id="atom-icon"><span class="cx-sub__n">1.2</span><h3 class="cx-sub__t">图标 Icon</h3><span class="cx-sub__d">SVG Sprite · currentColor · 点击复制名称</span></div>
+  <div class="cx-spec"><div class="cx-spec__bar"><b>品牌自定义图标</b><span>通用操作 · 导航 · 商务 · 数据 · 文件 · 实体 · 社交</span></div><div class="cx-spec__body cx-spec__body--none" style="padding:12px"><div class="icon-grid">
+    <div class="icon-cell" data-icon="i-search"><svg class="a-icon"><use href="#i-search"/></svg>search</div><div class="icon-cell" data-icon="i-menu"><svg class="a-icon"><use href="#i-menu"/></svg>menu</div><div class="icon-cell" data-icon="i-x"><svg class="a-icon"><use href="#i-x"/></svg>x</div><div class="icon-cell" data-icon="i-chevron-down"><svg class="a-icon"><use href="#i-chevron-down"/></svg>chevron-down</div><div class="icon-cell" data-icon="i-chevron-right"><svg class="a-icon"><use href="#i-chevron-right"/></svg>chevron-right</div><div class="icon-cell" data-icon="i-arrow-right"><svg class="a-icon"><use href="#i-arrow-right"/></svg>arrow-right</div><div class="icon-cell" data-icon="i-arrow-up-right"><svg class="a-icon"><use href="#i-arrow-up-right"/></svg>arrow-up-right</div><div class="icon-cell" data-icon="i-check"><svg class="a-icon"><use href="#i-check"/></svg>check</div><div class="icon-cell" data-icon="i-check-circle"><svg class="a-icon"><use href="#i-check-circle"/></svg>check-circle</div><div class="icon-cell" data-icon="i-x-circle"><svg class="a-icon"><use href="#i-x-circle"/></svg>x-circle</div><div class="icon-cell" data-icon="i-alert"><svg class="a-icon"><use href="#i-alert"/></svg>alert</div><div class="icon-cell" data-icon="i-info"><svg class="a-icon"><use href="#i-info"/></svg>info</div><div class="icon-cell" data-icon="i-plus"><svg class="a-icon"><use href="#i-plus"/></svg>plus</div><div class="icon-cell" data-icon="i-edit"><svg class="a-icon"><use href="#i-edit"/></svg>edit</div><div class="icon-cell" data-icon="i-trash"><svg class="a-icon"><use href="#i-trash"/></svg>trash</div><div class="icon-cell" data-icon="i-filter"><svg class="a-icon"><use href="#i-filter"/></svg>filter</div><div class="icon-cell" data-icon="i-sort"><svg class="a-icon"><use href="#i-sort"/></svg>sort</div><div class="icon-cell" data-icon="i-download"><svg class="a-icon"><use href="#i-download"/></svg>download</div><div class="icon-cell" data-icon="i-upload"><svg class="a-icon"><use href="#i-upload"/></svg>upload</div><div class="icon-cell" data-icon="i-bell"><svg class="a-icon"><use href="#i-bell"/></svg>bell</div><div class="icon-cell" data-icon="i-settings"><svg class="a-icon"><use href="#i-settings"/></svg>settings</div><div class="icon-cell" data-icon="i-user"><svg class="a-icon"><use href="#i-user"/></svg>user</div><div class="icon-cell" data-icon="i-home"><svg class="a-icon"><use href="#i-home"/></svg>home</div><div class="icon-cell" data-icon="i-dashboard"><svg class="a-icon"><use href="#i-dashboard"/></svg>dashboard</div><div class="icon-cell" data-icon="i-table"><svg class="a-icon"><use href="#i-table"/></svg>table</div><div class="icon-cell" data-icon="i-chart"><svg class="a-icon"><use href="#i-chart"/></svg>chart</div><div class="icon-cell" data-icon="i-doc"><svg class="a-icon"><use href="#i-doc"/></svg>doc</div><div class="icon-cell" data-icon="i-calendar"><svg class="a-icon"><use href="#i-calendar"/></svg>calendar</div><div class="icon-cell" data-icon="i-mail"><svg class="a-icon"><use href="#i-mail"/></svg>mail</div><div class="icon-cell" data-icon="i-copy"><svg class="a-icon"><use href="#i-copy"/></svg>copy</div><div class="icon-cell" data-icon="i-external"><svg class="a-icon"><use href="#i-external"/></svg>external</div><div class="icon-cell" data-icon="i-eye"><svg class="a-icon"><use href="#i-eye"/></svg>eye</div><div class="icon-cell" data-icon="i-lock"><svg class="a-icon"><use href="#i-lock"/></svg>lock</div><div class="icon-cell" data-icon="i-refresh"><svg class="a-icon"><use href="#i-refresh"/></svg>refresh</div><div class="icon-cell" data-icon="i-code"><svg class="a-icon"><use href="#i-code"/></svg>code</div><div class="icon-cell" data-icon="i-book"><svg class="a-icon"><use href="#i-book"/></svg>book</div><div class="icon-cell" data-icon="i-globe"><svg class="a-icon"><use href="#i-globe"/></svg>globe</div><div class="icon-cell" data-icon="i-shield"><svg class="a-icon"><use href="#i-shield"/></svg>shield</div><div class="icon-cell" data-icon="i-sparkles"><svg class="a-icon"><use href="#i-sparkles"/></svg>sparkles</div><div class="icon-cell" data-icon="i-send"><svg class="a-icon"><use href="#i-send"/></svg>send</div><div class="icon-cell" data-icon="i-clock"><svg class="a-icon"><use href="#i-clock"/></svg>clock</div><div class="icon-cell" data-icon="i-seal"><svg class="a-icon"><use href="#i-seal"/></svg>seal 印章</div>
+  </div></div></div>
+  <div class="cx-grid" style="margin-top:16px">
+    <div class="c7"><div class="cx-spec"><div class="cx-spec__bar"><b>实体专属</b><span>五实体各 6 枚中的代表</span></div><div class="cx-spec__body cx-spec__body--none" style="padding:12px"><div class="icon-grid">
+      <div class="icon-cell" data-icon="i-building" style="color:var(--stg-600)"><svg class="a-icon"><use href="#i-building"/></svg>STG 集团</div><div class="icon-cell" data-icon="i-layers" style="color:var(--stg-600)"><svg class="a-icon"><use href="#i-layers"/></svg>STG 五实体同心</div>
+      <div class="icon-cell" data-icon="i-leaf" style="color:var(--ste-600)"><svg class="a-icon"><use href="#i-leaf"/></svg>STE 生物质</div><div class="icon-cell" data-icon="i-flame" style="color:var(--ste-600)"><svg class="a-icon"><use href="#i-flame"/></svg>STE CFB 锅炉</div>
+      <div class="icon-cell" data-icon="i-ship" style="color:var(--sti-600)"><svg class="a-icon"><use href="#i-ship"/></svg>STI 集装箱船</div><div class="icon-cell" data-icon="i-truck" style="color:var(--sti-600)"><svg class="a-icon"><use href="#i-truck"/></svg>STI 物流</div>
+      <div class="icon-cell" data-icon="i-flask" style="color:var(--sth-700)"><svg class="a-icon"><use href="#i-flask"/></svg>STH 试管</div><div class="icon-cell" data-icon="i-pill" style="color:var(--sth-700)"><svg class="a-icon"><use href="#i-pill"/></svg>STH 药丸</div>
+      <div class="icon-cell" data-icon="i-cap" style="color:var(--edu-600)"><svg class="a-icon"><use href="#i-cap"/></svg>EDU 学位帽</div><div class="icon-cell" data-icon="i-heart" style="color:var(--edu-600)"><svg class="a-icon"><use href="#i-heart"/></svg>EDU 关怀</div>
+    </div></div></div></div>
+    <div class="c5"><div class="cx-spec"><div class="cx-spec__bar"><b>太极流纹 4 变体</b><span>品牌纹章图标化 · 12 变体之首</span></div><div class="cx-spec__body" style="justify-content:space-around">
+      <div class="icon-cell" data-icon="i-taiji-full"><svg class="a-icon a-icon--48" style="color:var(--c-primary)"><use href="#i-taiji-full"/></svg>太极·全</div><div class="icon-cell" data-icon="i-taiji-dot"><svg class="a-icon a-icon--48" style="color:var(--c-primary)"><use href="#i-taiji-dot"/></svg>太极·点</div><div class="icon-cell" data-icon="i-taiji-flow"><svg class="a-icon a-icon--48" style="color:var(--c-primary)"><use href="#i-taiji-flow"/></svg>太极·流</div><div class="icon-cell" data-icon="i-taiji-spin"><svg class="a-icon a-icon--48" style="color:var(--c-primary)"><use href="#i-taiji-spin"/></svg>太极·旋</div>
+    </div></div></div>
+  </div>
+
+  <!-- 输入 -->
+  <div class="cx-sub" id="atom-input"><span class="cx-sub__n">1.3</span><h3 class="cx-sub__t">输入 Input · Textarea · Select</h3><span class="cx-sub__d">高 40 · 圆角 8 · 边界 Ink 500（3.55:1）</span></div>
+  <div class="cx-spec">
+    <div class="cx-spec__bar"><b>状态矩阵</b><span>default · hover · focus · error · success · disabled</span><span class="spacer"></span><button class="a-btn a-btn--text a-btn--s" type="button" data-code-toggle aria-expanded="false"><svg class="a-icon"><use href="#i-code"/></svg>代码</button></div>
+    <div class="cx-spec__body cx-spec__body--grid">
+      <div class="m-field"><label class="a-label" for="in-1">默认</label><input class="a-input" id="in-1" placeholder="请输入您的手机号码"></div>
+      <div class="m-field"><label class="a-label" for="in-2">聚焦（点入查看光环）</label><input class="a-input" id="in-2" value="138-0000-0000"></div>
+      <div class="m-field"><label class="a-label" for="in-3">错误</label><input class="a-input" id="in-3" value="1380000" aria-invalid="true" aria-describedby="in-3-err"><div class="m-field__msg"><span class="a-error" id="in-3-err"><svg class="a-icon"><use href="#i-alert"/></svg>手机号应为 11 位数字</span></div></div>
+      <div class="m-field"><label class="a-label" for="in-4">成功</label><input class="a-input is-success" id="in-4" value="wang.gong@jiupai.energy"></div>
+      <div class="m-field"><label class="a-label" for="in-5">禁用</label><input class="a-input" id="in-5" value="STG-2026-Q3" disabled></div>
+      <div class="m-field"><label class="a-label" for="in-6">带图标与后缀</label><div class="m-field__control"><svg class="a-icon"><use href="#i-globe"/></svg><input class="a-input" id="in-6" placeholder="报关口岸"><span class="m-field__suffix">CN</span></div></div>
+      <div class="m-field"><label class="a-label" for="sel-1">选择器（原生，键盘可达）</label><select class="a-select" id="sel-1"><option>STE · 九派能源</option><option>STI · 进出口贸易</option><option>STH · 健康科技</option><option>EDU · 崇仁教育</option></select></div>
+      <div class="m-field"><label class="a-label" for="ta-1">多行</label><textarea class="a-textarea" id="ta-1" placeholder="补充说明（可选）"></textarea></div>
+    </div>
+    <div class="cx-spec__code" hidden><pre><code>&lt;div class="m-field"&gt;
+  &lt;label class="a-label" for="phone"&gt;手机号&lt;span class="a-label__req"&gt;*&lt;/span&gt;&lt;/label&gt;
+  &lt;input class="a-input" id="phone" data-validate="required phone" aria-describedby="phone-msg"&gt;
+  &lt;div class="m-field__msg" id="phone-msg" data-help="用于接收审核结果通知"&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;!-- 错误态：aria-invalid="true" + 就近文字 + 图标 + 颜色 三重标识；预留 20px 行高防抖动 --&gt;</code></pre></div>
+  </div>
+  <div class="cx-note cx-note--fix" style="margin-top:14px"><svg class="a-icon"><use href="#i-alert"/></svg><div><b>V38 修正：</b>V37 规定输入框边框 Ink 200、占位符 Ink 400——分别只有 1.15:1 与 1.91:1，不满足 WCAG 1.4.11 非文本对比与 1.4.3 文字对比。本典改为边框 Ink 500（3.55:1）、占位符 Ink 600（5.67:1）。</div></div>
+
+  <!-- 复选 -->
+  <div class="cx-sub" id="atom-check"><span class="cx-sub__n">1.4</span><h3 class="cx-sub__t">复选 · 单选 · 开关</h3><span class="cx-sub__d">18px · 半选横线 · 8% 悬停光环 · 回锋弹入</span></div>
+  <div class="cx-spec"><div class="cx-spec__body" style="gap:28px">
+    <label class="a-check"><input type="checkbox" checked>已阅读《品牌宪法》</label>
+    <label class="a-check"><input type="checkbox">订阅碳配额预警</label>
+    <label class="a-check"><input type="checkbox" id="ck-ind">半选</label>
+    <label class="a-check"><input type="checkbox" disabled checked>禁用</label>
+    <span class="a-divider a-divider--vertical"></span>
+    <label class="a-radio"><input type="radio" name="r1" checked>失焦验证 ★</label>
+    <label class="a-radio"><input type="radio" name="r1">提交时验证</label>
+    <label class="a-radio"><input type="radio" name="r1">实时验证</label>
+    <span class="a-divider a-divider--vertical"></span>
+    <label class="a-switch"><input type="checkbox" role="switch" checked>Autopilot</label>
+    <label class="a-switch"><input type="checkbox" role="switch">高对比度</label>
+  </div></div>
+  <script>document.getElementById('ck-ind').indeterminate = true;</script>
+
+  <!-- 徽标 / 芯片 -->
+  <div class="cx-sub" id="atom-badge"><span class="cx-sub__n">1.5</span><h3 class="cx-sub__t">徽标 Badge · 芯片 Chip · 状态点</h3><span class="cx-sub__d">状态永远带文字，颜色不是唯一载体</span></div>
+  <div class="cx-grid">
+    <div class="c7"><div class="cx-spec"><div class="cx-spec__bar"><b>徽标</b></div><div class="cx-spec__body">
+      <span class="a-badge">中性</span><span class="a-badge a-badge--primary">主色</span><span class="a-badge a-badge--success"><span class="a-dot"></span>已放行</span><span class="a-badge a-badge--warning"><span class="a-dot"></span>查验中</span><span class="a-badge a-badge--error"><span class="a-dot"></span>已退单</span><span class="a-badge a-badge--info">信息</span><span class="a-badge a-badge--gold">藤黄 · 荣誉</span><span class="a-badge a-badge--solid">12</span><span class="a-badge a-badge--outline">描边</span>
+      <span class="a-divider a-divider--vertical"></span><span class="a-dot a-dot--pulse" style="--sw:var(--c-success)" aria-label="在线"></span><span class="t-caption">脉动光环 · 运行中</span>
+    </div></div></div>
+    <div class="c5"><div class="cx-spec"><div class="cx-spec__bar"><b>芯片</b><span>可选择 · 可移除</span></div><div class="cx-spec__body" data-toggle-group="multi">
+      <button class="a-chip" type="button" aria-pressed="true">本月</button><button class="a-chip" type="button" aria-pressed="false">近 90 天</button><button class="a-chip" type="button" aria-pressed="false"><svg class="a-icon"><use href="#i-ship"/></svg>海运</button><span class="a-chip is-on">STE 九派能源<span class="a-chip__x" role="button" aria-label="移除" tabindex="0"><svg class="a-icon" style="width:12px;height:12px"><use href="#i-x"/></svg></span></span>
+    </div></div></div>
+  </div>
+
+  <!-- 头像 / 分割 / 键帽 / 提示 / 印章 -->
+  <div class="cx-sub" id="atom-misc"><span class="cx-sub__n">1.6</span><h3 class="cx-sub__t">头像 · 分割线 · 键帽 · 工具提示 · 印章</h3></div>
+  <div class="cx-grid">
+    <div class="c6"><div class="cx-spec"><div class="cx-spec__bar"><b>头像 · 键帽 · 工具提示</b></div><div class="cx-spec__body" style="gap:20px">
+      <span class="a-avatar a-avatar--s">李</span><span class="a-avatar">王工</span><span class="a-avatar a-avatar--l">陈</span><span class="a-avatar a-avatar--xl a-avatar--square">张博</span>
+      <span class="a-divider a-divider--vertical"></span>
+      <span class="a-kbd">⌘K</span><span class="a-kbd">⌘S</span><span class="a-kbd">Esc</span><span class="a-kbd">⌘⏎</span>
+      <span class="a-divider a-divider--vertical"></span>
+      <button class="a-btn a-btn--ghost a-btn--s" type="button" data-tip="纯 CSS 工具提示 · 悬停或聚焦">悬停查看提示</button>
+    </div></div></div>
+    <div class="c6"><div class="cx-spec"><div class="cx-spec__bar"><b>印章 · 一点朱</b><span>每屏至多一方</span></div><div class="cx-spec__body" style="gap:28px">
+      <span class="a-seal">守正</span><span class="a-seal a-seal--solid">开物</span><span class="a-seal a-seal--s">共生</span>
+      <div style="flex:1;min-width:200px"><hr class="a-divider"><div class="t-caption" style="padding:8px 0">--divider-color 发丝线</div><hr class="a-divider a-divider--strong"><div class="t-caption" style="padding:8px 0">--divider-color-strong</div><hr class="a-divider a-divider--gold"><div class="t-caption" style="padding-top:8px">藤黄金线 · 署名分隔</div></div>
+    </div></div></div>
+  </div>
+
+  <!-- 反馈原子 -->
+  <div class="cx-sub" id="atom-feedback"><span class="cx-sub__n">1.7</span><h3 class="cx-sub__t">太极 Spinner · 进度 · 骨架屏</h3><span class="cx-sub__d">加载不是让用户等，是陪用户等</span></div>
+  <div class="cx-grid">
+    <div class="c4"><div class="cx-spec"><div class="cx-spec__bar"><b>太极流纹 Spinner</b><span>2s / 圈 · elegant</span></div><div class="cx-spec__body" style="justify-content:space-around;min-height:120px"><span class="a-spinner" role="status" aria-label="加载中"></span><span class="a-spinner a-spinner--l" role="status" aria-label="加载中"></span></div></div></div>
+    <div class="c4"><div class="cx-spec"><div class="cx-spec__bar"><b>进度 · 度量</b></div><div class="cx-spec__body cx-spec__body--col" style="gap:14px"><div><div style="display:flex;justify-content:space-between;font-size:12.5px"><span>文件上传</span><span class="num">72%</span></div><div class="a-progress" style="margin-top:6px"><div class="a-progress__bar" data-value="72"></div></div></div><div><div style="display:flex;justify-content:space-between;font-size:12.5px"><span>碳配额使用（度量：同色系轨道）</span><span class="num">86%</span></div><div class="a-progress a-progress--meter a-progress--warning" style="margin-top:6px"><div class="a-progress__bar" data-value="86"></div></div></div></div></div></div>
+    <div class="c4"><div class="cx-spec"><div class="cx-spec__bar"><b>骨架屏</b><span>保持布局，shimmer 给等待以温度</span></div><div class="cx-spec__body cx-spec__body--col" style="gap:10px"><div style="display:flex;gap:10px;align-items:center"><span class="a-skeleton a-skeleton--circle" style="width:36px;height:36px"></span><div style="flex:1;display:flex;flex-direction:column;gap:6px"><span class="a-skeleton" style="height:12px;width:60%"></span><span class="a-skeleton" style="height:10px;width:40%"></span></div></div><span class="a-skeleton" style="height:12px"></span><span class="a-skeleton" style="height:12px;width:85%"></span><span class="a-skeleton" style="height:64px"></span></div></div></div>
+  </div>
+  <div class="cx-table-wrap" style="margin-top:16px"><table class="a-table a-table--data a-table--dense"><thead><tr><th>等待时长</th><th>指示</th><th>用户感知</th></tr></thead><tbody><tr><td class="num">&lt; 1 s</td><td>无需指示</td><td>即时</td></tr><tr><td class="num">1–3 s</td><td>太极 Spinner</td><td>「正在处理」</td></tr><tr><td class="num">3–10 s</td><td>进度条 + 预计剩余</td><td>「还需等待 X 秒」</td></tr><tr><td class="num">&gt; 10 s</td><td>进度条 + 后台处理 + 通知</td><td>「可以先做别的」</td></tr><tr><td class="num">&gt; 30 s</td><td>错误提示 + 重试按钮</td><td>「可恢复」</td></tr></tbody></table></div>
+
+  <!-- 表格元素 / 标志 -->
+  <div class="cx-sub" id="atom-table"><span class="cx-sub__n">1.8</span><h3 class="cx-sub__t">表格元素 · 品牌标志</h3><span class="cx-sub__d">表头 2px 主色下划线 · 数字右对齐等宽</span></div>
+  <div class="cx-grid">
+    <div class="c7"><div class="cx-table-wrap"><table class="a-table a-table--data"><thead><tr><th>实体</th><th>Persona</th><th class="num">NPS</th><th class="num">触点一致性</th></tr></thead><tbody><tr><td>STG 集团</td><td>集团 CFO 李总</td><td class="num">54</td><td class="num">96.2%</td></tr><tr><td>STE 九派能源</td><td>工厂经理 王工</td><td class="num">61</td><td class="num">97.8%</td></tr><tr><td>STI 进出口</td><td>贸易经理 陈先生</td><td class="num">48</td><td class="num">94.1%</td></tr><tr><td>STH 健康科技</td><td>产品经理 张博士</td><td class="num">57</td><td class="num">95.5%</td></tr><tr><td>EDU 崇仁教育</td><td>教务主任 刘老师</td><td class="num">66</td><td class="num">98.0%</td></tr></tbody></table></div></div>
+    <div class="c5"><div class="cx-spec"><div class="cx-spec__bar"><b>标志锁定</b><span>太极母体 + 霞鹜文楷字标 + Latin 眼标</span></div><div class="cx-spec__body" style="gap:32px;justify-content:center;min-height:120px"><a class="a-logo" href="#cover"><svg class="a-logo__mark" style="color:var(--c-primary)"><use href="#i-mark"/></svg><span><span class="a-logo__word">源裕兴</span><span class="a-logo__latin">Sinotao</span></span></a><svg class="a-icon a-icon--48" style="color:var(--c-primary)"><use href="#i-mark"/></svg><span style="font-family:var(--font-display);font-size:28px;letter-spacing:.1em;color:var(--c-onSurfaceStrong)">源裕兴</span></div></div></div>
+  </div>
+</section>

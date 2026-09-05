@@ -1,0 +1,35 @@
+    <footer class="cx-footer">
+      <div><b>源裕兴设计系统全典</b> · V<!-- @gen:version --> 原子设计版<br>守正 · 开物 · 共生 —— 守正，故不漂移。开物，故不僵化。共生，故不孤立。</div>
+      <div>唯一可信源 <code>tokens/tokens.json</code> → 构建 <code>build/build.mjs</code> → 本页<br>对比度、色阶、系列顺序均为构建时实测，不是宣称。</div>
+    </footer>
+  </main>
+</div>
+
+<div class="o-toaster" id="toaster" aria-live="polite" aria-atomic="false"></div>
+
+<div class="cx-cmdk" id="cmdk" role="dialog" aria-modal="true" aria-label="搜索全典" aria-hidden="true">
+  <div class="cx-cmdk__panel">
+    <input class="cx-cmdk__input" id="cmdk-input" type="text" placeholder="跳转到章节或组件… 例如「按钮」「对比度」「报关」" autocomplete="off">
+    <div class="cx-cmdk__list" id="cmdk-list"></div>
+  </div>
+</div>
+
+<div class="o-modal" id="demo-modal" role="dialog" aria-modal="true" aria-labelledby="demo-modal-title" aria-hidden="true">
+  <div class="o-modal__dialog">
+    <div class="o-modal__head"><h3 class="o-modal__title" id="demo-modal-title">删除报关单 #STI-2026-0718？</h3><button class="a-btn a-btn--icon a-btn--ghost a-btn--s a-btn--square" type="button" data-close aria-label="关闭"><svg class="a-icon"><use href="#i-x"/></svg></button></div>
+    <div class="o-modal__body"><p>这是不可逆操作。删除后，该报关单及其附件将从系统中移除，且无法恢复。相关的物流跟踪记录会保留在审计日志中。</p></div>
+    <div class="o-modal__foot"><button class="a-btn a-btn--secondary" type="button" data-close>取消</button><button class="a-btn a-btn--danger" type="button" data-close data-toast="success" data-toast-title="已删除报关单 #STI-2026-0718" data-toast-desc="审计日志已记录本次操作">删除报关单</button></div>
+  </div>
+</div>
+
+<div class="o-drawer" id="demo-drawer" role="dialog" aria-modal="true" aria-labelledby="demo-drawer-title" aria-hidden="true">
+  <div class="o-drawer__panel">
+    <div class="o-drawer__head"><h3 class="o-drawer__title" id="demo-drawer-title">锅炉 #2 · 参数详情</h3><button class="a-btn a-btn--icon a-btn--ghost a-btn--s a-btn--square" type="button" data-close aria-label="关闭"><svg class="a-icon"><use href="#i-x"/></svg></button></div>
+    <div class="o-drawer__body">
+      <dl class="m-stat"><dt>设备型号</dt><dd>CFB-75/5.3-M</dd><dt>炉膛温度</dt><dd>862 ℃</dd><dt>蒸汽压力</dt><dd>5.3 MPa</dd><dt>含氧量</dt><dd>4.2 %</dd><dt>本班运行</dt><dd>7 h 42 min</dd><dt>负责人</dt><dd>王工</dd></dl>
+      <div class="m-alert m-alert--warning"><svg class="a-icon m-alert__icon"><use href="#i-alert"/></svg><div><div class="m-alert__title">含氧量接近上限</div>建议下调一次风量 3%，并在 15 分钟后复核。</div></div>
+    </div>
+    <div class="o-drawer__foot"><button class="a-btn a-btn--secondary" type="button" data-close>关闭</button><button class="a-btn a-btn--primary" type="button" data-close data-toast="success" data-toast-title="已下发调整指令" data-toast-desc="一次风量 −3% · 15 分钟后自动复核">下发调整</button></div>
+  </div>
+</div>
+</div>

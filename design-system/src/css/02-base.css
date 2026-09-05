@@ -1,0 +1,67 @@
+/* ============================================================
+   02 · Base / Elements — 排版基线（力起·秀承）、页面底、滚动条、prose
+   ============================================================ */
+html { scroll-behavior: smooth; }
+body { background: var(--c-background); color: var(--c-onBackground); margin: 0; }
+.sino {
+  min-height: 100dvh;
+  background: var(--c-background);
+  color: var(--c-onSurface);
+  font-family: var(--font-sans);
+  font-size: var(--fs-body-m);
+  line-height: var(--lh-body-m);
+  font-weight: var(--fw-body-m);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "kern", "liga", "calt";
+  scrollbar-color: var(--c-outlineVariant) transparent;
+}
+:where(.sino) :lang(en), .sino .en { font-family: var(--font-western); }
+
+/* 标题族：Display/H1 用力，H2 以下用秀 */
+.sino .t-display-l, .sino .t-display-m, .sino .t-display-s, :where(.sino) h1, .sino .t-h1, :where(.sino) h2, .sino .t-h2, :where(.sino) h3, .sino .t-h3, :where(.sino) h4, .sino .t-h4 {
+  font-family: var(--font-serif); color: var(--c-onSurfaceStrong); text-wrap: balance; hanging-punctuation: first allow-end;
+}
+.sino .t-display-l { font-size: var(--fs-display-l); line-height: var(--lh-display-l); font-weight: var(--fw-display-l); letter-spacing: var(--ls-display-l); }
+.sino .t-display-m { font-size: var(--fs-display-m); line-height: var(--lh-display-m); font-weight: var(--fw-display-m); letter-spacing: var(--ls-display-m); }
+.sino .t-display-s { font-size: var(--fs-display-s); line-height: var(--lh-display-s); font-weight: var(--fw-display-s); letter-spacing: var(--ls-display-s); }
+:where(.sino) h1, .sino .t-h1 { font-size: var(--fs-h1); line-height: var(--lh-h1); font-weight: var(--fw-h1); letter-spacing: var(--ls-h1); }
+:where(.sino) h2, .sino .t-h2 { font-size: var(--fs-h2); line-height: var(--lh-h2); font-weight: var(--fw-h2); letter-spacing: var(--ls-h2); }
+:where(.sino) h3, .sino .t-h3 { font-size: var(--fs-h3); line-height: var(--lh-h3); font-weight: var(--fw-h3); letter-spacing: var(--ls-h3); }
+:where(.sino) h4, .sino .t-h4 { font-size: var(--fs-h4); line-height: var(--lh-h4); font-weight: var(--fw-h4); letter-spacing: var(--ls-h4); }
+:where(.sino) h5, .sino .t-h5 { font-family: var(--font-sans); font-size: var(--fs-h5); line-height: var(--lh-h5); font-weight: var(--fw-h5); color: var(--c-onSurfaceStrong); }
+:where(.sino) h6, .sino .t-h6 { font-family: var(--font-sans); font-size: var(--fs-h6); line-height: var(--lh-h6); font-weight: var(--fw-h6); color: var(--c-onSurfaceStrong); }
+.sino .t-body-l { font-size: var(--fs-body-l); line-height: var(--lh-body-l); }
+.sino .t-body-m { font-size: var(--fs-body-m); line-height: var(--lh-body-m); }
+.sino .t-body-s { font-size: var(--fs-body-s); line-height: var(--lh-body-s); }
+.sino .t-caption { font-size: var(--fs-caption); line-height: var(--lh-caption); letter-spacing: var(--ls-caption); color: var(--c-onSurfaceVariant); }
+.sino .t-caption-xs { font-size: var(--fs-caption-xs); line-height: var(--lh-caption-xs); letter-spacing: var(--ls-caption-xs); font-weight: var(--fw-caption-xs); text-transform: uppercase; }
+.sino .t-overline { font-size: 12px; line-height: 1.4; letter-spacing: .12em; font-weight: 600; text-transform: uppercase; color: var(--c-onSurfaceVariant); font-family: var(--font-western); }
+.sino .t-serif { font-family: var(--font-serif); }
+.sino .t-display-face { font-family: var(--font-display); }
+:where(.sino) :is(code,kbd,samp), .sino .mono { font-family: var(--font-mono); font-size: var(--fs-code); }
+.sino .num { font-variant-numeric: tabular-nums; }
+.sino .muted { color: var(--c-onSurfaceVariant); }
+.sino .strong { color: var(--c-onSurfaceStrong); font-weight: 600; }
+.sino .ok { color: var(--c-success); font-weight: 600; font-size: 12px; }
+.sino .warn { color: var(--c-warning); font-weight: 600; font-size: 12px; }
+.sino .bad { color: var(--c-error); font-weight: 600; font-size: 12px; }
+
+/* prose：长文阅读（衬线、卷舒行高、中西文间隙、悬挂标点） */
+.sino .prose { font-family: var(--font-serif); font-size: var(--fs-body-l); line-height: var(--lh-body-l); max-width: 38em; text-autospace: normal; hanging-punctuation: first allow-end; line-break: strict; text-wrap: pretty; color: var(--c-onSurface); }
+.sino .prose p + p { margin-top: 1em; }
+.sino .prose strong { font-weight: 600; color: var(--c-onSurfaceStrong); }
+.sino .prose em { font-style: normal; color: var(--c-primary); }
+.sino .prose--sans { font-family: var(--font-sans); }
+.sino .lead { font-size: 18px; line-height: 1.8; color: var(--c-onSurfaceVariant); max-width: 36em; text-wrap: pretty; }
+
+/* 行内代码 */
+:where(.sino) code:not(pre code) { background: var(--c-surfaceContainer); border: 1px solid var(--c-outlineFaint); border-radius: var(--radius-sm); padding: .1em .4em; font-size: .88em; color: var(--c-onSurfaceStrong); }
+:where(.sino) pre { margin: 0; background: var(--c-inverseSurface); color: var(--c-inverseOnSurface); border-radius: var(--radius-md); padding: var(--space-4) var(--space-5); overflow-x: auto; font-family: var(--font-mono); font-size: 12.5px; line-height: 1.7; tab-size: 2; }
+:where(.sino) pre code { background: none; border: 0; padding: 0; font-size: inherit; color: inherit; }
+
+/* 滚动条（末梢一致） */
+.sino ::-webkit-scrollbar { width: 10px; height: 10px; }
+.sino ::-webkit-scrollbar-thumb { background: var(--c-outlineVariant); border-radius: var(--radius-full); border: 3px solid transparent; background-clip: padding-box; }
+.sino ::-webkit-scrollbar-thumb:hover { background-color: var(--c-outline); }

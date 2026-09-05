@@ -1,0 +1,148 @@
+<section class="cx-section" id="governance" data-title="治理 · 映射 · 变更">
+  <div class="cx-head">
+    <div>
+      <div class="cx-head__layer"><span class="cx-head__num">GOVERNANCE</span><span class="cx-head__en">Rules · Mappings · Changelog</span></div>
+      <h2 class="cx-head__title">治理：让系统在生长中不漂移</h2>
+      <p class="cx-head__lead" style="margin-top:16px">工具可以换，令牌的单一可信源不可换。本章把品牌宪法翻译成可执行的规则：核心十条、原子设计五律、命名、状态机、门禁、无障碍清单、与 Ant Design 及 Odoo 18 的映射，以及本版对 V37 文字稿的每一处修正。</p>
+    </div>
+    <div class="cx-head__phi"><span class="m-phi__tag m-phi__tag--shouzheng">守正</span></div>
+  </div>
+
+  <div class="cx-sub" id="gov-rules"><span class="cx-sub__n">G.1</span><h3 class="cx-sub__t">核心十条（工艺判断准则）</h3></div>
+  <ul class="rule-list">
+    <li><span><b>颜色只用令牌</b>，不硬编码色值。</span></li>
+    <li><span><b>间距只用 4px 步进</b>的令牌。</span></li>
+    <li><span><b>实体主色仅用于 Primary 操作与重点元素</b>；面积不超过 30%。</span></li>
+    <li><span><b>不用纯黑 #000 / 纯白 #FFF</b>——用 Ink 900 / Ink 50。</span></li>
+    <li><span><b>动效即叙事</b>，不做无意义动效；退场快于进场。</span></li>
+    <li><span><b>组件遵循 8 状态机</b>。</span></li>
+    <li><span><b>每个交互元素可键盘操作</b>，焦点可见。</span></li>
+    <li><span><b>正文对比度 ≥ 4.5:1</b>，UI 边界 ≥ 3:1（构建时实测）。</span></li>
+    <li><span><b>暗色模式三态解析</b>：<code>data-color-scheme</code> / 宿主 / 系统偏好。</span></li>
+    <li><span><b>五实体通过 data-theme 切换</b>，只替换映射，不漂移。</span></li>
+  </ul>
+
+  <div class="cx-sub" id="gov-atomic"><span class="cx-sub__n">G.2</span><h3 class="cx-sub__t">原子设计五律与 lint 规则</h3></div>
+  <div class="cx-grid">
+    <div class="c6"><div class="cx-table-wrap"><table class="a-table a-table--data a-table--dense"><thead><tr><th>律</th><th>规则</th><th>可检</th></tr></thead><tbody>
+      <tr><td>一 · 单向组合</td><td>原子 → 分子 → 有机体 → 模板 → 页面；下层不得引用上层。</td><td class="mono">.a-* 内不得出现 .m-/.o-</td></tr>
+      <tr><td>二 · 分子单责</td><td>一个分子只做一件事，可被任何有机体复用。</td><td>评审</td></tr>
+      <tr><td>三 · 有机体独立</td><td>有机体可单独运作，不依赖页面上下文；不互相嵌套为分子。</td><td class="mono">.o-* 内不得嵌套 .o-*（外壳除外）</td></tr>
+      <tr><td>四 · 模板无数据</td><td>模板只含占位（.wf），任何真实数值出现即违规。</td><td class="mono">.t-* 内禁止数字字面量</td></tr>
+      <tr><td>五 · 页面有真数</td><td>页面必须注入真实内容并标明数据截止；空页面不是页面。</td><td>Design QA</td></tr>
+    </tbody></table></div></div>
+    <div class="c6"><div class="cx-table-wrap"><table class="a-table a-table--data a-table--dense"><thead><tr><th>Lint</th><th>触发</th><th>级别</th></tr></thead><tbody>
+      <tr><td class="mono">no-literal-color</td><td>组件 CSS 出现 #hex / rgb() / oklch() 字面量</td><td><span class="a-badge a-badge--error">阻断</span></td></tr>
+      <tr><td class="mono">no-magic-spacing</td><td>padding / margin / gap 非 --space-* 且非 0</td><td><span class="a-badge a-badge--error">阻断</span></td></tr>
+      <tr><td class="mono">layer-reference</td><td>Component 令牌引用 Primitive；Semantic 引用 Component</td><td><span class="a-badge a-badge--error">阻断</span></td></tr>
+      <tr><td class="mono">gold-budget</td><td>同一视图 --gold-* 作底色超过 1 处</td><td><span class="a-badge a-badge--warning">警告</span></td></tr>
+      <tr><td class="mono">contrast-aa</td><td>语义色对实测 &lt; 4.5:1（文字）/ 3:1（边界）</td><td><span class="a-badge a-badge--error">阻断（已内置于 build.mjs）</span></td></tr>
+      <tr><td class="mono">no-important</td><td>出现 !important（第三方覆盖除外）</td><td><span class="a-badge a-badge--warning">警告</span></td></tr>
+    </tbody></table></div></div>
+  </div>
+
+  <div class="cx-sub" id="gov-states"><span class="cx-sub__n">G.3</span><h3 class="cx-sub__t">8 状态机与组件状态矩阵</h3></div>
+  <div class="cx-row" style="gap:6px;margin-bottom:14px"><span class="a-chip is-on">idle</span><svg class="a-icon a-icon--18" style="color:var(--c-onSurfaceMuted)"><use href="#i-arrow-right"/></svg><span class="a-chip">hover</span><svg class="a-icon a-icon--18" style="color:var(--c-onSurfaceMuted)"><use href="#i-arrow-right"/></svg><span class="a-chip">focus-visible</span><svg class="a-icon a-icon--18" style="color:var(--c-onSurfaceMuted)"><use href="#i-arrow-right"/></svg><span class="a-chip">active</span><svg class="a-icon a-icon--18" style="color:var(--c-onSurfaceMuted)"><use href="#i-arrow-right"/></svg><span class="a-chip">loading</span><svg class="a-icon a-icon--18" style="color:var(--c-onSurfaceMuted)"><use href="#i-arrow-right"/></svg><span class="a-chip">success</span><svg class="a-icon a-icon--18" style="color:var(--c-onSurfaceMuted)"><use href="#i-arrow-right"/></svg><span class="a-chip">error</span><svg class="a-icon a-icon--18" style="color:var(--c-onSurfaceMuted)"><use href="#i-arrow-right"/></svg><span class="a-chip">disabled</span></div>
+  <div class="cx-table-wrap"><table class="a-table a-table--data a-table--dense"><thead><tr><th>组件</th><th>hover</th><th>focus-visible</th><th>active</th><th>loading</th><th>error</th><th>disabled</th><th>a11y</th></tr></thead><tbody>
+    <tr><td>a-btn</td><td>底色 +1 阶 · 抬升 1px</td><td>2px 环 + 光环</td><td>scale .98</td><td>太极 Spinner · aria-busy</td><td>—</td><td>opacity .4</td><td>aria-label（图标按钮）</td></tr>
+    <tr><td>a-input</td><td>边框 Ink 600</td><td>主色边框 + 3px 光环</td><td>—</td><td>—</td><td>朱砂边框 · aria-invalid · 就近文字</td><td>Ink 200 底</td><td>label for · aria-describedby</td></tr>
+    <tr><td>a-check / a-switch</td><td>8% 光环</td><td>2px 环</td><td>回锋弹入</td><td>—</td><td>—</td><td>opacity .45</td><td>role=switch</td></tr>
+    <tr><td>m-tabs</td><td>文字转浓墨</td><td>2px 环</td><td>指示条 300ms</td><td>—</td><td>—</td><td>—</td><td>tablist · ← → Home End</td></tr>
+    <tr><td>o-table 行</td><td>Ink 900 4% 底</td><td>行内控件各自可焦</td><td>—</td><td>骨架屏</td><td>—</td><td>—</td><td>aria-sort · aria-selected</td></tr>
+    <tr><td>o-modal / o-drawer</td><td>—</td><td>焦点陷阱</td><td>—</td><td>—</td><td>—</td><td>—</td><td>aria-modal · Esc · 焦点归还</td></tr>
+  </tbody></table></div>
+
+  <div class="cx-sub" id="gov-review"><span class="cx-sub__n">G.4</span><h3 class="cx-sub__t">质量门禁：构建门禁 + 四阶评审 + Design QA</h3></div>
+  <div class="cx-grid">
+    <div class="c4"><div class="m-card"><div class="m-card-head"><div><div class="m-card-head__title">构建门禁（自动）</div><div class="m-card-head__sub">build.mjs · 退出码 1 即阻断</div></div></div><ul class="cx-anatomy__list" style="margin-top:12px"><li>五实体可访问主色选取（浅 / 暗）。</li><li>20 项语义色对比度实测。</li><li>数据墨色六检（明度带 · 色度 · CVD ΔE · 正常视觉 ΔE · 对比 · 固定顺序）。</li><li>令牌引用层级合法性（未知引用即失败）。</li><li>令牌计数注入页面（数字必真）。</li></ul></div></div>
+    <div class="c4"><div class="m-card"><div class="m-card-head"><div><div class="m-card-head__title">四阶评审（人工）</div></div></div><div class="cx-stack" style="margin-top:12px;gap:8px"><div class="m-step is-done" style="font-size:13px">自审：WCAG · 五实体切换 · 五断点</div><div class="m-step is-done" style="font-size:13px">同行审：BEM · 令牌引用 · 原子五律</div><div class="m-step" aria-current="step" style="font-size:13px">跨职能审：前端 · Odoo · 内容</div><div class="m-step" style="font-size:13px">品牌审：哲学对齐 · 品牌委员会</div></div></div></div>
+    <div class="c4"><div class="m-card"><div class="m-card-head"><div><div class="m-card-head__title">Design QA 检查项</div></div></div><ul class="cx-anatomy__list" style="margin-top:12px"><li>像素偏差 &lt; 2px；色彩 100% 令牌引用。</li><li>间距 100% 4px 步进；字体完全匹配。</li><li>五断点响应；动效视觉匹配。</li><li>WCAG 全通过；五实体切换无异常。</li><li>性能：Lighthouse ≥ 95 · LCP &lt; 2.5s · CLS &lt; 0.1 · CSS &lt; 50KB（压缩后）。</li></ul></div></div>
+  </div>
+
+  <div class="cx-sub" id="gov-a11y"><span class="cx-sub__n">G.5</span><h3 class="cx-sub__t">无障碍 WCAG 2.2 AA：出厂设置</h3></div>
+  <div class="cx-grid">
+    <div class="c6"><div class="cx-table-wrap"><table class="a-table a-table--data a-table--dense"><thead><tr><th>原则</th><th>本典落实</th></tr></thead><tbody><tr><td>可感知</td><td>alt / aria-label；语义 HTML；DOM 顺序 = 视觉顺序；颜色非唯一载体；文字 ≥ 4.5:1；边界 ≥ 3:1；200% 缩放</td></tr><tr><td>可操作</td><td>全键盘；无键盘陷阱（Esc + 焦点归还）；Skip Link；焦点可见 2px；触摸目标 ≥ 44px；2.4.11 焦点不遮挡（sticky 顶栏 60px 已计入 scroll-margin）</td></tr><tr><td>可理解</td><td>lang=zh-CN；导航位置一致；错误三重标识（文字 + 图标 + 颜色）；输入框皆有 label；删除二次确认；3.2.6 一致的帮助</td></tr><tr><td>健壮</td><td>ARIA：tablist / switch / dialog / status / alert / sort / selected；W3C 校验</td></tr></tbody></table></div></div>
+    <div class="c6"><div class="cx-table-wrap"><table class="a-table a-table--data a-table--dense"><thead><tr><th>DEI 指标</th><th class="num">目标</th></tr></thead><tbody><tr><td>插画人物多样性评分</td><td class="num">≥ 80%</td></tr><tr><td>WCAG 合规率</td><td class="num">100%</td></tr><tr><td>多语言覆盖（简中 → 英 → 繁）</td><td class="num">100%</td></tr><tr><td>屏幕阅读器兼容（VoiceOver / NVDA / TalkBack）</td><td class="num">3 平台</td></tr><tr><td>键盘可操作率</td><td class="num">100%</td></tr><tr><td>年龄友好最小字号（界面）</td><td class="num">≥ 14px</td></tr></tbody></table></div><p class="cx-p" style="margin-top:12px;font-size:13px">移动端：关键操作在拇指热区；<code>prefers-reduced-motion</code> 关大位移保留终态；<code>prefers-contrast</code> 提升边界至 Ink 600。</p></div>
+  </div>
+
+  <div class="cx-sub" id="gov-antd"><span class="cx-sub__n">G.6</span><h3 class="cx-sub__t">Ant Design 5.x 映射</h3><span class="cx-sub__d">源裕兴不是 Ant Design 的中文克隆</span></div>
+  <div class="cx-grid">
+    <div class="c6"><div class="cx-table-wrap"><table class="a-table a-table--data a-table--dense"><thead><tr><th>源裕兴 V38</th><th>Ant Design</th><th>说明</th></tr></thead><tbody><tr><td class="mono">--c-primary</td><td class="mono">colorPrimary</td><td>可访问主色（STH 取 700）</td></tr><tr><td class="mono">--c-primaryHover / Active</td><td class="mono">colorPrimaryHover / Active</td><td>700 / 800</td></tr><tr><td class="mono">--c-primaryContainer</td><td class="mono">colorPrimaryBg</td><td>100</td></tr><tr><td class="mono">--c-success / warning / error / info</td><td class="mono">colorSuccess …</td><td>STE600 / Gold700 / EDU600 / STI600</td></tr><tr><td class="mono">--c-onSurface</td><td class="mono">colorText</td><td>Ink 800（V37 为 Ink 700）</td></tr><tr><td class="mono">--c-onSurfaceVariant</td><td class="mono">colorTextSecondary</td><td>Ink 600</td></tr><tr><td class="mono">--c-background / surface</td><td class="mono">colorBgLayout / Container</td><td>Ink 100 / Ink 50</td></tr><tr><td class="mono">--c-outline / outlineVariant</td><td class="mono">colorBorder / Secondary</td><td>Ink 500 / Ink 300</td></tr><tr><td class="mono">--c-scrim</td><td class="mono">colorBgMask</td><td>玄墨 48%</td></tr></tbody></table></div></div>
+    <div class="c6"><div class="cx-code"><span class="cx-code__lang">tsx · ConfigProvider</span><pre><code>const sinotao = {
+  token: {
+    colorPrimary: '#851EA3', colorPrimaryHover: '#6D0587',
+    colorSuccess: '#196B42', colorWarning: '#6C5013',
+    colorError: '#B81E1E',   colorInfo: '#1E4082',
+    colorText: '#2D2823',    colorTextSecondary: '#6B6459',
+    colorBgLayout: '#FAF7F2', colorBgContainer: '#FFFBF5',
+    colorBorder: '#8C8578',  colorBorderSecondary: '#D9D3C8',
+    borderRadius: 8, fontFamily: "'Noto Sans SC', system-ui",
+    fontSize: 14, lineHeight: 1.6,
+  },
+  components: {
+    Button: { borderRadius: 9999, controlHeight: 36, fontWeight: 500 },
+    Table:  { headerBg: '#FAF7F2', headerColor: '#6B6459' },
+    Modal:  { borderRadiusLG: 16 },
+  },
+};
+const entity = { stg:'#851EA3', ste:'#196B42', sti:'#1E4082', sth:'#097983', edu:'#B81E1E' };</code></pre></div></div>
+  </div>
+  <div class="cx-table-wrap" style="margin-top:16px"><table class="a-table a-table--data a-table--dense"><thead><tr><th>差异项</th><th>Ant Design 默认</th><th>源裕兴</th><th>原因</th></tr></thead><tbody><tr><td>主色</td><td>#1677FF 蓝</td><td>#851EA3 绛紫（五实体切换）</td><td>品牌色 · 多品牌架构</td></tr><tr><td>背景</td><td>#F5F5F5</td><td>#FAF7F2 / #FFFBF5 宣纸</td><td>微暖中式纸感</td></tr><tr><td>按钮圆角</td><td>6px</td><td>9999px 全圆</td><td>中式圆润</td></tr><tr><td>字体</td><td>-apple-system</td><td>Noto Sans SC 优先</td><td>中文优先</td></tr><tr><td>暗色策略</td><td>HSL 降明度</td><td>OKLCH 提亮 + 微降色度 · 三态</td><td>感知均匀</td></tr><tr><td>藤黄 CTA</td><td>无</td><td>#C9A96E 配玄墨文字</td><td>品牌溢价时刻</td></tr></tbody></table></div>
+
+  <div class="cx-sub" id="gov-odoo"><span class="cx-sub__n">G.7</span><h3 class="cx-sub__t">Odoo 18 原生映射</h3></div>
+  <div class="cx-grid">
+    <div class="c6"><div class="cx-table-wrap"><table class="a-table a-table--data a-table--dense"><thead><tr><th>Odoo</th><th>源裕兴</th></tr></thead><tbody><tr><td class="mono">$o-company-primary-color</td><td class="mono">var(--c-primary)</td></tr><tr><td class="mono">$o-brand-odoo / $o-brand-primary</td><td class="mono">var(--c-brand)</td></tr><tr><td class="mono">$o-view-background-color</td><td class="mono">var(--c-background)</td></tr><tr><td class="mono">$grid-gutter-width</td><td class="mono">24px（md+）</td></tr><tr><td class="mono">$border-radius</td><td class="mono">var(--radius-md)</td></tr><tr><td class="mono">$font-family-sans-serif</td><td class="mono">var(--font-sans)</td></tr><tr><td>OWL 组件</td><td>Button / Card / Nav Rail / Data Table / Dashboard ↔ a-btn / m-card / o-rail / o-table / t-dashboard</td></tr><tr><td>QWeb</td><td class="mono">t-name="sinotao.Dashboard" · 根节点带 data-theme</td></tr></tbody></table></div></div>
+    <div class="c6"><div class="cx-code"><span class="cx-code__lang">scss · Odoo 18 override</span><pre><code>// primary_variables.scss
+$o-company-primary-color: var(--c-primary);
+$o-view-background-color: var(--c-background);
+$grid-gutter-width: 24px;
+$border-radius: var(--radius-md);
+
+// 五实体：在 web.layout 根节点注入
+&lt;html t-att-data-theme="company.sino_entity or 'stg'"
+      t-att-data-color-scheme="user.sino_scheme or 'auto'"&gt;</code></pre></div><p class="cx-p" style="margin-top:12px;font-size:13px">Odoo 的 Bootstrap 12 列与本典栅格同构；覆盖槽宽与容器宽度即可对齐五断点。表单视图沿用失焦验证。</p></div>
+  </div>
+
+  <div class="cx-sub" id="gov-pipeline"><span class="cx-sub__n">G.8</span><h3 class="cx-sub__t">管线 · 版本 · 交付清单</h3></div>
+  <div class="cx-grid">
+    <div class="c7"><div class="m-steps"><div class="m-step is-done">Figma Variables</div><div class="m-step is-done">tokens.json</div><div class="m-step is-done">build.mjs 门禁</div><div class="m-step is-done">tokens.css · resolved.json</div><div class="m-step" aria-current="step">NPM @sinotao/design-tokens</div><div class="m-step">Odoo / Web / 移动端</div></div><p class="cx-p" style="margin-top:14px">CI：Figma 变量变更 → Webhook → GitHub Actions 运行 build → 自动 PR → 人工审核 → 合并 → 发布 NPM。版本语义化：Patch 修复 · Minor 新增 · Major 破坏性变更（令牌改名、层级变更）。变更日志四栏：Added / Changed / Deprecated / Fixed。</p></div>
+    <div class="c5"><div class="m-card m-card--flat"><div class="m-card-head"><div><div class="m-card-head__title">交付清单六维度</div></div></div><ul class="cx-anatomy__list" style="margin-top:12px"><li>设计稿（Figma Dev Mode）</li><li>Design Token（tokens.json + resolved）</li><li>组件（状态矩阵 + 五断点）</li><li>动效（缓动 + 时长 + reduced-motion）</li><li>无障碍（WCAG + 键盘 + 屏幕阅读器）</li><li>测试用例（正常 + 边界 + 五实体切换）</li></ul></div></div>
+  </div>
+
+  <div class="cx-sub" id="gov-changelog"><span class="cx-sub__n">G.9</span><h3 class="cx-sub__t">变更日志 V37 → V38</h3><span class="cx-sub__d">对文字稿的每一处修正都可回溯到实测</span></div>
+  <div class="chg">
+    <div class="chg__item"><span class="chg__k chg__k--fix">Fixed</span><span>对比度表由实测替换：绛紫 / 宣纸白 7.51:1（文字稿 7.4）；沧浪青 3.73:1（文字稿 4.8，未达 AA）；五实体 600 阶在浓墨底上 1.5–3.8:1（文字稿称 4.5 大字）。</span></div>
+    <div class="chg__item"><span class="chg__k chg__k--add">Added</span><span>「可访问主色」推导规则：浅色从 600 阶向深选取，暗色从 300 阶向浅选取；STH 浅色主色落到 700 阶 #097983（5.0:1）。新增 <code>--c-brand</code> 保留锚点原值。</span></div>
+    <div class="chg__item"><span class="chg__k chg__k--fix">Fixed</span><span>废止「绛紫 → 金色渐变主按钮」（金色端与白字约 2.2:1）；主按钮改为实色可访问主色；渐变只留给 Hero 装饰面。</span></div>
+    <div class="chg__item"><span class="chg__k chg__k--fix">Fixed</span><span>藤黄戒律：Gold 400 不得作浅底文字；警告文字改用 Gold 700（7.29:1）；藤黄 CTA 配玄墨文字（8.04:1）。</span></div>
+    <div class="chg__item"><span class="chg__k chg__k--fix">Fixed</span><span>输入框边框 Ink 200 → Ink 500（3.55:1，满足 1.4.11）；占位符 Ink 400 → Ink 600（5.67:1）；暗色占位符 Ink 400（7.41:1）。</span></div>
+    <div class="chg__item"><span class="chg__k chg__k--fix">Fixed</span><span>字阶 H4 28px → 22px，阶梯恢复单调；Body L 行高 1.60 → 1.80。</span></div>
+    <div class="chg__item"><span class="chg__k chg__k--chg">Changed</span><span>暗色模式由「Ink 反转」改为三态解析（本典 / 宿主 / 系统），显式优先；浅色完整定义在裸选择器上。</span></div>
+    <div class="chg__item"><span class="chg__k chg__k--add">Added</span><span>数据墨色六槽：与实体同色相、色度 ≥ 0.11，5! 顺序枚举后取 stg → 藤黄 → sth → edu → sti → ste（相邻对最差 CVD ΔE 13.9）；每图配表格孪生。</span></div>
+    <div class="chg__item"><span class="chg__k chg__k--add">Added</span><span>原子设计六层结构（L0–L5）、类名前缀 a-/m-/o-/t-/p-、原子五律与 lint 规则；tokens.json 成为唯一可信源，build.mjs 推导色阶并实测门禁。</span></div>
+    <div class="chg__item"><span class="chg__k chg__k--chg">Changed</span><span>令牌计数由文字稿的 486（86 + 142 + 258）改为构建实际生成的 <!-- @gen:token-count -->（<!-- @gen:token-count-primitive --> + <!-- @gen:token-count-semantic --> + <!-- @gen:token-count-component -->），随构建自动更新。</span></div>
+    <div class="chg__item"><span class="chg__k chg__k--chg">Changed</span><span>正文色由 Ink 700 改为 Ink 800（14.15:1），标题 Ink 900；次要文字 Ink 600。</span></div>
+    <div class="chg__item"><span class="chg__k chg__k--add">Added</span><span>标杆解析：Ledgerix 的看板秩序 → T1；PRODIGIES 的单一信号色与状态矩阵 → 藤黄戒律 / 8 状态机；Sui 的一体化色板与功能性渐变 → 五实体映射 / 太极流纹母题。</span></div>
+  </div>
+
+  <div class="cx-sub" id="gov-glossary"><span class="cx-sub__n">G.10</span><h3 class="cx-sub__t">术语表</h3></div>
+  <dl class="gloss">
+    <div><dt>金三角罗盘 Golden Triangle Compass</dt><dd>守正在顶、开物左下、共生右下的等边三角，中心「中和」。</dd></div>
+    <div><dt>phi-anchor 哲学锚点</dt><dd>每章嵌入的哲学依据块，标注主 / 副维度。</dd></div>
+    <div><dt>宣纸白 Ink 50</dt><dd>#FFFBF5，带暖色相偏移的表面白；页面底用轻霜 Ink 100。</dd></div>
+    <div><dt>墨分五色</dt><dd>层级靠墨的浓淡（字重、颜色、间距）而非字号差。</dd></div>
+    <div><dt>藤黄点金 / 藤黄戒律</dt><dd>#C9A96E 只作署名与点睛；永不作浅底文字。</dd></div>
+    <div><dt>一点朱</dt><dd>每屏唯一的高饱和焦点：印章、章号、主按钮。</dd></div>
+    <div><dt>可访问主色 Accessible Primary</dt><dd>品牌锚点在交互场合的替身，由门禁推导。</dd></div>
+    <div><dt>数据墨色 Chart Ink</dt><dd>与实体同色相、经六检验证的图表系列色，顺序固定。</dd></div>
+    <div><dt>三态暗色</dt><dd>本典 / 宿主 / 系统三种来源的暗色解析，显式优先。</dd></div>
+    <div><dt>力起·秀承</dt><dd>主标题用力，H2 以下与正文用秀。</dd></div>
+    <div><dt>五实体主题切换</dt><dd><code>data-theme="stg|ste|sti|sth|edu"</code> 只替换 <code>--e-*</code> 映射。</dd></div>
+    <div><dt>太极流纹 Taiji Flow Motif</dt><dd>品牌纹章的 12 变体；Loading 每圈 2s。</dd></div>
+    <div><dt>Copilot / Autopilot / Advisor</dt><dd>人机协作三模式；切换由置信度与用户确认次数决定。</dd></div>
+    <div><dt>原子五律</dt><dd>单向组合、分子单责、有机体独立、模板无数据、页面有真数。</dd></div>
+    <div><dt>唯一可信源 SSOT</dt><dd>tokens.json；其余皆为构建产物。</dd></div>
+  </dl>
+
+  <div class="m-phi" style="margin-top:40px" data-phi="三维"><div class="m-phi__tags"><span class="m-phi__tag m-phi__tag--shouzheng">守正</span><span class="m-phi__tag m-phi__tag--kaiwu">开物</span><span class="m-phi__tag m-phi__tag--gongsheng">共生</span></div><blockquote class="m-phi__quote"><strong>守正，故不漂移。开物，故不僵化。共生，故不孤立。</strong>三维一体，缺一不可。源裕兴不是 Ant Design 的中文克隆，也不是 Material Design 的东方皮肤。它是第三条路——在 Design Token 治理的工程纪律中，注入百年字号的文化血肉；而原子设计，是让这条路可以一直走下去的生长秩序。</blockquote><cite class="m-phi__cite">— 结语 · 源裕兴设计系统全典 V<!-- @gen:version --></cite></div>
+</section>

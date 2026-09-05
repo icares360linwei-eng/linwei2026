@@ -1,0 +1,865 @@
+{
+  "$name": "源裕兴设计系统全典 · Design Tokens",
+  "$version": "38.0.0",
+  "$edition": "原子设计版 · Atomic Edition",
+  "builtAt": "2026-09-05T12:59:39.901Z",
+  "counts": {
+    "primitive": 207,
+    "semantic": 145,
+    "component": 207,
+    "total": 559
+  },
+  "ink": {
+    "50": "#FFFBF5",
+    "100": "#FAF7F2",
+    "200": "#F0EBE3",
+    "300": "#D9D3C8",
+    "400": "#BFB8AB",
+    "500": "#8C8578",
+    "600": "#6B6459",
+    "700": "#4A443C",
+    "800": "#2D2823",
+    "900": "#1A1612"
+  },
+  "entity": {
+    "stg": {
+      "sino.name": "绛紫",
+      "sino.entity": "STG",
+      "sino.full": "源裕兴集团母体",
+      "sino.role": "战略中枢 · 合规治理",
+      "sino.meaning": "包容万象、多元统一",
+      "anchor": "#851EA3",
+      "scale": {
+        "50": "#F8E9FE",
+        "100": "#F3D6FD",
+        "200": "#E7B5F9",
+        "300": "#D58CEE",
+        "400": "#BD64DA",
+        "500": "#A242C1",
+        "600": "#851EA3",
+        "700": "#6D0587",
+        "800": "#530068",
+        "900": "#3A004A"
+      },
+      "oklch": {
+        "50": "oklch(95.2% 0.032 316)",
+        "100": "oklch(91.2% 0.061 317)",
+        "200": "oklch(84.0% 0.107 317)",
+        "300": "oklch(74.9% 0.156 317)",
+        "400": "oklch(65.3% 0.188 317)",
+        "500": "oklch(56.2% 0.201 317)",
+        "600": "oklch(46.8% 0.204 317)",
+        "700": "oklch(39.7% 0.189 317)",
+        "800": "oklch(32.7% 0.159 317)",
+        "900": "oklch(25.8% 0.126 317)"
+      },
+      "primaryLightStep": 600,
+      "primaryLight": "#851EA3",
+      "primaryLightVsInk50": 7.51,
+      "ink50OnPrimaryLight": 7.51,
+      "primaryDarkStep": 300,
+      "primaryDark": "#D58CEE",
+      "primaryDarkVsInk800": 6.12,
+      "ink900OnPrimaryDark": 7.55,
+      "brandVsInk50": 7.51,
+      "brandVsInk800": 1.88
+    },
+    "ste": {
+      "sino.name": "苍木绿",
+      "sino.entity": "STE",
+      "sino.full": "九派能源",
+      "sino.role": "清洁能源 · 碳中和",
+      "sino.meaning": "生生不息、自然循环",
+      "anchor": "#196B42",
+      "scale": {
+        "50": "#E7F3EB",
+        "100": "#D2E8DA",
+        "200": "#B0D6BD",
+        "300": "#85BD9A",
+        "400": "#5DA279",
+        "500": "#3B875C",
+        "600": "#196B42",
+        "700": "#025631",
+        "800": "#004023",
+        "900": "#002C17"
+      },
+      "oklch": {
+        "50": "oklch(95.3% 0.017 157)",
+        "100": "oklch(91.1% 0.030 158)",
+        "200": "oklch(84.2% 0.053 156)",
+        "300": "oklch(75.0% 0.077 157)",
+        "400": "oklch(65.5% 0.094 157)",
+        "500": "oklch(56.3% 0.101 156)",
+        "600": "oklch(46.9% 0.102 156)",
+        "700": "oklch(39.9% 0.095 156)",
+        "800": "oklch(32.7% 0.079 156)",
+        "900": "oklch(25.8% 0.061 157)"
+      },
+      "primaryLightStep": 600,
+      "primaryLight": "#196B42",
+      "primaryLightVsInk50": 6.32,
+      "ink50OnPrimaryLight": 6.32,
+      "primaryDarkStep": 300,
+      "primaryDark": "#85BD9A",
+      "primaryDarkVsInk800": 6.77,
+      "ink900OnPrimaryDark": 8.35,
+      "brandVsInk50": 6.32,
+      "brandVsInk800": 2.24
+    },
+    "sti": {
+      "sino.name": "深空蓝",
+      "sino.entity": "STI",
+      "sino.full": "进出口贸易",
+      "sino.role": "全球贸易 · 报关物流",
+      "sino.meaning": "深远的全球视野",
+      "anchor": "#1E4082",
+      "scale": {
+        "50": "#E7EEFB",
+        "100": "#D2DFF7",
+        "200": "#AEC5EC",
+        "300": "#84A3DB",
+        "400": "#5C80C1",
+        "500": "#3B60A4",
+        "600": "#1E4082",
+        "700": "#0F2D68",
+        "800": "#051C4D",
+        "900": "#010D30"
+      },
+      "oklch": {
+        "50": "oklch(94.8% 0.019 263)",
+        "100": "oklch(90.1% 0.036 263)",
+        "200": "oklch(81.9% 0.061 261)",
+        "300": "oklch(71.4% 0.089 262)",
+        "400": "oklch(60.1% 0.108 262)",
+        "500": "oklch(49.6% 0.117 262)",
+        "600": "oklch(38.6% 0.118 262)",
+        "700": "oklch(31.5% 0.110 262)",
+        "800": "oklch(24.6% 0.095 262)",
+        "900": "oklch(17.6% 0.073 262)"
+      },
+      "primaryLightStep": 600,
+      "primaryLight": "#1E4082",
+      "primaryLightVsInk50": 9.65,
+      "ink50OnPrimaryLight": 9.65,
+      "primaryDarkStep": 300,
+      "primaryDark": "#84A3DB",
+      "primaryDarkVsInk800": 5.73,
+      "ink900OnPrimaryDark": 7.06,
+      "brandVsInk50": 9.65,
+      "brandVsInk800": 1.47
+    },
+    "sth": {
+      "sino.name": "沧浪青",
+      "sino.entity": "STH",
+      "sino.full": "健康科技",
+      "sino.role": "医疗器械 · 健康监测",
+      "sino.meaning": "澄澈通透的生命质感",
+      "anchor": "#208F9B",
+      "scale": {
+        "50": "#E6F4F6",
+        "100": "#D2EDF0",
+        "200": "#B1E0E6",
+        "300": "#87CED7",
+        "400": "#5FB9C4",
+        "500": "#3FA5B1",
+        "600": "#208F9B",
+        "700": "#097983",
+        "800": "#09636C",
+        "900": "#124D54"
+      },
+      "oklch": {
+        "50": "oklch(95.7% 0.015 207)",
+        "100": "oklch(92.7% 0.029 205)",
+        "200": "oklch(87.6% 0.049 206)",
+        "300": "oklch(80.8% 0.072 206)",
+        "400": "oklch(73.4% 0.087 206)",
+        "500": "oklch(66.8% 0.094 206)",
+        "600": "oklch(59.7% 0.095 206)",
+        "700": "oklch(52.6% 0.088 205)",
+        "800": "oklch(45.7% 0.076 206)",
+        "900": "oklch(38.7% 0.059 207)"
+      },
+      "primaryLightStep": 700,
+      "primaryLight": "#097983",
+      "primaryLightVsInk50": 5,
+      "ink50OnPrimaryLight": 5,
+      "primaryDarkStep": 300,
+      "primaryDark": "#87CED7",
+      "primaryDarkVsInk800": 8.23,
+      "ink900OnPrimaryDark": 10.14,
+      "brandVsInk50": 3.73,
+      "brandVsInk800": 3.8
+    },
+    "edu": {
+      "sino.name": "朱砂红",
+      "sino.entity": "EDU",
+      "sino.full": "崇仁教育",
+      "sino.role": "教育启智 · 家校协同",
+      "sino.meaning": "炽热的教育初心",
+      "anchor": "#B81E1E",
+      "scale": {
+        "50": "#FFEAE7",
+        "100": "#FFD9D4",
+        "200": "#FFBAB1",
+        "300": "#FF8E81",
+        "400": "#EF6559",
+        "500": "#D6423A",
+        "600": "#B81E1E",
+        "700": "#9A030D",
+        "800": "#7A0007",
+        "900": "#590305"
+      },
+      "oklch": {
+        "50": "oklch(95.3% 0.023 27)",
+        "100": "oklch(91.6% 0.043 27)",
+        "200": "oklch(85.0% 0.082 27)",
+        "300": "oklch(76.6% 0.139 28)",
+        "400": "oklch(67.7% 0.173 28)",
+        "500": "oklch(59.2% 0.186 27)",
+        "600": "oklch(50.5% 0.188 27)",
+        "700": "oklch(43.3% 0.175 27)",
+        "800": "oklch(36.4% 0.149 27)",
+        "900": "oklch(29.4% 0.116 27)"
+      },
+      "primaryLightStep": 600,
+      "primaryLight": "#B81E1E",
+      "primaryLightVsInk50": 6.28,
+      "ink50OnPrimaryLight": 6.28,
+      "primaryDarkStep": 300,
+      "primaryDark": "#FF8E81",
+      "primaryDarkVsInk800": 6.56,
+      "ink900OnPrimaryDark": 8.08,
+      "brandVsInk50": 6.28,
+      "brandVsInk800": 2.25
+    }
+  },
+  "gold": {
+    "anchor": "#C9A96E",
+    "scale": {
+      "50": "#FCF6EB",
+      "100": "#F7EBD7",
+      "200": "#EBD6B2",
+      "300": "#DBBE8B",
+      "400": "#C9A96E",
+      "500": "#AA8A4C",
+      "600": "#8C6C2D",
+      "700": "#6C5013",
+      "800": "#4C3605",
+      "900": "#2E1F00"
+    },
+    "oklch": {
+      "50": "oklch(97.5% 0.016 83)",
+      "100": "oklch(94.4% 0.029 81)",
+      "200": "oklch(88.4% 0.053 81)",
+      "300": "oklch(81.4% 0.075 81)",
+      "400": "oklch(75.0% 0.085 82)",
+      "500": "oklch(65.0% 0.089 83)",
+      "600": "oklch(55.0% 0.090 82)",
+      "700": "oklch(45.0% 0.084 82)",
+      "800": "oklch(34.9% 0.068 82)",
+      "900": "oklch(25.1% 0.052 82)"
+    }
+  },
+  "matrix": [
+    {
+      "entity": "stg",
+      "name": "绛紫",
+      "hex600": "#851EA3",
+      "oklch": "oklch(46.8% 0.204 317)",
+      "onInk50": 7.51,
+      "onInk800": 1.88,
+      "primaryLight": "#851EA3",
+      "primaryLightStep": 600,
+      "primaryLightOnInk50": 7.51,
+      "primaryDark": "#D58CEE",
+      "primaryDarkStep": 300,
+      "primaryDarkOnInk800": 6.12
+    },
+    {
+      "entity": "ste",
+      "name": "苍木绿",
+      "hex600": "#196B42",
+      "oklch": "oklch(46.9% 0.102 156)",
+      "onInk50": 6.32,
+      "onInk800": 2.24,
+      "primaryLight": "#196B42",
+      "primaryLightStep": 600,
+      "primaryLightOnInk50": 6.32,
+      "primaryDark": "#85BD9A",
+      "primaryDarkStep": 300,
+      "primaryDarkOnInk800": 6.77
+    },
+    {
+      "entity": "sti",
+      "name": "深空蓝",
+      "hex600": "#1E4082",
+      "oklch": "oklch(38.6% 0.118 262)",
+      "onInk50": 9.65,
+      "onInk800": 1.47,
+      "primaryLight": "#1E4082",
+      "primaryLightStep": 600,
+      "primaryLightOnInk50": 9.65,
+      "primaryDark": "#84A3DB",
+      "primaryDarkStep": 300,
+      "primaryDarkOnInk800": 5.73
+    },
+    {
+      "entity": "sth",
+      "name": "沧浪青",
+      "hex600": "#208F9B",
+      "oklch": "oklch(59.7% 0.095 206)",
+      "onInk50": 3.73,
+      "onInk800": 3.8,
+      "primaryLight": "#097983",
+      "primaryLightStep": 700,
+      "primaryLightOnInk50": 5,
+      "primaryDark": "#87CED7",
+      "primaryDarkStep": 300,
+      "primaryDarkOnInk800": 8.23
+    },
+    {
+      "entity": "edu",
+      "name": "朱砂红",
+      "hex600": "#B81E1E",
+      "oklch": "oklch(50.5% 0.188 27)",
+      "onInk50": 6.28,
+      "onInk800": 2.25,
+      "primaryLight": "#B81E1E",
+      "primaryLightStep": 600,
+      "primaryLightOnInk50": 6.28,
+      "primaryDark": "#FF8E81",
+      "primaryDarkStep": 300,
+      "primaryDarkOnInk800": 6.56
+    }
+  ],
+  "gates": [
+    {
+      "entity": "stg",
+      "mode": "light",
+      "step": 600,
+      "hex": "#851EA3",
+      "vsInk50": 7.51,
+      "ink50On": 7.51,
+      "pass": true
+    },
+    {
+      "entity": "stg",
+      "mode": "dark",
+      "step": 300,
+      "hex": "#D58CEE",
+      "vsInk800": 6.12,
+      "vsInk900": 7.55,
+      "ink900On": 7.55,
+      "pass": true
+    },
+    {
+      "entity": "ste",
+      "mode": "light",
+      "step": 600,
+      "hex": "#196B42",
+      "vsInk50": 6.32,
+      "ink50On": 6.32,
+      "pass": true
+    },
+    {
+      "entity": "ste",
+      "mode": "dark",
+      "step": 300,
+      "hex": "#85BD9A",
+      "vsInk800": 6.77,
+      "vsInk900": 8.35,
+      "ink900On": 8.35,
+      "pass": true
+    },
+    {
+      "entity": "sti",
+      "mode": "light",
+      "step": 600,
+      "hex": "#1E4082",
+      "vsInk50": 9.65,
+      "ink50On": 9.65,
+      "pass": true
+    },
+    {
+      "entity": "sti",
+      "mode": "dark",
+      "step": 300,
+      "hex": "#84A3DB",
+      "vsInk800": 5.73,
+      "vsInk900": 7.06,
+      "ink900On": 7.06,
+      "pass": true
+    },
+    {
+      "entity": "sth",
+      "mode": "light",
+      "step": 600,
+      "hex": "#208F9B",
+      "vsInk50": 3.73,
+      "ink50On": 3.73,
+      "pass": false
+    },
+    {
+      "entity": "sth",
+      "mode": "light",
+      "step": 700,
+      "hex": "#097983",
+      "vsInk50": 5,
+      "ink50On": 5,
+      "pass": true
+    },
+    {
+      "entity": "sth",
+      "mode": "dark",
+      "step": 300,
+      "hex": "#87CED7",
+      "vsInk800": 8.23,
+      "vsInk900": 10.14,
+      "ink900On": 10.14,
+      "pass": true
+    },
+    {
+      "entity": "edu",
+      "mode": "light",
+      "step": 600,
+      "hex": "#B81E1E",
+      "vsInk50": 6.28,
+      "ink50On": 6.28,
+      "pass": true
+    },
+    {
+      "entity": "edu",
+      "mode": "dark",
+      "step": 300,
+      "hex": "#FF8E81",
+      "vsInk800": 6.56,
+      "vsInk900": 8.08,
+      "ink900On": 8.08,
+      "pass": true
+    }
+  ],
+  "semanticChecks": [
+    {
+      "name": "onSurface Ink800 / surface Ink50",
+      "fg": "#2D2823",
+      "bg": "#FFFBF5",
+      "min": 4.5,
+      "ratio": 14.15,
+      "pass": true
+    },
+    {
+      "name": "onSurfaceVariant Ink600 / surface Ink50",
+      "fg": "#6B6459",
+      "bg": "#FFFBF5",
+      "min": 4.5,
+      "ratio": 5.67,
+      "pass": true
+    },
+    {
+      "name": "placeholder Ink600 / surface Ink50",
+      "fg": "#6B6459",
+      "bg": "#FFFBF5",
+      "min": 4.5,
+      "ratio": 5.67,
+      "pass": true
+    },
+    {
+      "name": "outline Ink500 / surface Ink50（非文本 3:1）",
+      "fg": "#8C8578",
+      "bg": "#FFFBF5",
+      "min": 3,
+      "ratio": 3.55,
+      "pass": true
+    },
+    {
+      "name": "success STE600 / Ink50",
+      "fg": "#196B42",
+      "bg": "#FFFBF5",
+      "min": 4.5,
+      "ratio": 6.32,
+      "pass": true
+    },
+    {
+      "name": "error EDU600 / Ink50",
+      "fg": "#B81E1E",
+      "bg": "#FFFBF5",
+      "min": 4.5,
+      "ratio": 6.28,
+      "pass": true
+    },
+    {
+      "name": "info STI600 / Ink50",
+      "fg": "#1E4082",
+      "bg": "#FFFBF5",
+      "min": 4.5,
+      "ratio": 9.65,
+      "pass": true
+    },
+    {
+      "name": "warning Gold700 / Ink50",
+      "fg": "#6C5013",
+      "bg": "#FFFBF5",
+      "min": 4.5,
+      "ratio": 7.29,
+      "pass": true
+    },
+    {
+      "name": "onTertiary Ink900 / tertiary Gold400",
+      "fg": "#1A1612",
+      "bg": "#C9A96E",
+      "min": 4.5,
+      "ratio": 8.04,
+      "pass": true
+    },
+    {
+      "name": "goldText Gold700 / Ink50",
+      "fg": "#6C5013",
+      "bg": "#FFFBF5",
+      "min": 4.5,
+      "ratio": 7.29,
+      "pass": true
+    },
+    {
+      "name": "dark onSurface Ink100 / Ink800",
+      "fg": "#FAF7F2",
+      "bg": "#2D2823",
+      "min": 4.5,
+      "ratio": 13.65,
+      "pass": true
+    },
+    {
+      "name": "dark onSurfaceVariant Ink300 / Ink800",
+      "fg": "#D9D3C8",
+      "bg": "#2D2823",
+      "min": 4.5,
+      "ratio": 9.8,
+      "pass": true
+    },
+    {
+      "name": "dark placeholder Ink400 / Ink800",
+      "fg": "#BFB8AB",
+      "bg": "#2D2823",
+      "min": 4.5,
+      "ratio": 7.41,
+      "pass": true
+    },
+    {
+      "name": "dark outline Ink500 / Ink800（非文本 3:1）",
+      "fg": "#8C8578",
+      "bg": "#2D2823",
+      "min": 3,
+      "ratio": 3.99,
+      "pass": true
+    },
+    {
+      "name": "dark success STE300 / Ink800",
+      "fg": "#85BD9A",
+      "bg": "#2D2823",
+      "min": 4.5,
+      "ratio": 6.77,
+      "pass": true
+    },
+    {
+      "name": "dark error EDU300 / Ink800",
+      "fg": "#FF8E81",
+      "bg": "#2D2823",
+      "min": 4.5,
+      "ratio": 6.56,
+      "pass": true
+    },
+    {
+      "name": "dark info STI300 / Ink800",
+      "fg": "#84A3DB",
+      "bg": "#2D2823",
+      "min": 4.5,
+      "ratio": 5.73,
+      "pass": true
+    },
+    {
+      "name": "dark warning Gold300 / Ink800",
+      "fg": "#DBBE8B",
+      "bg": "#2D2823",
+      "min": 4.5,
+      "ratio": 8.16,
+      "pass": true
+    },
+    {
+      "name": "dark tertiary Gold300 / Ink800",
+      "fg": "#DBBE8B",
+      "bg": "#2D2823",
+      "min": 4.5,
+      "ratio": 8.16,
+      "pass": true
+    },
+    {
+      "name": "dark onTertiary Ink900 / Gold300",
+      "fg": "#1A1612",
+      "bg": "#DBBE8B",
+      "min": 4.5,
+      "ratio": 10.07,
+      "pass": true
+    }
+  ],
+  "chart": {
+    "$description": "数据墨色 · 由 build/chart-order.mjs 枚举生成（dataviz 六检验证通过），顺序即 CVD 安全机制，不得手改",
+    "order": [
+      "stg",
+      "gold",
+      "sth",
+      "edu",
+      "sti",
+      "ste"
+    ],
+    "light": [
+      "#8F2BAE",
+      "#AF8221",
+      "#0098A6",
+      "#DA433B",
+      "#2D54A0",
+      "#007D4A"
+    ],
+    "dark": [
+      "#C261E3",
+      "#AA7E1A",
+      "#009BA9",
+      "#EF584E",
+      "#547ECD",
+      "#1E9059"
+    ],
+    "worstAdjacentCVD": 13.9,
+    "surfaces": {
+      "light": "#FFFBF5",
+      "dark": "#2D2823"
+    }
+  },
+  "type": {
+    "$description": "15 级字阶（基准 16px）。力起·秀承：Display/H1 用力（大、紧），H2 以下用秀（阶梯缓、行高舒）。V38 修正：H4 由 28px 改为 22px 使阶梯单调；Body L 行高 1.60→1.80（长文卷舒）。",
+    "display-l": {
+      "size": 72,
+      "lh": 1.08,
+      "weight": 200,
+      "family": "serif",
+      "ls": "-0.02em",
+      "fluidMin": 44,
+      "use": "首页 Hero"
+    },
+    "display-m": {
+      "size": 60,
+      "lh": 1.1,
+      "weight": 200,
+      "family": "serif",
+      "ls": "-0.015em",
+      "fluidMin": 38,
+      "use": "次级 Hero"
+    },
+    "display-s": {
+      "size": 42,
+      "lh": 1.12,
+      "weight": 300,
+      "family": "serif",
+      "ls": "-0.01em",
+      "fluidMin": 30,
+      "use": "小型展示标题"
+    },
+    "h1": {
+      "size": 36,
+      "lh": 1.15,
+      "weight": 300,
+      "family": "serif",
+      "ls": "-0.01em",
+      "fluidMin": 28,
+      "use": "页面标题"
+    },
+    "h2": {
+      "size": 30,
+      "lh": 1.2,
+      "weight": 400,
+      "family": "serif",
+      "ls": "0.01em",
+      "use": "章标题"
+    },
+    "h3": {
+      "size": 24,
+      "lh": 1.25,
+      "weight": 400,
+      "family": "serif",
+      "ls": "0.01em",
+      "use": "节标题"
+    },
+    "h4": {
+      "size": 22,
+      "lh": 1.3,
+      "weight": 500,
+      "family": "serif",
+      "ls": "0",
+      "use": "子区块标题"
+    },
+    "h5": {
+      "size": 20,
+      "lh": 1.35,
+      "weight": 500,
+      "family": "sans",
+      "ls": "0",
+      "use": "卡片标题"
+    },
+    "h6": {
+      "size": 18,
+      "lh": 1.4,
+      "weight": 500,
+      "family": "sans",
+      "ls": "0",
+      "use": "小标题"
+    },
+    "body-l": {
+      "size": 16,
+      "lh": 1.8,
+      "weight": 400,
+      "family": "sans",
+      "ls": "0",
+      "use": "正文阅读（长文用 serif）"
+    },
+    "body-m": {
+      "size": 15,
+      "lh": 1.7,
+      "weight": 400,
+      "family": "sans",
+      "ls": "0",
+      "use": "界面文字"
+    },
+    "body-s": {
+      "size": 14,
+      "lh": 1.75,
+      "weight": 400,
+      "family": "sans",
+      "ls": "0",
+      "use": "辅助文字"
+    },
+    "caption": {
+      "size": 12,
+      "lh": 1.6,
+      "weight": 400,
+      "family": "sans",
+      "ls": "0.01em",
+      "use": "标签 / 说明"
+    },
+    "caption-xs": {
+      "size": 10,
+      "lh": 1.5,
+      "weight": 500,
+      "family": "sans",
+      "ls": "0.06em",
+      "use": "法律文本 / 眼标（仅印刷与法务）"
+    },
+    "code": {
+      "size": 13,
+      "lh": 1.7,
+      "weight": 400,
+      "family": "mono",
+      "ls": "0",
+      "use": "代码行内 / Token"
+    }
+  },
+  "space": {
+    "1": "4px",
+    "2": "8px",
+    "3": "12px",
+    "4": "16px",
+    "5": "24px",
+    "6": "32px",
+    "7": "40px",
+    "8": "48px",
+    "9": "56px",
+    "10": "64px",
+    "11": "80px",
+    "12": "96px",
+    "$type": "dimension",
+    "$description": "4px 基准 · 12 级"
+  },
+  "radius": {
+    "$type": "dimension",
+    "$description": "7 级圆角 · 同心圆角铁律：外圆角 = 内圆角 + 内边距",
+    "xs": "2px",
+    "sm": "4px",
+    "md": "8px",
+    "lg": "12px",
+    "xl": "16px",
+    "2xl": "24px",
+    "full": "9999px"
+  },
+  "motion": {
+    "duration": {
+      "$type": "duration",
+      "instant": "100ms",
+      "fast": "150ms",
+      "base": "300ms",
+      "slow": "500ms",
+      "loop": "2000ms",
+      "exit-fast": "100ms",
+      "exit-base": "200ms",
+      "exit-slow": "320ms"
+    },
+    "easing": {
+      "$type": "cubicBezier",
+      "out": "cubic-bezier(.16, 1, .3, 1)",
+      "in": "cubic-bezier(.4, 0, 1, 1)",
+      "standard": "cubic-bezier(.2, 0, 0, 1)",
+      "elegant": "cubic-bezier(.25, .1, .25, 1)",
+      "spring": "cubic-bezier(.34, 1.18, .64, 1)",
+      "linear": "linear"
+    }
+  },
+  "z": {
+    "$type": "number",
+    "dropdown": 100,
+    "sticky": 200,
+    "fixed": 300,
+    "drawer": 400,
+    "modal": 500,
+    "popover": 600,
+    "tooltip": 700,
+    "toast": 800
+  },
+  "breakpoint": {
+    "$type": "dimension",
+    "xs": {
+      "min": 0,
+      "max": 599,
+      "cols": 4,
+      "gutter": "16px",
+      "margin": "16px",
+      "device": "手机竖屏"
+    },
+    "sm": {
+      "min": 600,
+      "max": 904,
+      "cols": 8,
+      "gutter": "16px",
+      "margin": "24px",
+      "device": "手机横屏 / 小平板"
+    },
+    "md": {
+      "min": 905,
+      "max": 1239,
+      "cols": 12,
+      "gutter": "24px",
+      "margin": "32px",
+      "device": "平板 / 小笔记本"
+    },
+    "lg": {
+      "min": 1240,
+      "max": 1439,
+      "cols": 12,
+      "gutter": "24px",
+      "margin": "40px",
+      "device": "桌面显示器"
+    },
+    "xl": {
+      "min": 1440,
+      "max": null,
+      "cols": 12,
+      "gutter": "24px",
+      "margin": "auto",
+      "device": "大屏（内容区 max 1200px）"
+    }
+  }
+}

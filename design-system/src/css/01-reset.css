@@ -1,0 +1,20 @@
+/* ============================================================
+   01 · Reset / Generic  — ITCSS Generic 层
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; }
+.sino { margin: 0; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+:where(.sino) img, :where(.sino) svg, :where(.sino) video { display: block; max-width: 100%; }
+:where(.sino) button, :where(.sino) input, :where(.sino) select, :where(.sino) textarea { font: inherit; color: inherit; letter-spacing: inherit; }
+:where(.sino) button { background: none; border: 0; padding: 0; cursor: pointer; }
+:where(.sino) table { border-collapse: collapse; border-spacing: 0; }
+:where(.sino) :is(h1,h2,h3,h4,h5,h6,p,figure,blockquote,dl,dd,ul,ol) { margin: 0; }
+:where(.sino) :is(ul,ol) { padding: 0; list-style: none; }
+:where(.sino) a { color: var(--c-link); text-decoration-color: color-mix(in oklab, var(--c-link) 40%, transparent); text-underline-offset: .18em; }
+:where(.sino) a:hover { color: var(--c-linkHover); text-decoration-color: currentColor; }
+.sino :focus-visible { outline: 2px solid var(--c-focusRing); outline-offset: 2px; border-radius: var(--radius-xs); }
+.sino ::selection { background: color-mix(in oklab, var(--c-primary) 22%, transparent); color: var(--c-onSurfaceStrong); }
+.sino [hidden] { display: none !important; }
+.sino .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+@media (prefers-reduced-motion: reduce) {
+  .sino *, .sino *::before, .sino *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}

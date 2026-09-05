@@ -1,0 +1,32 @@
+{
+  "$description": "数据墨色 · 由 build/chart-order.mjs 枚举生成（dataviz 六检验证通过），顺序即 CVD 安全机制，不得手改",
+  "order": [
+    "stg",
+    "gold",
+    "sth",
+    "edu",
+    "sti",
+    "ste"
+  ],
+  "light": [
+    "#8F2BAE",
+    "#AF8221",
+    "#0098A6",
+    "#DA433B",
+    "#2D54A0",
+    "#007D4A"
+  ],
+  "dark": [
+    "#C261E3",
+    "#AA7E1A",
+    "#009BA9",
+    "#EF584E",
+    "#547ECD",
+    "#1E9059"
+  ],
+  "worstAdjacentCVD": 13.9,
+  "surfaces": {
+    "light": "#FFFBF5",
+    "dark": "#2D2823"
+  }
+}
