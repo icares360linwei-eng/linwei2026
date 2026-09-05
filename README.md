@@ -15,9 +15,10 @@ design-system/
 │   ├── chart-order.mjs        图表系列色推导 + CVD 安全顺序枚举（dataviz 六检）
 │   └── build.mjs              构建器：推导色阶 → 对比度门禁 → tokens.css → 装配全典
 ├── src/
-│   ├── css/                   ITCSS 分层：01 reset · 02 base · 03 atoms · 04 molecules · 05 organisms · 06 templates/pages · 07 全典外壳
-│   ├── js/                    sino.js（组件行为）· compendium.js（目录 / ⌘K / 图表 / 对比度计算器）
-│   └── partials/              全典章节：00 外壳 · 01 卷首 · 02 令牌 · 03 原子 · 04 分子 · 05 有机体 · 06 模板 · 07 五实体页面 · 08 治理 · 09 收尾
+│   ├── css/                   ITCSS 分层：01 reset · 02 base · 03 atoms · 04 molecules · 05 organisms · 06 templates/pages · 07 站点外壳（封面 / 首页 / 目录 / ⌘K）
+│   ├── js/                    art.js（太极流纹生成式流场）· sino.js（组件行为 / 主题）· site.js（hash 路由 / 本章目录 / ⌘K / 栅格覆盖 / 图表）
+│   ├── partials/              站点章节：00 外壳（顶栏 / 导航抽屉）· 01 首页 · 02 令牌 · 03 原子 · 04 分子 · 05 有机体 · 06 模板 · 07 五实体页面 · 08 治理 · 09 页脚与浮层
+│   └── assets/                资产钩子：放入 logo.svg（替换标志）与 hero.jpg（品牌影像），构建时自动内联
 ├── dist/                      构建产物（index.html 独立文档 · artifact.html 片段 · tokens.css · sino.css · tokens.resolved.json）
 └── docs/v37-source.md         V37 文字稿（本版的输入与修正依据）
 ```
@@ -31,7 +32,9 @@ node build/build.mjs         # 生成 dist/*；任何 WCAG AA 门禁失败即退
 node build/build.mjs --report  # 仅打印色阶、对比度矩阵与门禁结果
 ```
 
-打开 `design-system/dist/index.html` 即可浏览全典（字体经 Google Fonts 加载）。
+打开 `design-system/dist/index.html` 即可浏览全典（字体经 Google Fonts 加载）。站点为一个文件内的 hash 路由多页面：`#/`（首页）· `#/tokens` · `#/atoms` · `#/molecules` · `#/organisms` · `#/templates` · `#/pages` · `#/governance`，小节锚点形如 `#/tokens/tokens-color`。快捷键：⌘K 搜索，G 显示 12 列栅格。
+
+每个章节封面的流场画布由 `art.js` 按实体主色与藤黄实时生成（每章不同种子，随实体与暗色切换重绘，`prefers-reduced-motion` 下一次性渲染）。
 
 ## 六层结构与类名前缀
 

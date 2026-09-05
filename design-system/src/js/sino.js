@@ -34,6 +34,7 @@
     }
   };
   Theme.init();
+  document.addEventListener('sino:set-entity', ev => Theme.setEntity(ev.detail));
 
   /* ── Toast ── */
   const toaster = $('#toaster');

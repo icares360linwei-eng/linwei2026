@@ -233,7 +233,69 @@ const cssFiles = fs.readdirSync(path.join(SRC, 'css')).filter(f => f.endsWith('.
 const jsFiles = fs.readdirSync(path.join(SRC, 'js')).filter(f => f.endsWith('.js')).sort();
 const partials = fs.readdirSync(path.join(SRC, 'partials')).filter(f => f.endsWith('.html')).sort();
 
-let body = partials.map(f => read(path.join(SRC, 'partials', f))).join('\n');
+/* ── 路由元数据：一个 Artifact 内的多页面站点（hash 路由） ── */
+const ROUTES = [
+  { path: 'home',       file: '01-home.html',       nav: '首页',   title: '源裕兴设计系统全典' },
+  { path: 'tokens',     file: '02-tokens.html',     nav: '令牌',   num: 'L0', en: 'Design Tokens', title: '设计令牌：亚原子层' },
+  { path: 'atoms',      file: '03-atoms.html',      nav: '原子',   num: 'L1', en: 'Atoms',         title: '原子：不可再分的功能单元' },
+  { path: 'molecules',  file: '04-molecules.html',  nav: '分子',   num: 'L2', en: 'Molecules',     title: '分子：原子的最小有意义组合' },
+  { path: 'organisms',  file: '05-organisms.html',  nav: '有机体', num: 'L3', en: 'Organisms',     title: '有机体：可独立运作的界面区块' },
+  { path: 'templates',  file: '06-templates.html',  nav: '模板',   num: 'L4', en: 'Templates',     title: '模板：只定结构，不含内容', wide: true },
+  { path: 'pages',      file: '07-pages.html',      nav: '页面',   num: 'L5', en: 'Pages · Five Entities', title: '页面：五实体，一套语法', wide: true },
+  { path: 'governance', file: '08-governance.html', nav: '治理',   num: 'G',  en: 'Governance',    title: '治理：让系统在生长中不漂移' },
+];
+const routeHtml = Object.fromEntries(ROUTES.map(r => [r.path, read(path.join(SRC, 'partials', r.file))]));
+/* 锚点映射：id → 路由 */
+const idRoute = {};
+for (const r of ROUTES) for (const m of routeHtml[r.path].matchAll(/\sid="([^"]+)"/g)) idRoute[m[1]] = r.path;
+const rewriteAnchors = html => html.replace(/(<a\b[^>]*?\s)href="#([^"/][^"]*)"/g, (all, pre, id) => {
+  if (ROUTES.some(r => r.path === id)) return `${pre}href="#/${id}"`;
+  const r = idRoute[id]; if (!r) return `${pre}href="#/"`;
+  return r === 'home' ? `${pre}href="#/home/${id}"` : `${pre}href="#/${r}/${id}"`;
+});
+const PHI = { shouzheng: '守正', kaiwu: '开物', gongsheng: '共生' };
+let body = '';
+ROUTES.forEach((r, i) => {
+  let html = routeHtml[r.path];
+  let cover = '';
+  if (r.path !== 'home') {
+    const head = html.match(/<div class="cx-head">[\s\S]*?<div class="cx-head__phi">([\s\S]*?)<\/div>\s*<\/div>/);
+    const lead = (html.match(/<p class="cx-head__lead"[^>]*>([\s\S]*?)<\/p>/) || [])[1] || '';
+    const phis = head ? [...head[1].matchAll(/m-phi__tag--(\w+)/g)].map(m => m[1]) : [];
+    html = head ? html.replace(head[0], '') : html;
+    cover = `<header class="cover" data-art="${r.path}">
+  <canvas class="cover__art" aria-hidden="true"></canvas>
+  <div class="cover__inner">
+    <div class="cover__num" aria-hidden="true">${r.num}</div>
+    <div class="cover__meta"><span class="cover__layer">${r.num === 'G' ? 'GOVERNANCE' : 'LAYER ' + r.num.slice(1)}</span><span class="cover__en">${r.en}</span></div>
+    <h1 class="cover__title">${r.title}</h1>
+    <p class="cover__lead">${lead}</p>
+    <div class="cover__phi">${phis.map(p => `<span class="m-phi__tag m-phi__tag--${p}">${PHI[p]}</span>`).join('')}</div>
+    <div class="cover__index" data-toc-inline></div>
+  </div>
+</header>`;
+  }
+  const prev = ROUTES[i - 1], next = ROUTES[i + 1];
+  const chap = r.path === 'home' ? '' : `<nav class="chapnav" aria-label="章节导航">${prev ? `<a class="chapnav__link chapnav__link--prev" href="#/${prev.path === 'home' ? '' : prev.path}"><span class="chapnav__k">上一章</span><span class="chapnav__t">${prev.num ? prev.num + ' · ' : ''}${prev.title}</span></a>` : '<span></span>'}${next ? `<a class="chapnav__link chapnav__link--next" href="#/${next.path}"><span class="chapnav__k">下一章</span><span class="chapnav__t">${next.num ? next.num + ' · ' : ''}${next.title}</span></a>` : '<span></span>'}</nav>`;
+  const inner = r.path === 'home' ? html : `${cover}<div class="cx-wrap${r.wide ? ' cx-wrap--wide' : ''}"><div class="cx-content">${html}</div>${r.wide ? '' : '<aside class="toc" aria-label="本章目录"><div class="toc__inner"><div class="toc__label">本章</div><nav class="toc__list" data-toc></nav></div></aside>'}</div>${chap}`;
+  body += `<article class="route" data-route="${r.path}" data-title="${r.title}"${r.path === 'home' ? '' : ' hidden'}>\n${inner}\n</article>\n`;
+});
+body = rewriteAnchors(read(path.join(SRC, 'partials', '00-shell-open.html'))) + rewriteAnchors(body) + rewriteAnchors(read(path.join(SRC, 'partials', '09-shell-close.html')));
+/* 资产钩子：标准 LOGO 与品牌影像（存在即内联，不存在则保留占位） */
+const assetDir = path.join(SRC, 'assets');
+const logoFile = ['logo.svg'].map(f => path.join(assetDir, f)).find(f => fs.existsSync(f));
+if (logoFile) {
+  const svg = read(logoFile); const vb = (svg.match(/viewBox="([^"]+)"/) || [, '0 0 32 32'])[1]; const innerSvg = svg.replace(/^[\s\S]*?<svg[^>]*>/, '').replace(/<\/svg>\s*$/, '');
+  body = body.replace(/<symbol id="i-mark" viewBox="[^"]+">[\s\S]*?<\/symbol>/, `<symbol id="i-mark" viewBox="${vb}">${innerSvg}</symbol>`);
+  console.log('✔ 已内联标准 LOGO：' + path.basename(logoFile));
+}
+const heroFile = ['hero.jpg', 'hero.jpeg', 'hero.png', 'hero.webp'].map(f => path.join(assetDir, f)).find(f => fs.existsSync(f));
+if (heroFile) {
+  const ext = path.extname(heroFile).slice(1).replace('jpg', 'jpeg'); const b64 = fs.readFileSync(heroFile).toString('base64');
+  body = body.replace('<!-- @asset:hero -->', `<figure class="hm-photo"><img src="data:image/${ext};base64,${b64}" alt="源裕兴 · 九派能源赤湖工业园航拍：生物质能源工厂与光伏矩阵" loading="lazy"><figcaption><span class="t-overline">Brand Imagery</span><span>镜头语言：纪实 · 自然光 · 低饱和。工厂与田野同框，是共生的直观证据。</span></figcaption></figure>`);
+  console.log('✔ 已内联品牌影像：' + path.basename(heroFile));
+} else body = body.replace('<!-- @asset:hero -->', '');
+
 /* 生成器占位符 */
 const gen = {
   'token-count': () => String(resolved.counts.total),
@@ -272,7 +334,7 @@ const gen = {
 body = body.replace(/<!--\s*@gen:([a-z0-9-]+)\s*-->/g, (_, k) => { if (!gen[k]) throw new Error('未知生成器：' + k); return gen[k](); });
 
 const title = '源裕兴设计系统全典';
-const fontsHref = 'https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200..900&family=Noto+Sans+SC:wght@300..700&family=LXGW+WenKai+TC:wght@300;400;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap';
+const fontsHref = 'https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200..900&family=Noto+Sans+SC:wght@300..700&family=LXGW+WenKai+TC:wght@300;400;700&family=Inter:wght@200;300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap';
 const styles = css + '\n' + cssFiles.map(f => `/* ==== ${f} ==== */\n` + read(path.join(SRC, 'css', f))).join('\n');
 const scripts = `window.SINO_DATA = ${JSON.stringify({ version: T.$version, edition: T.$edition, counts: resolved.counts, entity: resolved.entity, gold: resolved.gold, ink, matrix, chart: CHART, type: T.primitive.type })};\n` + jsFiles.map(f => `/* ==== ${f} ==== */\n` + read(path.join(SRC, 'js', f))).join('\n');
 
