@@ -109,7 +109,18 @@ $border-radius: var(--radius-md);
     <div class="c5"><div class="m-card m-card--flat"><div class="m-card-head"><div><div class="m-card-head__title">交付清单六维度</div></div></div><ul class="cx-anatomy__list" style="margin-top:12px"><li>设计稿（Figma Dev Mode）</li><li>Design Token（tokens.json + resolved）</li><li>组件（状态矩阵 + 五断点）</li><li>动效（缓动 + 时长 + reduced-motion）</li><li>无障碍（WCAG + 键盘 + 屏幕阅读器）</li><li>测试用例（正常 + 边界 + 五实体切换）</li></ul></div></div>
   </div>
 
-  <div class="cx-sub" id="gov-changelog"><span class="cx-sub__n">G.9</span><h3 class="cx-sub__t">变更日志 V37 → V38</h3><span class="cx-sub__d">对文字稿的每一处修正都可回溯到实测</span></div>
+  <div class="cx-sub" id="gov-changelog"><span class="cx-sub__n">G.9</span><h3 class="cx-sub__t">变更日志 V37 → V38 → V39</h3><span class="cx-sub__d">对文字稿的每一处修正都可回溯到实测</span></div>
+  <div class="cx-h4">V39.0 · 墨经光纬（多页面站点版）</div>
+  <div class="chg" style="margin-bottom:28px">
+    <div class="chg__item"><span class="chg__k chg__k--chg">Changed</span><span>构建器改为输出<b>真·多页面</b>：每章一份独立 HTML（<code>index / tokens / atoms / molecules / organisms / templates / pages / motion / governance</code>），共享 <code>sino.css</code> 与 <code>site.js</code>；跨页连续性走 <code>@view-transition { navigation: auto }</code>。<code>artifact.html</code> 保留 hash 路由的单文件全典，<code>site.js</code> 双模自适应。</span></div>
+    <div class="chg__item"><span class="chg__k chg__k--add">Added</span><span>新增 <b>M 章「动效与交互」</b>：六目的表、缓动族曲线可视化与实时播放、时长尺度与进退场对照、Stagger 实验室（可调参）、FLIP 共享元素、滚动驱动演示、永字八法运笔、状态编排、无障碍与性能预算。</span></div>
+    <div class="chg__item"><span class="chg__k chg__k--chg">Changed</span><span>版式全面重排：首页改为「巨型展示字 + 实测仪表面板 + 编号索引 + 五实体实时看板 + 门禁数据带」；章节封面改为「编号导轨 + 分行遮罩标题 + 本章索引面板」；顶栏加阅读进度与移动墨痕指示；页脚加编织跑马灯。取法 Ledgerix 的看板密度与 PRODIGIES 的编辑纪律，只借结构不借皮相。</span></div>
+    <div class="chg__item"><span class="chg__k chg__k--add">Added</span><span>动效层独立成册（<code>09-motion.css</code> + <code>motion.js</code>）：滚动揭示双路径、中文按视觉行分组的标题揭示、数字滚动、聚光 / 磁吸 / 倾斜、指针尾随环、封面视差（位移钳制 ±40px）。</span></div>
+    <div class="chg__item"><span class="chg__k chg__k--add">Added</span><span>⌘K 跨页检索：搜索索引在构建时从各章 <code>.cx-sub</code> 提取，写入 <code>SINO_DATA.search</code>；新增 <code>←</code> <code>→</code> 翻章。</span></div>
+    <div class="chg__item"><span class="chg__k chg__k--fix">Fixed</span><span>顶栏在 1440px 下的挤压与重叠（实体切换器改为色点、窄屏隐藏层级序号）；顶栏工具提示由上浮改为下挂，避免被视口上沿裁切；移动端顶栏收敛，各页均无横向溢出。</span></div>
+    <div class="chg__item"><span class="chg__k chg__k--fix">Fixed</span><span>标题分行揭示在字体延迟加载后会重播一次——改为重排只重新分行、不重放动画（<code>.split--done</code>）。</span></div>
+  </div>
+  <div class="cx-h4">V38.0 · 原子设计版</div>
   <div class="chg">
     <div class="chg__item"><span class="chg__k chg__k--fix">Fixed</span><span>对比度表由实测替换：绛紫 / 宣纸白 7.51:1（文字稿 7.4）；沧浪青 3.73:1（文字稿 4.8，未达 AA）；五实体 600 阶在浓墨底上 1.5–3.8:1（文字稿称 4.5 大字）。</span></div>
     <div class="chg__item"><span class="chg__k chg__k--add">Added</span><span>「可访问主色」推导规则：浅色从 600 阶向深选取，暗色从 300 阶向浅选取；STH 浅色主色落到 700 阶 #097983（5.0:1）。新增 <code>--c-brand</code> 保留锚点原值。</span></div>

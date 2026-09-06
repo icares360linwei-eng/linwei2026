@@ -16,7 +16,7 @@
     const n2 = (x, y) => { const X = Math.floor(x) & 255, Y = Math.floor(y) & 255; x -= Math.floor(x); y -= Math.floor(y); const u = fade(x), v = fade(y); const a = P[X] + Y, b = P[X + 1] + Y; return (1 + (grad(P[a], x, y) * (1 - u) + grad(P[b], x - 1, y) * u) * (1 - v) + (grad(P[a + 1], x, y - 1) * (1 - u) + grad(P[b + 1], x - 1, y - 1) * u) * v) / 2; };
     return { rnd, noise: (x, y) => 0.6 * n2(x, y) + 0.3 * n2(x * 2.1, y * 2.1) + 0.1 * n2(x * 4.3, y * 4.3) };
   }
-  const SEEDS = { home: 7, tokens: 11, atoms: 19, molecules: 23, organisms: 31, templates: 41, pages: 53, governance: 61, manifesto: 71, entities: 83 };
+  const SEEDS = { home: 7, tokens: 11, atoms: 19, molecules: 23, organisms: 31, templates: 41, pages: 53, motion: 97, governance: 61, manifesto: 71, entities: 83 };
   function cssColor(el, name) { return getComputedStyle(el).getPropertyValue(name).trim() || '#851EA3'; }
   function render(canvas) {
     const host = canvas.parentElement; const rect = host.getBoundingClientRect();

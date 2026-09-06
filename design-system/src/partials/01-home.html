@@ -1,31 +1,69 @@
-<section class="hm-hero" data-art="home" id="home">
-  <canvas class="hm-hero__art" aria-hidden="true" data-density="1.1" data-fx="0.74" data-fy="0.42"></canvas>
-  <div class="hm-hero__in">
+<section class="hm-hero" data-art="home" id="top">
+  <canvas class="hm-hero__art" aria-hidden="true" data-parallax="0.06" data-density="1.15" data-fx="0.78" data-fy="0.44"></canvas>
+  <div class="hm-hero__grid wrap">
     <div class="hm-hero__text">
-      <div class="hm-eyebrow"><span class="a-badge a-badge--gold">V<!-- @gen:version --> · 原子设计版</span><span class="t-overline">Sinotao Design System · Atomic Edition</span></div>
-      <div class="hm-brand">源裕兴</div>
-      <h1 class="hm-title">设计系统全典</h1>
+      <div class="hm-eyebrow">
+        <span class="a-badge a-badge--gold">V<!-- @gen:version --> · 墨经光纬</span>
+        <span class="t-overline">Sinotao Design System · Ink Warp, Light Weft</span>
+      </div>
+      <h1 class="hm-display">
+        <span class="hm-display__cn" data-split="char">源裕兴</span>
+        <span class="hm-display__sub"><span data-split="line">设计系统全典</span><em>Design System</em></span>
+      </h1>
       <div class="hm-triad"><span>守正</span><i></i><span>开物</span><i></i><span>共生</span></div>
-      <p class="hm-lead">从一粒墨到一座城。以原子设计为骨架，把品牌宪法重建为六层可生长的体系：令牌 → 原子 → 分子 → 有机体 → 模板 → 页面。每一处色值由构建脚本实测，每一个组件只引用令牌；五实体共用一套语法，各自生长出独立的色彩身份。</p>
-      <div class="hm-cta"><a class="a-btn a-btn--primary a-btn--l" href="#/tokens">进入全典<svg class="a-icon"><use href="#i-arrow-right"/></svg></a><a class="a-btn a-btn--secondary a-btn--l" href="#/pages">五实体页面</a><a class="a-btn a-btn--text a-btn--l" href="#/governance/gov-changelog">V37 → V38 修正</a></div>
+      <p class="hm-lead">墨为经，光为纬。以原子设计为骨架，把品牌宪法织成六层可生长的体系：令牌 → 原子 → 分子 → 有机体 → 模板 → 页面。每一处色值由构建脚本实测，每一个组件只引用令牌；五实体共用一套语法，各自生长出独立的色彩身份。</p>
+      <div class="hm-cta">
+        <a class="a-btn a-btn--primary a-btn--l" data-magnet="0.18" href="#/tokens">进入全典<svg class="a-icon"><use href="#i-arrow-right"/></svg></a>
+        <a class="a-btn a-btn--secondary a-btn--l" href="#/motion">动效与交互</a>
+        <a class="a-btn a-btn--text a-btn--l" href="#index">八章索引</a>
+      </div>
     </div>
-    <div class="hm-seal"><span class="a-seal">守正</span><span class="hm-seal__v">一墨成城 · 纸上的流场</span></div>
-    <div class="hm-stats">
-      <div class="hm-stat"><b><span data-count="<!-- @gen:token-count -->"><!-- @gen:token-count --></span></b><span>设计令牌，由 tokens.json 构建生成：<!-- @gen:token-count-primitive --> 原始 · <!-- @gen:token-count-semantic --> 语义 · <!-- @gen:token-count-component --> 组件</span></div>
-      <div class="hm-stat"><b>6<small>层</small></b><span>原子设计层级 L0–L5，组合方向只向上</span></div>
-      <div class="hm-stat"><b>5<small>实体</small></b><span>STG · STE · STI · STH · EDU，一套语法五种色彩身份</span></div>
-      <div class="hm-stat"><b>25<small>项</small></b><span>WCAG AA 构建门禁：20 项语义色实测 + 5 实体可访问主色</span></div>
+    <aside class="hm-panel" data-spot data-tilt="4" aria-label="构建实测读数">
+      <div class="hm-panel__head"><span class="t-overline">Build · 构建实测</span><span class="hm-panel__live">LIVE</span></div>
+      <div class="hm-panel__metrics" data-stagger>
+        <div class="hm-metric" style="--i:0"><span class="hm-metric__k">设计令牌总数</span><span class="hm-metric__v num"><span data-count="<!-- @gen:token-count -->">0</span><small>项</small></span><span class="hm-metric__bar"><i style="--v:100%"></i></span></div>
+        <div class="hm-metric" style="--i:1"><span class="hm-metric__k">WCAG AA 对比度门禁</span><span class="hm-metric__v num">25<small>/ 25</small></span><span class="hm-metric__bar"><i style="--v:100%"></i></span></div>
+        <div class="hm-metric" style="--i:2"><span class="hm-metric__k">组件令牌族</span><span class="hm-metric__v num"><!-- @gen:component-token-count --><small>组</small></span><span class="hm-metric__bar"><i style="--v:82%"></i></span></div>
+        <div class="hm-metric" style="--i:3"><span class="hm-metric__k">数据墨色 CVD 六检</span><span class="hm-metric__v num">6<small>/ 6</small></span><span class="hm-metric__bar"><i style="--v:100%"></i></span></div>
+      </div>
+      <div class="hm-panel__foot"><span>BUILD <!-- @gen:build-date --></span><span class="ok">● 门禁全过</span></div>
+    </aside>
+  </div>
+  <div class="hm-hero__ticker" aria-hidden="true">
+    <div class="mq mq--fast" data-marquee>
+      <span class="mq__row">OKLCH 感知色阶 <i>·</i> 五实体一套语法 <i>·</i> 三态暗色 <i>·</i> CVD 安全数据墨色 <i>·</i> 六层组合链 <i>·</i> 唯一可信源 tokens.json <i>·</i> </span>
+      <span class="mq__row">OKLCH 感知色阶 <i>·</i> 五实体一套语法 <i>·</i> 三态暗色 <i>·</i> CVD 安全数据墨色 <i>·</i> 六层组合链 <i>·</i> 唯一可信源 tokens.json <i>·</i> </span>
     </div>
+  </div>
+  <a class="cover__scroll" href="#index" aria-label="向下阅读"><span class="cover__scrollbar"><i></i></span><span>SCROLL</span></a>
+</section>
+
+<section class="hm-section" id="index">
+  <div class="wrap">
+    <div class="hm-head">
+      <div><div class="hm-kicker"><b>00.1</b>Index</div><h2 class="hm-h2">八章索引</h2></div>
+      <p class="hm-desc">全典是一部可运行的书。八章各自成页，跨页切换走 View Transition，前后章可用 <span class="a-kbd">←</span> <span class="a-kbd">→</span> 直接翻。</p>
+    </div>
+    <nav class="hmx" aria-label="章节索引">
+      <a class="hmx__row rv" href="#/tokens"><span class="hmx__n">L0</span><span class="hmx__main"><span class="hmx__t">设计令牌</span><span class="hmx__en">Design Tokens</span></span><span class="hmx__d">亚原子层。色、字、距、形、动、层的唯一事实；本身不可用，须附着于原子。</span><span class="hmx__go"><svg class="a-icon"><use href="#i-arrow-right"/></svg></span></a>
+      <a class="hmx__row rv" href="#/atoms"><span class="hmx__n">L1</span><span class="hmx__main"><span class="hmx__t">原子</span><span class="hmx__en">Atoms</span></span><span class="hmx__d">不可再分的功能单元：按钮、输入、图标、徽标、印章、太极 Spinner。各含 8 状态机。</span><span class="hmx__go"><svg class="a-icon"><use href="#i-arrow-right"/></svg></span></a>
+      <a class="hmx__row rv" href="#/molecules"><span class="hmx__n">L2</span><span class="hmx__main"><span class="hmx__t">分子</span><span class="hmx__en">Molecules</span></span><span class="hmx__d">原子的最小有意义组合，单一职责：表单字段、搜索框、KPI 瓦片、实体切换器。</span><span class="hmx__go"><svg class="a-icon"><use href="#i-arrow-right"/></svg></span></a>
+      <a class="hmx__row rv" href="#/organisms"><span class="hmx__n">L3</span><span class="hmx__main"><span class="hmx__t">有机体</span><span class="hmx__en">Organisms</span></span><span class="hmx__d">可独立运作的界面区块：顶栏、侧轨、数据表、图表面板、对话框、AI 面板。</span><span class="hmx__go"><svg class="a-icon"><use href="#i-arrow-right"/></svg></span></a>
+      <a class="hmx__row rv" href="#/templates"><span class="hmx__n">L4</span><span class="hmx__main"><span class="hmx__t">模板</span><span class="hmx__en">Templates</span></span><span class="hmx__d">只定结构、不含真实内容的页面骨架：看板、文档、列表–详情、品牌页、陈述。</span><span class="hmx__go"><svg class="a-icon"><use href="#i-arrow-right"/></svg></span></a>
+      <a class="hmx__row rv" href="#/pages"><span class="hmx__n">L5</span><span class="hmx__main"><span class="hmx__t">页面 · 五实体</span><span class="hmx__en">Pages · Five Entities</span></span><span class="hmx__d">模板注入真实内容后的最终形态，也是检验系统的场所：五实体各一页。</span><span class="hmx__go"><svg class="a-icon"><use href="#i-arrow-right"/></svg></span></a>
+      <a class="hmx__row rv" href="#/motion"><span class="hmx__n">M</span><span class="hmx__main"><span class="hmx__t">动效与交互</span><span class="hmx__en">Motion &amp; Interaction</span></span><span class="hmx__d">缓动族、时长尺度、编排与共享元素连续性；一间可以动手调参的动效实验室。</span><span class="hmx__go"><svg class="a-icon"><use href="#i-arrow-right"/></svg></span></a>
+      <a class="hmx__row rv" href="#/governance"><span class="hmx__n">G</span><span class="hmx__main"><span class="hmx__t">治理</span><span class="hmx__en">Governance</span></span><span class="hmx__d">核心十条、原子五律、外部映射与变更日志——让系统在生长中不漂移。</span><span class="hmx__go"><svg class="a-icon"><use href="#i-arrow-right"/></svg></span></a>
+    </nav>
   </div>
 </section>
 
-<section class="hm-band" data-color-scheme="dark" data-art="manifesto">
+<section class="hm-band" data-art="manifesto">
   <canvas class="hm-band__art" aria-hidden="true" data-density="0.55" data-fx="0.5" data-fy="0.5"></canvas>
   <div class="wrap">
-    <div class="hm-head rv"><div><div class="hm-kicker"><b>00.1</b>Manifesto</div><h2 class="hm-h2">三维价值与设计誓约</h2></div><p class="hm-desc">全典一切决策的最终仲裁标准。当工程规范与东方美学冲突时，设计誓约优先。</p></div>
-    <div class="oath">
+    <div class="hm-head"><div><div class="hm-kicker"><b>00.2</b>Manifesto</div><h2 class="hm-h2">三维价值与设计誓约</h2></div><p class="hm-desc">全典一切决策的最终仲裁标准。当工程规范与东方美学冲突时，设计誓约优先。</p></div>
+    <div class="oath" data-stagger>
       <div class="oath__item rv" data-k="守" style="--_c:var(--stg-300)"><div class="oath__k">守正</div><div class="oath__en">Preserving Integrity · Know Thyself</div><p class="oath__t">我承诺品牌不漂移、设计不媚俗。每一个像素都忠诚于源裕兴的价值根基。在本典中：令牌是唯一可信源，600 阶锚点原值锁定，对比度门禁不通过即构建失败。</p></div>
-      <div class="oath__item rv" data-k="开" style="--_c:var(--sti-300)"><div class="oath__k">开物</div><div class="oath__en">Pioneering Innovation · Make Things Happen</div><p class="oath__t">我承诺在经典框架中打开新的可能。不因循守旧，不盲目标新。在本典中：OKLCH 感知色阶、三态暗色、数据墨色的 CVD 枚举、AI 原生的置信度编码，皆在 Geist 的纪律里注入东方百年字号的血。</p></div>
+      <div class="oath__item rv" data-k="开" style="--_c:var(--sti-300)"><div class="oath__k">开物</div><div class="oath__en">Pioneering Innovation · Make Things Happen</div><p class="oath__t">我承诺在经典框架中打开新的可能。不因循守旧，不盲目标新。在本典中：OKLCH 感知色阶、三态暗色、数据墨色的 CVD 枚举、AI 原生的置信度编码，皆在当代极简的纪律里注入东方百年字号的血。</p></div>
       <div class="oath__item rv" data-k="共" style="--_c:var(--ste-300)"><div class="oath__k">共生</div><div class="oath__en">Symbiotic Coexistence · Flourish Together</div><p class="oath__t">我承诺设计首先服务于人，再服务于品牌，最后服务于自己。在本典中：WCAG 2.2 AA 是出厂设置，五实体共用一套语法而各自生长出色彩身份，键盘可达与 reduced-motion 不是附加项。</p></div>
     </div>
   </div>
@@ -33,38 +71,67 @@
 
 <section class="hm-section">
   <div class="wrap">
-    <div class="hm-head rv"><div><div class="hm-kicker"><b>00.2</b>Atomic Design</div><h2 class="hm-h2">六层生长秩序：一墨成城</h2></div><p class="hm-desc">Brad Frost 的五层加上令牌亚原子层。原子只由令牌构成，分子只由原子构成，有机体只由分子与原子构成，模板不含数据，页面必须有真实数据。这条单向的组合链，就是守正在结构层面的兑现。</p></div>
-    <div class="hm-layers">
-      <a class="hm-layer hm-layer--0 rv" href="#/tokens"><svg class="a-icon hm-layer__arrow"><use href="#i-arrow-up-right"/></svg><div class="hm-layer__n">L0</div><div class="hm-layer__t">令牌</div><div class="hm-layer__d">亚原子。色、字、距、形、动、层的唯一事实。本身不可用，须附着于原子。</div><div class="hm-layer__c">--stg-600 · --space-4</div></a>
-      <a class="hm-layer rv" href="#/atoms"><svg class="a-icon hm-layer__arrow"><use href="#i-arrow-up-right"/></svg><div class="hm-layer__n">L1</div><div class="hm-layer__t">原子</div><div class="hm-layer__d">不可再分的功能单元：按钮、输入、图标、徽标、印章、太极 Spinner。</div><div class="hm-layer__c">.a-btn · .a-input</div></a>
-      <a class="hm-layer rv" href="#/molecules"><svg class="a-icon hm-layer__arrow"><use href="#i-arrow-up-right"/></svg><div class="hm-layer__n">L2</div><div class="hm-layer__t">分子</div><div class="hm-layer__d">原子的最小有意义组合，单一职责：表单字段、搜索框、KPI 瓦片、实体切换器。</div><div class="hm-layer__c">.m-field · .m-kpi</div></a>
-      <a class="hm-layer rv" href="#/organisms"><svg class="a-icon hm-layer__arrow"><use href="#i-arrow-up-right"/></svg><div class="hm-layer__n">L3</div><div class="hm-layer__t">有机体</div><div class="hm-layer__d">可独立运作的区块：顶栏、侧轨、数据表、图表面板、表单段、对话框、AI 面板。</div><div class="hm-layer__c">.o-table · .o-chart</div></a>
-      <a class="hm-layer rv" href="#/templates"><svg class="a-icon hm-layer__arrow"><use href="#i-arrow-up-right"/></svg><div class="hm-layer__n">L4</div><div class="hm-layer__t">模板</div><div class="hm-layer__d">只定结构、不含真实内容的页面骨架：看板、文档、列表–详情、品牌页、陈述。</div><div class="hm-layer__c">.t-dashboard</div></a>
-      <a class="hm-layer rv" href="#/pages"><svg class="a-icon hm-layer__arrow"><use href="#i-arrow-up-right"/></svg><div class="hm-layer__n">L5</div><div class="hm-layer__t">页面</div><div class="hm-layer__d">模板注入真实内容后的最终形态，也是检验系统的场所：五实体各一页。</div><div class="hm-layer__c">.p-frame[data-theme]</div></a>
+    <div class="hm-head"><div><div class="hm-kicker"><b>00.3</b>Atomic Design</div><h2 class="hm-h2">六层生长秩序<br>一墨成城</h2></div><p class="hm-desc">Brad Frost 的五层加上令牌亚原子层。原子只由令牌构成，分子只由原子构成，有机体只由分子与原子构成，模板不含数据，页面必须有真实数据。这条单向的组合链，就是守正在结构层面的兑现。</p></div>
+    <div class="hm-ladder" data-stagger>
+      <a class="hm-layer hm-layer--0 rv" href="#/tokens"><span class="hm-layer__n">L0</span><span class="hm-layer__t">令牌</span><span class="hm-layer__d">亚原子。色、字、距、形、动、层的唯一事实。本身不可用，须附着于原子。</span><span class="hm-layer__c">--stg-600 · --space-4</span><svg class="a-icon hm-layer__arrow"><use href="#i-arrow-up-right"/></svg></a>
+      <a class="hm-layer rv" href="#/atoms"><span class="hm-layer__n">L1</span><span class="hm-layer__t">原子</span><span class="hm-layer__d">不可再分的功能单元：按钮、输入、图标、徽标、印章、太极 Spinner。</span><span class="hm-layer__c">.a-btn · .a-input</span><svg class="a-icon hm-layer__arrow"><use href="#i-arrow-up-right"/></svg></a>
+      <a class="hm-layer rv" href="#/molecules"><span class="hm-layer__n">L2</span><span class="hm-layer__t">分子</span><span class="hm-layer__d">原子的最小有意义组合，单一职责：表单字段、搜索框、KPI 瓦片、实体切换器。</span><span class="hm-layer__c">.m-field · .m-kpi</span><svg class="a-icon hm-layer__arrow"><use href="#i-arrow-up-right"/></svg></a>
+      <a class="hm-layer rv" href="#/organisms"><span class="hm-layer__n">L3</span><span class="hm-layer__t">有机体</span><span class="hm-layer__d">可独立运作的区块：顶栏、侧轨、数据表、图表面板、表单段、对话框、AI 面板。</span><span class="hm-layer__c">.o-table · .o-chart</span><svg class="a-icon hm-layer__arrow"><use href="#i-arrow-up-right"/></svg></a>
+      <a class="hm-layer rv" href="#/templates"><span class="hm-layer__n">L4</span><span class="hm-layer__t">模板</span><span class="hm-layer__d">只定结构、不含真实内容的页面骨架：看板、文档、列表–详情、品牌页、陈述。</span><span class="hm-layer__c">.t-dashboard</span><svg class="a-icon hm-layer__arrow"><use href="#i-arrow-up-right"/></svg></a>
+      <a class="hm-layer rv" href="#/pages"><span class="hm-layer__n">L5</span><span class="hm-layer__t">页面</span><span class="hm-layer__d">模板注入真实内容后的最终形态，也是检验系统的场所：五实体各一页。</span><span class="hm-layer__c">.p-frame[data-theme]</span><svg class="a-icon hm-layer__arrow"><use href="#i-arrow-up-right"/></svg></a>
     </div>
   </div>
 </section>
 
 <section class="hm-section">
   <div class="wrap">
-    <div class="hm-head rv"><div><div class="hm-kicker"><b>00.3</b>Five Entities</div><h2 class="hm-h2">五实体，一套语法</h2></div><p class="hm-desc">五实体不是五家公司，是一个价值共生体。共用一套设计语法，各自生长出独立的色彩身份。点击任一面板，整站即刻切换到该实体的映射。</p></div>
-    <div class="hm-entities rv">
-      <div class="hm-entity is-on" data-entity-panel="stg" style="--panel:var(--stg-600)" role="button" tabindex="0"><div><div class="hm-entity__code">STG</div><div class="hm-entity__name">绛紫</div><div class="hm-entity__full">源裕兴集团母体 · 战略中枢 · 合规治理</div><p class="hm-entity__meaning">包容万象、多元统一。母品牌场景用墨与藤黄，不偏向任何单一业务色。</p></div><div class="hm-entity__foot"><span class="hm-entity__hex">#851EA3 · 7.51:1</span><div class="hm-entity__card"><small>集团营收 · 本月</small><b>1.49 亿</b><span class="btn">主按钮</span></div></div></div>
-      <div class="hm-entity" data-entity-panel="ste" style="--panel:var(--ste-600)" role="button" tabindex="0"><div><div class="hm-entity__code">STE</div><div class="hm-entity__name">苍木绿</div><div class="hm-entity__full">九派能源 · 清洁能源 · 碳中和</div><p class="hm-entity__meaning">生生不息、自然循环。石绿矿物色避开「环保绿」俗套，厚重而可持续。</p></div><div class="hm-entity__foot"><span class="hm-entity__hex">#196B42 · 6.32:1</span><div class="hm-entity__card"><small>蒸汽产量 · 今日</small><b>612 t</b><span class="btn">主按钮</span></div></div></div>
-      <div class="hm-entity" data-entity-panel="sti" style="--panel:var(--sti-600)" role="button" tabindex="0"><div><div class="hm-entity__code">STI</div><div class="hm-entity__name">深空蓝</div><div class="hm-entity__full">进出口贸易 · 全球贸易 · 报关物流</div><p class="hm-entity__meaning">深远的全球视野。青花瓷本就是古代外贸第一商品，蓝即信任与海洋。</p></div><div class="hm-entity__foot"><span class="hm-entity__hex">#1E4082 · 9.65:1</span><div class="hm-entity__card"><small>平均通关时效</small><b>2.4 h</b><span class="btn">主按钮</span></div></div></div>
-      <div class="hm-entity" data-entity-panel="sth" style="--panel:var(--sth-700)" role="button" tabindex="0"><div><div class="hm-entity__code">STH</div><div class="hm-entity__name">沧浪青</div><div class="hm-entity__full">健康科技 · 医疗器械 · 健康监测</div><p class="hm-entity__meaning">澄澈通透的生命质感。识别色 #208F9B 仅 3.73:1，交互场合自动落到可访问的 700 阶。</p></div><div class="hm-entity__foot"><span class="hm-entity__hex">#208F9B → #097983 · 5.00:1</span><div class="hm-entity__card"><small>检测报告 · 本周</small><b>1,284</b><span class="btn">主按钮</span></div></div></div>
-      <div class="hm-entity" data-entity-panel="edu" style="--panel:var(--edu-600)" role="button" tabindex="0"><div><div class="hm-entity__code">EDU</div><div class="hm-entity__name">朱砂红</div><div class="hm-entity__full">崇仁教育 · 教育启智 · 家校协同</div><p class="hm-entity__meaning">炽热的教育初心。朱笔批注即书院治学，暖色显人文。</p></div><div class="hm-entity__foot"><span class="hm-entity__hex">#B81E1E · 6.28:1</span><div class="hm-entity__card"><small>阅读能力 · 本月</small><b>86 ↑15%</b><span class="btn">主按钮</span></div></div></div>
+    <div class="hm-head"><div><div class="hm-kicker"><b>00.4</b>Five Entities</div><h2 class="hm-h2">五实体，一套语法</h2></div><p class="hm-desc">五实体不是五家公司，是一个价值共生体。共用一套设计语法，各自生长出独立的色彩身份。点选任一行，整站与右侧仪表同时换色——这就是「只替换 <code>--e-*</code> 映射」的现场证明。</p></div>
+    <div class="hm-ent">
+      <div class="hm-ent__list" role="group" aria-label="五实体切换">
+        <button class="hm-entity is-on" type="button" data-entity-panel="stg" style="--panel:var(--stg-600)" aria-pressed="true"><span class="hm-entity__sw"></span><span><span class="hm-entity__code">STG</span><span class="hm-entity__name">绛紫</span><span class="hm-entity__full">集团母体 · 战略中枢 · 合规治理</span></span><span class="hm-entity__hex">#851EA3 · 7.51:1</span></button>
+        <button class="hm-entity" type="button" data-entity-panel="ste" style="--panel:var(--ste-600)" aria-pressed="false"><span class="hm-entity__sw"></span><span><span class="hm-entity__code">STE</span><span class="hm-entity__name">苍木绿</span><span class="hm-entity__full">九派能源 · 清洁能源 · 碳中和</span></span><span class="hm-entity__hex">#196B42 · 6.32:1</span></button>
+        <button class="hm-entity" type="button" data-entity-panel="sti" style="--panel:var(--sti-600)" aria-pressed="false"><span class="hm-entity__sw"></span><span><span class="hm-entity__code">STI</span><span class="hm-entity__name">深空蓝</span><span class="hm-entity__full">进出口贸易 · 全球贸易 · 报关物流</span></span><span class="hm-entity__hex">#1E4082 · 9.65:1</span></button>
+        <button class="hm-entity" type="button" data-entity-panel="sth" style="--panel:var(--sth-700)" aria-pressed="false"><span class="hm-entity__sw"></span><span><span class="hm-entity__code">STH</span><span class="hm-entity__name">沧浪青</span><span class="hm-entity__full">健康科技 · 医疗器械 · 健康监测</span></span><span class="hm-entity__hex">#208F9B → #097983 · 5.00:1</span></button>
+        <button class="hm-entity" type="button" data-entity-panel="edu" style="--panel:var(--edu-600)" aria-pressed="false"><span class="hm-entity__sw"></span><span><span class="hm-entity__code">EDU</span><span class="hm-entity__name">朱砂红</span><span class="hm-entity__full">崇仁教育 · 教育启智 · 家校协同</span></span><span class="hm-entity__hex">#B81E1E · 6.28:1</span></button>
+      </div>
+      <div class="hm-dash rv" data-spot>
+        <div class="hm-dash__bar"><span class="a-dot" style="--sw:var(--c-primary)"></span><span class="hm-dash__title">实体运营概览 · <span data-entity-label>绛紫</span></span><span class="hm-dash__sp"></span><span class="hm-dash__sub">近 12 个月 · 示意数据</span></div>
+        <div class="hm-dash__body">
+          <div class="hm-tile"><div class="hm-tile__k">营收</div><div class="hm-tile__v num">1.49<small>亿</small></div><div class="hm-tile__d">↑ 12.4% 同比</div></div>
+          <div class="hm-tile"><div class="hm-tile__k">在执行项目</div><div class="hm-tile__v num">38<small>个</small></div><div class="hm-tile__d">↑ 6 个</div></div>
+          <div class="hm-tile"><div class="hm-tile__k">合规事项</div><div class="hm-tile__v num">2<small>项</small></div><div class="hm-tile__d is-down">↓ 待办 2</div></div>
+          <div class="hm-tile"><div class="hm-tile__k">人效</div><div class="hm-tile__v num">86<small>分</small></div><div class="hm-tile__d">↑ 3 分</div></div>
+          <div class="hm-dash__chart">
+            <div class="hm-bars" role="img" aria-label="近 12 个月趋势（示意）">
+              <i style="--h:38%"></i><i style="--h:46%"></i><i style="--h:41%"></i><i style="--h:55%"></i><i style="--h:62%"></i><i style="--h:52%"></i><i style="--h:68%"></i><i style="--h:74%"></i><i style="--h:66%"></i><i style="--h:81%"></i><i style="--h:88%"></i><i style="--h:96%"></i>
+            </div>
+          </div>
+        </div>
+        <div class="hm-dash__foot"><span>SOURCE tokens.json → --e-* 映射</span><span>THEME data-theme</span><span>SCHEME 三态暗色</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hm-section hm-section--tight">
+  <div class="wrap">
+    <div class="hm-head"><div><div class="hm-kicker"><b>00.5</b>Gates</div><h2 class="hm-h2">以数据守正</h2></div><p class="hm-desc">下列数字全部来自 <code>node build/build.mjs</code> 的构建期实测，而非人工誊抄。任一项不达标，构建以退出码 1 失败。</p></div>
+    <div class="hm-gates" data-stagger>
+      <div class="hm-gate rv" data-spot><div class="hm-gate__v num"><span data-count="<!-- @gen:token-count -->">0</span></div><div class="hm-gate__k">设计令牌：<!-- @gen:token-count-primitive --> 原始 · <!-- @gen:token-count-semantic --> 语义 · <!-- @gen:token-count-component --> 组件，全部由 tokens.json 生成</div><div class="hm-gate__meter"><i style="--v:100%"></i></div></div>
+      <div class="hm-gate rv" data-spot><div class="hm-gate__v num">20<small>项</small></div><div class="hm-gate__k">语义色对比度实测：正文 / 次文 / 占位 / 边界 / 四语义色 × 浅暗两模式</div><div class="hm-gate__meter"><i style="--v:100%"></i></div></div>
+      <div class="hm-gate rv" data-spot><div class="hm-gate__v num">5<small>实体</small></div><div class="hm-gate__k">可访问主色自动选取：浅色自 600 阶向深、暗色自 300 阶向浅，取第一阶满足 4.5:1</div><div class="hm-gate__meter"><i style="--v:100%"></i></div></div>
+      <div class="hm-gate rv" data-spot><div class="hm-gate__v num">6<small>检</small></div><div class="hm-gate__k">数据墨色：明度带 · 色度 ≥ 0.10 · CVD ΔE · 正常视觉 ΔE · 对比 ≥ 3:1 · 固定顺序</div><div class="hm-gate__meter"><i style="--v:100%"></i></div></div>
     </div>
   </div>
 </section>
 
 <section class="hm-section">
   <div class="wrap">
-    <div class="hm-head rv"><div><div class="hm-kicker"><b>00.4</b>Benchmarks</div><h2 class="hm-h2">三个方向标杆：取其法，不取其貌</h2></div><p class="hm-desc">Ledgerix 的看板秩序、PRODIGIES 的瑞士纪律与单一信号色、Sui 从识别到网站的一体化——各借结构，不借皮相。</p></div>
-    <div class="bench">
-      <div class="bench__card rv"><div class="bench__art"><div class="art-dash"><div class="art-dash__rail"></div><div class="art-dash__main"><div class="art-dash__bar"></div><div class="art-dash__kpis"><i></i><i></i><i></i></div><div class="art-dash__chart"><i style="height:40%"></i><i style="height:55%"></i><i style="height:48%"></i><i style="height:70%"></i><i style="height:62%"></i><i style="height:84%"></i><i style="height:76%"></i></div></div></div></div><div class="bench__body"><div class="bench__tag">Benchmark 01 · Dashboard</div><div class="bench__title">Ledgerix CRM · FMS<br>看板的信息密度秩序</div><ul class="bench__list"><li>侧轨 + 顶栏 + 筛选行 + KPI 行 + 图表 + 表：摘要先于明细，进入 T1 模板与 STG、STE 页面。</li><li>页面底与卡片底两级纸色，层级靠发丝线与极轻阴影。</li><li>状态色与品牌强调色分离，状态永远带图标与文字。</li><li class="no">不取：SaaS 通用的纯灰中性与蓝色主色。</li></ul><div class="bench__src">behance.net/gallery/232976091</div></div></div>
-      <div class="bench__card rv"><div class="bench__art"><div class="art-prod"><div class="art-prod__l">Pr</div><div class="art-prod__r"><i></i><i></i><i></i><i></i></div></div></div><div class="bench__body"><div class="bench__tag">Benchmark 02 · Brand × Product</div><div class="bench__title">PRODIGIES<br>瑞士极简的纪律与单一信号色</div><ul class="bench__list"><li>深黑与浅灰铺中性地，一个信号色只用于转化与焦点——藤黄戒律与一点朱的当代同构。</li><li>纪念碑式字体与严格栅格建立权威：Display 用力，H2 以下秀承；按 G 可查看本站 12 列栅格。</li><li>逐一定义每个控件状态——8 状态机与状态矩阵由此校准。</li><li class="no">不取：纯黑纯白与荧光绿。</li></ul><div class="bench__src">behance.net/gallery/247882287</div></div></div>
-      <div class="bench__card rv"><div class="bench__art"><div class="art-sui"><b>Sui</b></div></div><div class="bench__body"><div class="bench__tag">Benchmark 03 · Identity → Website</div><div class="bench__title">Sui（Holographik）<br>品牌到网站的一体化系统</div><ul class="bench__list"><li>一个核心识别色 + 黑白 + 带色相偏移的灰阶——Ink 九阶带暖色相偏移，五实体只换主色不换中性。</li><li>渐变以三层叠加作为功能性元素——本站把太极流纹落为封面流场、Loading 与分隔，而非贴图。</li><li>全系统字体纪律——一页 ≤ 两个家族。</li><li class="no">不取：加密世界的电蓝气质。</li></ul><div class="bench__src">behance.net/gallery/249964707</div></div></div>
+    <div class="hm-head"><div><div class="hm-kicker"><b>00.6</b>Benchmarks</div><h2 class="hm-h2">三个方向标杆<br>取其法，不取其貌</h2></div><p class="hm-desc">Ledgerix 的看板信息密度、PRODIGIES 的编辑纪律与单一信号色、Sui 从识别到网站的一体化——各借结构，不借皮相。本站的「墨经光纬」正是前两者的合流。</p></div>
+    <div class="bench" data-stagger>
+      <div class="bench__card rv" data-spot><div class="bench__art"><div class="art-dash"><div class="art-dash__rail"></div><div class="art-dash__main"><div class="art-dash__bar"></div><div class="art-dash__kpis"><i></i><i></i><i></i></div><div class="art-dash__chart"><i style="height:40%"></i><i style="height:55%"></i><i style="height:48%"></i><i style="height:70%"></i><i style="height:62%"></i><i style="height:84%"></i><i style="height:76%"></i></div></div></div></div><div class="bench__body"><div class="bench__tag">Benchmark 01 · Dashboard</div><div class="bench__title">Ledgerix CRM · FMS<br>看板的信息密度秩序</div><ul class="bench__list"><li>侧轨 + 顶栏 + 筛选行 + KPI 行 + 图表 + 表：摘要先于明细，进入 L4 模板与 STG、STE 页面。</li><li>页面底与卡片底两级纸色，层级靠发丝线与极轻阴影——本站首页仪表面板即此法。</li><li>状态色与品牌强调色分离，状态永远带图标与文字。</li><li class="no">不取：SaaS 通用的纯灰中性与蓝色主色。</li></ul><div class="bench__src">behance.net/gallery/232976091</div></div></div>
+      <div class="bench__card rv" data-spot><div class="bench__art"><div class="art-prod"><div class="art-prod__l">Pr</div><div class="art-prod__r"><i></i><i></i><i></i><i></i></div></div></div><div class="bench__body"><div class="bench__tag">Benchmark 02 · Editorial</div><div class="bench__title">PRODIGIES<br>编辑式纪律与单一信号色</div><ul class="bench__list"><li>纪念碑式主标题与严格栅格建立权威：Display 用力，H2 以下秀承；按 <span class="a-kbd">G</span> 可查看本站 12 列栅格。</li><li>编号索引与大留白——首页「八章索引」与章节封面的编号导轨由此而来。</li><li>一个信号色只用于转化与焦点——藤黄戒律与一点朱的当代同构。</li><li class="no">不取：纯黑纯白与荧光绿。</li></ul><div class="bench__src">behance.net/gallery/247882287</div></div></div>
+      <div class="bench__card rv" data-spot><div class="bench__art"><div class="art-sui"><b>Sui</b></div></div><div class="bench__body"><div class="bench__tag">Benchmark 03 · Identity → Website</div><div class="bench__title">Sui（Holographik）<br>品牌到网站的一体化系统</div><ul class="bench__list"><li>一个核心识别色 + 黑白 + 带色相偏移的灰阶——Ink 九阶带暖色相偏移，五实体只换主色不换中性。</li><li>渐变作为功能性元素而非贴图——本站落为封面流场、Loading 与分隔。</li><li>全系统字体纪律——一页 ≤ 两个家族。</li><li class="no">不取：加密世界的电蓝气质。</li></ul><div class="bench__src">behance.net/gallery/249964707</div></div></div>
     </div>
   </div>
 </section>
@@ -73,20 +140,20 @@
 
 <section class="hm-section">
   <div class="wrap">
-    <div class="hm-head rv"><div><div class="hm-kicker"><b>00.5</b>Lineage</div><h2 class="hm-h2">从全典到组件库，从组件库到原子</h2></div><p class="hm-desc">V36 是一部宪法，V37 让宪法长出双手，V38 让双手长出骨骼：每一个组件都能回答「我由什么组成、我被谁组成」。</p></div>
-    <div class="hm-lineage rv">
-      <div class="hm-ln"><div class="hm-ln__v">V34</div><div class="hm-ln__t">九派能源 · 单一品牌视觉规范</div><div class="hm-ln__d">一个实体、一套色。</div></div>
-      <div class="hm-ln"><div class="hm-ln__v">V35</div><div class="hm-ln__t">Material Design 3 对齐 · Token 奠基</div><div class="hm-ln__d">23 色角色、HCT、19 章 skeleton，综合评分 6.9 / 10。</div></div>
-      <div class="hm-ln"><div class="hm-ln__v">V36</div><div class="hm-ln__t">品牌设计语言全典</div><div class="hm-ln__d">Geist 字距 + 宣纸墨色 + 五实体切换，「守正 · 开物 · 共生」确立。但它是一本书。</div></div>
-      <div class="hm-ln"><div class="hm-ln__v">V37</div><div class="hm-ln__t">可落地的组件库</div><div class="hm-ln__d">Ant Design 工程纪律、组件级 Token、Odoo 18 映射——让宪法长出双手。</div></div>
-      <div class="hm-ln is-now"><div class="hm-ln__v">V38</div><div class="hm-ln__t">原子设计版 · 多页面站点</div><div class="hm-ln__d">六层组合链、tokens.json 唯一可信源、OKLCH 推导、实测门禁、三态暗色、CVD 验证的数据墨色、12 处 V37 修正。</div></div>
+    <div class="hm-head"><div><div class="hm-kicker"><b>00.7</b>Lineage</div><h2 class="hm-h2">从全典到组件库<br>从组件库到原子</h2></div><p class="hm-desc">V36 是一部宪法，V37 让宪法长出双手，V38 让双手长出骨骼，V39 让骨骼站起来走路——从一份文档，变成一座可以逛的站。</p></div>
+    <div class="hm-lineage" data-stagger>
+      <div class="hm-ln rv"><div class="hm-ln__v">V35</div><div class="hm-ln__t">Material Design 3 对齐 · Token 奠基</div><div class="hm-ln__d">23 色角色、HCT、19 章骨架，综合评分 6.9 / 10。</div></div>
+      <div class="hm-ln rv"><div class="hm-ln__v">V36</div><div class="hm-ln__t">品牌设计语言全典</div><div class="hm-ln__d">字距纪律 + 宣纸墨色 + 五实体切换，「守正 · 开物 · 共生」确立。但它是一本书。</div></div>
+      <div class="hm-ln rv"><div class="hm-ln__v">V37</div><div class="hm-ln__t">可落地的组件库</div><div class="hm-ln__d">工程纪律、组件级 Token、Odoo 18 映射——让宪法长出双手。</div></div>
+      <div class="hm-ln rv"><div class="hm-ln__v">V38</div><div class="hm-ln__t">原子设计版</div><div class="hm-ln__d">六层组合链、tokens.json 唯一可信源、OKLCH 推导、实测门禁、三态暗色、CVD 验证。</div></div>
+      <div class="hm-ln is-now rv"><div class="hm-ln__v">V39</div><div class="hm-ln__t">墨经光纬 · 多页面站点</div><div class="hm-ln__d">八章独立成页、跨文档视图过渡、编辑式索引与仪表读数、动效章与实验室、全站动效编排与 reduced-motion 契约。</div></div>
     </div>
   </div>
 </section>
 
 <section class="hm-close">
   <div class="wrap">
-    <span class="a-seal a-seal--solid rv">共生</span>
+    <span class="a-seal a-seal--solid">共生</span>
     <p class="hm-close__q rv">守正，故不漂移。开物，故不僵化。<em>共生</em>，故不孤立。三维一体，缺一不可。</p>
     <div class="hm-cta rv" style="justify-content:center;margin-top:36px"><a class="a-btn a-btn--primary a-btn--l" href="#/tokens">从令牌开始阅读<svg class="a-icon"><use href="#i-arrow-right"/></svg></a><a class="a-btn a-btn--secondary a-btn--l" href="#/governance">查看治理与变更日志</a></div>
   </div>

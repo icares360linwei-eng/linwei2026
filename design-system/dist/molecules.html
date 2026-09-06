@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>L2 分子：原子的最小有意义组合 · 源裕兴设计系统全典</title>
+<meta name="description" content="分子：原子的最小有意义组合 —— 源裕兴设计系统全典 V39.0.0 · 墨经光纬 · 多页面站点版 · 守正 · 开物 · 共生">
+<meta name="color-scheme" content="dark light">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200..900&family=Noto+Sans+SC:wght@200..700&family=LXGW+WenKai+TC:wght@300;400;700&family=Manrope:wght@200..800&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="sino.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2216%22%20r%3D%2215%22%20fill%3D%22%231A1612%22%2F%3E%3Cpath%20d%3D%22M16%203a6.5%206.5%200%200%201%200%2013%206.5%206.5%200%200%200%200%2013A13%2013%200%200%200%2016%203z%22%20fill%3D%22%23C9A96E%22%2F%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%229.5%22%20r%3D%222%22%20fill%3D%22%231A1612%22%2F%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2222.5%22%20r%3D%222%22%20fill%3D%22%23C9A96E%22%2F%3E%3C%2Fsvg%3E">
+<link rel="prefetch" href="atoms.html">
+<link rel="prefetch" href="organisms.html">
+</head>
+<body data-page="molecules" data-chapter="3" data-chapters="8">
+<div class="sino site" id="sino" data-theme="stg" data-color-scheme="dark" data-mode="mpa">
+<script>(function(){try{var r=document.currentScript.parentElement,e=localStorage.getItem('sino.entity'),s=localStorage.getItem('sino.scheme');if(e)r.dataset.theme=e;if(s)r.dataset.colorScheme=s;}catch(_){}}())</script>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.4-3.4"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+    <symbol id="i-chevron-down" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+    <symbol id="i-chevron-right" viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></symbol>
+    <symbol id="i-chevron-left" viewBox="0 0 24 24"><path d="m15 6-6 6 6 6"/></symbol>
+    <symbol id="i-chevron-up" viewBox="0 0 24 24"><path d="m6 15 6-6 6 6"/></symbol>
+    <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-arrow-up-right" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></symbol>
+    <symbol id="i-arrow-down-right" viewBox="0 0 24 24"><path d="M7 7l10 10M17 8v9H8"/></symbol>
+    <symbol id="i-arrow-down" viewBox="0 0 24 24"><path d="M12 5v14M6 13l6 6 6-6"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 5 5L20 7"/></symbol>
+    <symbol id="i-check-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m8.5 12 2.5 2.5 5-5"/></symbol>
+    <symbol id="i-x-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m9 9 6 6M15 9l-6 6"/></symbol>
+    <symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 3 2.5 20h19L12 3z"/><path d="M12 9v5M12 17.5h.01"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-minus" viewBox="0 0 24 24"><path d="M5 12h14"/></symbol>
+    <symbol id="i-edit" viewBox="0 0 24 24"><path d="M4 20h4L18.5 9.5a2.1 2.1 0 0 0-3-3L5 17v3z"/><path d="m13.5 6.5 3 3"/></symbol>
+    <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"/></symbol>
+    <symbol id="i-filter" viewBox="0 0 24 24"><path d="M4 5h16l-6 8v6l-4-2v-4L4 5z"/></symbol>
+    <symbol id="i-sort" viewBox="0 0 24 24"><path d="M7 4v16M4 7l3-3 3 3M17 20V4M14 17l3 3 3-3"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 4v12M7 11l5 5 5-5M4 20h16"/></symbol>
+    <symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 20V8M7 13l5-5 5 5M4 4h16"/></symbol>
+    <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 16v-5a6 6 0 0 1 12 0v5l2 2H4l2-2z"/><path d="M10 20a2 2 0 0 0 4 0"/></symbol>
+    <symbol id="i-settings" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9 7 7M17 17l2.1 2.1M4.9 19.1 7 17M17 7l2.1-2.1"/></symbol>
+    <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></symbol>
+    <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 11 12 4l9 7M5 10v10h14V10M10 20v-6h4v6"/></symbol>
+    <symbol id="i-dashboard" viewBox="0 0 24 24"><path d="M3 3h8v8H3zM13 3h8v5h-8zM13 11h8v10h-8zM3 14h8v7H3z"/></symbol>
+    <symbol id="i-table" viewBox="0 0 24 24"><path d="M3 5h18v14H3zM3 10h18M3 15h18M9 5v14"/></symbol>
+    <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 20h16M7 16V9M12 16V5M17 16v-4"/></symbol>
+    <symbol id="i-doc" viewBox="0 0 24 24"><path d="M6 3h8l4 4v14H6zM14 3v4h4M9 12h6M9 16h6"/></symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24"><path d="M4 6h16v14H4zM4 10h16M8 3v4M16 3v4"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><path d="M3 6h18v12H3zM3 7l9 6 9-6"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24"><path d="M8 8h12v12H8zM16 8V4H4v12h4"/></symbol>
+    <symbol id="i-external" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4 10 14M18 13v7H4V6h7"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></symbol>
+    <symbol id="i-monitor" viewBox="0 0 24 24"><path d="M3 4h18v12H3zM8 20h8M12 16v4"/></symbol>
+    <symbol id="i-palette" viewBox="0 0 24 24"><path d="M12 3a9 9 0 0 0 0 18h1a2 2 0 0 0 1-3.7 2 2 0 0 1 1.5-3.3H17a4 4 0 0 0 4-4 8 8 0 0 0-9-7z"/><path d="M7.5 12h.01M9.5 8h.01M14 7h.01M17 10h.01"/></symbol>
+    <symbol id="i-layers" viewBox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5 9-5zM3 13l9 5 9-5M3 17l9 5 9-5"/></symbol>
+    <symbol id="i-atom" viewBox="0 0 24 24"><circle cx="12" cy="12" r="1.8"/><ellipse cx="12" cy="12" rx="9" ry="3.6"/><ellipse cx="12" cy="12" rx="9" ry="3.6" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="9" ry="3.6" transform="rotate(120 12 12)"/></symbol>
+    <symbol id="i-grid" viewBox="0 0 24 24"><path d="M3 3h18v18H3zM9 3v18M15 3v18M3 9h18M3 15h18"/></symbol>
+    <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24"><path d="M5 11h14v10H5zM8 11V7a4 4 0 0 1 8 0v4"/></symbol>
+    <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-2.3-5.7M20 4v5h-5"/></symbol>
+    <symbol id="i-more" viewBox="0 0 24 24"><path d="M5 12h.01M12 12h.01M19 12h.01"/></symbol>
+    <symbol id="i-code" viewBox="0 0 24 24"><path d="m8 8-4 4 4 4M16 8l4 4-4 4M14 4l-4 16"/></symbol>
+    <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 4h6a3 3 0 0 1 3 3v13a2 2 0 0 0-2-2H4zM20 4h-6a3 3 0 0 0-3 3v13a2 2 0 0 1 2-2h7z"/></symbol>
+    <symbol id="i-leaf" viewBox="0 0 24 24"><path d="M20 4c-8 0-14 4-14 12a6 6 0 0 0 6 4c8 0 8-10 8-16zM6 20 20 4"/></symbol>
+    <symbol id="i-ship" viewBox="0 0 24 24"><path d="M3 18c2 2 4 2 6 0s4-2 6 0 4 2 6 0M5 15l-2-5h18l-2 5M7 10V6h10v4M12 3v3"/></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20s-8-5-8-11a4 4 0 0 1 8-1 4 4 0 0 1 8 1c0 6-8 11-8 11z"/></symbol>
+    <symbol id="i-cap" viewBox="0 0 24 24"><path d="m2 9 10-5 10 5-10 5L2 9zM6 11v5c0 1.5 3 3 6 3s6-1.5 6-3v-5M22 9v6"/></symbol>
+    <symbol id="i-building" viewBox="0 0 24 24"><path d="M4 21V5h10v16M14 9h6v12M8 9h2M8 13h2M8 17h2M17 13h1M17 17h1M2 21h20"/></symbol>
+    <symbol id="i-flame" viewBox="0 0 24 24"><path d="M12 3c1 4 5 5 5 10a5 5 0 0 1-10 0c0-2 1-3 2-4 0 2 1 3 2 3 0-3-1-5 1-9z"/></symbol>
+    <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3zM9 12l2 2 4-4"/></symbol>
+    <symbol id="i-sparkles" viewBox="0 0 24 24"><path d="m11 3 1.8 5.2L18 10l-5.2 1.8L11 17l-1.8-5.2L4 10l5.2-1.8L11 3zM19 16v5M16.5 18.5h5"/></symbol>
+    <symbol id="i-send" viewBox="0 0 24 24"><path d="m3 11 18-8-8 18-2-8-8-2z"/></symbol>
+    <symbol id="i-keyboard" viewBox="0 0 24 24"><path d="M3 6h18v12H3zM7 10h.01M11 10h.01M15 10h.01M7 14h10"/></symbol>
+    <symbol id="i-seal" viewBox="0 0 24 24"><path d="M5 5h14v14H5zM8 9h8M8 12h8M8 15h5"/></symbol>
+    <symbol id="i-flask" viewBox="0 0 24 24"><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 2 3h10a2 2 0 0 0 2-3l-5-9V3M7 15h10"/></symbol>
+    <symbol id="i-pill" viewBox="0 0 24 24"><path d="m8.5 4.5 11 11a4.2 4.2 0 0 1-6 6l-11-11a4.2 4.2 0 0 1 6-6zM7 13l6-6"/></symbol>
+    <symbol id="i-truck" viewBox="0 0 24 24"><path d="M3 6h11v10H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+    <symbol id="i-taiji-full" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3a4.5 4.5 0 0 1 0 9 4.5 4.5 0 0 0 0 9"/><circle cx="12" cy="7.5" r="1.2" fill="currentColor"/><circle cx="12" cy="16.5" r="1.2"/></symbol>
+    <symbol id="i-taiji-dot" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="2.2" fill="currentColor"/></symbol>
+    <symbol id="i-taiji-flow" viewBox="0 0 24 24"><path d="M3 12c3-6 6-6 9 0s6 6 9 0"/></symbol>
+    <symbol id="i-taiji-spin" viewBox="0 0 24 24"><path d="M12 3a9 9 0 0 1 9 9M12 21a9 9 0 0 1-9-9M18 9l3 3 3-3M6 15l-3-3-3 3"/></symbol>
+    <symbol id="i-mark" viewBox="0 0 32 32"><circle cx="16" cy="16" r="14" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 2a7 7 0 0 1 0 14 7 7 0 0 0 0 14" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 2a7 7 0 0 1 0 14 7 7 0 0 0 0 14A14 14 0 0 0 16 2z" fill="currentColor" opacity=".18"/><circle cx="16" cy="9" r="2" fill="var(--c-goldLine)"/><circle cx="16" cy="23" r="2" fill="currentColor"/></symbol>
+  </defs>
+</svg>
+<a class="sr-only" href="index.html">跳到主内容</a>
+
+<div class="site-prog" aria-hidden="true"><i data-page-prog></i></div>
+
+<header class="site-nav" data-nav-root>
+  <div class="wrap site-nav__in">
+    <a class="a-logo site-nav__logo" href="index.html" aria-label="源裕兴设计系统全典 · 首页">
+      <svg class="a-logo__mark" style="color:var(--c-primary)" aria-hidden="true"><use href="#i-mark"/></svg>
+      <span><span class="a-logo__word">源裕兴</span><span class="a-logo__latin">Design System</span></span>
+    </a>
+    <nav class="site-nav__links" aria-label="主导航"><a class="site-nav__link" href="tokens.html" data-nav="tokens"><i>L0</i><span>令牌</span></a><a class="site-nav__link" href="atoms.html" data-nav="atoms"><i>L1</i><span>原子</span></a><a class="site-nav__link" href="#top" data-nav="molecules" aria-current="page"><i>L2</i><span>分子</span></a><a class="site-nav__link" href="organisms.html" data-nav="organisms"><i>L3</i><span>有机体</span></a><a class="site-nav__link" href="templates.html" data-nav="templates"><i>L4</i><span>模板</span></a><a class="site-nav__link" href="pages.html" data-nav="pages"><i>L5</i><span>页面</span></a><a class="site-nav__link" href="motion.html" data-nav="motion"><i>M</i><span>动效</span></a><a class="site-nav__link" href="governance.html" data-nav="governance"><i>G</i><span>治理</span></a><span class="site-nav__ink" aria-hidden="true"></span></nav>
+    <div class="site-nav__tools">
+      <div class="m-entity" role="group" aria-label="五实体主题切换">
+        <button class="m-entity__item" type="button" data-entity-btn="stg" aria-pressed="true" data-tip="STG · 集团母体 · 绛紫"><span class="a-dot" style="--sw:var(--stg-600)"></span>STG</button>
+        <button class="m-entity__item" type="button" data-entity-btn="ste" aria-pressed="false" data-tip="STE · 九派能源 · 苍木绿"><span class="a-dot" style="--sw:var(--ste-600)"></span>STE</button>
+        <button class="m-entity__item" type="button" data-entity-btn="sti" aria-pressed="false" data-tip="STI · 进出口 · 深空蓝"><span class="a-dot" style="--sw:var(--sti-600)"></span>STI</button>
+        <button class="m-entity__item" type="button" data-entity-btn="sth" aria-pressed="false" data-tip="STH · 健康科技 · 沧浪青"><span class="a-dot" style="--sw:var(--sth-600)"></span>STH</button>
+        <button class="m-entity__item" type="button" data-entity-btn="edu" aria-pressed="false" data-tip="EDU · 崇仁教育 · 朱砂红"><span class="a-dot" style="--sw:var(--edu-600)"></span>EDU</button>
+      </div>
+      <div class="m-segmented" role="group" aria-label="色彩方案">
+        <button class="m-segmented__item" type="button" data-scheme-btn="auto" aria-pressed="false" data-tip="跟随系统"><svg class="a-icon"><use href="#i-monitor"/></svg></button>
+        <button class="m-segmented__item" type="button" data-scheme-btn="light" aria-pressed="false" data-tip="浅色 · 宣纸"><svg class="a-icon"><use href="#i-sun"/></svg></button>
+        <button class="m-segmented__item" type="button" data-scheme-btn="dark" aria-pressed="true" data-tip="暗色 · 玄墨"><svg class="a-icon"><use href="#i-moon"/></svg></button>
+      </div>
+      <button class="a-btn a-btn--icon a-btn--ghost a-btn--square a-btn--s site-nav__grid" type="button" data-grid-toggle aria-pressed="false" aria-label="显示 12 列栅格（G）" data-tip="栅格 · G"><svg class="a-icon"><use href="#i-grid"/></svg></button>
+      <button class="a-btn a-btn--ghost a-btn--s site-nav__k" type="button" data-cmdk><svg class="a-icon"><use href="#i-search"/></svg><span>搜索</span><span class="a-kbd">⌘K</span></button>
+      <button class="site-nav__menu" type="button" aria-label="打开导航" aria-expanded="false" data-menu><span class="site-nav__burger"><i></i><i></i></span><span class="site-nav__menutext">目录</span></button>
+    </div>
+  </div>
+</header>
+
+<div class="nav-sheet" id="nav-sheet" aria-hidden="true">
+  <div class="nav-sheet__scrim" data-menu-close></div>
+  <div class="nav-sheet__panel" role="dialog" aria-modal="true" aria-label="全站目录">
+    <div class="nav-sheet__head"><span class="t-overline">Index · 全站目录</span><button class="a-btn a-btn--icon a-btn--ghost a-btn--s a-btn--square" type="button" data-menu-close aria-label="关闭目录"><svg class="a-icon"><use href="#i-x"/></svg></button></div>
+    <nav class="nav-sheet__list" aria-label="全站目录"><a class="nav-sheet__link" href="index.html" data-nav="home"><i>00</i><span class="nav-sheet__t">首页</span><span class="nav-sheet__en">Index</span><svg class="a-icon"><use href="#i-arrow-right"/></svg></a><a class="nav-sheet__link" href="tokens.html" data-nav="tokens"><i>L0</i><span class="nav-sheet__t">设计令牌：亚原子层</span><span class="nav-sheet__en">Design Tokens</span><svg class="a-icon"><use href="#i-arrow-right"/></svg></a><a class="nav-sheet__link" href="atoms.html" data-nav="atoms"><i>L1</i><span class="nav-sheet__t">原子：不可再分的功能单元</span><span class="nav-sheet__en">Atoms</span><svg class="a-icon"><use href="#i-arrow-right"/></svg></a><a class="nav-sheet__link" href="#top" data-nav="molecules"><i>L2</i><span class="nav-sheet__t">分子：原子的最小有意义组合</span><span class="nav-sheet__en">Molecules</span><svg class="a-icon"><use href="#i-arrow-right"/></svg></a><a class="nav-sheet__link" href="organisms.html" data-nav="organisms"><i>L3</i><span class="nav-sheet__t">有机体：可独立运作的界面区块</span><span class="nav-sheet__en">Organisms</span><svg class="a-icon"><use href="#i-arrow-right"/></svg></a><a class="nav-sheet__link" href="templates.html" data-nav="templates"><i>L4</i><span class="nav-sheet__t">模板：只定结构，不含内容</span><span class="nav-sheet__en">Templates</span><svg class="a-icon"><use href="#i-arrow-right"/></svg></a><a class="nav-sheet__link" href="pages.html" data-nav="pages"><i>L5</i><span class="nav-sheet__t">页面：五实体，一套语法</span><span class="nav-sheet__en">Pages · Five Entities</span><svg class="a-icon"><use href="#i-arrow-right"/></svg></a><a class="nav-sheet__link" href="motion.html" data-nav="motion"><i>M</i><span class="nav-sheet__t">动效：编排、缓动与连续</span><span class="nav-sheet__en">Motion & Interaction</span><svg class="a-icon"><use href="#i-arrow-right"/></svg></a><a class="nav-sheet__link" href="governance.html" data-nav="governance"><i>G</i><span class="nav-sheet__t">治理：让系统在生长中不漂移</span><span class="nav-sheet__en">Governance</span><svg class="a-icon"><use href="#i-arrow-right"/></svg></a></nav>
+    <div class="nav-sheet__tools">
+      <div class="m-segmented" role="group" aria-label="色彩方案"><button class="m-segmented__item" type="button" data-scheme-btn="auto" aria-pressed="false"><svg class="a-icon"><use href="#i-monitor"/></svg>自动</button><button class="m-segmented__item" type="button" data-scheme-btn="light" aria-pressed="false"><svg class="a-icon"><use href="#i-sun"/></svg>浅色</button><button class="m-segmented__item" type="button" data-scheme-btn="dark" aria-pressed="true"><svg class="a-icon"><use href="#i-moon"/></svg>暗色</button></div>
+      <div class="m-entity" role="group" aria-label="五实体主题切换"><button class="m-entity__item" type="button" data-entity-btn="stg" aria-pressed="true"><span class="a-dot" style="--sw:var(--stg-600)"></span>STG</button><button class="m-entity__item" type="button" data-entity-btn="ste" aria-pressed="false"><span class="a-dot" style="--sw:var(--ste-600)"></span>STE</button><button class="m-entity__item" type="button" data-entity-btn="sti" aria-pressed="false"><span class="a-dot" style="--sw:var(--sti-600)"></span>STI</button><button class="m-entity__item" type="button" data-entity-btn="sth" aria-pressed="false"><span class="a-dot" style="--sw:var(--sth-600)"></span>STH</button><button class="m-entity__item" type="button" data-entity-btn="edu" aria-pressed="false"><span class="a-dot" style="--sw:var(--edu-600)"></span>EDU</button></div>
+    </div>
+  </div>
+</div>
+<main id="main">
+<article class="route" data-route="molecules" data-num="L2" data-title="分子：原子的最小有意义组合">
+<header class="cover" data-art="molecules" id="top">
+  <canvas class="cover__art" aria-hidden="true" data-parallax="0.07"></canvas>
+  <div class="cover__in wrap">
+    <div class="cover__rail" aria-hidden="true"><span class="cover__num">L2</span><span class="cover__vline"></span><span class="cover__layer">LAYER 2</span></div>
+    <div class="cover__body">
+      <div class="cover__meta"><span class="t-overline">Molecules</span><span class="cover__dot"></span><span class="t-overline">第 3 章 / 共 8 章</span></div>
+      <h1 class="cover__title" data-split="line">分子：原子的最小有意义组合</h1>
+      <p class="cover__lead rv" data-rv-d="2">两个以上原子结合，获得原子单独不具备的性质：标签 + 输入 + 错误文字成为「表单字段」，标签 + 数值 + 涨跌 + 迷你折线成为「KPI 瓦片」。分子只做一件事，可被任何有机体复用；它只由原子组成，不得包含有机体。</p>
+      <div class="cover__phi rv" data-rv-d="3"><span class="m-phi__tag m-phi__tag--gongsheng">共生</span><span class="m-phi__tag m-phi__tag--shouzheng">守正</span></div>
+    </div>
+    <div class="cover__idxwrap rv" data-rv-d="4"><div class="cover__idxlabel"><span class="t-overline">本章目录</span><span class="cover__idxcount" data-idx-count></span></div><div class="cover__index" data-toc-inline></div></div>
+  </div>
+  <a class="cover__scroll" href="index.html" aria-label="向下阅读"><span class="cover__scrollbar"><i></i></span><span>SCROLL</span></a>
+</header><div class="cx-wrap" id="chapter"><div class="cx-content"><section class="cx-section" id="molecules" data-title="L2 · 分子">
+  
+
+  <div class="cx-sub" id="mol-field"><span class="cx-sub__n">2.1</span><h3 class="cx-sub__t">表单字段 Field</h3><span class="cx-sub__d">label + control + help/error · 失焦验证 · 预留错误行高</span></div>
+  <div class="cx-spec">
+    <div class="cx-spec__bar"><b>失焦验证（源裕兴推荐）</b><span>移出焦点即验证，输入时不打扰；出错后随输入即时纠正</span><span class="spacer"></span><button class="a-btn a-btn--text a-btn--s" type="button" data-code-toggle aria-expanded="false"><svg class="a-icon"><use href="#i-code"/></svg>代码</button></div>
+    <div class="cx-spec__body cx-spec__body--grid">
+      <div class="m-field"><label class="a-label" for="f-phone">手机号<span class="a-label__req">*</span></label><input class="a-input" id="f-phone" inputmode="numeric" placeholder="请输入您的手机号码" data-validate="required phone" aria-describedby="f-phone-msg"><div class="m-field__msg" id="f-phone-msg" data-help="用于接收审核结果通知"><span class="a-help">用于接收审核结果通知</span></div></div>
+      <div class="m-field"><label class="a-label" for="f-mail">邮箱<span class="a-label__req">*</span></label><input class="a-input" id="f-mail" type="email" placeholder="name@sinotao.com" data-validate="required email" aria-describedby="f-mail-msg"><div class="m-field__msg" id="f-mail-msg"></div></div>
+      <div class="m-field"><label class="a-label" for="f-pw">密码</label><input class="a-input" id="f-pw" type="password" placeholder="至少 8 个字符" data-validate="min8" aria-describedby="f-pw-msg"><div class="m-field__msg" id="f-pw-msg" data-help="建议包含字母与数字"><span class="a-help">建议包含字母与数字</span></div></div>
+      <div class="m-field m-field--inline"><label class="a-label" for="f-amt">申报金额</label><div class="m-field__control" style="flex:1"><input class="a-input num" id="f-amt" value="1,234,560.00"><span class="m-field__suffix">CNY</span></div></div>
+    </div>
+    <div class="cx-spec__code" hidden><pre><code>&lt;!-- 验证规则声明在 data-validate；行为在 sino.js，blur 触发，出错后 input 即时复核 --&gt;
+&lt;input class="a-input" data-validate="required phone" aria-describedby="phone-msg"&gt;
+&lt;div class="m-field__msg" id="phone-msg" data-help="用于接收审核结果通知"&gt;&lt;/div&gt;</code></pre></div>
+  </div>
+  <div class="cx-table-wrap" style="margin-top:14px"><table class="a-table a-table--data a-table--dense"><thead><tr><th>上下文</th><th>推荐</th><th>避免</th></tr></thead><tbody><tr><td>必填为空</td><td>「请输入您的手机号码」</td><td>「字段不能为空」</td></tr><tr><td>格式错误</td><td>「手机号应为 11 位数字」</td><td>「输入格式不正确」</td></tr><tr><td>网络错误</td><td>「网络连接中断，请检查网络后重试」</td><td>「错误 500」</td></tr><tr><td>无数据</td><td>「暂无数据。创建第一条记录，从这里开始。」</td><td>「暂无数据」</td></tr></tbody></table></div>
+
+  <div class="cx-sub" id="mol-search"><span class="cx-sub__n">2.2</span><h3 class="cx-sub__t">搜索框 · 按钮组 · 分段控制 · 标签页</h3></div>
+  <div class="cx-grid">
+    <div class="c6"><div class="cx-spec"><div class="cx-spec__bar"><b>搜索框</b><span>图标 + 输入 + 快捷键帽</span></div><div class="cx-spec__body cx-spec__body--col"><div class="m-search"><svg class="a-icon"><use href="#i-search"/></svg><input class="a-input" placeholder="搜索报关单、客户、发票…" aria-label="全局搜索"><span class="a-kbd">⌘K</span></div><div class="m-search m-search--pill"><svg class="a-icon"><use href="#i-search"/></svg><input class="a-input" placeholder="药丸式 · 顶栏专用" aria-label="搜索"><span class="a-kbd">/</span></div></div></div></div>
+    <div class="c6"><div class="cx-spec"><div class="cx-spec__bar"><b>按钮组 · 分段控制</b></div><div class="cx-spec__body cx-spec__body--col" style="align-items:flex-start"><div class="m-btn-group m-btn-group--joined"><button class="a-btn a-btn--secondary" type="button">日</button><button class="a-btn a-btn--secondary" type="button">周</button><button class="a-btn a-btn--secondary" type="button">月</button></div><div class="m-segmented" data-toggle-group role="group" aria-label="视图"><button class="m-segmented__item" type="button" aria-pressed="true"><svg class="a-icon"><use href="#i-table"/></svg>表格</button><button class="m-segmented__item" type="button" aria-pressed="false"><svg class="a-icon"><use href="#i-dashboard"/></svg>卡片</button><button class="m-segmented__item" type="button" aria-pressed="false"><svg class="a-icon"><use href="#i-chart"/></svg>图表</button></div><div class="m-btn-group"><button class="a-btn a-btn--secondary" type="button">取消</button><button class="a-btn a-btn--primary" type="button">保存并提交</button></div></div></div></div>
+    <div class="c12"><div class="cx-spec"><div class="cx-spec__bar"><b>标签页</b><span>role=tablist · ← → Home End 键盘切换 · 指示条 300ms ease-out</span></div><div class="cx-spec__body cx-spec__body--col">
+      <div class="m-tabs" role="tablist" aria-label="报关单"><button class="m-tabs__tab" role="tab" aria-selected="true" aria-controls="tp-1" id="tab-1">全部<span class="a-badge">128</span></button><button class="m-tabs__tab" role="tab" aria-selected="false" aria-controls="tp-2" id="tab-2" tabindex="-1">待审核<span class="a-badge a-badge--warning">12</span></button><button class="m-tabs__tab" role="tab" aria-selected="false" aria-controls="tp-3" id="tab-3" tabindex="-1">已放行</button><button class="m-tabs__tab" role="tab" aria-selected="false" aria-controls="tp-4" id="tab-4" tabindex="-1">已退单</button></div>
+      <div class="m-tabpanel" role="tabpanel" id="tp-1" aria-labelledby="tab-1"><p class="cx-p">128 单报关单，其中 12 单待审核、3 单查验中。同级切换用标签页；父到子深入用列表–详情；跨模块跳转用底部导航（移动端）。</p></div>
+      <div class="m-tabpanel" role="tabpanel" id="tp-2" aria-labelledby="tab-2" hidden><p class="cx-p">12 单待审核，平均等待 1.6 小时。预计 2 小时内完成。</p></div>
+      <div class="m-tabpanel" role="tabpanel" id="tp-3" aria-labelledby="tab-3" hidden><p class="cx-p">本月已放行 96 单，通关时效 2.4 小时，较上月缩短 18%。</p></div>
+      <div class="m-tabpanel" role="tabpanel" id="tp-4" aria-labelledby="tab-4" hidden><p class="cx-p">2 单退单：单证不符。已通知陈先生补录。</p></div>
+    </div></div></div>
+  </div>
+
+  <div class="cx-sub" id="mol-nav"><span class="cx-sub__n">2.3</span><h3 class="cx-sub__t">面包屑 · 分页 · 导航项 · 五实体切换器</h3></div>
+  <div class="cx-grid">
+    <div class="c6"><div class="cx-spec"><div class="cx-spec__bar"><b>面包屑 · 分页</b></div><div class="cx-spec__body cx-spec__body--col" style="align-items:flex-start"><nav class="m-breadcrumb" aria-label="位置"><a href="pages.html">STI 进出口</a><svg class="a-icon m-breadcrumb__sep"><use href="#i-chevron-right"/></svg><a href="pages.html">报关管理</a><svg class="a-icon m-breadcrumb__sep"><use href="#i-chevron-right"/></svg><span aria-current="page">报关单 #STI-2026-0718</span></nav><nav class="m-pagination" aria-label="分页"><span class="m-pagination__total">共 128 条</span><div class="m-pagination__list"><button class="m-pagination__btn" type="button" aria-label="上一页" disabled><svg class="a-icon a-icon--18"><use href="#i-chevron-left"/></svg></button><button class="m-pagination__btn" type="button" aria-current="page">1</button><button class="m-pagination__btn" type="button">2</button><button class="m-pagination__btn" type="button">3</button><span class="m-pagination__ellipsis">…</span><button class="m-pagination__btn" type="button">13</button><button class="m-pagination__btn" type="button" aria-label="下一页"><svg class="a-icon a-icon--18"><use href="#i-chevron-right"/></svg></button></div></nav></div></div></div>
+    <div class="c6"><div class="cx-spec"><div class="cx-spec__bar"><b>导航项</b><span>抽屉 240 · 侧轨 72 · aria-current 标当前</span></div><div class="cx-spec__body" style="align-items:flex-start;gap:24px"><div style="width:200px;display:flex;flex-direction:column;gap:2px"><a class="m-nav-item" href="pages.html" aria-current="page"><svg class="a-icon"><use href="#i-dashboard"/></svg>经营看板</a><a class="m-nav-item" href="pages.html"><svg class="a-icon"><use href="#i-ship"/></svg>报关管理<span class="a-badge a-badge--warning m-nav-item__badge">12</span></a><a class="m-nav-item" href="pages.html"><svg class="a-icon"><use href="#i-doc"/></svg>发票与凭证</a><a class="m-nav-item" href="pages.html"><svg class="a-icon"><use href="#i-settings"/></svg>设置</a></div><div style="display:flex;flex-direction:column;gap:2px"><a class="m-nav-item m-nav-item--rail" href="pages.html" aria-current="page"><svg class="a-icon"><use href="#i-dashboard"/></svg>看板</a><a class="m-nav-item m-nav-item--rail" href="pages.html"><svg class="a-icon"><use href="#i-ship"/></svg>报关</a><a class="m-nav-item m-nav-item--rail" href="pages.html"><svg class="a-icon"><use href="#i-doc"/></svg>凭证</a></div></div></div></div>
+    <div class="c12"><div class="cx-spec"><div class="cx-spec__bar"><b>五实体切换器</b><span>切换即重新解析整部全典的 --e-* 映射（与顶栏同源）</span></div><div class="cx-spec__body"><div class="m-entity" role="group" aria-label="五实体主题切换"><button class="m-entity__item" type="button" data-entity-btn="stg" aria-pressed="true"><span class="a-dot" style="--sw:var(--stg-600)"></span>STG <span class="m-entity__cn">集团母体</span></button><button class="m-entity__item" type="button" data-entity-btn="ste" aria-pressed="false"><span class="a-dot" style="--sw:var(--ste-600)"></span>STE <span class="m-entity__cn">九派能源</span></button><button class="m-entity__item" type="button" data-entity-btn="sti" aria-pressed="false"><span class="a-dot" style="--sw:var(--sti-600)"></span>STI <span class="m-entity__cn">进出口</span></button><button class="m-entity__item" type="button" data-entity-btn="sth" aria-pressed="false"><span class="a-dot" style="--sw:var(--sth-600)"></span>STH <span class="m-entity__cn">健康科技</span></button><button class="m-entity__item" type="button" data-entity-btn="edu" aria-pressed="false"><span class="a-dot" style="--sw:var(--edu-600)"></span>EDU <span class="m-entity__cn">崇仁教育</span></button></div><span class="t-caption">当前：<b data-entity-label>绛紫</b> · 主按钮、焦点环、选中态、图表强调色同步变化，中性色与语义色不动。</span></div></div></div>
+  </div>
+
+  <div class="cx-sub" id="mol-kpi"><span class="cx-sub__n">2.4</span><h3 class="cx-sub__t">KPI 瓦片 Stat Tile</h3><span class="cx-sub__d">label · value · delta（vs 命名周期）· 12 点迷你折线</span></div>
+  <div class="o-kpi-row">
+    <div class="m-kpi"><div class="m-kpi__label"><svg class="a-icon"><use href="#i-building"/></svg>集团营收 · 本月</div><div class="m-kpi__value">1.28<small>亿</small></div><div class="m-kpi__foot"><span class="m-kpi__delta m-kpi__delta--up"><svg class="a-icon"><use href="#i-arrow-up-right"/></svg>+8.4%<span class="m-kpi__delta-ctx">较上月</span></span><span data-spark="42,48,46,52,55,53,58,61,60,66,70,74"></span></div></div>
+    <div class="m-kpi"><div class="m-kpi__label"><svg class="a-icon"><use href="#i-leaf"/></svg>碳配额剩余</div><div class="m-kpi__value">12,800<small>t</small></div><div class="m-kpi__foot"><span class="m-kpi__delta m-kpi__delta--down"><svg class="a-icon"><use href="#i-arrow-down-right"/></svg>−3.1%<span class="m-kpi__delta-ctx">较上周</span></span><span data-spark="15200,15000,14800,14700,14300,14100,13900,13600,13400,13200,13000,12800"></span></div></div>
+    <div class="m-kpi"><div class="m-kpi__label"><svg class="a-icon"><use href="#i-clock"/></svg>平均通关时效</div><div class="m-kpi__value">2.4<small>h</small></div><div class="m-kpi__foot"><span class="m-kpi__delta m-kpi__delta--up"><svg class="a-icon"><use href="#i-arrow-up-right"/></svg>快 18%<span class="m-kpi__delta-ctx">较上月</span></span><span data-spark="3.4,3.3,3.1,3.2,2.9,2.8,2.9,2.7,2.6,2.5,2.5,2.4"></span></div></div>
+    <div class="m-kpi"><div class="m-kpi__label"><svg class="a-icon"><use href="#i-heart"/></svg>NPS</div><div class="m-kpi__value">57</div><div class="m-kpi__foot"><span class="m-kpi__delta m-kpi__delta--flat">持平<span class="m-kpi__delta-ctx">目标 ≥ 50</span></span><span data-spark="49,51,50,53,55,54,56,57,56,57,57,57"></span></div></div>
+  </div>
+  <ul class="cx-anatomy__list" style="margin-top:14px"><li>数值用 Inter 比例数字（<code>tabular-nums</code> 只给表格列）；单位小字随后。</li><li>涨跌颜色 = 方向 × 「上涨是否为好」：碳配额下降是坏事，故取朱砂；通关时效缩短是好事，故取苍木绿。</li><li>迷你折线：历史用弱化墨（chartEmphasisDim），当期一段用主色，端点带 2px 表面环。</li><li>每个看板只有一个「英雄数字」（<code>.m-kpi--hero</code> 48px）。</li></ul>
+
+  <div class="cx-sub" id="mol-toast"><span class="cx-sub__n">2.5</span><h3 class="cx-sub__t">轻提示 Toast · 菜单 Menu · 芯片组 · 行内提醒</h3></div>
+  <div class="cx-grid">
+    <div class="c5"><div class="cx-spec"><div class="cx-spec__bar"><b>Toast</b><span>顶部居中 · 3s · role=status/alert · 3px 左侧色条</span></div><div class="cx-spec__body"><button class="a-btn a-btn--secondary a-btn--s" type="button" data-toast="success" data-toast-title="报关单已放行" data-toast-desc="#STI-2026-0718 · 用时 2 h 12 min">成功</button><button class="a-btn a-btn--secondary a-btn--s" type="button" data-toast="warning" data-toast-title="碳配额剩余不足 15%" data-toast-desc="建议优化 CFB 燃烧参数">警告</button><button class="a-btn a-btn--secondary a-btn--s" type="button" data-toast="error" data-toast-title="网络连接中断" data-toast-desc="请检查网络后重试">错误</button><button class="a-btn a-btn--secondary a-btn--s" type="button" data-toast="info" data-toast-title="检测报告已生成" data-toast-desc="本结果仅供专业医师参考">信息</button></div></div>
+      <div class="cx-spec" style="margin-top:16px"><div class="cx-spec__bar"><b>行内提醒 Alert</b></div><div class="cx-spec__body cx-spec__body--col"><div class="m-alert m-alert--info"><svg class="a-icon m-alert__icon"><use href="#i-info"/></svg><div><div class="m-alert__title">根据《源裕兴品牌宪法》第 3.2 条</div>五实体主色不得漂移；本页所有色值由令牌解析。</div></div><div class="m-alert m-alert--error"><svg class="a-icon m-alert__icon"><use href="#i-x-circle"/></svg><div><div class="m-alert__title">单证不符</div>报关单 #STI-2026-0702 已退单，请补录原产地证明后重新提交。</div></div></div></div>
+    </div>
+    <div class="c3"><div class="cx-spec"><div class="cx-spec__bar"><b>菜单</b></div><div class="cx-spec__body" style="justify-content:center"><div class="m-menu" role="menu"><div class="m-menu__label">报关单</div><button class="m-menu__item" role="menuitem" type="button"><svg class="a-icon"><use href="#i-edit"/></svg>编辑<span class="a-kbd">E</span></button><button class="m-menu__item" role="menuitem" type="button"><svg class="a-icon"><use href="#i-copy"/></svg>复制单号</button><button class="m-menu__item" role="menuitem" type="button"><svg class="a-icon"><use href="#i-download"/></svg>导出 PDF</button><div class="m-menu__sep"></div><button class="m-menu__item m-menu__item--danger" role="menuitem" type="button" data-open="demo-modal"><svg class="a-icon"><use href="#i-trash"/></svg>删除…</button></div></div></div></div>
+    <div class="c4"><div class="cx-spec"><div class="cx-spec__bar"><b>芯片组 · 筛选条</b><span>一行，置于所有被筛选内容之上</span></div><div class="cx-spec__body cx-spec__body--col" style="align-items:flex-start"><div class="m-chips" data-toggle-group><span class="m-chips__label">周期</span><button class="a-chip" type="button" aria-pressed="false">今日</button><button class="a-chip" type="button" aria-pressed="true">近 30 天</button><button class="a-chip" type="button" aria-pressed="false">近 90 天</button><button class="a-chip" type="button" aria-pressed="false">本年</button></div><div class="m-chips" data-toggle-group="multi"><span class="m-chips__label">实体</span><button class="a-chip" type="button" aria-pressed="true"><span class="a-dot" style="--sw:var(--ste-600)"></span>STE</button><button class="a-chip" type="button" aria-pressed="true"><span class="a-dot" style="--sw:var(--sti-600)"></span>STI</button><button class="a-chip" type="button" aria-pressed="false"><span class="a-dot" style="--sw:var(--sth-600)"></span>STH</button><button class="a-chip" type="button" aria-pressed="false"><span class="a-dot" style="--sw:var(--edu-600)"></span>EDU</button></div><p class="t-caption">筛选作用于其下所有图表、统计与表格，数字永远一致；刷新时保持上一帧并降低不透明度，不闪骨架。</p></div></div></div>
+  </div>
+
+  <div class="cx-sub" id="mol-phi"><span class="cx-sub__n">2.6</span><h3 class="cx-sub__t">哲学锚点 · AI 置信度 · 空状态</h3></div>
+  <div class="cx-grid">
+    <div class="c6"><div class="m-phi" data-phi="开物" data-phi-secondary="守正"><div class="m-phi__tags"><span class="m-phi__tag m-phi__tag--kaiwu">开物</span><span class="m-phi__tag m-phi__tag--shouzheng">守正</span></div><blockquote class="m-phi__quote"><strong>AI 是开物精神在数字时代的最前沿，但 AI 必须守正。</strong>人在回路——最终决策权不交给算法；可解释性——每个推断有据可查；优雅降级——AI 可以失败，用户不能被困。在算法的效率与人的尊严之间，源裕兴永远选择后者。</blockquote><cite class="m-phi__cite">— §21 哲学锚点 · 开物 + 守正</cite></div></div>
+    <div class="c6"><div class="cx-spec"><div class="cx-spec__bar"><b>置信度三级视觉编码</b><span>实心 · 半透明 · 虚线 —— 不只靠颜色</span></div><div class="cx-spec__body cx-spec__body--col" style="align-items:flex-start;gap:12px"><span class="m-confidence m-confidence--high"><span class="m-confidence__bar" style="--value:92%"><i></i></span>高度可信</span><span class="m-confidence m-confidence--mid"><span class="m-confidence__bar" style="--value:75%"><i></i></span>置信度 75% · 建议人工复核</span><span class="m-confidence m-confidence--low"><span class="m-confidence__bar" style="--value:42%"><i></i></span>置信度较低（42%），仅供参考</span><p class="t-caption">高 ≥ 85% 不标百分比；中 60–84% 标百分比并建议复核；低 &lt; 60% 虚线警示。切换规则：连续 &gt; 90% 且用户确认 5 次 → Autopilot；&lt; 85% 或用户接管 → Copilot。</p></div></div></div>
+    <div class="c6"><div class="cx-spec"><div class="cx-spec__bar"><b>空状态</b><span>插图 + 一句说明 + 一个明确的下一步</span></div><div class="cx-spec__body"><div class="m-empty" style="width:100%"><svg class="m-empty__art" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><use href="#i-taiji-flow"/></svg><div class="m-empty__title">暂无报关单</div><div class="m-empty__desc">创建第一条记录，从这里开始。导入历史数据也可以，系统会自动识别单证类型。</div><button class="a-btn a-btn--primary" type="button"><svg class="a-icon"><use href="#i-plus"/></svg>新建报关单</button></div></div></div></div>
+    <div class="c6"><div class="cx-spec"><div class="cx-spec__bar"><b>步骤 · 图例 · 描述列表 · 用户</b></div><div class="cx-spec__body cx-spec__body--col" style="gap:18px"><div class="m-steps"><div class="m-step is-done">申报</div><div class="m-step is-done">审核</div><div class="m-step" aria-current="step">查验</div><div class="m-step">放行</div></div><div class="m-legend"><span class="m-legend__item"><span class="m-legend__key" style="--sw:var(--c-series1)"></span>STG</span><span class="m-legend__item"><span class="m-legend__key m-legend__key--line" style="--sw:var(--c-series3)"></span>STH 趋势</span><span class="m-legend__item"><span class="m-legend__key" style="--sw:var(--c-chartEmphasisDim)"></span>其他</span></div><dl class="m-stat m-stat--cols"><div><dt>报关口岸</dt><dd>上海洋山</dd></div><div><dt>贸易方式</dt><dd>一般贸易</dd></div><div><dt>申报金额</dt><dd>¥1,234,560.00</dd></div></dl><div class="m-user"><span class="a-avatar">陈</span><div><div class="m-user__name">陈先生</div><div class="m-user__role">STI · 贸易经理</div></div></div></div></div></div>
+  </div>
+</section>
+</div><aside class="toc" aria-label="本章目录"><div class="toc__inner"><div class="toc__label"><span class="t-overline">本章</span><span class="toc__prog"><i data-toc-prog></i></span></div><nav class="toc__list" data-toc></nav><a class="toc__top" href="index.html#top"><svg class="a-icon"><use href="#i-chevron-up"/></svg>回到章首</a></div></aside></div><nav class="chapnav" aria-label="章节导航"><a class="chapnav__link chapnav__link--prev" href="atoms.html"><span class="chapnav__k">上一章</span><span class="chapnav__n">L1</span><span class="chapnav__t">原子：不可再分的功能单元</span><svg class="a-icon chapnav__ico"><use href="#i-arrow-right"/></svg></a><a class="chapnav__link chapnav__link--next" href="organisms.html"><span class="chapnav__k">下一章</span><span class="chapnav__n">L3</span><span class="chapnav__t">有机体：可独立运作的界面区块</span><svg class="a-icon chapnav__ico"><use href="#i-arrow-right"/></svg></a></nav>
+</article>
+</main>
+
+<footer class="site-footer">
+  <div class="site-footer__marquee" aria-hidden="true"><div class="mq" data-marquee><span class="mq__row">守正 <i>·</i> 不漂移 <i>·</i> 开物 <i>·</i> 不僵化 <i>·</i> 共生 <i>·</i> 不孤立 <i>·</i> 墨为经 <i>·</i> 光为纬 <i>·</i> </span><span class="mq__row">守正 <i>·</i> 不漂移 <i>·</i> 开物 <i>·</i> 不僵化 <i>·</i> 共生 <i>·</i> 不孤立 <i>·</i> 墨为经 <i>·</i> 光为纬 <i>·</i> </span></div></div>
+  <div class="wrap site-footer__in">
+    <div class="site-footer__brand">
+      <a class="a-logo" href="index.html"><svg class="a-logo__mark" style="color:var(--c-primary)" aria-hidden="true"><use href="#i-mark"/></svg><span><span class="a-logo__word">源裕兴</span><span class="a-logo__latin">Sinotao Innovation Future</span></span></a>
+      <p class="site-footer__desc">守正 · 开物 · 共生。本站由 <code>tokens/tokens.json</code> 构建生成：色阶、对比度与数据墨色顺序均为构建时实测，任一项 WCAG AA 门禁不通过即构建失败。</p>
+      <div class="site-footer__keys"><span class="a-kbd">⌘K</span><small>搜索</small><span class="a-kbd">G</span><small>栅格</small><span class="a-kbd">←</span><span class="a-kbd">→</span><small>翻章</small></div>
+    </div>
+    <div class="site-footer__col"><h6 class="t-overline">章节</h6><a href="tokens.html">L0 令牌</a><a href="atoms.html">L1 原子</a><a href="#top">L2 分子</a><a href="organisms.html">L3 有机体</a><a href="templates.html">L4 模板</a><a href="pages.html">L5 页面</a><a href="motion.html">M 动效</a><a href="governance.html">G 治理</a></div>
+    <div class="site-footer__col"><h6 class="t-overline">五实体</h6><a href="pages.html#page-stg">STG 集团母体</a><a href="pages.html#page-ste">STE 九派能源</a><a href="pages.html#page-sti">STI 进出口贸易</a><a href="pages.html#page-sth">STH 健康科技</a><a href="pages.html#page-edu">EDU 崇仁教育</a></div>
+    <div class="site-footer__col"><h6 class="t-overline">治理</h6><a href="governance.html#gov-rules">核心十条</a><a href="governance.html#gov-atomic">原子五律</a><a href="governance.html#gov-antd">Ant Design 映射</a><a href="governance.html#gov-odoo">Odoo 18 映射</a><a href="governance.html#gov-changelog">变更日志</a></div>
+    <div class="site-footer__legal">
+      <span>© 2026 源裕兴创新未来 · 源裕兴设计系统全典 V39.0.0 · 578 令牌 · 构建于 2026-09-06</span>
+      <a class="site-footer__top" href="index.html#top"><svg class="a-icon"><use href="#i-chevron-up"/></svg>回到顶部</a>
+    </div>
+  </div>
+</footer>
+
+<div class="o-toaster" id="toaster" aria-live="polite" aria-atomic="false"></div>
+
+<div class="cx-cmdk" id="cmdk" role="dialog" aria-modal="true" aria-label="搜索全典" aria-hidden="true">
+  <div class="cx-cmdk__panel">
+    <div class="cx-cmdk__bar"><svg class="a-icon"><use href="#i-search"/></svg><input class="cx-cmdk__input" id="cmdk-input" type="text" placeholder="跳转到章节或组件… 例如「按钮」「对比度」「缓动」" autocomplete="off"><span class="a-kbd">ESC</span></div>
+    <div class="cx-cmdk__list" id="cmdk-list"></div>
+    <div class="cx-cmdk__foot"><span><span class="a-kbd">↑</span><span class="a-kbd">↓</span> 选择</span><span><span class="a-kbd">↵</span> 打开</span><span><span class="a-kbd">G</span> 栅格</span></div>
+  </div>
+</div>
+
+<div class="o-modal" id="demo-modal" role="dialog" aria-modal="true" aria-labelledby="demo-modal-title" aria-hidden="true">
+  <div class="o-modal__dialog">
+    <div class="o-modal__head"><h3 class="o-modal__title" id="demo-modal-title">删除报关单 #STI-2026-0718？</h3><button class="a-btn a-btn--icon a-btn--ghost a-btn--s a-btn--square" type="button" data-close aria-label="关闭"><svg class="a-icon"><use href="#i-x"/></svg></button></div>
+    <div class="o-modal__body"><p>这是不可逆操作。删除后，该报关单及其附件将从系统中移除，且无法恢复。相关的物流跟踪记录会保留在审计日志中。</p></div>
+    <div class="o-modal__foot"><button class="a-btn a-btn--secondary" type="button" data-close>取消</button><button class="a-btn a-btn--danger" type="button" data-close data-toast="success" data-toast-title="已删除报关单 #STI-2026-0718" data-toast-desc="审计日志已记录本次操作">删除报关单</button></div>
+  </div>
+</div>
+
+<div class="o-drawer" id="demo-drawer" role="dialog" aria-modal="true" aria-labelledby="demo-drawer-title" aria-hidden="true">
+  <div class="o-drawer__panel">
+    <div class="o-drawer__head"><h3 class="o-drawer__title" id="demo-drawer-title">锅炉 #2 · 参数详情</h3><button class="a-btn a-btn--icon a-btn--ghost a-btn--s a-btn--square" type="button" data-close aria-label="关闭"><svg class="a-icon"><use href="#i-x"/></svg></button></div>
+    <div class="o-drawer__body">
+      <dl class="m-stat"><dt>设备型号</dt><dd>CFB-75/5.3-M</dd><dt>炉膛温度</dt><dd>862 ℃</dd><dt>蒸汽压力</dt><dd>5.3 MPa</dd><dt>含氧量</dt><dd>4.2 %</dd><dt>本班运行</dt><dd>7 h 42 min</dd><dt>负责人</dt><dd>王工</dd></dl>
+      <div class="m-alert m-alert--warning"><svg class="a-icon m-alert__icon"><use href="#i-alert"/></svg><div><div class="m-alert__title">含氧量接近上限</div>建议下调一次风量 3%，并在 15 分钟后复核。</div></div>
+    </div>
+    <div class="o-drawer__foot"><button class="a-btn a-btn--secondary" type="button" data-close>关闭</button><button class="a-btn a-btn--primary" type="button" data-close data-toast="success" data-toast-title="已下发调整指令" data-toast-desc="一次风量 −3% · 15 分钟后自动复核">下发调整</button></div>
+  </div>
+</div>
+</div>
+
+<script src="site.js"></script>
+</body>
+</html>

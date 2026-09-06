@@ -1,11 +1,20 @@
 </main>
+
 <footer class="site-footer">
+  <div class="site-footer__marquee" aria-hidden="true"><div class="mq" data-marquee><span class="mq__row">守正 <i>·</i> 不漂移 <i>·</i> 开物 <i>·</i> 不僵化 <i>·</i> 共生 <i>·</i> 不孤立 <i>·</i> 墨为经 <i>·</i> 光为纬 <i>·</i> </span><span class="mq__row">守正 <i>·</i> 不漂移 <i>·</i> 开物 <i>·</i> 不僵化 <i>·</i> 共生 <i>·</i> 不孤立 <i>·</i> 墨为经 <i>·</i> 光为纬 <i>·</i> </span></div></div>
   <div class="wrap site-footer__in">
-    <div class="site-footer__col"><a class="a-logo" href="#/"><svg class="a-logo__mark" style="color:var(--c-primary)"><use href="#i-mark"/></svg><span><span class="a-logo__word">源裕兴</span><span class="a-logo__latin">Sinotao Innovation Future</span></span></a><p style="margin-top:14px;max-width:30em;line-height:1.8">守正 · 开物 · 共生。品牌与自然共生、与社会共生、与用户共生。本站由 <code>tokens/tokens.json</code> 构建生成：对比度、色阶与系列顺序均为构建时实测。</p></div>
-    <div class="site-footer__col"><h6>六层</h6><a href="#/tokens">L0 设计令牌</a><a href="#/atoms">L1 原子</a><a href="#/molecules">L2 分子</a><a href="#/organisms">L3 有机体</a><a href="#/templates">L4 模板</a><a href="#/pages">L5 页面</a></div>
-    <div class="site-footer__col"><h6>五实体</h6><a href="#/pages/page-stg">STG 集团母体</a><a href="#/pages/page-ste">STE 九派能源</a><a href="#/pages/page-sti">STI 进出口贸易</a><a href="#/pages/page-sth">STH 健康科技</a><a href="#/pages/page-edu">EDU 崇仁教育</a></div>
-    <div class="site-footer__col"><h6>治理</h6><a href="#/governance/gov-rules">核心十条</a><a href="#/governance/gov-atomic">原子五律</a><a href="#/governance/gov-antd">Ant Design 映射</a><a href="#/governance/gov-odoo">Odoo 18 映射</a><a href="#/governance/gov-changelog">变更日志</a></div>
-    <div class="site-footer__legal"><span>© 2026 源裕兴创新未来 · 源裕兴设计系统全典 V<!-- @gen:version --> 原子设计版</span><span>快捷键：⌘K 搜索 · G 栅格 · 构建于 <!-- @gen:build-date --></span></div>
+    <div class="site-footer__brand">
+      <a class="a-logo" href="#/"><svg class="a-logo__mark" style="color:var(--c-primary)" aria-hidden="true"><use href="#i-mark"/></svg><span><span class="a-logo__word">源裕兴</span><span class="a-logo__latin">Sinotao Innovation Future</span></span></a>
+      <p class="site-footer__desc">守正 · 开物 · 共生。本站由 <code>tokens/tokens.json</code> 构建生成：色阶、对比度与数据墨色顺序均为构建时实测，任一项 WCAG AA 门禁不通过即构建失败。</p>
+      <div class="site-footer__keys"><span class="a-kbd">⌘K</span><small>搜索</small><span class="a-kbd">G</span><small>栅格</small><span class="a-kbd">←</span><span class="a-kbd">→</span><small>翻章</small></div>
+    </div>
+    <div class="site-footer__col"><h6 class="t-overline">章节</h6><!-- @nav-foot --></div>
+    <div class="site-footer__col"><h6 class="t-overline">五实体</h6><a href="#/pages/page-stg">STG 集团母体</a><a href="#/pages/page-ste">STE 九派能源</a><a href="#/pages/page-sti">STI 进出口贸易</a><a href="#/pages/page-sth">STH 健康科技</a><a href="#/pages/page-edu">EDU 崇仁教育</a></div>
+    <div class="site-footer__col"><h6 class="t-overline">治理</h6><a href="#/governance/gov-rules">核心十条</a><a href="#/governance/gov-atomic">原子五律</a><a href="#/governance/gov-antd">Ant Design 映射</a><a href="#/governance/gov-odoo">Odoo 18 映射</a><a href="#/governance/gov-changelog">变更日志</a></div>
+    <div class="site-footer__legal">
+      <span>© 2026 源裕兴创新未来 · 源裕兴设计系统全典 V<!-- @gen:version --> · <!-- @gen:token-count --> 令牌 · 构建于 <!-- @gen:build-date --></span>
+      <a class="site-footer__top" href="#top"><svg class="a-icon"><use href="#i-chevron-up"/></svg>回到顶部</a>
+    </div>
   </div>
 </footer>
 
@@ -13,8 +22,9 @@
 
 <div class="cx-cmdk" id="cmdk" role="dialog" aria-modal="true" aria-label="搜索全典" aria-hidden="true">
   <div class="cx-cmdk__panel">
-    <input class="cx-cmdk__input" id="cmdk-input" type="text" placeholder="跳转到章节或组件… 例如「按钮」「对比度」「报关」" autocomplete="off">
+    <div class="cx-cmdk__bar"><svg class="a-icon"><use href="#i-search"/></svg><input class="cx-cmdk__input" id="cmdk-input" type="text" placeholder="跳转到章节或组件… 例如「按钮」「对比度」「缓动」" autocomplete="off"><span class="a-kbd">ESC</span></div>
     <div class="cx-cmdk__list" id="cmdk-list"></div>
+    <div class="cx-cmdk__foot"><span><span class="a-kbd">↑</span><span class="a-kbd">↓</span> 选择</span><span><span class="a-kbd">↵</span> 打开</span><span><span class="a-kbd">G</span> 栅格</span></div>
   </div>
 </div>
 

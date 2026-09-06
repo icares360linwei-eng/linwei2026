@@ -228,33 +228,54 @@ const resolved = {
 fs.writeFileSync(path.join(DIST, 'tokens.resolved.json'), JSON.stringify(resolved, null, 2));
 
 /* ───────────────────────── 5. 装配 HTML ───────────────────────── */
+/* V39「墨经光纬」：真·多页面站点（每章一份 HTML，跨文档 View Transition）
+   + 单文件全典 artifact.html（hash 路由，供 Artifact / 离线分发）。 */
 const read = f => fs.readFileSync(f, 'utf8');
 const cssFiles = fs.readdirSync(path.join(SRC, 'css')).filter(f => f.endsWith('.css')).sort();
 const jsFiles = fs.readdirSync(path.join(SRC, 'js')).filter(f => f.endsWith('.js')).sort();
-const partials = fs.readdirSync(path.join(SRC, 'partials')).filter(f => f.endsWith('.html')).sort();
 
-/* ── 路由元数据：一个 Artifact 内的多页面站点（hash 路由） ── */
 const ROUTES = [
-  { path: 'home',       file: '01-home.html',       nav: '首页',   title: '源裕兴设计系统全典' },
-  { path: 'tokens',     file: '02-tokens.html',     nav: '令牌',   num: 'L0', en: 'Design Tokens', title: '设计令牌：亚原子层' },
-  { path: 'atoms',      file: '03-atoms.html',      nav: '原子',   num: 'L1', en: 'Atoms',         title: '原子：不可再分的功能单元' },
-  { path: 'molecules',  file: '04-molecules.html',  nav: '分子',   num: 'L2', en: 'Molecules',     title: '分子：原子的最小有意义组合' },
-  { path: 'organisms',  file: '05-organisms.html',  nav: '有机体', num: 'L3', en: 'Organisms',     title: '有机体：可独立运作的界面区块' },
-  { path: 'templates',  file: '06-templates.html',  nav: '模板',   num: 'L4', en: 'Templates',     title: '模板：只定结构，不含内容', wide: true },
-  { path: 'pages',      file: '07-pages.html',      nav: '页面',   num: 'L5', en: 'Pages · Five Entities', title: '页面：五实体，一套语法', wide: true },
-  { path: 'governance', file: '08-governance.html', nav: '治理',   num: 'G',  en: 'Governance',    title: '治理：让系统在生长中不漂移' },
+  { path: 'home',       file: '01-home.html',       nav: '首页',   num: '00', en: 'Index',                 title: '源裕兴设计系统全典', short: '首页' },
+  { path: 'tokens',     file: '02-tokens.html',     nav: '令牌',   num: 'L0', en: 'Design Tokens',         title: '设计令牌：亚原子层', short: '令牌' },
+  { path: 'atoms',      file: '03-atoms.html',      nav: '原子',   num: 'L1', en: 'Atoms',                 title: '原子：不可再分的功能单元', short: '原子' },
+  { path: 'molecules',  file: '04-molecules.html',  nav: '分子',   num: 'L2', en: 'Molecules',             title: '分子：原子的最小有意义组合', short: '分子' },
+  { path: 'organisms',  file: '05-organisms.html',  nav: '有机体', num: 'L3', en: 'Organisms',             title: '有机体：可独立运作的界面区块', short: '有机体' },
+  { path: 'templates',  file: '06-templates.html',  nav: '模板',   num: 'L4', en: 'Templates',             title: '模板：只定结构，不含内容', short: '模板', wide: true },
+  { path: 'pages',      file: '07-pages.html',      nav: '页面',   num: 'L5', en: 'Pages · Five Entities', title: '页面：五实体，一套语法', short: '页面', wide: true },
+  { path: 'motion',     file: '10-motion.html',     nav: '动效',   num: 'M',  en: 'Motion & Interaction',  title: '动效：编排、缓动与连续', short: '动效' },
+  { path: 'governance', file: '08-governance.html', nav: '治理',   num: 'G',  en: 'Governance',            title: '治理：让系统在生长中不漂移', short: '治理' },
 ];
+const fileOf = p => (p === 'home' ? 'index.html' : `${p}.html`);
 const routeHtml = Object.fromEntries(ROUTES.map(r => [r.path, read(path.join(SRC, 'partials', r.file))]));
+
 /* 锚点映射：id → 路由 */
 const idRoute = {};
 for (const r of ROUTES) for (const m of routeHtml[r.path].matchAll(/\sid="([^"]+)"/g)) idRoute[m[1]] = r.path;
-const rewriteAnchors = html => html.replace(/(<a\b[^>]*?\s)href="#([^"/][^"]*)"/g, (all, pre, id) => {
+
+/* 搜索索引：章 + 小节（供 ⌘K 跨页检索） */
+const SEARCH = [];
+for (const r of ROUTES) {
+  SEARCH.push({ r: r.path, id: '', n: r.num, t: r.title, k: '章节' });
+  for (const m of routeHtml[r.path].matchAll(/<div class="cx-sub" id="([^"]+)">\s*<span class="cx-sub__n">([^<]*)<\/span>\s*<h3 class="cx-sub__t">([^<]*)<\/h3>(?:\s*<span class="cx-sub__d">([^<]*)<\/span>)?/g))
+    SEARCH.push({ r: r.path, id: m[1], n: m[2], t: m[3], d: m[4] || '', k: '小节' });
+}
+
+/* 第一遍：把章内裸锚点 href="#id" 归一为 href="#/route/id" */
+const normAnchors = html => html.replace(/(<a\b[^>]*?\s)href="#([^"/][^"]*)"/g, (all, pre, id) => {
   if (ROUTES.some(r => r.path === id)) return `${pre}href="#/${id}"`;
   const r = idRoute[id]; if (!r) return `${pre}href="#/"`;
   return r === 'home' ? `${pre}href="#/home/${id}"` : `${pre}href="#/${r}/${id}"`;
 });
+/* 第二遍（仅多页面）：#/route/id → route.html#id；同页锚点保持纯 hash，走平滑滚动不重载 */
+const toMpaLinks = (html, self) => html
+  .replace(/href="#\/([a-z-]+)\/([^"]+)"/g, (_, r, id) => (r === self ? `href="#${id}"` : `href="${fileOf(r)}#${id}"`))
+  .replace(/href="#\/([a-z-]+)"/g, (_, r) => (r === self ? 'href="#top"' : `href="${fileOf(r)}"`))
+  .replace(/href="#\/"/g, self === 'home' ? 'href="#top"' : 'href="index.html"');
+
 const PHI = { shouzheng: '守正', kaiwu: '开物', gongsheng: '共生' };
-let body = '';
+
+/* ── 每章正文：封面（编辑式）+ 内容 + 章节导航 ── */
+const ARTICLE = {};
 ROUTES.forEach((r, i) => {
   let html = routeHtml[r.path];
   let cover = '';
@@ -263,39 +284,59 @@ ROUTES.forEach((r, i) => {
     const lead = (html.match(/<p class="cx-head__lead"[^>]*>([\s\S]*?)<\/p>/) || [])[1] || '';
     const phis = head ? [...head[1].matchAll(/m-phi__tag--(\w+)/g)].map(m => m[1]) : [];
     html = head ? html.replace(head[0], '') : html;
-    cover = `<header class="cover" data-art="${r.path}">
-  <canvas class="cover__art" aria-hidden="true"></canvas>
-  <div class="cover__inner">
-    <div class="cover__num" aria-hidden="true">${r.num}</div>
-    <div class="cover__meta"><span class="cover__layer">${r.num === 'G' ? 'GOVERNANCE' : 'LAYER ' + r.num.slice(1)}</span><span class="cover__en">${r.en}</span></div>
-    <h1 class="cover__title">${r.title}</h1>
-    <p class="cover__lead">${lead}</p>
-    <div class="cover__phi">${phis.map(p => `<span class="m-phi__tag m-phi__tag--${p}">${PHI[p]}</span>`).join('')}</div>
-    <div class="cover__index" data-toc-inline></div>
+    const layer = r.num === 'G' ? 'GOVERNANCE' : r.num === 'M' ? 'MOTION' : 'LAYER ' + r.num.slice(1);
+    cover = `<header class="cover" data-art="${r.path}" id="top">
+  <canvas class="cover__art" aria-hidden="true" data-parallax="0.07"></canvas>
+  <div class="cover__in wrap">
+    <div class="cover__rail" aria-hidden="true"><span class="cover__num">${r.num}</span><span class="cover__vline"></span><span class="cover__layer">${layer}</span></div>
+    <div class="cover__body">
+      <div class="cover__meta"><span class="t-overline">${r.en}</span><span class="cover__dot"></span><span class="t-overline">第 ${i} 章 / 共 ${ROUTES.length - 1} 章</span></div>
+      <h1 class="cover__title" data-split="line">${r.title}</h1>
+      <p class="cover__lead rv" data-rv-d="2">${lead}</p>
+      <div class="cover__phi rv" data-rv-d="3">${phis.map(p => `<span class="m-phi__tag m-phi__tag--${p}">${PHI[p]}</span>`).join('')}</div>
+    </div>
+    <div class="cover__idxwrap rv" data-rv-d="4"><div class="cover__idxlabel"><span class="t-overline">本章目录</span><span class="cover__idxcount" data-idx-count></span></div><div class="cover__index" data-toc-inline></div></div>
   </div>
+  <a class="cover__scroll" href="#chapter" aria-label="向下阅读"><span class="cover__scrollbar"><i></i></span><span>SCROLL</span></a>
 </header>`;
   }
   const prev = ROUTES[i - 1], next = ROUTES[i + 1];
-  const chap = r.path === 'home' ? '' : `<nav class="chapnav" aria-label="章节导航">${prev ? `<a class="chapnav__link chapnav__link--prev" href="#/${prev.path === 'home' ? '' : prev.path}"><span class="chapnav__k">上一章</span><span class="chapnav__t">${prev.num ? prev.num + ' · ' : ''}${prev.title}</span></a>` : '<span></span>'}${next ? `<a class="chapnav__link chapnav__link--next" href="#/${next.path}"><span class="chapnav__k">下一章</span><span class="chapnav__t">${next.num ? next.num + ' · ' : ''}${next.title}</span></a>` : '<span></span>'}</nav>`;
-  const inner = r.path === 'home' ? html : `${cover}<div class="cx-wrap${r.wide ? ' cx-wrap--wide' : ''}"><div class="cx-content">${html}</div>${r.wide ? '' : '<aside class="toc" aria-label="本章目录"><div class="toc__inner"><div class="toc__label">本章</div><nav class="toc__list" data-toc></nav></div></aside>'}</div>${chap}`;
-  body += `<article class="route" data-route="${r.path}" data-title="${r.title}"${r.path === 'home' ? '' : ' hidden'}>\n${inner}\n</article>\n`;
+  const chapLink = (rt, kind, cls) => rt
+    ? `<a class="chapnav__link chapnav__link--${cls}" href="#/${rt.path === 'home' ? '' : rt.path}"><span class="chapnav__k">${kind}</span><span class="chapnav__n">${rt.num}</span><span class="chapnav__t">${rt.title}</span><svg class="a-icon chapnav__ico"><use href="#i-arrow-${cls === 'prev' ? 'right' : 'right'}"/></svg></a>`
+    : '<span></span>';
+  const chap = r.path === 'home' ? '' : `<nav class="chapnav" aria-label="章节导航">${chapLink(prev, '上一章', 'prev')}${chapLink(next, '下一章', 'next')}</nav>`;
+  const inner = r.path === 'home'
+    ? html
+    : `${cover}<div class="cx-wrap${r.wide ? ' cx-wrap--wide' : ''}" id="chapter"><div class="cx-content">${html}</div>${r.wide ? '' : '<aside class="toc" aria-label="本章目录"><div class="toc__inner"><div class="toc__label"><span class="t-overline">本章</span><span class="toc__prog"><i data-toc-prog></i></span></div><nav class="toc__list" data-toc></nav><a class="toc__top" href="#top"><svg class="a-icon"><use href="#i-chevron-up"/></svg>回到章首</a></div></aside>'}</div>${chap}`;
+  ARTICLE[r.path] = `<article class="route" data-route="${r.path}" data-num="${r.num}" data-title="${r.title}">\n${inner}\n</article>\n`;
 });
-body = rewriteAnchors(read(path.join(SRC, 'partials', '00-shell-open.html'))) + rewriteAnchors(body) + rewriteAnchors(read(path.join(SRC, 'partials', '09-shell-close.html')));
-/* 资产钩子：标准 LOGO 与品牌影像（存在即内联，不存在则保留占位） */
+
+/* ── 站点外壳（导航由 ROUTES 生成，保持唯一可信源） ── */
+const navLinks = ROUTES.filter(r => r.path !== 'home')
+  .map(r => `<a class="site-nav__link" href="#/${r.path}" data-nav="${r.path}"><i>${r.num}</i><span>${r.nav}</span></a>`).join('');
+const sheetLinks = ROUTES
+  .map(r => `<a class="nav-sheet__link" href="#/${r.path === 'home' ? '' : r.path}" data-nav="${r.path}"><i>${r.num}</i><span class="nav-sheet__t">${r.path === 'home' ? '首页' : r.title}</span><span class="nav-sheet__en">${r.en}</span><svg class="a-icon"><use href="#i-arrow-right"/></svg></a>`).join('');
+const footLinks = ROUTES.filter(r => r.path !== 'home')
+  .map(r => `<a href="#/${r.path}">${r.num} ${r.nav}</a>`).join('');
+let shellOpen = read(path.join(SRC, 'partials', '00-shell-open.html'))
+  .replace('<!-- @nav -->', navLinks).replace('<!-- @nav-sheet -->', sheetLinks);
+let shellClose = read(path.join(SRC, 'partials', '09-shell-close.html')).replace('<!-- @nav-foot -->', footLinks);
+
+/* ── 资产钩子：标准 LOGO 与品牌影像（存在即内联） ── */
 const assetDir = path.join(SRC, 'assets');
 const logoFile = ['logo.svg'].map(f => path.join(assetDir, f)).find(f => fs.existsSync(f));
 if (logoFile) {
-  const svg = read(logoFile); const vb = (svg.match(/viewBox="([^"]+)"/) || [, '0 0 32 32'])[1]; const innerSvg = svg.replace(/^[\s\S]*?<svg[^>]*>/, '').replace(/<\/svg>\s*$/, '');
-  body = body.replace(/<symbol id="i-mark" viewBox="[^"]+">[\s\S]*?<\/symbol>/, `<symbol id="i-mark" viewBox="${vb}">${innerSvg}</symbol>`);
+  const svg = read(logoFile); const vb = (svg.match(/viewBox="([^"]+)"/) || [, '0 0 32 32'])[1];
+  const innerSvg = svg.replace(/^[\s\S]*?<svg[^>]*>/, '').replace(/<\/svg>\s*$/, '');
+  shellOpen = shellOpen.replace(/<symbol id="i-mark" viewBox="[^"]+">[\s\S]*?<\/symbol>/, `<symbol id="i-mark" viewBox="${vb}">${innerSvg}</symbol>`);
   console.log('✔ 已内联标准 LOGO：' + path.basename(logoFile));
 }
 const heroFile = ['hero.jpg', 'hero.jpeg', 'hero.png', 'hero.webp'].map(f => path.join(assetDir, f)).find(f => fs.existsSync(f));
-if (heroFile) {
-  const ext = path.extname(heroFile).slice(1).replace('jpg', 'jpeg'); const b64 = fs.readFileSync(heroFile).toString('base64');
-  body = body.replace('<!-- @asset:hero -->', `<figure class="hm-photo"><img src="data:image/${ext};base64,${b64}" alt="源裕兴 · 九派能源赤湖工业园航拍：生物质能源工厂与光伏矩阵" loading="lazy"><figcaption><span class="t-overline">Brand Imagery</span><span>镜头语言：纪实 · 自然光 · 低饱和。工厂与田野同框，是共生的直观证据。</span></figcaption></figure>`);
-  console.log('✔ 已内联品牌影像：' + path.basename(heroFile));
-} else body = body.replace('<!-- @asset:hero -->', '');
-
+const heroHtml = heroFile
+  ? `<figure class="hm-photo rv"><img src="data:image/${path.extname(heroFile).slice(1).replace('jpg', 'jpeg')};base64,${fs.readFileSync(heroFile).toString('base64')}" alt="源裕兴 · 九派能源赤湖工业园航拍：生物质能源工厂与光伏矩阵" loading="lazy"><figcaption><span class="t-overline">Brand Imagery</span><span>镜头语言：纪实 · 自然光 · 低饱和。工厂与田野同框，是共生的直观证据。</span></figcaption></figure>`
+  : '';
+if (heroFile) console.log('✔ 已内联品牌影像：' + path.basename(heroFile));
+ARTICLE.home = ARTICLE.home.replace('<!-- @asset:hero -->', heroHtml);
 /* 生成器占位符 */
 const gen = {
   'token-count': () => String(resolved.counts.total),
@@ -331,20 +372,64 @@ const gen = {
   'component-token-count': () => String(Object.keys(T.component).filter(k => !k.startsWith('$')).length),
   'ink-table': () => `<table class="a-table a-table--data a-table--dense"><thead><tr><th>Token</th><th>名称</th><th>Hex</th><th>OKLCH</th><th class="num">对 Ink 50</th><th class="num">对 Ink 800</th><th>浅色角色</th><th>暗色角色</th></tr></thead><tbody>${STEPS.map(s => `<tr><td class="mono">--ink-${s}</td><td>${T.primitive.color.ink[s].$extensions['sino.name']}</td><td class="mono">${ink[s]}</td><td class="mono muted">${fmtOklch(ink[s])}</td><td class="num">${r2(contrast(ink[s], ink[50])).toFixed(2)}</td><td class="num">${r2(contrast(ink[s], ink[800])).toFixed(2)}</td><td>${({ 50: 'surface 表面', 100: 'background 页面底 · surfaceContainer', 200: 'surfaceVariant · outlineFaint 发丝线', 300: 'outlineVariant 分割线', 400: 'chartAxis 轴线', 500: 'outline 表单边界（3.55:1）', 600: 'onSurfaceVariant · placeholder', 700: 'secondary', 800: 'onSurface 正文', 900: 'onSurfaceStrong 标题 · inverseSurface' })[s]}</td><td>${({ 50: 'onSurfaceStrong', 100: 'onSurface 正文', 200: 'secondary', 300: 'onSurfaceVariant', 400: 'placeholder · chartMuted', 500: 'outline', 600: 'outlineVariant', 700: 'outlineFaint · surfaceVariant', 800: 'surface 表面', 900: 'background 页面底' })[s]}</td></tr>`).join('')}</tbody></table>`,
 };
-body = body.replace(/<!--\s*@gen:([a-z0-9-]+)\s*-->/g, (_, k) => { if (!gen[k]) throw new Error('未知生成器：' + k); return gen[k](); });
+const applyGen = s => s.replace(/<!--\s*@gen:([a-z0-9-]+)\s*-->/g, (_, k) => { if (!gen[k]) throw new Error('未知生成器：' + k); return gen[k](); });
 
-const title = '源裕兴设计系统全典';
+/* ───────────────────────── 6. 输出 ───────────────────────── */
+const SITE = '源裕兴设计系统全典';
+const DESC = `源裕兴设计系统全典 V${T.$version} · ${T.$edition} · 守正 · 开物 · 共生`;
 const fontsHref = 'https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200..900&family=Noto+Sans+SC:wght@200..700&family=LXGW+WenKai+TC:wght@300;400;700&family=Manrope:wght@200..800&family=JetBrains+Mono:wght@400;500&display=swap';
-const styles = css + '\n' + cssFiles.map(f => `/* ==== ${f} ==== */\n` + read(path.join(SRC, 'css', f))).join('\n');
-const scripts = `window.SINO_DATA = ${JSON.stringify({ version: T.$version, edition: T.$edition, counts: resolved.counts, entity: resolved.entity, gold: resolved.gold, ink, matrix, chart: CHART, type: T.primitive.type })};\n` + jsFiles.map(f => `/* ==== ${f} ==== */\n` + read(path.join(SRC, 'js', f))).join('\n');
+const FAVICON = `<link rel="icon" href="data:image/svg+xml,${encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><circle cx="16" cy="16" r="15" fill="#1A1612"/><path d="M16 3a6.5 6.5 0 0 1 0 13 6.5 6.5 0 0 0 0 13A13 13 0 0 0 16 3z" fill="#C9A96E"/><circle cx="16" cy="9.5" r="2" fill="#1A1612"/><circle cx="16" cy="22.5" r="2" fill="#C9A96E"/></svg>')}">`;
+const fontHead = `<link rel="preconnect" href="https://fonts.googleapis.com">\n<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n<link rel="stylesheet" href="${fontsHref}">`;
 
-const head = `<title>${title}</title>\n<meta name="description" content="源裕兴设计系统全典 V${T.$version} · 原子设计版 · 守正 · 开物 · 共生">\n<link rel="preconnect" href="https://fonts.googleapis.com">\n<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n<link rel="stylesheet" href="${fontsHref}">\n<style>\n${styles}\n</style>\n`;
-const artifact = `${head}${body}\n<script>\n${scripts}\n</script>\n`;
-fs.writeFileSync(path.join(DIST, 'artifact.html'), artifact);
-const standalone = `<!doctype html>\n<html lang="zh-CN">\n<head>\n<meta charset="utf-8">\n<meta name="viewport" content="width=device-width, initial-scale=1">\n${head}</head>\n<body>\n${body}\n<script>\n${scripts}\n</script>\n</body>\n</html>\n`;
-fs.writeFileSync(path.join(DIST, 'index.html'), standalone);
+const styles = css + '\n' + cssFiles.map(f => `/* ==== ${f} ==== */\n` + read(path.join(SRC, 'css', f))).join('\n');
+const scripts = `window.SINO_DATA = ${JSON.stringify({ version: T.$version, edition: T.$edition, counts: resolved.counts, entity: resolved.entity, gold: resolved.gold, ink, matrix, chart: CHART, type: T.primitive.type, motion: T.primitive.motion, search: SEARCH, routes: ROUTES.map(r => ({ path: r.path, num: r.num, nav: r.nav, en: r.en, title: r.title, file: fileOf(r.path) })) })};\n`
+  + jsFiles.map(f => `/* ==== ${f} ==== */\n` + read(path.join(SRC, 'js', f))).join('\n');
+
 fs.writeFileSync(path.join(DIST, 'sino.css'), styles);
+fs.writeFileSync(path.join(DIST, 'site.js'), scripts);
+
+/* ── 6.1 真·多页面：每章一份独立文档，跨文档 View Transition ── */
+const pageDoc = (r, i) => {
+  const one = ROUTES.length - 1;
+  const bodyHtml = toMpaLinks(applyGen(normAnchors(shellOpen) + normAnchors(ARTICLE[r.path]) + normAnchors(shellClose)), r.path)
+    .replace('data-mode="@MODE@"', 'data-mode="mpa"')
+    .replace(`data-nav="${r.path}"`, `data-nav="${r.path}" aria-current="page"`);
+  const title = r.path === 'home' ? `${SITE} · V${T.$version}` : `${r.num} ${r.title} · ${SITE}`;
+  const prev = ROUTES[i - 1], next = ROUTES[i + 1];
+  const preload = [prev, next].filter(Boolean).map(x => `<link rel="prefetch" href="${fileOf(x.path)}">`).join('\n');
+  return `<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>${title}</title>
+<meta name="description" content="${r.path === 'home' ? DESC : r.title + ' —— ' + DESC}">
+<meta name="color-scheme" content="dark light">
+${fontHead}
+<link rel="stylesheet" href="sino.css">
+${FAVICON}
+${preload}
+</head>
+<body data-page="${r.path}" data-chapter="${i}" data-chapters="${one}">
+${bodyHtml}
+<script src="site.js"></script>
+</body>
+</html>
+`;
+};
+ROUTES.forEach((r, i) => fs.writeFileSync(path.join(DIST, fileOf(r.path)), pageDoc(r, i)));
+
+/* ── 6.2 单文件全典：hash 路由（Artifact / 离线分发） ── */
+const spaBody = applyGen(
+  normAnchors(shellOpen).replace('data-mode="@MODE@"', 'data-mode="spa"')
+  + ROUTES.map(r => normAnchors(ARTICLE[r.path]).replace('<article class="route"', `<article class="route"${r.path === 'home' ? '' : ' hidden'}`)).join('')
+  + normAnchors(shellClose)
+);
+const spaHead = `<title>${SITE}</title>\n${FAVICON}\n<meta name="description" content="${DESC}">\n${fontHead}\n<style>\n${styles}\n</style>\n`;
+const artifact = `${spaHead}${spaBody}\n<script>\n${scripts}\n</script>\n`;
+fs.writeFileSync(path.join(DIST, 'artifact.html'), artifact);
 
 console.log(`✔ tokens.css  Primitive ${counts.primitive} + Semantic ${counts.semantic} + Component ${counts.component} = ${resolved.counts.total} tokens`);
-console.log(`✔ 门禁通过：${semanticChecks.length} 项语义对比度 + ${ENTITIES.length} 实体主色选取`);
-console.log(`✔ dist/index.html ${(standalone.length / 1024).toFixed(0)} KB · dist/artifact.html ${(artifact.length / 1024).toFixed(0)} KB`);
+console.log(`✔ 门禁通过：${semanticChecks.length} 项语义对比度 + ${ENTITIES.length} 实体可访问主色`);
+console.log(`✔ 多页面站点 ${ROUTES.length} 页：${ROUTES.map(r => fileOf(r.path)).join(' · ')}`);
+console.log(`✔ sino.css ${(styles.length / 1024).toFixed(0)} KB · site.js ${(scripts.length / 1024).toFixed(0)} KB · artifact.html ${(artifact.length / 1024).toFixed(0)} KB`);

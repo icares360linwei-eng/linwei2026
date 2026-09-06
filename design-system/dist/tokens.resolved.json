@@ -1,8 +1,8 @@
 {
   "$name": "源裕兴设计系统全典 · Design Tokens",
-  "$version": "38.0.0",
-  "$edition": "原子设计版 · Atomic Edition",
-  "builtAt": "2026-09-05T14:11:36.087Z",
+  "$version": "39.0.0",
+  "$edition": "墨经光纬 · 多页面站点版",
+  "builtAt": "2026-09-06T02:55:12.070Z",
   "counts": {
     "primitive": 217,
     "semantic": 154,

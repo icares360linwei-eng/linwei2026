@@ -1,4 +1,6 @@
-<div class="sino site" id="sino" data-theme="stg" data-color-scheme="dark">
+<div class="sino site" id="sino" data-theme="stg" data-color-scheme="dark" data-mode="@MODE@">
+<script>(function(){try{var r=document.currentScript.parentElement,e=localStorage.getItem('sino.entity'),s=localStorage.getItem('sino.scheme');if(e)r.dataset.theme=e;if(s)r.dataset.colorScheme=s;}catch(_){}}())</script>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
   <defs>
     <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.4-3.4"/></symbol>
@@ -73,20 +75,17 @@
     <symbol id="i-mark" viewBox="0 0 32 32"><circle cx="16" cy="16" r="14" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 2a7 7 0 0 1 0 14 7 7 0 0 0 0 14" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 2a7 7 0 0 1 0 14 7 7 0 0 0 0 14A14 14 0 0 0 16 2z" fill="currentColor" opacity=".18"/><circle cx="16" cy="9" r="2" fill="var(--c-goldLine)"/><circle cx="16" cy="23" r="2" fill="currentColor"/></symbol>
   </defs>
 </svg>
-
 <a class="sr-only" href="#main">跳到主内容</a>
-<header class="site-nav">
+
+<div class="site-prog" aria-hidden="true"><i data-page-prog></i></div>
+
+<header class="site-nav" data-nav-root>
   <div class="wrap site-nav__in">
-    <a class="a-logo" href="#/" aria-label="源裕兴设计系统全典 · 首页"><svg class="a-logo__mark" style="color:var(--c-primary)"><use href="#i-mark"/></svg><span><span class="a-logo__word">源裕兴</span><span class="a-logo__latin">Design System</span></span></a>
-    <nav class="site-nav__links" aria-label="主导航">
-      <a class="site-nav__link" href="#/tokens" data-nav="tokens"><i>L0</i>令牌</a>
-      <a class="site-nav__link" href="#/atoms" data-nav="atoms"><i>L1</i>原子</a>
-      <a class="site-nav__link" href="#/molecules" data-nav="molecules"><i>L2</i>分子</a>
-      <a class="site-nav__link" href="#/organisms" data-nav="organisms"><i>L3</i>有机体</a>
-      <a class="site-nav__link" href="#/templates" data-nav="templates"><i>L4</i>模板</a>
-      <a class="site-nav__link" href="#/pages" data-nav="pages"><i>L5</i>页面</a>
-      <a class="site-nav__link" href="#/governance" data-nav="governance"><i>G</i>治理</a>
-    </nav>
+    <a class="a-logo site-nav__logo" href="#/" aria-label="源裕兴设计系统全典 · 首页">
+      <svg class="a-logo__mark" style="color:var(--c-primary)" aria-hidden="true"><use href="#i-mark"/></svg>
+      <span><span class="a-logo__word">源裕兴</span><span class="a-logo__latin">Design System</span></span>
+    </a>
+    <nav class="site-nav__links" aria-label="主导航"><!-- @nav --><span class="site-nav__ink" aria-hidden="true"></span></nav>
     <div class="site-nav__tools">
       <div class="m-entity" role="group" aria-label="五实体主题切换">
         <button class="m-entity__item" type="button" data-entity-btn="stg" aria-pressed="true" data-tip="STG · 集团母体 · 绛紫"><span class="a-dot" style="--sw:var(--stg-600)"></span>STG</button>
@@ -100,23 +99,22 @@
         <button class="m-segmented__item" type="button" data-scheme-btn="light" aria-pressed="false" data-tip="浅色 · 宣纸"><svg class="a-icon"><use href="#i-sun"/></svg></button>
         <button class="m-segmented__item" type="button" data-scheme-btn="dark" aria-pressed="true" data-tip="暗色 · 玄墨"><svg class="a-icon"><use href="#i-moon"/></svg></button>
       </div>
-      <button class="a-btn a-btn--icon a-btn--ghost a-btn--square a-btn--s" type="button" data-grid-toggle aria-pressed="false" aria-label="显示 12 列栅格（G）" data-tip="栅格 · G"><svg class="a-icon"><use href="#i-grid"/></svg></button>
-      <button class="a-btn a-btn--ghost a-btn--s" type="button" data-cmdk><svg class="a-icon"><use href="#i-search"/></svg><span>搜索</span><span class="a-kbd">⌘K</span></button>
-      <button class="a-btn a-btn--icon a-btn--ghost a-btn--square site-nav__menu" type="button" aria-label="打开导航" aria-expanded="false"><svg class="a-icon"><use href="#i-menu"/></svg></button>
+      <button class="a-btn a-btn--icon a-btn--ghost a-btn--square a-btn--s site-nav__grid" type="button" data-grid-toggle aria-pressed="false" aria-label="显示 12 列栅格（G）" data-tip="栅格 · G"><svg class="a-icon"><use href="#i-grid"/></svg></button>
+      <button class="a-btn a-btn--ghost a-btn--s site-nav__k" type="button" data-cmdk><svg class="a-icon"><use href="#i-search"/></svg><span>搜索</span><span class="a-kbd">⌘K</span></button>
+      <button class="site-nav__menu" type="button" aria-label="打开导航" aria-expanded="false" data-menu><span class="site-nav__burger"><i></i><i></i></span><span class="site-nav__menutext">目录</span></button>
     </div>
   </div>
 </header>
+
 <div class="nav-sheet" id="nav-sheet" aria-hidden="true">
-  <div class="nav-sheet__panel">
-    <a href="#/" data-nav="home"><i>00</i>首页</a>
-    <a href="#/tokens" data-nav="tokens"><i>L0</i>设计令牌</a>
-    <a href="#/atoms" data-nav="atoms"><i>L1</i>原子</a>
-    <a href="#/molecules" data-nav="molecules"><i>L2</i>分子</a>
-    <a href="#/organisms" data-nav="organisms"><i>L3</i>有机体</a>
-    <a href="#/templates" data-nav="templates"><i>L4</i>模板</a>
-    <a href="#/pages" data-nav="pages"><i>L5</i>页面 · 五实体</a>
-    <a href="#/governance" data-nav="governance"><i>G</i>治理</a>
-    <div class="nav-sheet__tools"><div class="m-segmented" role="group" aria-label="色彩方案"><button class="m-segmented__item" type="button" data-scheme-btn="auto" aria-pressed="false"><svg class="a-icon"><use href="#i-monitor"/></svg>自动</button><button class="m-segmented__item" type="button" data-scheme-btn="light" aria-pressed="false"><svg class="a-icon"><use href="#i-sun"/></svg>浅色</button><button class="m-segmented__item" type="button" data-scheme-btn="dark" aria-pressed="true"><svg class="a-icon"><use href="#i-moon"/></svg>暗色</button></div><div class="m-entity" role="group" aria-label="五实体主题切换"><button class="m-entity__item" type="button" data-entity-btn="stg" aria-pressed="true"><span class="a-dot" style="--sw:var(--stg-600)"></span>STG</button><button class="m-entity__item" type="button" data-entity-btn="ste" aria-pressed="false"><span class="a-dot" style="--sw:var(--ste-600)"></span>STE</button><button class="m-entity__item" type="button" data-entity-btn="sti" aria-pressed="false"><span class="a-dot" style="--sw:var(--sti-600)"></span>STI</button><button class="m-entity__item" type="button" data-entity-btn="sth" aria-pressed="false"><span class="a-dot" style="--sw:var(--sth-600)"></span>STH</button><button class="m-entity__item" type="button" data-entity-btn="edu" aria-pressed="false"><span class="a-dot" style="--sw:var(--edu-600)"></span>EDU</button></div></div>
+  <div class="nav-sheet__scrim" data-menu-close></div>
+  <div class="nav-sheet__panel" role="dialog" aria-modal="true" aria-label="全站目录">
+    <div class="nav-sheet__head"><span class="t-overline">Index · 全站目录</span><button class="a-btn a-btn--icon a-btn--ghost a-btn--s a-btn--square" type="button" data-menu-close aria-label="关闭目录"><svg class="a-icon"><use href="#i-x"/></svg></button></div>
+    <nav class="nav-sheet__list" aria-label="全站目录"><!-- @nav-sheet --></nav>
+    <div class="nav-sheet__tools">
+      <div class="m-segmented" role="group" aria-label="色彩方案"><button class="m-segmented__item" type="button" data-scheme-btn="auto" aria-pressed="false"><svg class="a-icon"><use href="#i-monitor"/></svg>自动</button><button class="m-segmented__item" type="button" data-scheme-btn="light" aria-pressed="false"><svg class="a-icon"><use href="#i-sun"/></svg>浅色</button><button class="m-segmented__item" type="button" data-scheme-btn="dark" aria-pressed="true"><svg class="a-icon"><use href="#i-moon"/></svg>暗色</button></div>
+      <div class="m-entity" role="group" aria-label="五实体主题切换"><button class="m-entity__item" type="button" data-entity-btn="stg" aria-pressed="true"><span class="a-dot" style="--sw:var(--stg-600)"></span>STG</button><button class="m-entity__item" type="button" data-entity-btn="ste" aria-pressed="false"><span class="a-dot" style="--sw:var(--ste-600)"></span>STE</button><button class="m-entity__item" type="button" data-entity-btn="sti" aria-pressed="false"><span class="a-dot" style="--sw:var(--sti-600)"></span>STI</button><button class="m-entity__item" type="button" data-entity-btn="sth" aria-pressed="false"><span class="a-dot" style="--sw:var(--sth-600)"></span>STH</button><button class="m-entity__item" type="button" data-entity-btn="edu" aria-pressed="false"><span class="a-dot" style="--sw:var(--edu-600)"></span>EDU</button></div>
+    </div>
   </div>
 </div>
 <main id="main">

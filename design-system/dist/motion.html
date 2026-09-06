@@ -1,0 +1,391 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>M 动效：编排、缓动与连续 · 源裕兴设计系统全典</title>
+<meta name="description" content="动效：编排、缓动与连续 —— 源裕兴设计系统全典 V39.0.0 · 墨经光纬 · 多页面站点版 · 守正 · 开物 · 共生">
+<meta name="color-scheme" content="dark light">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200..900&family=Noto+Sans+SC:wght@200..700&family=LXGW+WenKai+TC:wght@300;400;700&family=Manrope:wght@200..800&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="sino.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2216%22%20r%3D%2215%22%20fill%3D%22%231A1612%22%2F%3E%3Cpath%20d%3D%22M16%203a6.5%206.5%200%200%201%200%2013%206.5%206.5%200%200%200%200%2013A13%2013%200%200%200%2016%203z%22%20fill%3D%22%23C9A96E%22%2F%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%229.5%22%20r%3D%222%22%20fill%3D%22%231A1612%22%2F%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2222.5%22%20r%3D%222%22%20fill%3D%22%23C9A96E%22%2F%3E%3C%2Fsvg%3E">
+<link rel="prefetch" href="pages.html">
+<link rel="prefetch" href="governance.html">
+</head>
+<body data-page="motion" data-chapter="7" data-chapters="8">
+<div class="sino site" id="sino" data-theme="stg" data-color-scheme="dark" data-mode="mpa">
+<script>(function(){try{var r=document.currentScript.parentElement,e=localStorage.getItem('sino.entity'),s=localStorage.getItem('sino.scheme');if(e)r.dataset.theme=e;if(s)r.dataset.colorScheme=s;}catch(_){}}())</script>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.4-3.4"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+    <symbol id="i-chevron-down" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+    <symbol id="i-chevron-right" viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></symbol>
+    <symbol id="i-chevron-left" viewBox="0 0 24 24"><path d="m15 6-6 6 6 6"/></symbol>
+    <symbol id="i-chevron-up" viewBox="0 0 24 24"><path d="m6 15 6-6 6 6"/></symbol>
+    <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-arrow-up-right" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></symbol>
+    <symbol id="i-arrow-down-right" viewBox="0 0 24 24"><path d="M7 7l10 10M17 8v9H8"/></symbol>
+    <symbol id="i-arrow-down" viewBox="0 0 24 24"><path d="M12 5v14M6 13l6 6 6-6"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 5 5L20 7"/></symbol>
+    <symbol id="i-check-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m8.5 12 2.5 2.5 5-5"/></symbol>
+    <symbol id="i-x-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m9 9 6 6M15 9l-6 6"/></symbol>
+    <symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 3 2.5 20h19L12 3z"/><path d="M12 9v5M12 17.5h.01"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-minus" viewBox="0 0 24 24"><path d="M5 12h14"/></symbol>
+    <symbol id="i-edit" viewBox="0 0 24 24"><path d="M4 20h4L18.5 9.5a2.1 2.1 0 0 0-3-3L5 17v3z"/><path d="m13.5 6.5 3 3"/></symbol>
+    <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"/></symbol>
+    <symbol id="i-filter" viewBox="0 0 24 24"><path d="M4 5h16l-6 8v6l-4-2v-4L4 5z"/></symbol>
+    <symbol id="i-sort" viewBox="0 0 24 24"><path d="M7 4v16M4 7l3-3 3 3M17 20V4M14 17l3 3 3-3"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 4v12M7 11l5 5 5-5M4 20h16"/></symbol>
+    <symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 20V8M7 13l5-5 5 5M4 4h16"/></symbol>
+    <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 16v-5a6 6 0 0 1 12 0v5l2 2H4l2-2z"/><path d="M10 20a2 2 0 0 0 4 0"/></symbol>
+    <symbol id="i-settings" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9 7 7M17 17l2.1 2.1M4.9 19.1 7 17M17 7l2.1-2.1"/></symbol>
+    <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></symbol>
+    <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 11 12 4l9 7M5 10v10h14V10M10 20v-6h4v6"/></symbol>
+    <symbol id="i-dashboard" viewBox="0 0 24 24"><path d="M3 3h8v8H3zM13 3h8v5h-8zM13 11h8v10h-8zM3 14h8v7H3z"/></symbol>
+    <symbol id="i-table" viewBox="0 0 24 24"><path d="M3 5h18v14H3zM3 10h18M3 15h18M9 5v14"/></symbol>
+    <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 20h16M7 16V9M12 16V5M17 16v-4"/></symbol>
+    <symbol id="i-doc" viewBox="0 0 24 24"><path d="M6 3h8l4 4v14H6zM14 3v4h4M9 12h6M9 16h6"/></symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24"><path d="M4 6h16v14H4zM4 10h16M8 3v4M16 3v4"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><path d="M3 6h18v12H3zM3 7l9 6 9-6"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24"><path d="M8 8h12v12H8zM16 8V4H4v12h4"/></symbol>
+    <symbol id="i-external" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4 10 14M18 13v7H4V6h7"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></symbol>
+    <symbol id="i-monitor" viewBox="0 0 24 24"><path d="M3 4h18v12H3zM8 20h8M12 16v4"/></symbol>
+    <symbol id="i-palette" viewBox="0 0 24 24"><path d="M12 3a9 9 0 0 0 0 18h1a2 2 0 0 0 1-3.7 2 2 0 0 1 1.5-3.3H17a4 4 0 0 0 4-4 8 8 0 0 0-9-7z"/><path d="M7.5 12h.01M9.5 8h.01M14 7h.01M17 10h.01"/></symbol>
+    <symbol id="i-layers" viewBox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5 9-5zM3 13l9 5 9-5M3 17l9 5 9-5"/></symbol>
+    <symbol id="i-atom" viewBox="0 0 24 24"><circle cx="12" cy="12" r="1.8"/><ellipse cx="12" cy="12" rx="9" ry="3.6"/><ellipse cx="12" cy="12" rx="9" ry="3.6" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="9" ry="3.6" transform="rotate(120 12 12)"/></symbol>
+    <symbol id="i-grid" viewBox="0 0 24 24"><path d="M3 3h18v18H3zM9 3v18M15 3v18M3 9h18M3 15h18"/></symbol>
+    <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24"><path d="M5 11h14v10H5zM8 11V7a4 4 0 0 1 8 0v4"/></symbol>
+    <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-2.3-5.7M20 4v5h-5"/></symbol>
+    <symbol id="i-more" viewBox="0 0 24 24"><path d="M5 12h.01M12 12h.01M19 12h.01"/></symbol>
+    <symbol id="i-code" viewBox="0 0 24 24"><path d="m8 8-4 4 4 4M16 8l4 4-4 4M14 4l-4 16"/></symbol>
+    <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 4h6a3 3 0 0 1 3 3v13a2 2 0 0 0-2-2H4zM20 4h-6a3 3 0 0 0-3 3v13a2 2 0 0 1 2-2h7z"/></symbol>
+    <symbol id="i-leaf" viewBox="0 0 24 24"><path d="M20 4c-8 0-14 4-14 12a6 6 0 0 0 6 4c8 0 8-10 8-16zM6 20 20 4"/></symbol>
+    <symbol id="i-ship" viewBox="0 0 24 24"><path d="M3 18c2 2 4 2 6 0s4-2 6 0 4 2 6 0M5 15l-2-5h18l-2 5M7 10V6h10v4M12 3v3"/></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20s-8-5-8-11a4 4 0 0 1 8-1 4 4 0 0 1 8 1c0 6-8 11-8 11z"/></symbol>
+    <symbol id="i-cap" viewBox="0 0 24 24"><path d="m2 9 10-5 10 5-10 5L2 9zM6 11v5c0 1.5 3 3 6 3s6-1.5 6-3v-5M22 9v6"/></symbol>
+    <symbol id="i-building" viewBox="0 0 24 24"><path d="M4 21V5h10v16M14 9h6v12M8 9h2M8 13h2M8 17h2M17 13h1M17 17h1M2 21h20"/></symbol>
+    <symbol id="i-flame" viewBox="0 0 24 24"><path d="M12 3c1 4 5 5 5 10a5 5 0 0 1-10 0c0-2 1-3 2-4 0 2 1 3 2 3 0-3-1-5 1-9z"/></symbol>
+    <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3zM9 12l2 2 4-4"/></symbol>
+    <symbol id="i-sparkles" viewBox="0 0 24 24"><path d="m11 3 1.8 5.2L18 10l-5.2 1.8L11 17l-1.8-5.2L4 10l5.2-1.8L11 3zM19 16v5M16.5 18.5h5"/></symbol>
+    <symbol id="i-send" viewBox="0 0 24 24"><path d="m3 11 18-8-8 18-2-8-8-2z"/></symbol>
+    <symbol id="i-keyboard" viewBox="0 0 24 24"><path d="M3 6h18v12H3zM7 10h.01M11 10h.01M15 10h.01M7 14h10"/></symbol>
+    <symbol id="i-seal" viewBox="0 0 24 24"><path d="M5 5h14v14H5zM8 9h8M8 12h8M8 15h5"/></symbol>
+    <symbol id="i-flask" viewBox="0 0 24 24"><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 2 3h10a2 2 0 0 0 2-3l-5-9V3M7 15h10"/></symbol>
+    <symbol id="i-pill" viewBox="0 0 24 24"><path d="m8.5 4.5 11 11a4.2 4.2 0 0 1-6 6l-11-11a4.2 4.2 0 0 1 6-6zM7 13l6-6"/></symbol>
+    <symbol id="i-truck" viewBox="0 0 24 24"><path d="M3 6h11v10H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+    <symbol id="i-taiji-full" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3a4.5 4.5 0 0 1 0 9 4.5 4.5 0 0 0 0 9"/><circle cx="12" cy="7.5" r="1.2" fill="currentColor"/><circle cx="12" cy="16.5" r="1.2"/></symbol>
+    <symbol id="i-taiji-dot" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="2.2" fill="currentColor"/></symbol>
+    <symbol id="i-taiji-flow" viewBox="0 0 24 24"><path d="M3 12c3-6 6-6 9 0s6 6 9 0"/></symbol>
+    <symbol id="i-taiji-spin" viewBox="0 0 24 24"><path d="M12 3a9 9 0 0 1 9 9M12 21a9 9 0 0 1-9-9M18 9l3 3 3-3M6 15l-3-3-3 3"/></symbol>
+    <symbol id="i-mark" viewBox="0 0 32 32"><circle cx="16" cy="16" r="14" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 2a7 7 0 0 1 0 14 7 7 0 0 0 0 14" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 2a7 7 0 0 1 0 14 7 7 0 0 0 0 14A14 14 0 0 0 16 2z" fill="currentColor" opacity=".18"/><circle cx="16" cy="9" r="2" fill="var(--c-goldLine)"/><circle cx="16" cy="23" r="2" fill="currentColor"/></symbol>
+  </defs>
+</svg>
+<a class="sr-only" href="index.html">跳到主内容</a>
+
+<div class="site-prog" aria-hidden="true"><i data-page-prog></i></div>
+
+<header class="site-nav" data-nav-root>
+  <div class="wrap site-nav__in">
+    <a class="a-logo site-nav__logo" href="index.html" aria-label="源裕兴设计系统全典 · 首页">
+      <svg class="a-logo__mark" style="color:var(--c-primary)" aria-hidden="true"><use href="#i-mark"/></svg>
+      <span><span class="a-logo__word">源裕兴</span><span class="a-logo__latin">Design System</span></span>
+    </a>
+    <nav class="site-nav__links" aria-label="主导航"><a class="site-nav__link" href="tokens.html" data-nav="tokens"><i>L0</i><span>令牌</span></a><a class="site-nav__link" href="atoms.html" data-nav="atoms"><i>L1</i><span>原子</span></a><a class="site-nav__link" href="molecules.html" data-nav="molecules"><i>L2</i><span>分子</span></a><a class="site-nav__link" href="organisms.html" data-nav="organisms"><i>L3</i><span>有机体</span></a><a class="site-nav__link" href="templates.html" data-nav="templates"><i>L4</i><span>模板</span></a><a class="site-nav__link" href="pages.html" data-nav="pages"><i>L5</i><span>页面</span></a><a class="site-nav__link" href="#top" data-nav="motion" aria-current="page"><i>M</i><span>动效</span></a><a class="site-nav__link" href="governance.html" data-nav="governance"><i>G</i><span>治理</span></a><span class="site-nav__ink" aria-hidden="true"></span></nav>
+    <div class="site-nav__tools">
+      <div class="m-entity" role="group" aria-label="五实体主题切换">
+        <button class="m-entity__item" type="button" data-entity-btn="stg" aria-pressed="true" data-tip="STG · 集团母体 · 绛紫"><span class="a-dot" style="--sw:var(--stg-600)"></span>STG</button>
+        <button class="m-entity__item" type="button" data-entity-btn="ste" aria-pressed="false" data-tip="STE · 九派能源 · 苍木绿"><span class="a-dot" style="--sw:var(--ste-600)"></span>STE</button>
+        <button class="m-entity__item" type="button" data-entity-btn="sti" aria-pressed="false" data-tip="STI · 进出口 · 深空蓝"><span class="a-dot" style="--sw:var(--sti-600)"></span>STI</button>
+        <button class="m-entity__item" type="button" data-entity-btn="sth" aria-pressed="false" data-tip="STH · 健康科技 · 沧浪青"><span class="a-dot" style="--sw:var(--sth-600)"></span>STH</button>
+        <button class="m-entity__item" type="button" data-entity-btn="edu" aria-pressed="false" data-tip="EDU · 崇仁教育 · 朱砂红"><span class="a-dot" style="--sw:var(--edu-600)"></span>EDU</button>
+      </div>
+      <div class="m-segmented" role="group" aria-label="色彩方案">
+        <button class="m-segmented__item" type="button" data-scheme-btn="auto" aria-pressed="false" data-tip="跟随系统"><svg class="a-icon"><use href="#i-monitor"/></svg></button>
+        <button class="m-segmented__item" type="button" data-scheme-btn="light" aria-pressed="false" data-tip="浅色 · 宣纸"><svg class="a-icon"><use href="#i-sun"/></svg></button>
+        <button class="m-segmented__item" type="button" data-scheme-btn="dark" aria-pressed="true" data-tip="暗色 · 玄墨"><svg class="a-icon"><use href="#i-moon"/></svg></button>
+      </div>
+      <button class="a-btn a-btn--icon a-btn--ghost a-btn--square a-btn--s site-nav__grid" type="button" data-grid-toggle aria-pressed="false" aria-label="显示 12 列栅格（G）" data-tip="栅格 · G"><svg class="a-icon"><use href="#i-grid"/></svg></button>
+      <button class="a-btn a-btn--ghost a-btn--s site-nav__k" type="button" data-cmdk><svg class="a-icon"><use href="#i-search"/></svg><span>搜索</span><span class="a-kbd">⌘K</span></button>
+      <button class="site-nav__menu" type="button" aria-label="打开导航" aria-expanded="false" data-menu><span class="site-nav__burger"><i></i><i></i></span><span class="site-nav__menutext">目录</span></button>
+    </div>
+  </div>
+</header>
+
+<div class="nav-sheet" id="nav-sheet" aria-hidden="true">
+  <div class="nav-sheet__scrim" data-menu-close></div>
+  <div class="nav-sheet__panel" role="dialog" aria-modal="true" aria-label="全站目录">
+    <div class="nav-sheet__head"><span class="t-overline">Index · 全站目录</span><button class="a-btn a-btn--icon a-btn--ghost a-btn--s a-btn--square" type="button" data-menu-close aria-label="关闭目录"><svg class="a-icon"><use href="#i-x"/></svg></button></div>
+    <nav class="nav-sheet__list" aria-label="全站目录"><a class="nav-sheet__link" href="index.html" data-nav="home"><i>00</i><span class="nav-sheet__t">首页</span><span class="nav-sheet__en">Index</span><svg class="a-icon"><use href="#i-arrow-right"/></svg></a><a class="nav-sheet__link" href="tokens.html" data-nav="tokens"><i>L0</i><span class="nav-sheet__t">设计令牌：亚原子层</span><span class="nav-sheet__en">Design Tokens</span><svg class="a-icon"><use href="#i-arrow-right"/></svg></a><a class="nav-sheet__link" href="atoms.html" data-nav="atoms"><i>L1</i><span class="nav-sheet__t">原子：不可再分的功能单元</span><span class="nav-sheet__en">Atoms</span><svg class="a-icon"><use href="#i-arrow-right"/></svg></a><a class="nav-sheet__link" href="molecules.html" data-nav="molecules"><i>L2</i><span class="nav-sheet__t">分子：原子的最小有意义组合</span><span class="nav-sheet__en">Molecules</span><svg class="a-icon"><use href="#i-arrow-right"/></svg></a><a class="nav-sheet__link" href="organisms.html" data-nav="organisms"><i>L3</i><span class="nav-sheet__t">有机体：可独立运作的界面区块</span><span class="nav-sheet__en">Organisms</span><svg class="a-icon"><use href="#i-arrow-right"/></svg></a><a class="nav-sheet__link" href="templates.html" data-nav="templates"><i>L4</i><span class="nav-sheet__t">模板：只定结构，不含内容</span><span class="nav-sheet__en">Templates</span><svg class="a-icon"><use href="#i-arrow-right"/></svg></a><a class="nav-sheet__link" href="pages.html" data-nav="pages"><i>L5</i><span class="nav-sheet__t">页面：五实体，一套语法</span><span class="nav-sheet__en">Pages · Five Entities</span><svg class="a-icon"><use href="#i-arrow-right"/></svg></a><a class="nav-sheet__link" href="#top" data-nav="motion"><i>M</i><span class="nav-sheet__t">动效：编排、缓动与连续</span><span class="nav-sheet__en">Motion & Interaction</span><svg class="a-icon"><use href="#i-arrow-right"/></svg></a><a class="nav-sheet__link" href="governance.html" data-nav="governance"><i>G</i><span class="nav-sheet__t">治理：让系统在生长中不漂移</span><span class="nav-sheet__en">Governance</span><svg class="a-icon"><use href="#i-arrow-right"/></svg></a></nav>
+    <div class="nav-sheet__tools">
+      <div class="m-segmented" role="group" aria-label="色彩方案"><button class="m-segmented__item" type="button" data-scheme-btn="auto" aria-pressed="false"><svg class="a-icon"><use href="#i-monitor"/></svg>自动</button><button class="m-segmented__item" type="button" data-scheme-btn="light" aria-pressed="false"><svg class="a-icon"><use href="#i-sun"/></svg>浅色</button><button class="m-segmented__item" type="button" data-scheme-btn="dark" aria-pressed="true"><svg class="a-icon"><use href="#i-moon"/></svg>暗色</button></div>
+      <div class="m-entity" role="group" aria-label="五实体主题切换"><button class="m-entity__item" type="button" data-entity-btn="stg" aria-pressed="true"><span class="a-dot" style="--sw:var(--stg-600)"></span>STG</button><button class="m-entity__item" type="button" data-entity-btn="ste" aria-pressed="false"><span class="a-dot" style="--sw:var(--ste-600)"></span>STE</button><button class="m-entity__item" type="button" data-entity-btn="sti" aria-pressed="false"><span class="a-dot" style="--sw:var(--sti-600)"></span>STI</button><button class="m-entity__item" type="button" data-entity-btn="sth" aria-pressed="false"><span class="a-dot" style="--sw:var(--sth-600)"></span>STH</button><button class="m-entity__item" type="button" data-entity-btn="edu" aria-pressed="false"><span class="a-dot" style="--sw:var(--edu-600)"></span>EDU</button></div>
+    </div>
+  </div>
+</div>
+<main id="main">
+<article class="route" data-route="motion" data-num="M" data-title="动效：编排、缓动与连续">
+<header class="cover" data-art="motion" id="top">
+  <canvas class="cover__art" aria-hidden="true" data-parallax="0.07"></canvas>
+  <div class="cover__in wrap">
+    <div class="cover__rail" aria-hidden="true"><span class="cover__num">M</span><span class="cover__vline"></span><span class="cover__layer">MOTION</span></div>
+    <div class="cover__body">
+      <div class="cover__meta"><span class="t-overline">Motion & Interaction</span><span class="cover__dot"></span><span class="t-overline">第 7 章 / 共 8 章</span></div>
+      <h1 class="cover__title" data-split="line">动效：编排、缓动与连续</h1>
+      <p class="cover__lead rv" data-rv-d="2">动效不是装饰，是讲述变化的语言。本章把 <code>--dur-*</code> 与 <code>--ease-*</code> 两族令牌兑现为可操作的编排规则：每个动效必须服务引导、反馈、解释、连续、愉悦、叙事六者之一；进场慢而退场快；一屏只用一处力；<code>prefers-reduced-motion</code> 下一律给终态而非全关。本章所有演示都可以动手调参。</p>
+      <div class="cover__phi rv" data-rv-d="3"><span class="m-phi__tag m-phi__tag--kaiwu">开物</span><span class="m-phi__tag m-phi__tag--gongsheng">共生</span></div>
+    </div>
+    <div class="cover__idxwrap rv" data-rv-d="4"><div class="cover__idxlabel"><span class="t-overline">本章目录</span><span class="cover__idxcount" data-idx-count></span></div><div class="cover__index" data-toc-inline></div></div>
+  </div>
+  <a class="cover__scroll" href="index.html" aria-label="向下阅读"><span class="cover__scrollbar"><i></i></span><span>SCROLL</span></a>
+</header><div class="cx-wrap" id="chapter"><div class="cx-content"><section class="cx-section" id="motion" data-title="M · 动效">
+  
+
+  <!-- M.1 唯一理由 -->
+  <div class="cx-sub" id="motion-why"><span class="cx-sub__n">M.1</span><h3 class="cx-sub__t">动效的唯一理由</h3><span class="cx-sub__d">六个目的 · 服务不了就删掉</span></div>
+  <p class="cx-p">多余的动效是负债，不是加分。评审一个动效只问一句：它服务下列哪一个目的？答不上来，删。第二条铁律是「快比慢安全」——大多数 UI 过渡落在 150–300ms；超过 400ms 的非叙事动效会让界面显得迟钝，只有叙事性、展示性动效才可以长。</p>
+  <div class="cx-spec" style="margin-top:24px">
+    <div class="cx-spec__bar"><b>六目的</b><span>每个动效在代码评审时都要能指认其一</span></div>
+    <div class="cx-spec__body cx-spec__body--none">
+      <div class="mo-why">
+        <div class="mo-why__item"><div class="mo-why__k"><svg class="a-icon"><use href="#i-eye"/></svg>引导</div><div class="mo-why__d">把注意力导向某处，建立阅读顺序。</div><div class="mo-why__e">本站：首页 Hero 依阅读顺序 stagger 入场</div></div>
+        <div class="mo-why__item"><div class="mo-why__k"><svg class="a-icon"><use href="#i-check-circle"/></svg>反馈</div><div class="mo-why__d">确认操作被接收，让点击有回响。</div><div class="mo-why__e">本站：按钮按下 scale(.98) · 100ms</div></div>
+        <div class="mo-why__item"><div class="mo-why__k"><svg class="a-icon"><use href="#i-info"/></svg>解释</div><div class="mo-why__d">让状态变化可理解：来源方向即因果。</div><div class="mo-why__e">本站：抽屉自右入、亦自右出</div></div>
+        <div class="mo-why__item"><div class="mo-why__k"><svg class="a-icon"><use href="#i-layers"/></svg>连续</div><div class="mo-why__d">维持对象的空间连续性，界面像实物。</div><div class="mo-why__e">本站：跨页 View Transition · 顶栏墨痕</div></div>
+        <div class="mo-why__item"><div class="mo-why__k"><svg class="a-icon"><use href="#i-sparkles"/></svg>愉悦</div><div class="mo-why__d">注入品牌情绪，一瞬即收。</div><div class="mo-why__e">本站：印章落定的轻微回锋</div></div>
+        <div class="mo-why__item"><div class="mo-why__k"><svg class="a-icon"><use href="#i-book"/></svg>叙事</div><div class="mo-why__d">滚动推进故事，移步换景。</div><div class="mo-why__e">本站：章节封面流场与滚动揭示</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- M.2 缓动族 -->
+  <div class="cx-sub" id="motion-easing"><span class="cx-sub__n">M.2</span><h3 class="cx-sub__t">缓动是性格 Easing</h3><span class="cx-sub__d">6 条曲线 · 全站不得出现第七条</span></div>
+  <p class="cx-p">缓动曲线决定动效的气质，比时长更影响观感。全站只用下列六条；一屏之内的所有动效共享同一缓动族，界面才像出自同一套物理规则。<b>几乎不用 linear</b> 做位移与淡入——除了无限循环与滚动绑定。指针悬停或点击任一卡片即可播放。</p>
+  <div class="cx-spec" style="margin-top:24px">
+    <div class="cx-spec__bar"><b>缓动族</b><span>曲线图为实测贝塞尔控制点，轨道为实时播放</span><span class="spacer"></span><span class="a-badge">悬停播放</span></div>
+    <div class="cx-spec__body cx-spec__body--none" style="padding:22px">
+      <div class="mo-curves">
+        <div class="mo-curve" data-bezier=".16,1,.3,1" data-easing="cubic-bezier(.16,1,.3,1)" data-dur="700" tabindex="0"><div class="mo-curve__head"><span class="mo-curve__n">--ease-out</span><span class="mo-curve__c">减速到位</span></div><div class="mo-curve__plot"></div><div class="mo-curve__track"><span class="mo-curve__ball"></span></div><div class="mo-curve__use">进场、展开。最常用的一条：让人看清新内容从哪里来。</div></div>
+        <div class="mo-curve" data-bezier=".4,0,1,1" data-easing="cubic-bezier(.4,0,1,1)" data-dur="320" tabindex="0"><div class="mo-curve__head"><span class="mo-curve__n">--ease-in</span><span class="mo-curve__c">果断离开</span></div><div class="mo-curve__plot"></div><div class="mo-curve__track"><span class="mo-curve__ball"></span></div><div class="mo-curve__use">退场、收起。别让用户等一个他已经决定丢弃的东西。</div></div>
+        <div class="mo-curve" data-bezier=".2,0,0,1" data-easing="cubic-bezier(.2,0,0,1)" data-dur="500" tabindex="0"><div class="mo-curve__head"><span class="mo-curve__n">--ease-standard</span><span class="mo-curve__c">中性利落</span></div><div class="mo-curve__plot"></div><div class="mo-curve__track"><span class="mo-curve__ball"></span></div><div class="mo-curve__use">通用过渡与大元素转场；加长时长即「强调」。</div></div>
+        <div class="mo-curve" data-bezier=".25,.1,.25,1" data-easing="cubic-bezier(.25,.1,.25,1)" data-dur="900" tabindex="0"><div class="mo-curve__head"><span class="mo-curve__n">--ease-elegant</span><span class="mo-curve__c">东方从容</span></div><div class="mo-curve__plot"></div><div class="mo-curve__track"><span class="mo-curve__ball"></span></div><div class="mo-curve__use">品牌时刻与慢过渡：水的隐喻，有重力与惯性，不弹跳。</div></div>
+        <div class="mo-curve" data-bezier=".34,1.18,.64,1" data-easing="cubic-bezier(.34,1.18,.64,1)" data-dur="600" tabindex="0"><div class="mo-curve__head"><span class="mo-curve__n">--ease-spring</span><span class="mo-curve__c">轻微回锋</span></div><div class="mo-curve__plot"></div><div class="mo-curve__track"><span class="mo-curve__ball"></span></div><div class="mo-curve__use">弹窗入场与成功反馈。overshoot 控制在 10% 内——书法收笔的回锋，多一分即廉价。</div></div>
+        <div class="mo-curve" data-bezier="0,0,1,1" data-easing="linear" data-dur="900" tabindex="0"><div class="mo-curve__head"><span class="mo-curve__n">--ease-linear</span><span class="mo-curve__c">仅循环</span></div><div class="mo-curve__plot"></div><div class="mo-curve__track"><span class="mo-curve__ball"></span></div><div class="mo-curve__use">只用于无限循环（太极 Loading）与滚动绑定（scrub）。匀速位移看起来机械、廉价。</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- M.3 时长与进退场 -->
+  <div class="cx-sub" id="motion-duration"><span class="cx-sub__n">M.3</span><h3 class="cx-sub__t">时长尺度与进退场不对称</h3><span class="cx-sub__d">退场 ≈ 进场 × 0.65</span></div>
+  <p class="cx-p">进场稍慢、用 ease-out 减速到位，让人看清新内容来自哪；退场更快、用 ease-in 加速离开。二者的方向必须呼应来源：从右侧划入的抽屉，退场也回到右侧。下方左栏是全部时长令牌的相对长度，右栏可以亲手对比同一元素的进与退。</p>
+  <div class="cx-grid" style="margin-top:24px">
+    <div class="c6">
+      <div class="cx-spec"><div class="cx-spec__bar"><b>时长令牌</b><span>条长 = 相对时长</span></div><div class="cx-spec__body cx-spec__body--none" style="padding:20px">
+        <div class="mo-dur">
+          <div class="mo-dur__row"><span class="mono">--dur-instant</span><span class="mo-dur__bar"><i style="--v:5%"></i></span><span class="num mono">100ms</span></div>
+          <div class="mo-dur__row"><span class="mono">--dur-fast</span><span class="mo-dur__bar"><i style="--v:7.5%"></i></span><span class="num mono">150ms</span></div>
+          <div class="mo-dur__row"><span class="mono">--dur-base</span><span class="mo-dur__bar"><i style="--v:15%"></i></span><span class="num mono">300ms</span></div>
+          <div class="mo-dur__row"><span class="mono">--dur-slow</span><span class="mo-dur__bar"><i style="--v:25%"></i></span><span class="num mono">500ms</span></div>
+          <div class="mo-dur__row mo-dur__row--exit"><span class="mono">--dur-exit-fast</span><span class="mo-dur__bar"><i style="--v:5%"></i></span><span class="num mono">100ms</span></div>
+          <div class="mo-dur__row mo-dur__row--exit"><span class="mono">--dur-exit-base</span><span class="mo-dur__bar"><i style="--v:10%"></i></span><span class="num mono">200ms</span></div>
+          <div class="mo-dur__row mo-dur__row--exit"><span class="mono">--dur-exit-slow</span><span class="mo-dur__bar"><i style="--v:16%"></i></span><span class="num mono">320ms</span></div>
+          <div class="mo-dur__row"><span class="mono">--dur-loop</span><span class="mo-dur__bar"><i style="--v:100%"></i></span><span class="num mono">2000ms</span></div>
+        </div>
+      </div></div>
+    </div>
+    <div class="c6">
+      <div class="cx-spec"><div class="cx-spec__bar"><b>进 vs 退</b><span>同一元素，两种时长与缓动</span></div><div class="cx-spec__body cx-spec__body--none" style="padding:20px">
+        <div class="mo-ee">
+          <div class="mo-ee__card" id="ee-in"><div class="t-overline">进场 · 300ms · ease-out</div><div class="mo-ee__stage"><div class="mo-ee__box"></div></div><button class="a-btn a-btn--secondary a-btn--s" style="margin-top:12px" type="button" data-ee="ee-in" data-ee-kind="enter">播放进场</button></div>
+          <div class="mo-ee__card" id="ee-out"><div class="t-overline">退场 · 200ms · ease-in</div><div class="mo-ee__stage"><div class="mo-ee__box"></div></div><button class="a-btn a-btn--secondary a-btn--s" style="margin-top:12px" type="button" data-ee="ee-out" data-ee-kind="exit">播放退场</button></div>
+        </div>
+      </div></div>
+    </div>
+  </div>
+
+  <!-- M.4 编排 -->
+  <div class="cx-sub" id="motion-orchestration"><span class="cx-sub__n">M.4</span><h3 class="cx-sub__t">编排：Stagger 实验室</h3><span class="cx-sub__d">30–60ms 是节奏，&gt;80ms 是拖沓</span></div>
+  <p class="cx-p">顶尖与平庸最大的差距在编排：平庸做「一个个好看的动画」，顶尖做「一组动效如何协同成一个流畅的瞬间」。把强度预算押在一次精心编排的开场上，比每个按钮都抖一下高级得多。交错延迟太大显拖沓，太小看不出节奏。拖动滑杆亲自找那条界线。</p>
+  <div class="cx-spec" style="margin-top:24px">
+    <div class="cx-spec__bar"><b>Stagger</b><span>调参后自动重播；进入视口时首播一次</span></div>
+    <div class="cx-spec__body cx-spec__body--none" style="padding:22px">
+      <div class="mo-stag">
+        <div class="mo-stag__ctrl">
+          <label>交错步长 <output data-stag-step-out>40 ms</output><input type="range" min="0" max="120" step="5" value="40" data-stag-step aria-label="交错步长"></label>
+          <label>单元时长 <output data-stag-dur-out>420 ms</output><input type="range" min="120" max="900" step="20" value="420" data-stag-dur aria-label="单元时长"></label>
+          <button class="a-btn a-btn--primary a-btn--s" type="button" data-stag-play><svg class="a-icon"><use href="#i-refresh"/></svg>重新播放</button>
+          <div class="cx-note"><svg class="a-icon"><use href="#i-info"/></svg><div>建议区间 30–60ms。延迟随「距触发点的距离」衰减，比线性更自然；本典列表与网格入场统一取 <b>38ms</b>。</div></div>
+        </div>
+        <div class="mo-stag__grid"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- M.5 连续性 -->
+  <div class="cx-sub" id="motion-continuity"><span class="cx-sub__n">M.5</span><h3 class="cx-sub__t">连续性：共享元素与 FLIP</h3><span class="cx-sub__d">不要 A 淡出 + B 淡入</span></div>
+  <p class="cx-p">当 A 变成 B（列表项 → 详情、缩略图 → 大图），不要「A 淡出 + B 淡入」，而要让共享元素连续位移与缩放过去。空间连续性让界面像真实物体，而不是一组屏幕。本站的实现分两层：跨页用原生 <code>View Transitions</code>（八章之间切换即是），页内用 FLIP（First–Last–Invert–Play，先测量前后位置，再用 transform 补差）。点击任一方块看 FLIP 展开。</p>
+  <div class="cx-spec" style="margin-top:24px">
+    <div class="cx-spec__bar"><b>FLIP</b><span>点击展开 · 再点或点击遮罩收起</span><span class="spacer"></span><span class="a-badge a-badge--primary">只动 transform</span></div>
+    <div class="cx-spec__body cx-spec__body--none" style="padding:22px">
+      <div class="mo-flip"><div class="mo-flip__card">令牌</div><div class="mo-flip__card">原子</div><div class="mo-flip__card">分子</div><div class="mo-flip__card">有机体</div></div>
+      <div class="mo-flip__scrim"></div>
+    </div>
+    <div class="cx-spec__code" hidden><pre><code>// FLIP：布局变化的高性能位移动画
+const first = el.getBoundingClientRect();
+el.classList.toggle('is-open');            // Last：直接改到终态布局
+const last  = el.getBoundingClientRect();
+el.animate([                               // Invert + Play：只动 transform
+  { transform: `translate(${first.left - last.left}px, ${first.top - last.top}px)
+                scale(${first.width / last.width}, ${first.height / last.height})` },
+  { transform: 'none' }
+], { duration: 520, easing: 'var(--ease-standard)' });</code></pre></div>
+  </div>
+
+  <!-- M.6 滚动驱动 -->
+  <div class="cx-sub" id="motion-scroll"><span class="cx-sub__n">M.6</span><h3 class="cx-sub__t">滚动驱动叙事</h3><span class="cx-sub__d">触发式 vs 绑定式</span></div>
+  <p class="cx-p">滚动动效分两类：<b>触发式</b>进入视口播放一次（入场、数字滚动），<b>绑定式</b>把动画进度等同于滚动进度、可来回（视差、长镜头形变）。实现优先级从轻到重：原生 CSS 滚动驱动动画 → IntersectionObserver + class → 时间线库。本站全站揭示走原生 <code>animation-timeline: view()</code>，不支持的浏览器由 <code>motion.js</code> 用观察者回退，内容在任何情况下都不会因动效失败而不可见。</p>
+  <div class="cx-spec" style="margin-top:24px">
+    <div class="cx-spec__bar"><b>视口驱动</b><span>在下方小窗内滚动</span></div>
+    <div class="cx-spec__body cx-spec__body--none" style="padding:22px">
+      <div class="mo-scroll">
+        <div class="mo-scroll__prog"><i></i></div>
+        <div class="mo-scroll__inner">
+          <div class="mo-scroll__item">触发式：进入视口播放一次，适合入场与数字滚动。</div>
+          <div class="mo-scroll__item">绑定式（scrub）：动画进度 = 滚动进度，可来回，适合视差与长镜头形变。</div>
+          <div class="mo-scroll__item">节制视差：层间速度差要小，远景慢、近景快；过大会晕。</div>
+          <div class="mo-scroll__item">reduced-motion 下关闭视差与 scrub，保留终态与透明度变化。</div>
+          <div class="mo-scroll__item">只动 transform 与 opacity——这两个属性走合成器线程，是 60fps 的前提。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- M.7 东方动效 -->
+  <div class="cx-sub" id="motion-oriental"><span class="cx-sub__n">M.7</span><h3 class="cx-sub__t">东方动效：間与运笔</h3><span class="cx-sub__d">轻 · 慢 · 含蓄</span></div>
+  <p class="cx-p">东方动效的内核是节奏与从容，不是某种特效。<b>間（留拍）</b>——动效在关键处停一拍再继续，是时间的留白；<b>水的隐喻</b>——ease-out 为主，有重力与惯性，时长偏长而不弹跳；<b>云雾渐显</b>——入场用 opacity + 轻微 blur + scale，如雾中显形，而非生硬位移；<b>书法运笔</b>——SVG 路径以 <code>stroke-dashoffset</code> 书写，配 elegant 缓动，收笔带一分回锋。下面是「永字八法」的抽象转译：八笔依次落墨，末了钤印。</p>
+  <div class="cx-spec" style="margin-top:24px">
+    <div class="cx-spec__bar"><b>运笔</b><span>点击重播 · 进入视口自动播放一次</span><span class="spacer"></span><span class="a-badge a-badge--gold">ease-elegant</span></div>
+    <div class="cx-spec__body cx-spec__body--canvas">
+      <div class="mo-write" style="width:100%">
+        <svg viewBox="0 0 100 100" role="img" aria-label="永字八法的抽象笔顺演示">
+          <path d="M50 8 q3 5 3.6 10"/>
+          <path d="M34 24 h27"/>
+          <path d="M50 24 V70"/>
+          <path d="M50 70 q0 9 -9 10"/>
+          <path d="M45 40 L31 30"/>
+          <path d="M45 44 L22 74"/>
+          <path d="M55 40 L63 47"/>
+          <path d="M55 46 L79 76"/>
+          <circle class="mo-write__seal" cx="84" cy="16" r="8"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- M.8 状态编排 -->
+  <div class="cx-sub" id="motion-states"><span class="cx-sub__n">M.8</span><h3 class="cx-sub__t">状态编排：加载、反馈与浮层</h3><span class="cx-sub__d">空态与错态才是专业度的分水岭</span></div>
+  <p class="cx-p">骨架屏到内容不是「换一批 DOM」，而是一次编排：骨架的呼吸停止、内容按行 stagger 落位、布局不得抖动。浮层同理——模态自 spring 入场、遮罩同步渐显；Toast 从边缘滑入、3 秒后自行退场。三者用的是同一族缓动，所以像出自同一套物理规则。</p>
+  <div class="cx-grid" style="margin-top:24px">
+    <div class="c7"><div class="cx-spec"><div class="cx-spec__bar"><b>骨架 → 内容</b><span>行级 stagger 60ms</span><span class="spacer"></span><button class="a-btn a-btn--secondary a-btn--s" type="button" data-load="mo-load-demo"><svg class="a-icon"><use href="#i-refresh"/></svg>重新加载</button></div><div class="cx-spec__body cx-spec__body--none" style="padding:18px">
+      <div class="mo-load is-loaded" id="mo-load-demo">
+        <div class="mo-load__row" style="--i:0"><span class="a-avatar">王</span><span>王工 · 锅炉 #2 巡检完成</span><span class="a-badge a-badge--success">正常</span></div>
+        <div class="mo-load__row" style="--i:1"><span class="a-avatar">李</span><span>李工 · 含氧量复核</span><span class="a-badge a-badge--warning">观察</span></div>
+        <div class="mo-load__row" style="--i:2"><span class="a-avatar">陈</span><span>陈工 · 一次风量下调 3%</span><span class="a-badge a-badge--success">已执行</span></div>
+        <div class="mo-load__row" style="--i:3"><span class="a-avatar">赵</span><span>赵工 · 蒸汽压力记录</span><span class="a-badge">待复核</span></div>
+      </div>
+    </div></div></div>
+    <div class="c5"><div class="cx-spec"><div class="cx-spec__bar"><b>浮层编排</b><span>入场 spring · 退场 ease-in</span></div><div class="cx-spec__body cx-spec__body--col">
+      <button class="a-btn a-btn--secondary" type="button" data-open="demo-modal">打开模态（spring 入场）</button>
+      <button class="a-btn a-btn--secondary" type="button" data-open="demo-drawer">打开抽屉（自右入自右出）</button>
+      <button class="a-btn a-btn--secondary" type="button" data-toast="success" data-toast-title="已保存" data-toast-desc="退场时长 ≈ 进场 × 0.65">触发 Toast</button>
+      <button class="a-btn a-btn--ghost" type="button" data-toast="error" data-toast-title="校验未通过" data-toast-desc="错误信息即时出现，且不引起布局抖动">触发错误 Toast</button>
+    </div></div></div>
+  </div>
+
+  <!-- M.9 无障碍与性能 -->
+  <div class="cx-sub" id="motion-a11y"><span class="cx-sub__n">M.9</span><h3 class="cx-sub__t">无障碍契约与性能预算</h3><span class="cx-sub__d">reduced-motion 是硬要求，不是可选项</span></div>
+  <p class="cx-p">前庭功能障碍者会因大位移与视差产生真实的生理不适。<code>prefers-reduced-motion: reduce</code> 下我们<b>不是全关</b>，而是换成不引发不适的形式：关闭大位移、视差、自动播放与 scrub，保留透明度变化与终态。性能上目标 60fps（16.7ms/帧），只动 transform 与 opacity，<code>filter: blur()</code> 与大面积 <code>backdrop-filter</code> 有明确预算。</p>
+  <div class="cx-dodont" style="margin-top:24px">
+    <div class="cx-dodont__col cx-dodont__col--do"><div class="cx-dodont__head"><svg class="a-icon"><use href="#i-check"/></svg>该做</div><ul class="cx-dodont__body">
+      <li>只动 <code>transform</code> 与 <code>opacity</code>；显隐用 opacity + visibility。</li>
+      <li>退场时长取进场的 60–70%，方向呼应来源。</li>
+      <li>一屏一处「点睛之动」，其余服务它。</li>
+      <li>reduced-motion 下保留终态与淡入，内容永不因动效失败而消失。</li>
+      <li>入场动画的初始态由 JS 施加：无脚本时内容默认可见。</li>
+    </ul></div>
+    <div class="cx-dodont__col cx-dodont__col--dont"><div class="cx-dodont__head"><svg class="a-icon"><use href="#i-x"/></svg>不该做</div><ul class="cx-dodont__body">
+      <li>动 <code>width/height/top/left/margin</code>——触发重排，卡顿之源。</li>
+      <li>用 linear 做位移与淡入；用夸张 overshoot 显「活泼」。</li>
+      <li>滥用 <code>will-change</code>：只在动画前临时加、动画后移除。</li>
+      <li>为炫技上重武器：CSS 能做的 hover 不该用 3D 引擎。</li>
+      <li>忽略退场动画与空 / 错状态——评审恰恰看这些边角。</li>
+    </ul></div>
+  </div>
+  <div class="cx-note cx-note--fix" style="margin-top:20px"><svg class="a-icon"><use href="#i-shield"/></svg><div><b>本站的实现契约。</b>全站揭示优先走原生 <code>animation-timeline: view()</code>；不支持时才由 <code>motion.js</code> 加 <code>html.js-rv</code> 并用 IntersectionObserver 补位。两条路径都以「内容默认可见」为基线——动效层挂了，站还是一份能读的文档。</div></div>
+</section>
+</div><aside class="toc" aria-label="本章目录"><div class="toc__inner"><div class="toc__label"><span class="t-overline">本章</span><span class="toc__prog"><i data-toc-prog></i></span></div><nav class="toc__list" data-toc></nav><a class="toc__top" href="index.html#top"><svg class="a-icon"><use href="#i-chevron-up"/></svg>回到章首</a></div></aside></div><nav class="chapnav" aria-label="章节导航"><a class="chapnav__link chapnav__link--prev" href="pages.html"><span class="chapnav__k">上一章</span><span class="chapnav__n">L5</span><span class="chapnav__t">页面：五实体，一套语法</span><svg class="a-icon chapnav__ico"><use href="#i-arrow-right"/></svg></a><a class="chapnav__link chapnav__link--next" href="governance.html"><span class="chapnav__k">下一章</span><span class="chapnav__n">G</span><span class="chapnav__t">治理：让系统在生长中不漂移</span><svg class="a-icon chapnav__ico"><use href="#i-arrow-right"/></svg></a></nav>
+</article>
+</main>
+
+<footer class="site-footer">
+  <div class="site-footer__marquee" aria-hidden="true"><div class="mq" data-marquee><span class="mq__row">守正 <i>·</i> 不漂移 <i>·</i> 开物 <i>·</i> 不僵化 <i>·</i> 共生 <i>·</i> 不孤立 <i>·</i> 墨为经 <i>·</i> 光为纬 <i>·</i> </span><span class="mq__row">守正 <i>·</i> 不漂移 <i>·</i> 开物 <i>·</i> 不僵化 <i>·</i> 共生 <i>·</i> 不孤立 <i>·</i> 墨为经 <i>·</i> 光为纬 <i>·</i> </span></div></div>
+  <div class="wrap site-footer__in">
+    <div class="site-footer__brand">
+      <a class="a-logo" href="index.html"><svg class="a-logo__mark" style="color:var(--c-primary)" aria-hidden="true"><use href="#i-mark"/></svg><span><span class="a-logo__word">源裕兴</span><span class="a-logo__latin">Sinotao Innovation Future</span></span></a>
+      <p class="site-footer__desc">守正 · 开物 · 共生。本站由 <code>tokens/tokens.json</code> 构建生成：色阶、对比度与数据墨色顺序均为构建时实测，任一项 WCAG AA 门禁不通过即构建失败。</p>
+      <div class="site-footer__keys"><span class="a-kbd">⌘K</span><small>搜索</small><span class="a-kbd">G</span><small>栅格</small><span class="a-kbd">←</span><span class="a-kbd">→</span><small>翻章</small></div>
+    </div>
+    <div class="site-footer__col"><h6 class="t-overline">章节</h6><a href="tokens.html">L0 令牌</a><a href="atoms.html">L1 原子</a><a href="molecules.html">L2 分子</a><a href="organisms.html">L3 有机体</a><a href="templates.html">L4 模板</a><a href="pages.html">L5 页面</a><a href="#top">M 动效</a><a href="governance.html">G 治理</a></div>
+    <div class="site-footer__col"><h6 class="t-overline">五实体</h6><a href="pages.html#page-stg">STG 集团母体</a><a href="pages.html#page-ste">STE 九派能源</a><a href="pages.html#page-sti">STI 进出口贸易</a><a href="pages.html#page-sth">STH 健康科技</a><a href="pages.html#page-edu">EDU 崇仁教育</a></div>
+    <div class="site-footer__col"><h6 class="t-overline">治理</h6><a href="governance.html#gov-rules">核心十条</a><a href="governance.html#gov-atomic">原子五律</a><a href="governance.html#gov-antd">Ant Design 映射</a><a href="governance.html#gov-odoo">Odoo 18 映射</a><a href="governance.html#gov-changelog">变更日志</a></div>
+    <div class="site-footer__legal">
+      <span>© 2026 源裕兴创新未来 · 源裕兴设计系统全典 V39.0.0 · 578 令牌 · 构建于 2026-09-06</span>
+      <a class="site-footer__top" href="index.html#top"><svg class="a-icon"><use href="#i-chevron-up"/></svg>回到顶部</a>
+    </div>
+  </div>
+</footer>
+
+<div class="o-toaster" id="toaster" aria-live="polite" aria-atomic="false"></div>
+
+<div class="cx-cmdk" id="cmdk" role="dialog" aria-modal="true" aria-label="搜索全典" aria-hidden="true">
+  <div class="cx-cmdk__panel">
+    <div class="cx-cmdk__bar"><svg class="a-icon"><use href="#i-search"/></svg><input class="cx-cmdk__input" id="cmdk-input" type="text" placeholder="跳转到章节或组件… 例如「按钮」「对比度」「缓动」" autocomplete="off"><span class="a-kbd">ESC</span></div>
+    <div class="cx-cmdk__list" id="cmdk-list"></div>
+    <div class="cx-cmdk__foot"><span><span class="a-kbd">↑</span><span class="a-kbd">↓</span> 选择</span><span><span class="a-kbd">↵</span> 打开</span><span><span class="a-kbd">G</span> 栅格</span></div>
+  </div>
+</div>
+
+<div class="o-modal" id="demo-modal" role="dialog" aria-modal="true" aria-labelledby="demo-modal-title" aria-hidden="true">
+  <div class="o-modal__dialog">
+    <div class="o-modal__head"><h3 class="o-modal__title" id="demo-modal-title">删除报关单 #STI-2026-0718？</h3><button class="a-btn a-btn--icon a-btn--ghost a-btn--s a-btn--square" type="button" data-close aria-label="关闭"><svg class="a-icon"><use href="#i-x"/></svg></button></div>
+    <div class="o-modal__body"><p>这是不可逆操作。删除后，该报关单及其附件将从系统中移除，且无法恢复。相关的物流跟踪记录会保留在审计日志中。</p></div>
+    <div class="o-modal__foot"><button class="a-btn a-btn--secondary" type="button" data-close>取消</button><button class="a-btn a-btn--danger" type="button" data-close data-toast="success" data-toast-title="已删除报关单 #STI-2026-0718" data-toast-desc="审计日志已记录本次操作">删除报关单</button></div>
+  </div>
+</div>
+
+<div class="o-drawer" id="demo-drawer" role="dialog" aria-modal="true" aria-labelledby="demo-drawer-title" aria-hidden="true">
+  <div class="o-drawer__panel">
+    <div class="o-drawer__head"><h3 class="o-drawer__title" id="demo-drawer-title">锅炉 #2 · 参数详情</h3><button class="a-btn a-btn--icon a-btn--ghost a-btn--s a-btn--square" type="button" data-close aria-label="关闭"><svg class="a-icon"><use href="#i-x"/></svg></button></div>
+    <div class="o-drawer__body">
+      <dl class="m-stat"><dt>设备型号</dt><dd>CFB-75/5.3-M</dd><dt>炉膛温度</dt><dd>862 ℃</dd><dt>蒸汽压力</dt><dd>5.3 MPa</dd><dt>含氧量</dt><dd>4.2 %</dd><dt>本班运行</dt><dd>7 h 42 min</dd><dt>负责人</dt><dd>王工</dd></dl>
+      <div class="m-alert m-alert--warning"><svg class="a-icon m-alert__icon"><use href="#i-alert"/></svg><div><div class="m-alert__title">含氧量接近上限</div>建议下调一次风量 3%，并在 15 分钟后复核。</div></div>
+    </div>
+    <div class="o-drawer__foot"><button class="a-btn a-btn--secondary" type="button" data-close>关闭</button><button class="a-btn a-btn--primary" type="button" data-close data-toast="success" data-toast-title="已下发调整指令" data-toast-desc="一次风量 −3% · 15 分钟后自动复核">下发调整</button></div>
+  </div>
+</div>
+</div>
+
+<script src="site.js"></script>
+</body>
+</html>

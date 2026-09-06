@@ -1,0 +1,192 @@
+<section class="cx-section" id="motion" data-title="M · 动效">
+  <div class="cx-head">
+    <div>
+      <div class="cx-head__layer"><span class="cx-head__num">MOTION</span><span class="cx-head__en">Motion &amp; Interaction</span></div>
+      <h2 class="cx-head__title">动效：编排、缓动与连续</h2>
+      <p class="cx-head__lead" style="margin-top:16px">动效不是装饰，是讲述变化的语言。本章把 <code>--dur-*</code> 与 <code>--ease-*</code> 两族令牌兑现为可操作的编排规则：每个动效必须服务引导、反馈、解释、连续、愉悦、叙事六者之一；进场慢而退场快；一屏只用一处力；<code>prefers-reduced-motion</code> 下一律给终态而非全关。本章所有演示都可以动手调参。</p>
+    </div>
+    <div class="cx-head__phi"><span class="m-phi__tag m-phi__tag--kaiwu">开物</span><span class="m-phi__tag m-phi__tag--gongsheng">共生</span></div>
+  </div>
+
+  <!-- M.1 唯一理由 -->
+  <div class="cx-sub" id="motion-why"><span class="cx-sub__n">M.1</span><h3 class="cx-sub__t">动效的唯一理由</h3><span class="cx-sub__d">六个目的 · 服务不了就删掉</span></div>
+  <p class="cx-p">多余的动效是负债，不是加分。评审一个动效只问一句：它服务下列哪一个目的？答不上来，删。第二条铁律是「快比慢安全」——大多数 UI 过渡落在 150–300ms；超过 400ms 的非叙事动效会让界面显得迟钝，只有叙事性、展示性动效才可以长。</p>
+  <div class="cx-spec" style="margin-top:24px">
+    <div class="cx-spec__bar"><b>六目的</b><span>每个动效在代码评审时都要能指认其一</span></div>
+    <div class="cx-spec__body cx-spec__body--none">
+      <div class="mo-why">
+        <div class="mo-why__item"><div class="mo-why__k"><svg class="a-icon"><use href="#i-eye"/></svg>引导</div><div class="mo-why__d">把注意力导向某处，建立阅读顺序。</div><div class="mo-why__e">本站：首页 Hero 依阅读顺序 stagger 入场</div></div>
+        <div class="mo-why__item"><div class="mo-why__k"><svg class="a-icon"><use href="#i-check-circle"/></svg>反馈</div><div class="mo-why__d">确认操作被接收，让点击有回响。</div><div class="mo-why__e">本站：按钮按下 scale(.98) · 100ms</div></div>
+        <div class="mo-why__item"><div class="mo-why__k"><svg class="a-icon"><use href="#i-info"/></svg>解释</div><div class="mo-why__d">让状态变化可理解：来源方向即因果。</div><div class="mo-why__e">本站：抽屉自右入、亦自右出</div></div>
+        <div class="mo-why__item"><div class="mo-why__k"><svg class="a-icon"><use href="#i-layers"/></svg>连续</div><div class="mo-why__d">维持对象的空间连续性，界面像实物。</div><div class="mo-why__e">本站：跨页 View Transition · 顶栏墨痕</div></div>
+        <div class="mo-why__item"><div class="mo-why__k"><svg class="a-icon"><use href="#i-sparkles"/></svg>愉悦</div><div class="mo-why__d">注入品牌情绪，一瞬即收。</div><div class="mo-why__e">本站：印章落定的轻微回锋</div></div>
+        <div class="mo-why__item"><div class="mo-why__k"><svg class="a-icon"><use href="#i-book"/></svg>叙事</div><div class="mo-why__d">滚动推进故事，移步换景。</div><div class="mo-why__e">本站：章节封面流场与滚动揭示</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- M.2 缓动族 -->
+  <div class="cx-sub" id="motion-easing"><span class="cx-sub__n">M.2</span><h3 class="cx-sub__t">缓动是性格 Easing</h3><span class="cx-sub__d">6 条曲线 · 全站不得出现第七条</span></div>
+  <p class="cx-p">缓动曲线决定动效的气质，比时长更影响观感。全站只用下列六条；一屏之内的所有动效共享同一缓动族，界面才像出自同一套物理规则。<b>几乎不用 linear</b> 做位移与淡入——除了无限循环与滚动绑定。指针悬停或点击任一卡片即可播放。</p>
+  <div class="cx-spec" style="margin-top:24px">
+    <div class="cx-spec__bar"><b>缓动族</b><span>曲线图为实测贝塞尔控制点，轨道为实时播放</span><span class="spacer"></span><span class="a-badge">悬停播放</span></div>
+    <div class="cx-spec__body cx-spec__body--none" style="padding:22px">
+      <div class="mo-curves">
+        <div class="mo-curve" data-bezier=".16,1,.3,1" data-easing="cubic-bezier(.16,1,.3,1)" data-dur="700" tabindex="0"><div class="mo-curve__head"><span class="mo-curve__n">--ease-out</span><span class="mo-curve__c">减速到位</span></div><div class="mo-curve__plot"></div><div class="mo-curve__track"><span class="mo-curve__ball"></span></div><div class="mo-curve__use">进场、展开。最常用的一条：让人看清新内容从哪里来。</div></div>
+        <div class="mo-curve" data-bezier=".4,0,1,1" data-easing="cubic-bezier(.4,0,1,1)" data-dur="320" tabindex="0"><div class="mo-curve__head"><span class="mo-curve__n">--ease-in</span><span class="mo-curve__c">果断离开</span></div><div class="mo-curve__plot"></div><div class="mo-curve__track"><span class="mo-curve__ball"></span></div><div class="mo-curve__use">退场、收起。别让用户等一个他已经决定丢弃的东西。</div></div>
+        <div class="mo-curve" data-bezier=".2,0,0,1" data-easing="cubic-bezier(.2,0,0,1)" data-dur="500" tabindex="0"><div class="mo-curve__head"><span class="mo-curve__n">--ease-standard</span><span class="mo-curve__c">中性利落</span></div><div class="mo-curve__plot"></div><div class="mo-curve__track"><span class="mo-curve__ball"></span></div><div class="mo-curve__use">通用过渡与大元素转场；加长时长即「强调」。</div></div>
+        <div class="mo-curve" data-bezier=".25,.1,.25,1" data-easing="cubic-bezier(.25,.1,.25,1)" data-dur="900" tabindex="0"><div class="mo-curve__head"><span class="mo-curve__n">--ease-elegant</span><span class="mo-curve__c">东方从容</span></div><div class="mo-curve__plot"></div><div class="mo-curve__track"><span class="mo-curve__ball"></span></div><div class="mo-curve__use">品牌时刻与慢过渡：水的隐喻，有重力与惯性，不弹跳。</div></div>
+        <div class="mo-curve" data-bezier=".34,1.18,.64,1" data-easing="cubic-bezier(.34,1.18,.64,1)" data-dur="600" tabindex="0"><div class="mo-curve__head"><span class="mo-curve__n">--ease-spring</span><span class="mo-curve__c">轻微回锋</span></div><div class="mo-curve__plot"></div><div class="mo-curve__track"><span class="mo-curve__ball"></span></div><div class="mo-curve__use">弹窗入场与成功反馈。overshoot 控制在 10% 内——书法收笔的回锋，多一分即廉价。</div></div>
+        <div class="mo-curve" data-bezier="0,0,1,1" data-easing="linear" data-dur="900" tabindex="0"><div class="mo-curve__head"><span class="mo-curve__n">--ease-linear</span><span class="mo-curve__c">仅循环</span></div><div class="mo-curve__plot"></div><div class="mo-curve__track"><span class="mo-curve__ball"></span></div><div class="mo-curve__use">只用于无限循环（太极 Loading）与滚动绑定（scrub）。匀速位移看起来机械、廉价。</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- M.3 时长与进退场 -->
+  <div class="cx-sub" id="motion-duration"><span class="cx-sub__n">M.3</span><h3 class="cx-sub__t">时长尺度与进退场不对称</h3><span class="cx-sub__d">退场 ≈ 进场 × 0.65</span></div>
+  <p class="cx-p">进场稍慢、用 ease-out 减速到位，让人看清新内容来自哪；退场更快、用 ease-in 加速离开。二者的方向必须呼应来源：从右侧划入的抽屉，退场也回到右侧。下方左栏是全部时长令牌的相对长度，右栏可以亲手对比同一元素的进与退。</p>
+  <div class="cx-grid" style="margin-top:24px">
+    <div class="c6">
+      <div class="cx-spec"><div class="cx-spec__bar"><b>时长令牌</b><span>条长 = 相对时长</span></div><div class="cx-spec__body cx-spec__body--none" style="padding:20px">
+        <div class="mo-dur">
+          <div class="mo-dur__row"><span class="mono">--dur-instant</span><span class="mo-dur__bar"><i style="--v:5%"></i></span><span class="num mono">100ms</span></div>
+          <div class="mo-dur__row"><span class="mono">--dur-fast</span><span class="mo-dur__bar"><i style="--v:7.5%"></i></span><span class="num mono">150ms</span></div>
+          <div class="mo-dur__row"><span class="mono">--dur-base</span><span class="mo-dur__bar"><i style="--v:15%"></i></span><span class="num mono">300ms</span></div>
+          <div class="mo-dur__row"><span class="mono">--dur-slow</span><span class="mo-dur__bar"><i style="--v:25%"></i></span><span class="num mono">500ms</span></div>
+          <div class="mo-dur__row mo-dur__row--exit"><span class="mono">--dur-exit-fast</span><span class="mo-dur__bar"><i style="--v:5%"></i></span><span class="num mono">100ms</span></div>
+          <div class="mo-dur__row mo-dur__row--exit"><span class="mono">--dur-exit-base</span><span class="mo-dur__bar"><i style="--v:10%"></i></span><span class="num mono">200ms</span></div>
+          <div class="mo-dur__row mo-dur__row--exit"><span class="mono">--dur-exit-slow</span><span class="mo-dur__bar"><i style="--v:16%"></i></span><span class="num mono">320ms</span></div>
+          <div class="mo-dur__row"><span class="mono">--dur-loop</span><span class="mo-dur__bar"><i style="--v:100%"></i></span><span class="num mono">2000ms</span></div>
+        </div>
+      </div></div>
+    </div>
+    <div class="c6">
+      <div class="cx-spec"><div class="cx-spec__bar"><b>进 vs 退</b><span>同一元素，两种时长与缓动</span></div><div class="cx-spec__body cx-spec__body--none" style="padding:20px">
+        <div class="mo-ee">
+          <div class="mo-ee__card" id="ee-in"><div class="t-overline">进场 · 300ms · ease-out</div><div class="mo-ee__stage"><div class="mo-ee__box"></div></div><button class="a-btn a-btn--secondary a-btn--s" style="margin-top:12px" type="button" data-ee="ee-in" data-ee-kind="enter">播放进场</button></div>
+          <div class="mo-ee__card" id="ee-out"><div class="t-overline">退场 · 200ms · ease-in</div><div class="mo-ee__stage"><div class="mo-ee__box"></div></div><button class="a-btn a-btn--secondary a-btn--s" style="margin-top:12px" type="button" data-ee="ee-out" data-ee-kind="exit">播放退场</button></div>
+        </div>
+      </div></div>
+    </div>
+  </div>
+
+  <!-- M.4 编排 -->
+  <div class="cx-sub" id="motion-orchestration"><span class="cx-sub__n">M.4</span><h3 class="cx-sub__t">编排：Stagger 实验室</h3><span class="cx-sub__d">30–60ms 是节奏，&gt;80ms 是拖沓</span></div>
+  <p class="cx-p">顶尖与平庸最大的差距在编排：平庸做「一个个好看的动画」，顶尖做「一组动效如何协同成一个流畅的瞬间」。把强度预算押在一次精心编排的开场上，比每个按钮都抖一下高级得多。交错延迟太大显拖沓，太小看不出节奏。拖动滑杆亲自找那条界线。</p>
+  <div class="cx-spec" style="margin-top:24px">
+    <div class="cx-spec__bar"><b>Stagger</b><span>调参后自动重播；进入视口时首播一次</span></div>
+    <div class="cx-spec__body cx-spec__body--none" style="padding:22px">
+      <div class="mo-stag">
+        <div class="mo-stag__ctrl">
+          <label>交错步长 <output data-stag-step-out>40 ms</output><input type="range" min="0" max="120" step="5" value="40" data-stag-step aria-label="交错步长"></label>
+          <label>单元时长 <output data-stag-dur-out>420 ms</output><input type="range" min="120" max="900" step="20" value="420" data-stag-dur aria-label="单元时长"></label>
+          <button class="a-btn a-btn--primary a-btn--s" type="button" data-stag-play><svg class="a-icon"><use href="#i-refresh"/></svg>重新播放</button>
+          <div class="cx-note"><svg class="a-icon"><use href="#i-info"/></svg><div>建议区间 30–60ms。延迟随「距触发点的距离」衰减，比线性更自然；本典列表与网格入场统一取 <b>38ms</b>。</div></div>
+        </div>
+        <div class="mo-stag__grid"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- M.5 连续性 -->
+  <div class="cx-sub" id="motion-continuity"><span class="cx-sub__n">M.5</span><h3 class="cx-sub__t">连续性：共享元素与 FLIP</h3><span class="cx-sub__d">不要 A 淡出 + B 淡入</span></div>
+  <p class="cx-p">当 A 变成 B（列表项 → 详情、缩略图 → 大图），不要「A 淡出 + B 淡入」，而要让共享元素连续位移与缩放过去。空间连续性让界面像真实物体，而不是一组屏幕。本站的实现分两层：跨页用原生 <code>View Transitions</code>（八章之间切换即是），页内用 FLIP（First–Last–Invert–Play，先测量前后位置，再用 transform 补差）。点击任一方块看 FLIP 展开。</p>
+  <div class="cx-spec" style="margin-top:24px">
+    <div class="cx-spec__bar"><b>FLIP</b><span>点击展开 · 再点或点击遮罩收起</span><span class="spacer"></span><span class="a-badge a-badge--primary">只动 transform</span></div>
+    <div class="cx-spec__body cx-spec__body--none" style="padding:22px">
+      <div class="mo-flip"><div class="mo-flip__card">令牌</div><div class="mo-flip__card">原子</div><div class="mo-flip__card">分子</div><div class="mo-flip__card">有机体</div></div>
+      <div class="mo-flip__scrim"></div>
+    </div>
+    <div class="cx-spec__code" hidden><pre><code>// FLIP：布局变化的高性能位移动画
+const first = el.getBoundingClientRect();
+el.classList.toggle('is-open');            // Last：直接改到终态布局
+const last  = el.getBoundingClientRect();
+el.animate([                               // Invert + Play：只动 transform
+  { transform: `translate(${first.left - last.left}px, ${first.top - last.top}px)
+                scale(${first.width / last.width}, ${first.height / last.height})` },
+  { transform: 'none' }
+], { duration: 520, easing: 'var(--ease-standard)' });</code></pre></div>
+  </div>
+
+  <!-- M.6 滚动驱动 -->
+  <div class="cx-sub" id="motion-scroll"><span class="cx-sub__n">M.6</span><h3 class="cx-sub__t">滚动驱动叙事</h3><span class="cx-sub__d">触发式 vs 绑定式</span></div>
+  <p class="cx-p">滚动动效分两类：<b>触发式</b>进入视口播放一次（入场、数字滚动），<b>绑定式</b>把动画进度等同于滚动进度、可来回（视差、长镜头形变）。实现优先级从轻到重：原生 CSS 滚动驱动动画 → IntersectionObserver + class → 时间线库。本站全站揭示走原生 <code>animation-timeline: view()</code>，不支持的浏览器由 <code>motion.js</code> 用观察者回退，内容在任何情况下都不会因动效失败而不可见。</p>
+  <div class="cx-spec" style="margin-top:24px">
+    <div class="cx-spec__bar"><b>视口驱动</b><span>在下方小窗内滚动</span></div>
+    <div class="cx-spec__body cx-spec__body--none" style="padding:22px">
+      <div class="mo-scroll">
+        <div class="mo-scroll__prog"><i></i></div>
+        <div class="mo-scroll__inner">
+          <div class="mo-scroll__item">触发式：进入视口播放一次，适合入场与数字滚动。</div>
+          <div class="mo-scroll__item">绑定式（scrub）：动画进度 = 滚动进度，可来回，适合视差与长镜头形变。</div>
+          <div class="mo-scroll__item">节制视差：层间速度差要小，远景慢、近景快；过大会晕。</div>
+          <div class="mo-scroll__item">reduced-motion 下关闭视差与 scrub，保留终态与透明度变化。</div>
+          <div class="mo-scroll__item">只动 transform 与 opacity——这两个属性走合成器线程，是 60fps 的前提。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- M.7 东方动效 -->
+  <div class="cx-sub" id="motion-oriental"><span class="cx-sub__n">M.7</span><h3 class="cx-sub__t">东方动效：間与运笔</h3><span class="cx-sub__d">轻 · 慢 · 含蓄</span></div>
+  <p class="cx-p">东方动效的内核是节奏与从容，不是某种特效。<b>間（留拍）</b>——动效在关键处停一拍再继续，是时间的留白；<b>水的隐喻</b>——ease-out 为主，有重力与惯性，时长偏长而不弹跳；<b>云雾渐显</b>——入场用 opacity + 轻微 blur + scale，如雾中显形，而非生硬位移；<b>书法运笔</b>——SVG 路径以 <code>stroke-dashoffset</code> 书写，配 elegant 缓动，收笔带一分回锋。下面是「永字八法」的抽象转译：八笔依次落墨，末了钤印。</p>
+  <div class="cx-spec" style="margin-top:24px">
+    <div class="cx-spec__bar"><b>运笔</b><span>点击重播 · 进入视口自动播放一次</span><span class="spacer"></span><span class="a-badge a-badge--gold">ease-elegant</span></div>
+    <div class="cx-spec__body cx-spec__body--canvas">
+      <div class="mo-write" style="width:100%">
+        <svg viewBox="0 0 100 100" role="img" aria-label="永字八法的抽象笔顺演示">
+          <path d="M50 8 q3 5 3.6 10"/>
+          <path d="M34 24 h27"/>
+          <path d="M50 24 V70"/>
+          <path d="M50 70 q0 9 -9 10"/>
+          <path d="M45 40 L31 30"/>
+          <path d="M45 44 L22 74"/>
+          <path d="M55 40 L63 47"/>
+          <path d="M55 46 L79 76"/>
+          <circle class="mo-write__seal" cx="84" cy="16" r="8"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- M.8 状态编排 -->
+  <div class="cx-sub" id="motion-states"><span class="cx-sub__n">M.8</span><h3 class="cx-sub__t">状态编排：加载、反馈与浮层</h3><span class="cx-sub__d">空态与错态才是专业度的分水岭</span></div>
+  <p class="cx-p">骨架屏到内容不是「换一批 DOM」，而是一次编排：骨架的呼吸停止、内容按行 stagger 落位、布局不得抖动。浮层同理——模态自 spring 入场、遮罩同步渐显；Toast 从边缘滑入、3 秒后自行退场。三者用的是同一族缓动，所以像出自同一套物理规则。</p>
+  <div class="cx-grid" style="margin-top:24px">
+    <div class="c7"><div class="cx-spec"><div class="cx-spec__bar"><b>骨架 → 内容</b><span>行级 stagger 60ms</span><span class="spacer"></span><button class="a-btn a-btn--secondary a-btn--s" type="button" data-load="mo-load-demo"><svg class="a-icon"><use href="#i-refresh"/></svg>重新加载</button></div><div class="cx-spec__body cx-spec__body--none" style="padding:18px">
+      <div class="mo-load is-loaded" id="mo-load-demo">
+        <div class="mo-load__row" style="--i:0"><span class="a-avatar">王</span><span>王工 · 锅炉 #2 巡检完成</span><span class="a-badge a-badge--success">正常</span></div>
+        <div class="mo-load__row" style="--i:1"><span class="a-avatar">李</span><span>李工 · 含氧量复核</span><span class="a-badge a-badge--warning">观察</span></div>
+        <div class="mo-load__row" style="--i:2"><span class="a-avatar">陈</span><span>陈工 · 一次风量下调 3%</span><span class="a-badge a-badge--success">已执行</span></div>
+        <div class="mo-load__row" style="--i:3"><span class="a-avatar">赵</span><span>赵工 · 蒸汽压力记录</span><span class="a-badge">待复核</span></div>
+      </div>
+    </div></div></div>
+    <div class="c5"><div class="cx-spec"><div class="cx-spec__bar"><b>浮层编排</b><span>入场 spring · 退场 ease-in</span></div><div class="cx-spec__body cx-spec__body--col">
+      <button class="a-btn a-btn--secondary" type="button" data-open="demo-modal">打开模态（spring 入场）</button>
+      <button class="a-btn a-btn--secondary" type="button" data-open="demo-drawer">打开抽屉（自右入自右出）</button>
+      <button class="a-btn a-btn--secondary" type="button" data-toast="success" data-toast-title="已保存" data-toast-desc="退场时长 ≈ 进场 × 0.65">触发 Toast</button>
+      <button class="a-btn a-btn--ghost" type="button" data-toast="error" data-toast-title="校验未通过" data-toast-desc="错误信息即时出现，且不引起布局抖动">触发错误 Toast</button>
+    </div></div></div>
+  </div>
+
+  <!-- M.9 无障碍与性能 -->
+  <div class="cx-sub" id="motion-a11y"><span class="cx-sub__n">M.9</span><h3 class="cx-sub__t">无障碍契约与性能预算</h3><span class="cx-sub__d">reduced-motion 是硬要求，不是可选项</span></div>
+  <p class="cx-p">前庭功能障碍者会因大位移与视差产生真实的生理不适。<code>prefers-reduced-motion: reduce</code> 下我们<b>不是全关</b>，而是换成不引发不适的形式：关闭大位移、视差、自动播放与 scrub，保留透明度变化与终态。性能上目标 60fps（16.7ms/帧），只动 transform 与 opacity，<code>filter: blur()</code> 与大面积 <code>backdrop-filter</code> 有明确预算。</p>
+  <div class="cx-dodont" style="margin-top:24px">
+    <div class="cx-dodont__col cx-dodont__col--do"><div class="cx-dodont__head"><svg class="a-icon"><use href="#i-check"/></svg>该做</div><ul class="cx-dodont__body">
+      <li>只动 <code>transform</code> 与 <code>opacity</code>；显隐用 opacity + visibility。</li>
+      <li>退场时长取进场的 60–70%，方向呼应来源。</li>
+      <li>一屏一处「点睛之动」，其余服务它。</li>
+      <li>reduced-motion 下保留终态与淡入，内容永不因动效失败而消失。</li>
+      <li>入场动画的初始态由 JS 施加：无脚本时内容默认可见。</li>
+    </ul></div>
+    <div class="cx-dodont__col cx-dodont__col--dont"><div class="cx-dodont__head"><svg class="a-icon"><use href="#i-x"/></svg>不该做</div><ul class="cx-dodont__body">
+      <li>动 <code>width/height/top/left/margin</code>——触发重排，卡顿之源。</li>
+      <li>用 linear 做位移与淡入；用夸张 overshoot 显「活泼」。</li>
+      <li>滥用 <code>will-change</code>：只在动画前临时加、动画后移除。</li>
+      <li>为炫技上重武器：CSS 能做的 hover 不该用 3D 引擎。</li>
+      <li>忽略退场动画与空 / 错状态——评审恰恰看这些边角。</li>
+    </ul></div>
+  </div>
+  <div class="cx-note cx-note--fix" style="margin-top:20px"><svg class="a-icon"><use href="#i-shield"/></svg><div><b>本站的实现契约。</b>全站揭示优先走原生 <code>animation-timeline: view()</code>；不支持时才由 <code>motion.js</code> 加 <code>html.js-rv</code> 并用 IntersectionObserver 补位。两条路径都以「内容默认可见」为基线——动效层挂了，站还是一份能读的文档。</div></div>
+</section>

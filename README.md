@@ -1,7 +1,8 @@
 # 源裕兴设计系统全典 · Sinotao Design System
 
-> **V38.0 · 原子设计版** — 守正 · 开物 · 共生
-> 从一粒墨到一座城：以 Brad Frost 原子设计（令牌 → 原子 → 分子 → 有机体 → 模板 → 页面）为骨架，把 V37 文字稿从零、从底层重建为可生长、可验证、可构建的设计系统。
+> **V39.0 · 墨经光纬（多页面站点版）** — 守正 · 开物 · 共生
+> 墨为经，光为纬：编辑性的纵向叙事（巨型展示字、编号索引、留白与朱墨分层）与仪表性的横向读数（实测量表、等宽数字、bento 看板）交织成一部**可以逛的**设计系统。
+> 以 Brad Frost 原子设计（令牌 → 原子 → 分子 → 有机体 → 模板 → 页面）为骨架，加上「动效」与「治理」两章，构成八章九页的独立站点。
 
 ## 目录结构
 
@@ -13,13 +14,15 @@ design-system/
 ├── build/
 │   ├── color.mjs              OKLCH ↔ sRGB、WCAG 对比度、色阶推导
 │   ├── chart-order.mjs        图表系列色推导 + CVD 安全顺序枚举（dataviz 六检）
-│   └── build.mjs              构建器：推导色阶 → 对比度门禁 → tokens.css → 装配全典
+│   └── build.mjs              构建器：推导色阶 → 对比度门禁 → tokens.css → 装配多页面站点 + 单文件全典
 ├── src/
-│   ├── css/                   ITCSS 分层：01 reset · 02 base · 03 atoms · 04 molecules · 05 organisms · 06 templates/pages · 07 站点外壳（封面 / 首页 / 目录 / ⌘K）
-│   ├── js/                    art.js（太极流纹生成式流场）· sino.js（组件行为 / 主题）· site.js（hash 路由 / 本章目录 / ⌘K / 栅格覆盖 / 图表）
-│   ├── partials/              站点章节：00 外壳（顶栏 / 导航抽屉）· 01 首页 · 02 令牌 · 03 原子 · 04 分子 · 05 有机体 · 06 模板 · 07 五实体页面 · 08 治理 · 09 页脚与浮层
-│   └── assets/                资产钩子：放入 logo.svg（替换标志）与 hero.jpg（品牌影像），构建时自动内联
-├── dist/                      构建产物（index.html 独立文档 · artifact.html 片段 · tokens.css · sino.css · tokens.resolved.json）
+│   ├── css/                   ITCSS 分层：01 reset · 02 base · 03 atoms · 04 molecules · 05 organisms
+│   │                          · 06 templates/pages · 07 站点外壳 · 08 首页 · 09 动效层
+│   ├── js/                    art.js（太极流纹生成式流场）· motion.js（动效编排层）
+│   │                          · sino.js（组件行为 / 主题）· site.js（双模路由 / 目录 / ⌘K / 图表）
+│   ├── partials/              00 外壳 · 01 首页 · 02–08 六层与治理 · 09 页脚与浮层 · 10 动效
+│   └── assets/                资产钩子：放入 logo.svg 与 hero.jpg，构建时自动内联
+├── dist/                      构建产物（见下）
 └── docs/v37-source.md         V37 文字稿（本版的输入与修正依据）
 ```
 
@@ -32,9 +35,44 @@ node build/build.mjs         # 生成 dist/*；任何 WCAG AA 门禁失败即退
 node build/build.mjs --report  # 仅打印色阶、对比度矩阵与门禁结果
 ```
 
-打开 `design-system/dist/index.html` 即可浏览全典（字体经 Google Fonts 加载）。站点为一个文件内的 hash 路由多页面：`#/`（首页）· `#/tokens` · `#/atoms` · `#/molecules` · `#/organisms` · `#/templates` · `#/pages` · `#/governance`，小节锚点形如 `#/tokens/tokens-color`。快捷键：⌘K 搜索，G 显示 12 列栅格。
+### 产物
 
-每个章节封面的流场画布由 `art.js` 按实体主色与藤黄实时生成（每章不同种子，随实体与暗色切换重绘，`prefers-reduced-motion` 下一次性渲染）。
+| 文件 | 说明 |
+|---|---|
+| `dist/index.html` | 首页（第 00 章 · 编辑式索引 + 实测仪表） |
+| `dist/tokens.html` `atoms.html` `molecules.html` `organisms.html` `templates.html` `pages.html` | L0–L5 六层，各自独立成页 |
+| `dist/motion.html` | **M · 动效与交互**：缓动族曲线、时长尺度、Stagger 实验室、FLIP、滚动驱动、书法运笔 |
+| `dist/governance.html` | G · 治理与变更日志 |
+| `dist/sino.css` · `dist/site.js` | 全站共享样式与脚本（`tokens.css` 已并入 `sino.css`） |
+| `dist/tokens.css` · `dist/tokens.resolved.json` | 令牌单独产物（供 Figma / Odoo / AntD 映射） |
+| `dist/artifact.html` | 单文件全典（hash 路由），供 Artifact 发布与离线分发 |
+
+**建议用本地服务器打开**（跨文档 View Transition 需要同源 http）：
+
+```bash
+npx http-server design-system/dist -p 8080   # 然后访问 http://127.0.0.1:8080/
+```
+
+直接双击 `dist/index.html` 亦可正常浏览，仅跨页过渡动画降级为普通跳转。
+
+## 站点交互
+
+| 操作 | 效果 |
+|---|---|
+| `⌘K` / `Ctrl K` | 跨页检索：章节 + 全部小节（索引由构建时生成） |
+| `G` | 叠加 12 列栅格 |
+| `←` `→` | 上一章 / 下一章 |
+| 顶栏色点 | 五实体切换（`data-theme`，选择跨页持久化） |
+| 顶栏三态 | 自动 / 浅色 / 暗色（`data-color-scheme`） |
+| 「目录」 | 全站索引抽屉（逐行 stagger 入场） |
+
+## 动效契约
+
+- 只动 `transform` 与 `opacity`（合成器线程），进场慢、退场快（退场 ≈ 进场 × 0.65）。
+- 缓动族只有六条：`--ease-out / in / standard / elegant / spring / linear`，`linear` 仅用于循环与滚动绑定。
+- 滚动揭示优先走原生 `animation-timeline: view()`；不支持时才由 `motion.js` 加 `html.js-rv` 并用 IntersectionObserver 补位。**两条路径都以「内容默认可见」为基线**——动效层挂了，站仍是一份能读的文档。
+- `prefers-reduced-motion: reduce` 下不是全关，而是给终态：关闭大位移、视差、跑马灯与 scrub，保留透明度变化。
+- 跨页连续性走 `@view-transition { navigation: auto }`；页内共享元素用 FLIP（动效章有可点的现场演示）。
 
 ## 六层结构与类名前缀
 
@@ -46,8 +84,11 @@ node build/build.mjs --report  # 仅打印色阶、对比度矩阵与门禁结�
 | L3 有机体 | `.o-` | `.o-table` | 可独立运作，不互相嵌套为分子 |
 | L4 模板 | `.t-` | `.t-dashboard` | 只定结构，不含真实数据 |
 | L5 页面 | `.p-` + `[data-theme]` | `.p-frame[data-theme="ste"]` | 真实内容；五实体只换映射 |
+| 站点层 | `.site- .hm- .hmx- .cover .cx- .toc .mo-` | `.hmx__row` | 只消费上述令牌与组件，不新造色值 |
 
 五实体切换：`data-theme="stg|ste|sti|sth|edu"`；暗色三态：`data-color-scheme="auto|light|dark"` / 宿主 `:root[data-theme]` / `prefers-color-scheme`。
+
+每章封面的流场画布由 `art.js` 按实体主色与藤黄实时生成（每章不同种子，随实体与暗色切换重绘，`prefers-reduced-motion` 下一次性渲染）。
 
 ## 构建门禁（以数据守正）
 
@@ -55,6 +96,15 @@ node build/build.mjs --report  # 仅打印色阶、对比度矩阵与门禁结�
 - 浅色可访问主色：从 600 阶向深处取第一阶满足「文字 ≥ 4.5:1 且宣纸白压其上 ≥ 4.5:1」；暗色从 300 阶向浅处取。
 - 20 项语义色对比度实测（正文 / 次文 / 占位 / 边界 / 四语义色 × 两模式）。
 - 数据墨色六检：明度带、色度 ≥ 0.10、CVD ΔE（Machado 2009）、正常视觉 ΔE、对比 ≥ 3:1、固定顺序。
+
+## V38 → V39 的主要变化
+
+1. **真·多页面**：构建器改为每章输出一份独立 HTML（`index/tokens/…/motion/governance`），共享 `sino.css` 与 `site.js`；`artifact.html` 保留 hash 路由的单文件全典。`site.js` 双模自适应。
+2. **新增 M 章「动效与交互」**：六目的表、缓动族曲线可视化与实时播放、时长尺度、进退场对照、Stagger 实验室（可调参）、FLIP 共享元素、滚动驱动演示、永字八法运笔、状态编排、无障碍与性能预算。
+3. **版式全面重排（墨经光纬）**：首页改为「巨型展示字 + 实测仪表面板 + 编号索引 + 五实体实时看板 + 门禁数据带」；章节封面改为「编号导轨 + 分行遮罩标题 + 本章索引面板」；顶栏加阅读进度与移动墨痕指示；页脚加编织跑马灯。
+4. **动效层独立成册**（`09-motion.css` + `motion.js`）：滚动揭示双路径、中文按视觉行分组的标题揭示、数字滚动、聚光 / 磁吸 / 倾斜、指针尾随环、封面视差（带位移钳制）、跨文档视图过渡。
+5. **⌘K 跨页检索**：搜索索引在构建时从各章小节提取，写入 `SINO_DATA.search`。
+6. **可访问性**：`prefers-reduced-motion` 全量降级契约；顶栏工具提示改为下挂；移动端顶栏收敛、无横向溢出。
 
 ## 对 V37 文字稿的主要修正
 
