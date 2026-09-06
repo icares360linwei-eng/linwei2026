@@ -222,7 +222,16 @@ const resolveAll = scope => Object.fromEntries(
     .map(k => { try { return [k, R(`var(${k})`, scope)]; } catch { return [k, null]; } })
     .filter(([, v]) => v !== null)
 );
-const counts = { canvas: Object.keys(C.base).length + Object.keys(C.dark).length + ENTITIES.length * 9, files: C.order.length, fixes: nFix };
+const SEMANTIC_RE = /^--(surface-|text-|border-(subtle|default|strong|brand|inverse)|state-|focus-ring|scrim|hairline$|seal$)/;
+const COMPONENT_RE = /^--(btn-|field-|card-|table-|overlay-|tooltip-)/;
+const bucket = k => COMPONENT_RE.test(k) ? 'component' : SEMANTIC_RE.test(k) ? 'semantic' : 'primitive';
+const counts = (() => {
+  const c = { primitive: 0, semantic: 0, component: 0 };
+  for (const k of Object.keys(C.base)) c[bucket(k)]++;
+  const themed = Object.values(C.themes).reduce((n, m) => n + Object.keys(m).length, 0);
+  const dark = Object.keys(C.dark).length;
+  return { ...c, themed, dark, total: c.primitive + c.semantic + c.component + themed + dark, files: C.order.length, fixes: nFix };
+})();
 const resolved = {
   $name: '源裕兴设计系统全典 · Design Tokens',
   $version: VERSION, $edition: EDITION,
@@ -417,10 +426,10 @@ const gen = {
   'version': () => VERSION,
   'edition': () => EDITION,
   'build-date': () => new Date().toISOString().slice(0, 10),
-  'token-count': () => String(counts.canvas),
-  'token-count-primitive': () => String(Object.keys(C.base).filter(k => /^--(ink|zhu|gold|stg|ste|sti|sth|edu|dv|success|warning|error|info)-/.test(k)).length),
-  'token-count-semantic': () => String(Object.keys(C.base).filter(k => /^--(surface|text|border|state|focus|scrim)/.test(k)).length),
-  'token-count-component': () => String(Object.keys(C.base).filter(k => /^--(btn|field|card|table|overlay|tooltip|hairline|seal)/.test(k)).length),
+  'token-count': () => String(counts.total),
+  'token-count-primitive': () => String(counts.primitive),
+  'token-count-semantic': () => String(counts.semantic),
+  'token-count-component': () => String(counts.component),
   'component-token-count': () => '34',
   'gate-count': () => String(checks.length),
   'fix-count': () => String(nFix),

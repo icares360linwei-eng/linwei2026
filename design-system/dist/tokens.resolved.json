@@ -3,9 +3,14 @@
   "$version": "40.0.0",
   "$edition": "守正 · 画布对齐版",
   "$authority": "design-canvas/tokens/*.css（Claude Design b6947ee9）· 本文件为构建产物，勿手改",
-  "builtAt": "2026-09-06T11:10:37.388Z",
+  "builtAt": "2026-09-06T11:21:37.233Z",
   "counts": {
-    "canvas": 369,
+    "primitive": 209,
+    "semantic": 39,
+    "component": 39,
+    "themed": 45,
+    "dark": 37,
+    "total": 369,
     "files": 12,
     "fixes": 21
   },

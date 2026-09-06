@@ -12,11 +12,11 @@
     <div class="m-kpi"><div class="m-kpi__label">原始令牌 Primitive</div><div class="m-kpi__value"><!-- @gen:token-count-primitive --></div><div class="m-kpi__foot"><span class="muted t-caption">色阶 · 字阶 · 间距 · 圆角 · 动效 · 层级 · 断点</span></div></div>
     <div class="m-kpi"><div class="m-kpi__label">语义令牌 Semantic</div><div class="m-kpi__value"><!-- @gen:token-count-semantic --></div><div class="m-kpi__foot"><span class="muted t-caption">浅色一套完整定义 · 暗色三态重映射 · 五实体映射</span></div></div>
     <div class="m-kpi"><div class="m-kpi__label">组件令牌 Component</div><div class="m-kpi__value"><!-- @gen:token-count-component --></div><div class="m-kpi__foot"><span class="muted t-caption"><!-- @gen:component-token-count --> 个组件族，只引用语义层</span></div></div>
-    <div class="m-kpi"><div class="m-kpi__label">合计</div><div class="m-kpi__value"><!-- @gen:token-count --></div><div class="m-kpi__foot"><span class="muted t-caption">由 tokens.json 构建生成，人工零维护</span></div></div>
+    <div class="m-kpi"><div class="m-kpi__label">合计</div><div class="m-kpi__value"><!-- @gen:token-count --></div><div class="m-kpi__foot"><span class="muted t-caption">由 design-canvas 十二个令牌文件解析而来，构建产物不手改</span></div></div>
   </div>
 
   <!-- ───────── 色彩 ───────── -->
-  <div class="cx-sub" id="tokens-color"><span class="cx-sub__n">0.1</span><h3 class="cx-sub__t">色彩：五实体 · 宣纸墨色 · 藤黄</h3><span class="cx-sub__d">OKLCH 推导十阶，600 阶锚点原值锁定</span></div>
+  <div class="cx-sub" id="tokens-color"><span class="cx-sub__n">0.1</span><h3 class="cx-sub__t">色彩：五实体 · 宣纸墨色 · 古铜金</h3><span class="cx-sub__d">OKLCH 推导十阶，600 阶锚点原值锁定</span></div>
   <p class="cx-p">五实体主色以 V6.0 权威色值为锚点（600 阶），其余九阶在 OKLCH 空间以「同色相、明度等距、色度两端收窄」推导，并映射回 sRGB 色域。这样五套色阶的每一级亮度台阶都感知均匀，五个 300 阶摆在一起像一家人。点击任一色块复制令牌名。</p>
   <div class="cx-stack" style="margin-top:20px">
     <!-- @gen:entity-scales -->
@@ -24,55 +24,55 @@
     <!-- @gen:ink-scale -->
   </div>
 
-  <h4 class="cx-h4">宣纸墨色九阶：角色分配与实测对比度</h4>
+  <h4 class="cx-h4">宣纸墨色十一阶：角色分配与实测对比度</h4>
   <div class="cx-table-wrap"><!-- @gen:ink-table --></div>
 
   <h4 class="cx-h4">对比度矩阵：以数据守正 <span class="a-badge a-badge--gold">构建时实测</span></h4>
-  <p class="cx-p">下表由构建脚本按 WCAG 2.x 相对亮度实测。它揭示了 V37 文字稿中的两处偏差：沧浪青 #208F9B 在宣纸白上只有 3.73:1（文字稿写 4.8:1），达不到正文 AA；五实体 600 阶在浓墨底上全部低于 2.3:1（文字稿写「4.5:1 大字」）。因此本典引入两条推导规则——浅色「可访问主色」从 600 阶起向深处选取第一阶同时满足「文字 ≥ 4.5:1」与「宣纸白压其上 ≥ 4.5:1」的阶；暗色主色从 300 阶起向浅处选取。品牌识别色（<code>--c-brand</code>）始终是锚点原值，可访问主色（<code>--c-primary</code>）是它在交互场合的替身。</p>
+  <p class="cx-p">下表由构建脚本按 WCAG 2.x 相对亮度实测。它揭示了 V37 文字稿中的两处偏差：石青 #2D5257 在宣纸白上只有 3.73:1（文字稿写 4.8:1），达不到正文 AA；五实体 600 阶在浓墨底上全部低于 2.3:1（文字稿写「4.5:1 大字」）。因此本典引入两条推导规则——浅色「可访问主色」从 600 阶起向深处选取第一阶同时满足「文字 ≥ 4.5:1」与「宣纸白压其上 ≥ 4.5:1」的阶；暗色主色从 300 阶起向浅处选取。品牌识别色（<code>--brand-600</code>）始终是锚点原值，可访问主色（<code>--brand-600</code>）是它在交互场合的替身。</p>
   <div class="cx-table-wrap" style="margin-top:14px"><!-- @gen:contrast-matrix --></div>
   <details style="margin-top:12px"><summary class="a-btn a-btn--text a-btn--s" style="display:inline-flex">查看 20 项语义色门禁（构建失败即阻断）</summary><div class="cx-table-wrap" style="margin-top:10px"><!-- @gen:semantic-checks --></div></details>
 
   <h4 class="cx-h4">语义角色：一套完整定义在裸选择器上，暗色只重映射</h4>
   <div class="role-list">
-    <div class="role"><span class="role__chip" style="--sw:var(--c-background)"></span><div><div class="role__name">--c-background</div><div class="role__use">页面底 · Ink 100 / 暗 Ink 900</div></div></div>
-    <div class="role"><span class="role__chip" style="--sw:var(--c-surface)"></span><div><div class="role__name">--c-surface</div><div class="role__use">卡片与表面 · Ink 50 / 暗 Ink 800</div></div></div>
-    <div class="role"><span class="role__chip" style="--sw:var(--c-surfaceContainer)"></span><div><div class="role__name">--c-surfaceContainer</div><div class="role__use">表头、样张栏、代码底</div></div></div>
-    <div class="role"><span class="role__chip" style="--sw:var(--c-onSurface)"></span><div><div class="role__name">--c-onSurface</div><div class="role__use">正文 · Ink 800（14.15:1）</div></div></div>
-    <div class="role"><span class="role__chip" style="--sw:var(--c-onSurfaceVariant)"></span><div><div class="role__name">--c-onSurfaceVariant</div><div class="role__use">次要文字 · Ink 600（5.67:1）</div></div></div>
-    <div class="role"><span class="role__chip" style="--sw:var(--c-outline)"></span><div><div class="role__name">--c-outline</div><div class="role__use">表单边界 · Ink 500（3.55:1 ≥ 3:1）</div></div></div>
-    <div class="role"><span class="role__chip" style="--sw:var(--c-outlineVariant)"></span><div><div class="role__name">--c-outlineVariant</div><div class="role__use">分割线 · Ink 300</div></div></div>
-    <div class="role"><span class="role__chip" style="--sw:var(--c-outlineFaint)"></span><div><div class="role__name">--c-outlineFaint</div><div class="role__use">卡片发丝线 · Ink 200</div></div></div>
-    <div class="role"><span class="role__chip" style="--sw:var(--c-brand)"></span><div><div class="role__name">--c-brand</div><div class="role__use">品牌识别色 · 实体 600 锚点原值</div></div></div>
-    <div class="role"><span class="role__chip" style="--sw:var(--c-primary)"></span><div><div class="role__name">--c-primary</div><div class="role__use">可访问主色 · 交互 / 链接 / 焦点</div></div></div>
-    <div class="role"><span class="role__chip" style="--sw:var(--c-onPrimary)"></span><div><div class="role__name">--c-onPrimary</div><div class="role__use">主色上的文字 · Ink 50 / 暗 Ink 900</div></div></div>
-    <div class="role"><span class="role__chip" style="--sw:var(--c-primaryContainer)"></span><div><div class="role__name">--c-primaryContainer</div><div class="role__use">选中导航、徽标底 · 实体 100 / 暗 800</div></div></div>
-    <div class="role"><span class="role__chip" style="--sw:var(--c-primarySubtle)"></span><div><div class="role__name">--c-primarySubtle</div><div class="role__use">文字按钮悬停、极轻强调底</div></div></div>
-    <div class="role"><span class="role__chip" style="--sw:var(--c-tertiary)"></span><div><div class="role__name">--c-tertiary</div><div class="role__use">藤黄署名 CTA 底（配深色文字）</div></div></div>
-    <div class="role"><span class="role__chip" style="--sw:var(--c-goldText)"></span><div><div class="role__name">--c-goldText</div><div class="role__use">可作文字的暗金 · Gold 700（7.29:1）</div></div></div>
-    <div class="role"><span class="role__chip" style="--sw:var(--c-vermilion)"></span><div><div class="role__name">--c-vermilion</div><div class="role__use">一点朱 · 印章、章号、修正标记</div></div></div>
-    <div class="role"><span class="role__chip" style="--sw:var(--c-success)"></span><div><div class="role__name">--c-success</div><div class="role__use">成功 · 苍木绿系（暗色取 300 阶）</div></div></div>
-    <div class="role"><span class="role__chip" style="--sw:var(--c-warning)"></span><div><div class="role__name">--c-warning</div><div class="role__use">警告 · Gold 700 文字 / 暗 Gold 300</div></div></div>
-    <div class="role"><span class="role__chip" style="--sw:var(--c-error)"></span><div><div class="role__name">--c-error</div><div class="role__use">错误 · 朱砂系</div></div></div>
-    <div class="role"><span class="role__chip" style="--sw:var(--c-info)"></span><div><div class="role__name">--c-info</div><div class="role__use">信息 · 深空蓝系</div></div></div>
-    <div class="role"><span class="role__chip" style="--sw:var(--c-focusRing)"></span><div><div class="role__name">--c-focusRing / --c-focusHalo</div><div class="role__use">2px 焦点环 + 3px 22% 光环</div></div></div>
-    <div class="role"><span class="role__chip" style="--sw:var(--c-selectedBg)"></span><div><div class="role__name">--c-selectedBg</div><div class="role__use">选中行 · 主色 7% 混入表面</div></div></div>
-    <div class="role"><span class="role__chip" style="--sw:var(--c-scrim)"></span><div><div class="role__name">--c-scrim</div><div class="role__use">遮罩 · 玄墨 48% / 暗 72%，非纯黑</div></div></div>
-    <div class="role"><span class="role__chip" style="--sw:var(--c-inverseSurface)"></span><div><div class="role__name">--c-inverseSurface</div><div class="role__use">工具提示、代码块底</div></div></div>
+    <div class="role"><span class="role__chip" style="--sw:var(--surface-page)"></span><div><div class="role__name">--surface-page</div><div class="role__use">页面底 · Ink 100 / 暗 Ink 900</div></div></div>
+    <div class="role"><span class="role__chip" style="--sw:var(--surface-card)"></span><div><div class="role__name">--surface-card</div><div class="role__use">卡片与表面 · Ink 50 / 暗 Ink 800</div></div></div>
+    <div class="role"><span class="role__chip" style="--sw:var(--surface-sunken)"></span><div><div class="role__name">--surface-sunken</div><div class="role__use">表头、样张栏、代码底</div></div></div>
+    <div class="role"><span class="role__chip" style="--sw:var(--text-body)"></span><div><div class="role__name">--text-body</div><div class="role__use">正文 · Ink 800（14.15:1）</div></div></div>
+    <div class="role"><span class="role__chip" style="--sw:var(--text-muted)"></span><div><div class="role__name">--text-muted</div><div class="role__use">次要文字 · Ink 600（5.67:1）</div></div></div>
+    <div class="role"><span class="role__chip" style="--sw:var(--border-strong)"></span><div><div class="role__name">--border-strong</div><div class="role__use">表单边界 · Ink 500（3.55:1 ≥ 3:1）</div></div></div>
+    <div class="role"><span class="role__chip" style="--sw:var(--border-default)"></span><div><div class="role__name">--border-default</div><div class="role__use">分割线 · Ink 300</div></div></div>
+    <div class="role"><span class="role__chip" style="--sw:var(--border-subtle)"></span><div><div class="role__name">--border-subtle</div><div class="role__use">卡片发丝线 · Ink 200</div></div></div>
+    <div class="role"><span class="role__chip" style="--sw:var(--brand-600)"></span><div><div class="role__name">--brand-600</div><div class="role__use">品牌识别色 · 实体 600 锚点原值</div></div></div>
+    <div class="role"><span class="role__chip" style="--sw:var(--brand-600)"></span><div><div class="role__name">--brand-600</div><div class="role__use">可访问主色 · 交互 / 链接 / 焦点</div></div></div>
+    <div class="role"><span class="role__chip" style="--sw:var(--text-on-brand)"></span><div><div class="role__name">--text-on-brand</div><div class="role__use">主色上的文字 · Ink 50 / 暗 Ink 900</div></div></div>
+    <div class="role"><span class="role__chip" style="--sw:var(--surface-brand-subtle)"></span><div><div class="role__name">--surface-brand-subtle</div><div class="role__use">选中导航、徽标底 · 实体 100 / 暗 800</div></div></div>
+    <div class="role"><span class="role__chip" style="--sw:var(--surface-brand-subtle)"></span><div><div class="role__name">--surface-brand-subtle</div><div class="role__use">文字按钮悬停、极轻强调底</div></div></div>
+    <div class="role"><span class="role__chip" style="--sw:var(--gold-400)"></span><div><div class="role__name">--gold-400</div><div class="role__use">古铜金署名 CTA 底（配深色文字）</div></div></div>
+    <div class="role"><span class="role__chip" style="--sw:var(--text-gold)"></span><div><div class="role__name">--text-gold</div><div class="role__use">可作文字的暗金 · Gold 700（7.29:1）</div></div></div>
+    <div class="role"><span class="role__chip" style="--sw:var(--seal)"></span><div><div class="role__name">--seal</div><div class="role__use">一点朱 · 印章、章号、修正标记</div></div></div>
+    <div class="role"><span class="role__chip" style="--sw:var(--state-success)"></span><div><div class="role__name">--state-success</div><div class="role__use">成功 · 松烟绿系（暗色取 300 阶）</div></div></div>
+    <div class="role"><span class="role__chip" style="--sw:var(--state-warning)"></span><div><div class="role__name">--state-warning</div><div class="role__use">警告 · Gold 700 文字 / 暗 Gold 300</div></div></div>
+    <div class="role"><span class="role__chip" style="--sw:var(--state-error)"></span><div><div class="role__name">--state-error</div><div class="role__use">错误 · 朱砂系</div></div></div>
+    <div class="role"><span class="role__chip" style="--sw:var(--state-info)"></span><div><div class="role__name">--state-info</div><div class="role__use">信息 · 藏青系</div></div></div>
+    <div class="role"><span class="role__chip" style="--sw:var(--focus-ring-color)"></span><div><div class="role__name">--focus-ring-color / --ring-focus</div><div class="role__use">2px 焦点环 + 3px 22% 光环</div></div></div>
+    <div class="role"><span class="role__chip" style="--sw:var(--surface-selected)"></span><div><div class="role__name">--surface-selected</div><div class="role__use">选中行 · 主色 7% 混入表面</div></div></div>
+    <div class="role"><span class="role__chip" style="--sw:var(--scrim)"></span><div><div class="role__name">--scrim</div><div class="role__use">遮罩 · 玄墨 48% / 暗 72%，非纯黑</div></div></div>
+    <div class="role"><span class="role__chip" style="--sw:var(--surface-inverse)"></span><div><div class="role__name">--surface-inverse</div><div class="role__use">工具提示、代码块底</div></div></div>
   </div>
 
   <div class="cx-grid" style="margin-top:24px">
     <div class="c6">
       <h4 class="cx-h4" style="margin-top:0">60 · 30 · 10 法则（Token 级）</h4>
       <div class="cx-spec"><div class="cx-spec__body cx-spec__body--col" style="gap:10px">
-        <div style="display:flex;height:28px;border-radius:6px;overflow:hidden;border:1px solid var(--c-outlineFaint)"><div style="flex:6;background:var(--c-background)"></div><div style="flex:3;background:var(--c-primary)"></div><div style="flex:1;background:var(--c-tertiary)"></div></div>
-        <ul class="cx-anatomy__list"><li><b>60%</b>&nbsp;中性表面——只允许引用 Ink 色阶（<code>--c-background / surface / outline*</code>）。</li><li><b>30%</b>&nbsp;主色系——<code>--c-primary / primaryContainer / brand</code>，随 <code>data-theme</code> 切换。</li><li><b>10%</b>&nbsp;藤黄 + 语义 + 数据墨色——可在构建时 lint：任何组件底色引用 <code>--gold-*</code> 超过一处即警告。</li></ul>
+        <div style="display:flex;height:28px;border-radius:6px;overflow:hidden;border:1px solid var(--border-subtle)"><div style="flex:6;background:var(--surface-page)"></div><div style="flex:3;background:var(--brand-600)"></div><div style="flex:1;background:var(--gold-400)"></div></div>
+        <ul class="cx-anatomy__list"><li><b>60%</b>&nbsp;中性表面——只允许引用 Ink 色阶（<code>--surface-page / surface / outline*</code>）。</li><li><b>30%</b>&nbsp;主色系——<code>--brand-600 / primaryContainer / brand</code>，随 <code>data-theme</code> 切换。</li><li><b>10%</b>&nbsp;古铜金 + 语义 + 数据墨色——可在构建时 lint：任何组件底色引用 <code>--gold-*</code> 超过一处即警告。</li></ul>
       </div></div>
     </div>
     <div class="c6">
-      <h4 class="cx-h4" style="margin-top:0">藤黄戒律 <span class="a-badge a-badge--error">V38 修正</span></h4>
+      <h4 class="cx-h4" style="margin-top:0">古铜金戒律 <span class="a-badge a-badge--error">V38 修正</span></h4>
       <div class="cx-dodont">
-        <div class="cx-dodont__col cx-dodont__col--do"><div class="cx-dodont__head"><svg class="a-icon"><use href="#i-check-circle"/></svg>可以</div><ul class="cx-dodont__body"><li>藤黄 400 作 CTA 底，配玄墨文字（8.04:1）。</li><li>藤黄 500 作金线、署名分隔、锚点描边。</li><li>暗金 700 作浅底上的文字（7.29:1）。</li></ul></div>
-        <div class="cx-dodont__col cx-dodont__col--dont"><div class="cx-dodont__head"><svg class="a-icon"><use href="#i-x-circle"/></svg>不可以</div><ul class="cx-dodont__body"><li>藤黄 400 作宣纸白上的文字（仅 2.17:1）。</li><li>V37「绛紫 → 金色 135° 渐变主按钮」配白字：金色端不足 3:1，已废止；渐变只留给 Hero 装饰面。</li><li>用金色表达「警告」文字——警告文字用 Gold 700。</li></ul></div>
+        <div class="cx-dodont__col cx-dodont__col--do"><div class="cx-dodont__head"><svg class="a-icon"><use href="#i-check-circle"/></svg>可以</div><ul class="cx-dodont__body"><li>古铜金 400 作 CTA 底，配玄墨文字（8.04:1）。</li><li>古铜金 500 作金线、署名分隔、锚点描边。</li><li>暗金 700 作浅底上的文字（7.29:1）。</li></ul></div>
+        <div class="cx-dodont__col cx-dodont__col--dont"><div class="cx-dodont__head"><svg class="a-icon"><use href="#i-x-circle"/></svg>不可以</div><ul class="cx-dodont__body"><li>古铜金 400 作宣纸白上的文字（仅 2.17:1）。</li><li>V37「玄紫 → 金色 135° 渐变主按钮」配白字：金色端不足 3:1，已废止；渐变只留给 Hero 装饰面。</li><li>用金色表达「警告」文字——警告文字用 Gold 700。</li></ul></div>
       </div>
     </div>
   </div>
@@ -82,22 +82,22 @@
     <div class="c7">
       <p class="cx-p">暗色是独立设计：页面底取玄墨 Ink 900，表面取浓墨 Ink 800，主色取实体 300 阶（提亮 + 微降色度），投影换成描边 + 微光。解析有三态——宿主显式选择（<code>:root[data-theme="dark|light"]</code>）、系统偏好（<code>prefers-color-scheme</code>）、本典自身的 <code>data-color-scheme="auto|light|dark"</code>；显式选择永远胜过系统偏好，且完整的浅色定义放在裸选择器上，保证任何一态都不会出现「一种主题的文字落在另一种主题的底上」。</p>
       <div class="cx-code" style="margin-top:12px"><span class="cx-code__lang">css · 由 build.mjs 生成</span><pre><code>/* 浅色：完整定义在裸选择器上，嵌套 [data-theme] 重新解析 */
-.sino, .sino [data-theme] { color-scheme: light; --c-surface: var(--ink-50); … }
+.sino, .sino [data-theme] { color-scheme: light; --surface-card: var(--ink-50); … }
 
 /* 暗色三态：本典显式 / 宿主显式 / 系统偏好（显式优先） */
 .sino[data-color-scheme="dark"],
-:root[data-theme="dark"] .sino:not([data-color-scheme="light"]) { --c-surface: var(--ink-800); … }
+:root[data-theme="dark"] .sino:not([data-color-scheme="light"]) { --surface-card: var(--ink-800); … }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) .sino:not([data-color-scheme="light"]) { … }
 }
 /* 五实体：只替换映射 */
-[data-theme="ste"] { --e-600: var(--ste-600); --e-primary-light: var(--ste-600); --e-primary-dark: var(--ste-300); }</code></pre></div>
+[data-theme="ste"] { --brand-600: var(--ste-600); --brand-600: var(--ste-600); --brand-600: var(--ste-300); }</code></pre></div>
     </div>
     <div class="c5">
       <div class="cx-spec"><div class="cx-spec__bar"><b>暗色样张</b><span class="a-badge">嵌套 data-color-scheme="dark"</span></div>
-        <div class="cx-spec__body cx-spec__body--col" data-color-scheme="dark" data-theme="stg" style="background:var(--c-background);gap:14px">
+        <div class="cx-spec__body cx-spec__body--col" data-color-scheme="dark" data-theme="stg" style="background:var(--surface-page);gap:14px">
           <div class="m-kpi"><div class="m-kpi__label">集团营收 · 本月</div><div class="m-kpi__value">1.28<small>亿</small></div><div class="m-kpi__foot"><span class="m-kpi__delta m-kpi__delta--up"><svg class="a-icon"><use href="#i-arrow-up-right"/></svg>+8.4%<span class="m-kpi__delta-ctx">较上月</span></span><span data-spark="42,48,46,52,55,53,58,61,60,66,70,74"></span></div></div>
-          <div class="cx-row"><button class="a-btn a-btn--primary" type="button">主操作</button><button class="a-btn a-btn--secondary" type="button">次操作</button><button class="a-btn a-btn--gold" type="button">藤黄 CTA</button><span class="a-badge a-badge--success"><span class="a-dot"></span>运行中</span></div>
+          <div class="cx-row"><button class="a-btn a-btn--primary" type="button">主操作</button><button class="a-btn a-btn--secondary" type="button">次操作</button><button class="a-btn a-btn--gold" type="button">古铜金 CTA</button><span class="a-badge a-badge--success"><span class="a-dot"></span>运行中</span></div>
           <div class="m-field"><label class="a-label" for="dk-in">邮箱</label><div class="m-field__control"><input class="a-input" id="dk-in" placeholder="name@sinotao.com"></div><div class="m-field__msg"><span class="a-help">暗色下占位符取 Ink 400（7.41:1）</span></div></div>
         </div>
       </div>
@@ -107,15 +107,15 @@
   <h4 class="cx-h4">数据墨色：与实体同色相，经 CVD 六检枚举的固定顺序 <span class="a-badge a-badge--gold">验证通过</span></h4>
   <div class="cx-grid">
     <div class="c7">
-      <p class="cx-p">图表系列色不能直接用品牌色：沧浪青与藤黄的色度低于 0.10，在图表里读作灰；实体 300 阶又超出暗色明度带。因此本典单独推导「数据墨色」——与实体同色相，色度提升到 ≥ 0.11，明度落在各模式色带内——再对 5! 种顺序逐一运行色觉缺陷模拟（Machado 2009），取相邻对 ΔE 最小值最大的顺序。槽 1 固定为母品牌绛紫。颜色跟随实体而非排名：筛选掉一个系列，幸存者不换色。</p>
+      <p class="cx-p">图表系列色不能直接用品牌色：石青与古铜金的色度低于 0.10，在图表里读作灰；实体 300 阶又超出暗色明度带。因此本典单独推导「数据墨色」——与实体同色相，色度提升到 ≥ 0.11，明度落在各模式色带内——再对 5! 种顺序逐一运行色觉缺陷模拟（Machado 2009），取相邻对 ΔE 最小值最大的顺序。槽 1 固定为母品牌玄紫。颜色跟随实体而非排名：筛选掉一个系列，幸存者不换色。</p>
       <div class="cx-row" style="margin-top:14px;gap:6px">
-        <span class="a-badge" style="background:var(--c-series1);color:var(--c-onPrimary)">1 · STG</span><span class="a-badge" style="background:var(--c-series2);color:var(--ink-900)">2 · 藤黄</span><span class="a-badge" style="background:var(--c-series3);color:var(--ink-900)">3 · STH</span><span class="a-badge" style="background:var(--c-series4);color:var(--ink-900)">4 · EDU</span><span class="a-badge" style="background:var(--c-series5);color:var(--c-onPrimary)">5 · STI</span><span class="a-badge" style="background:var(--c-series6);color:var(--c-onPrimary)">6 · STE</span>
+        <span class="a-badge" style="background:var(--dv-1);color:var(--text-on-brand)">1 · STG</span><span class="a-badge" style="background:var(--dv-2);color:var(--ink-900)">2 · 古铜金</span><span class="a-badge" style="background:var(--dv-3);color:var(--ink-900)">3 · STH</span><span class="a-badge" style="background:var(--dv-4);color:var(--ink-900)">4 · EDU</span><span class="a-badge" style="background:var(--dv-5);color:var(--text-on-brand)">5 · STI</span><span class="a-badge" style="background:var(--dv-6);color:var(--text-on-brand)">6 · STE</span>
       </div>
       <ul class="cx-anatomy__list" style="margin-top:14px"><li>浅色：明度带 0.43–0.77 ✓ · 色度 ≥ 0.10 ✓ · 相邻对最差 CVD ΔE 15.5（目标 ≥ 8）✓ · 正常视觉 ΔE 20.1（底线 15）✓ · 对宣纸白 ≥ 3:1 ✓</li><li>暗色：明度带 0.48–0.67 ✓ · 相邻对最差 CVD ΔE 13.9 ✓ · 正常视觉 ΔE 20.1 ✓ · 对浓墨 ≥ 3:1 ✓</li><li>状态色（成功 / 警告 / 错误）永不充当「系列 4」，且永远带图标与文字。</li></ul>
     </div>
     <div class="c5">
       <div class="o-chart"><div class="o-chart__head"><div><div class="o-chart__title">六槽数据墨色 · 示意</div><div class="o-chart__sub">柱宽 ≤ 24px · 2px 表面间隙 · 发丝网格</div></div></div>
-        <div class="o-chart__plot" data-chart='{"type":"bar","labels":["STG","藤黄","STH","EDU","STI","STE"],"series":[{"name":"示意","data":[86,72,64,58,52,47]}],"colors":["var(--c-series1)","var(--c-series2)","var(--c-series3)","var(--c-series4)","var(--c-series5)","var(--c-series6)"],"height":200}'></div>
+        <div class="o-chart__plot" data-chart='{"type":"bar","labels":["STG","古铜金","STH","EDU","STI","STE"],"series":[{"name":"示意","data":[86,72,64,58,52,47]}],"colors":["var(--dv-1)","var(--dv-2)","var(--dv-3)","var(--dv-4)","var(--dv-5)","var(--dv-6)"],"height":200}'></div>
       </div>
     </div>
   </div>
@@ -123,8 +123,8 @@
   <h4 class="cx-h4">实时对比度计算器</h4>
   <div class="cx-spec"><div class="cx-spec__body">
     <form class="contrast-tool" id="contrast-tool" onsubmit="return false" style="width:100%">
-      <div class="m-field"><label class="a-label" for="ct-fg">前景</label><div class="cx-row" style="gap:8px;flex-wrap:nowrap"><input type="color" name="fg" id="ct-fg" value="#851ea3" style="width:44px;height:40px;border:1px solid var(--c-outline);border-radius:8px;background:none;padding:2px"><input class="a-input mono" name="fgHex" value="#851EA3" aria-label="前景 Hex"></div></div>
-      <div class="m-field"><label class="a-label" for="ct-bg">背景</label><div class="cx-row" style="gap:8px;flex-wrap:nowrap"><input type="color" name="bg" id="ct-bg" value="#fffbf5" style="width:44px;height:40px;border:1px solid var(--c-outline);border-radius:8px;background:none;padding:2px"><input class="a-input mono" name="bgHex" value="#FFFBF5" aria-label="背景 Hex"></div></div>
+      <div class="m-field"><label class="a-label" for="ct-fg">前景</label><div class="cx-row" style="gap:8px;flex-wrap:nowrap"><input type="color" name="fg" id="ct-fg" value="#851ea3" style="width:44px;height:40px;border:1px solid var(--border-strong);border-radius:8px;background:none;padding:2px"><input class="a-input mono" name="fgHex" value="#463154" aria-label="前景 Hex"></div></div>
+      <div class="m-field"><label class="a-label" for="ct-bg">背景</label><div class="cx-row" style="gap:8px;flex-wrap:nowrap"><input type="color" name="bg" id="ct-bg" value="#fffbf5" style="width:44px;height:40px;border:1px solid var(--border-strong);border-radius:8px;background:none;padding:2px"><input class="a-input mono" name="bgHex" value="#FFFBF5" aria-label="背景 Hex"></div></div>
       <div class="contrast-tool__result"><div class="contrast-tool__preview">Aa 文</div><div class="contrast-tool__ratio">—</div></div>
     </form>
   </div></div>
@@ -132,11 +132,11 @@
   <!-- ───────── 字体 ───────── -->
   <div class="cx-sub" id="tokens-type"><span class="cx-sub__n">0.2</span><h3 class="cx-sub__t">字体：五族字体栈 · 15 级字阶 · 力起秀承</h3></div>
   <div class="cx-table-wrap"><table class="a-table a-table--data"><thead><tr><th>Token</th><th>字体</th><th>用途</th><th>样张</th></tr></thead><tbody>
-    <tr><td class="mono">--font-display</td><td>霞鹜文楷 LXGW WenKai</td><td>Logo / Hero / 品牌标题 / 印章</td><td style="font-family:var(--font-display);font-size:20px">源裕兴 守正开物共生</td></tr>
+    <tr><td class="mono">--font-display</td><td>Noto Serif SC LXGW WenKai</td><td>Logo / Hero / 品牌标题 / 印章</td><td style="font-family:var(--font-display);font-size:20px">源裕兴 守正开物共生</td></tr>
     <tr><td class="mono">--font-serif</td><td>思源宋体 Noto Serif SC</td><td>中文正文 / 引文 / 章节标题</td><td style="font-family:var(--font-serif);font-size:18px">格物致知，守正出奇。</td></tr>
     <tr><td class="mono">--font-sans</td><td>思源黑体 Noto Sans SC</td><td>中文 UI / 界面</td><td style="font-family:var(--font-sans);font-size:16px">报关单 #STI-2026-0718 已提交，预计 2 小时内审核。</td></tr>
     <tr><td class="mono">--font-western</td><td>Inter</td><td>西文正文 / UI / 大数字</td><td style="font-family:var(--font-western);font-size:16px">Preserve · Pioneer · Flourish 12,800 t</td></tr>
-    <tr><td class="mono">--font-mono</td><td>JetBrains Mono</td><td>代码 / 数据 / Token</td><td class="mono">--c-primary: var(--e-primary-light);</td></tr>
+    <tr><td class="mono">--font-mono</td><td>JetBrains Mono</td><td>代码 / 数据 / Token</td><td class="mono">--brand-600: var(--brand-600);</td></tr>
   </tbody></table></div>
   <div class="cx-grid" style="margin-top:20px">
     <div class="c8"><div class="cx-spec"><div class="cx-spec__bar"><b>15 级字阶</b><span>基准 16px · Display / H1 流体上探，承接档不放大</span></div><div class="cx-spec__body cx-spec__body--col" style="gap:0;padding-top:4px;padding-bottom:4px"><!-- @gen:type-scale --></div></div></div>
@@ -174,12 +174,12 @@
       <div class="cx-spec"><div class="cx-spec__bar"><b>缓动族</b><span>悬停样张即可看到运动性格</span></div><div class="cx-spec__body"><div class="ease-list" style="width:100%">
         <div class="ease-item" data-ease="cubic-bezier(.16,1,.3,1)"><div class="ease-item__track"><div class="ease-item__ball"></div></div><span class="mono">--ease-out</span><span class="muted">进场：减速到位</span></div>
         <div class="ease-item" data-ease="cubic-bezier(.4,0,1,1)"><div class="ease-item__track"><div class="ease-item__ball"></div></div><span class="mono">--ease-in</span><span class="muted">退场：果断离开</span></div>
-        <div class="ease-item" data-ease="cubic-bezier(.25,.1,.25,1)"><div class="ease-item__track"><div class="ease-item__ball"></div></div><span class="mono">--ease-elegant</span><span class="muted">东方从容</span></div>
-        <div class="ease-item" data-ease="cubic-bezier(.34,1.18,.64,1)"><div class="ease-item__track"><div class="ease-item__ball"></div></div><span class="mono">--ease-spring</span><span class="muted">轻微回锋 &lt; 10%</span></div>
+        <div class="ease-item" data-ease="cubic-bezier(.25,.1,.25,1)"><div class="ease-item__track"><div class="ease-item__ball"></div></div><span class="mono">--ease-brush</span><span class="muted">东方从容</span></div>
+        <div class="ease-item" data-ease="cubic-bezier(.34,1.18,.64,1)"><div class="ease-item__track"><div class="ease-item__ball"></div></div><span class="mono">--ease-emphasized</span><span class="muted">轻微回锋 &lt; 10%</span></div>
         <div class="ease-item" data-ease="cubic-bezier(.2,0,0,1)"><div class="ease-item__track"><div class="ease-item__ball"></div></div><span class="mono">--ease-standard</span><span class="muted">通用中性</span></div>
         <div class="ease-item" data-ease="linear"><div class="ease-item__track"><div class="ease-item__ball"></div></div><span class="mono">--ease-linear</span><span class="muted">仅循环与滚动绑定</span></div>
       </div></div></div>
-      <ul class="cx-anatomy__list" style="margin-top:14px"><li>进场 ≠ 退场：退场时长 ≈ 进场 × 0.65，用 <code>--ease-in</code>。</li><li>列表入场 stagger 30–60ms，随距离衰减。</li><li>只动 <code>transform</code> 与 <code>opacity</code>；<code>prefers-reduced-motion</code> 下保留终态与透明度变化。</li><li>品牌动效：太极流纹 Loading 每圈 2s，<code>--ease-elegant</code>。</li></ul>
+      <ul class="cx-anatomy__list" style="margin-top:14px"><li>进场 ≠ 退场：退场时长 ≈ 进场 × 0.65，用 <code>--ease-in</code>。</li><li>列表入场 stagger 30–60ms，随距离衰减。</li><li>只动 <code>transform</code> 与 <code>opacity</code>；<code>prefers-reduced-motion</code> 下保留终态与透明度变化。</li><li>品牌动效：太极流纹 Loading 每圈 2s，<code>--ease-brush</code>。</li></ul>
     </div>
   </div>
   <h4 class="cx-h4">五断点响应式栅格：12 列是第一宪法，黄金分割是第二参考</h4>
@@ -202,25 +202,27 @@
     <div class="c6">
       <div class="cx-table-wrap"><table class="a-table a-table--data a-table--dense"><thead><tr><th>层</th><th>前缀</th><th>示例</th><th>允许引用</th></tr></thead><tbody>
         <tr><td>L0 Primitive</td><td class="mono">--ink- / --stg- / --gold- / --chart- / --space- / --radius- / --dur- / --ease- / --z- / --bp- / --fs-</td><td class="mono">--stg-600</td><td>无（字面值）</td></tr>
-        <tr><td>实体映射</td><td class="mono">--e-</td><td class="mono">--e-primary-light</td><td>Primitive</td></tr>
-        <tr><td>L1 Semantic</td><td class="mono">--c- / --shadow-</td><td class="mono">--c-primary</td><td>Primitive · --e-</td></tr>
+        <tr><td>实体映射</td><td class="mono">--brand-*</td><td class="mono">--brand-600</td><td>Primitive（data-theme 重映射）</td></tr>
+        <tr><td>L1 Semantic</td><td class="mono">--surface- / --text- / --border- / --state-</td><td class="mono">--text-heading</td><td>Primitive · --brand-*</td></tr>
         <tr><td>L2 Component</td><td class="mono">--{cmp}-{prop}[-{variant}]</td><td class="mono">--btn-primary-bg</td><td>Semantic</td></tr>
         <tr><td>CSS 类</td><td class="mono">.a- / .m- / .o- / .t- / .p-</td><td class="mono">.m-field__msg</td><td>BEM · 状态用 ARIA / is-*</td></tr>
       </tbody></table></div>
     </div>
     <div class="c6">
-      <div class="cx-code"><span class="cx-code__lang">tokens.json · DTCG</span><pre><code>{
-  "primitive": { "color": { "entity": {
-    "sth": { "$value": "#208F9B",
-      "$extensions": { "sino.name": "沧浪青" } } } } },
-  "semantic": { "color": { "light": {
-    "primary": "{entity.primary-light}",
-    "outline": "{primitive.color.ink.500}" } } },
-  "component": { "btn": {
-    "primary-bg": "{semantic.color.primary}",
-    "radius": "{primitive.radius.full}" } }
-}</code></pre></div>
-      <div class="m-steps" style="margin-top:14px"><div class="m-step is-done">Figma Variables</div><div class="m-step is-done">tokens.json</div><div class="m-step" aria-current="step">build.mjs 门禁</div><div class="m-step">CSS / NPM / Odoo SCSS</div></div>
+      <div class="cx-code"><span class="cx-code__lang">design-canvas/tokens/*.css</span><pre><code>/* colors.css · Primitive —— 矿物颜料逻辑 */
+--ink-900:#17140F;   /* 玄墨 · 标题与主操作 */
+--sth-600:#2D5257;   /* 石青 · 身份标记 */
+--zhu-600:#8A3323;   /* 印章朱 · 每章一枚 */
+
+/* semantic.css · Semantic —— 只引用 Primitive */
+--text-heading:var(--ink-900);
+--border-default:var(--ink-300);
+--seal:var(--zhu-600);
+
+/* semantic.css · Component —— 只引用 Semantic */
+--btn-primary-bg:var(--ink-900);  /* 不是品牌色 */
+--btn-radius:var(--radius-md);    /* 6px，不是全圆 */</code></pre></div>
+      <div class="m-steps" style="margin-top:14px"><div class="m-step is-done">Figma Variables</div><div class="m-step is-done">design-canvas/tokens</div><div class="m-step" aria-current="step">build.mjs 门禁</div><div class="m-step">CSS / NPM / Odoo SCSS</div></div>
       <p class="cx-p" style="margin-top:12px;font-size:13px">构建脚本推导色阶、实测对比度、枚举数据墨色顺序，并把结果注入本页。任何门禁失败即退出码 1，CI 不会发布。</p>
     </div>
   </div>
