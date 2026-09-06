@@ -1,0 +1,24 @@
+/* Elements 层 — 裸元素基线。组件不依赖本层，但页面引入后即有正确的排版底座。 */
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--surface-page);color:var(--text-body);font-family:var(--font-sans);font-size:var(--fs-body-m);line-height:var(--lh-body-m);letter-spacing:var(--ls-body-m);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+h1,h2,h3,h4,h5,h6{margin:0;color:var(--text-heading);font-family:var(--font-display);font-weight:var(--fw-light);text-wrap:pretty;word-break:keep-all}
+h1{font-size:var(--fs-h1);line-height:var(--lh-h1);letter-spacing:var(--ls-h1)}
+h2{font-size:var(--fs-h2);line-height:var(--lh-h2);letter-spacing:var(--ls-h2)}
+h3{font-size:var(--fs-h3);line-height:var(--lh-h3);letter-spacing:var(--ls-h3)}
+h4{font-size:var(--fs-h4);line-height:var(--lh-h4);letter-spacing:var(--ls-h4);font-family:var(--font-sans);font-weight:var(--fw-medium)}
+h5{font-size:var(--fs-h5);line-height:var(--lh-h5);font-family:var(--font-sans);font-weight:var(--fw-medium)}
+h6{font-size:var(--fs-h6);line-height:var(--lh-h6);font-family:var(--font-sans);font-weight:var(--fw-medium)}
+p{margin:0 0 var(--space-4);max-width:var(--measure-cn);text-wrap:pretty}
+a{color:var(--text-link);text-decoration-color:color-mix(in oklch,var(--text-link) 35%,transparent);text-underline-offset:.18em;transition:color var(--dur-micro) var(--ease-out)}
+a:hover{color:var(--text-link-hover);text-decoration-color:currentColor}
+small{font-size:var(--fs-caption);letter-spacing:var(--ls-caption)}
+code,kbd,pre,samp{font-family:var(--font-mono);font-size:var(--fs-code)}
+hr{border:0;border-top:1px solid var(--border-subtle);margin:var(--space-6) 0}
+img,svg{max-width:100%}
+::selection{background:var(--zhu-100);color:var(--zhu-800)}
+:focus-visible{outline:var(--focus-ring-width) solid var(--focus-ring-color);outline-offset:var(--focus-ring-offset)}
+.u-eyebrow{font-family:var(--font-western);font-size:var(--fs-caption);font-weight:var(--fw-medium);letter-spacing:var(--ls-eyebrow);text-transform:uppercase;color:var(--text-muted)}
+.u-num{font-family:var(--font-western);font-variant-numeric:tabular-nums;letter-spacing:-0.01em}
+.material-symbols-rounded{font-family:"Material Symbols Rounded";font-weight:400;font-style:normal;font-size:24px;line-height:1;letter-spacing:normal;text-transform:none;display:inline-block;white-space:nowrap;direction:ltr;-webkit-font-feature-settings:"liga";-webkit-font-smoothing:antialiased;font-variation-settings:"FILL" 0,"wght" 400,"GRAD" 0,"opsz" 24}
+.u-label{font-family:var(--font-sans);font-size:var(--fs-caption);font-weight:var(--fw-medium);letter-spacing:0;color:var(--text-subtle)}

@@ -1,0 +1,15 @@
+/* 12 列宪法 · 五断点 */
+:root{
+  --bp-xs:0px; /* @kind spacing */
+  --bp-sm:600px; /* @kind spacing */
+  --bp-md:905px; /* @kind spacing */
+  --bp-lg:1240px; /* @kind spacing */
+  --bp-xl:1440px; /* @kind spacing */
+  --grid-cols:12; /* @kind other */
+  --gutter-xs:16px; --gutter-sm:16px; --gutter-md:24px; --gutter-lg:24px; --gutter-xl:24px;
+  --margin-xs:16px; --margin-sm:24px; --margin-md:32px; --margin-lg:40px;
+  --container-max:1200px;   /* 内容区上限 */
+  --container-wide:1440px;  /* 数据大屏 / grid-break */
+  --rail-width:76px; --drawer-width:264px; --panel-width:380px;
+  --appbar-height:64px;
+}

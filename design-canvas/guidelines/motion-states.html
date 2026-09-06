@@ -1,0 +1,15 @@
+<!-- @dsCard group="Motion" viewport="700x160" name="交互状态层" subtitle="主操作用玄墨：Hover 提一档 · Active scale(.98) · Focus 2px 实体色描边 + 3px 光环 · Disabled .4" -->
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>body{margin:0;background:var(--surface-page);font-family:var(--font-sans)}.wrap{padding:20px}
+.b{height:36px;padding:0 20px;display:inline-flex;align-items:center;border-radius:var(--radius-md);color:var(--ink-50);font-size:14px;font-weight:500}
+.tok{font-family:var(--font-mono);font-size:10px;color:var(--text-subtle)}</style>
+</head><body><div class="wrap">
+<div style="display:flex;gap:14px;flex-wrap:wrap">
+ <span class="b" style="background:var(--ink-900)">Default</span>
+ <span class="b" style="background:var(--ink-800);box-shadow:var(--shadow-sm)">Hover</span>
+ <span class="b" style="background:var(--ink-950);transform:scale(.98)">Active</span>
+ <span class="b" style="background:var(--ink-900);outline:2px solid var(--brand-600);outline-offset:2px;box-shadow:var(--ring-focus)">Focus</span>
+ <span class="b" style="background:var(--ink-900);opacity:.4">Disabled</span>
+</div>
+<div class="tok" style="margin-top:16px;line-height:1.9">Hover 不用透明度变化，改提一档底色 + 阴影升一级<br>Focus 环用实体色（`--brand-600`），是实体身份在交互层的体现</div>
+</div></body></html>

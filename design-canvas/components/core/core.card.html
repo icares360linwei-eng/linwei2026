@@ -1,0 +1,65 @@
+<!-- @dsCard group="Components" viewport="700x520" name="Core · 章节起头 / 按钮 / 标签 / 面板" subtitle="SectionHead · Button 6 型 · Tag · Badge · StatCard · Spinner" -->
+<!doctype html><html lang="zh-CN"><head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{margin:0;background:var(--surface-page);font-family:var(--font-sans)}#root{padding:20px}.row{display:flex;align-items:center;gap:12px;flex-wrap:wrap}.col{display:flex;flex-direction:column;gap:14px}.lbl{font-family:var(--font-western);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--text-subtle)}</style>
+</head><body><div id="root"></div>
+<script type="text/babel">
+const { Button, IconButton, Tag, Badge, Card, StatCard, TaijiSpinner, Icon, SectionHead } = window.SINOTAODesignSystem_b6947e;
+function Demo(){
+  return (
+    <div className="col">
+      <SectionHead index="02 / 04" eyebrow="Five entities" title="五家公司，一个共生体"
+        lede="共用一套设计语法与治理标准，各自生长出独立的色彩身份。" style={{marginBottom:8}}/>
+      <div className="col" style={{gap:8}}>
+        <span className="lbl">Button · variant</span>
+        <div className="row">
+          <Button variant="primary" icon="save">保存并提交</Button>
+          <Button variant="secondary">取消</Button>
+          <Button variant="gold" shape="pill" iconEnd="arrow_forward">预约参观园区</Button>
+          <Button variant="danger" icon="delete">删除订单 #1024</Button>
+          <Button variant="text">稍后处理</Button>
+          <Button variant="link">查看合规依据</Button>
+        </div>
+      </div>
+      <div className="col" style={{gap:8}}>
+        <span className="lbl">Size xl / l / m / s · loading · disabled</span>
+        <div className="row">
+          <Button size="xl">XL 48</Button><Button size="l">L 40</Button>
+          <Button size="m">M 36</Button><Button size="s">S 28</Button>
+          <Button loading>提交中</Button><Button disabled>已禁用</Button>
+          <IconButton icon="filter_list" label="筛选" variant="outline"/>
+          <IconButton icon="grid_view" label="卡片视图" active/>
+          <TaijiSpinner size={22} color="var(--brand-600)"/>
+        </div>
+      </div>
+      <div className="col" style={{gap:8}}>
+        <span className="lbl">Tag · Badge</span>
+        <div className="row">
+          <Tag tone="brand">STE 九派能源</Tag>
+          <Tag tone="success" icon="check_circle">已通过审核</Tag>
+          <Tag tone="warning">待复核</Tag>
+          <Tag tone="error">已退单</Tag>
+          <Tag tone="gold">Red Dot 入围</Tag>
+          <Tag tone="neutral" size="s" onRemove={()=>{}}>一号炉</Tag>
+          <Badge tone="success" label="运行中" pulse/>
+          <Badge count={12}/>
+        </div>
+      </div>
+      <div className="row" style={{gap:12,alignItems:'stretch'}}>
+        <StatCard style={{flex:1}} label="今日发电量" value="128.4" unit="万 kWh" delta={4.2} deltaLabel="较昨日" icon="bolt" trend={[42,48,45,52,58,61,64]}/>
+        <StatCard style={{flex:1}} label="碳配额剩余" value="12,800" unit="吨" delta={-3.1} deltaLabel="较上月" icon="eco"/>
+        <Card style={{flex:1}} eyebrow="STE · Boiler 01" title="CFB 锅炉工况" padding={16}
+          footer={<><span>更新于 14:30</span><Icon name="chevron_right" size={18}/></>}>
+          <span style={{fontSize:'var(--fs-body-s)',color:'var(--text-muted)'}}>床温 892℃ · 主蒸汽压力 9.6 MPa</span>
+        </Card>
+      </div>
+    </div>
+  );
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<Demo/>);
+</script></body></html>

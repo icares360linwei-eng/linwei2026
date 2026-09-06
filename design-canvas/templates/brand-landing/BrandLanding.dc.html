@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<!-- @template name="品牌落地页" description="深色实景首屏 + 五实体矩阵 + 治理数据，源裕兴对外品牌页起点" -->
+<helmet>
+<script src="./ds-base.js"></script>
+</helmet>
+<div style="background:var(--surface-page);font-family:var(--font-sans)">
+<header style="position:sticky;top:0;z-index:50;height:80px;display:flex;align-items:center;gap:48px;padding:0 clamp(24px,5vw,80px);background:rgba(13,11,8,.52);backdrop-filter:saturate(150%) blur(16px);border-bottom:1px solid rgba(251,249,245,.10)">
+<img src="../../assets/logo-sinotao-paper.svg" alt="SINOTAO 源裕兴" style="height:19px">
+<nav style="display:flex;align-items:center;gap:32px;flex:1;min-width:0">
+<a href="#" style="padding:4px 0;color:var(--ink-50);font-family:var(--font-display);font-size:15px;text-decoration:none;border-bottom:1px solid var(--gold-400)">集团概览</a>
+<a href="#" style="padding:4px 0;color:rgba(251,249,245,.62);font-family:var(--font-display);font-size:15px;text-decoration:none;border-bottom:1px solid transparent">五大实体</a>
+<a href="#" style="padding:4px 0;color:rgba(251,249,245,.62);font-family:var(--font-display);font-size:15px;text-decoration:none;border-bottom:1px solid transparent">治理与 ESG</a>
+<a href="#" style="padding:4px 0;color:rgba(251,249,245,.62);font-family:var(--font-display);font-size:15px;text-decoration:none;border-bottom:1px solid transparent">加入我们</a>
+</nav>
+<span style="font-family:var(--font-western);font-size:12px;letter-spacing:.16em;color:rgba(251,249,245,.62)">EN</span>
+<a href="#" style="display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 22px;border:1px solid rgba(251,249,245,.34);color:var(--ink-50);border-radius:var(--radius-full);text-decoration:none;font-size:14px;font-weight:500;white-space:nowrap">预约参观园区<span class="material-symbols-rounded" style="font-size:18px">arrow_outward</span></a>
+</header>
+<section style="position:relative;min-height:min(92vh,900px);display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;margin-top:-80px">
+<img src="../../assets/imagery/biomass-plant-aerial.jpg" alt="赤湖工业园生物质热电联产园区航拍" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.74) contrast(1.02)">
+<div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(13,11,8,.92) 4%,rgba(13,11,8,.70) 32%,rgba(13,11,8,.40) 66%,rgba(13,11,8,.44) 100%)"></div>
+<div style="position:relative;width:100%;max-width:1200px;margin:0 auto;padding:160px clamp(24px,5vw,80px) 0">
+<div style="display:grid;grid-template-columns:minmax(0,8fr) minmax(0,4fr);gap:clamp(24px,4vw,64px);align-items:end">
+<div>
+<div style="display:flex;align-items:center;gap:12px;margin-bottom:40px"><span style="width:8px;height:8px;background:var(--gold-400);flex:0 0 auto"></span><span style="font-family:var(--font-western);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-300)">Sinotao Innovation Future</span></div>
+<h1 style="margin:0;font-family:var(--font-display);font-size:clamp(44px,7.4vw,104px);font-weight:200;letter-spacing:-.042em;line-height:1.06;color:var(--ink-50)">把土地的余料，<br>还给土地以电与热</h1>
+</div>
+<p style="margin:0 0 12px;font-family:var(--font-serif);font-size:16px;line-height:2.1;color:rgba(251,249,245,.92);border-left:1px solid rgba(251,249,245,.34);padding:20px 24px;background:rgba(13,11,8,.46);backdrop-filter:blur(8px)">赤湖工业园以生物质热电联产为核心，串起甜高粱种植、燃料收储、发电供汽与碳资产开发的完整链条。一座电厂，同时是一片农田的下游。</p>
+</div>
+<div style="display:flex;align-items:center;gap:14px;margin-top:clamp(40px,5vw,64px)">
+<x-import component-from-global-scope="SINOTAODesignSystem_b6947e.Button" variant="gold" shape="pill" size="xl" icon-end="arrow_outward" hint-size="200px,48px">预约参观园区</x-import>
+<a href="#" style="display:inline-flex;align-items:center;justify-content:center;gap:10px;height:48px;padding:0 32px;border-radius:var(--radius-full);border:1px solid rgba(251,249,245,.34);color:var(--ink-50);font-size:16px;font-weight:500;text-decoration:none"><span class="material-symbols-rounded" style="font-size:20px">play_circle</span>了解五大实体</a>
+</div>
+<div style="display:flex;gap:clamp(32px,5vw,88px);margin-top:clamp(56px,8vw,112px);padding-top:36px;padding-bottom:72px;border-top:1px solid rgba(251,249,245,.18);flex-wrap:wrap">
+<sc-for list="{{ facts }}" as="f" hint-placeholder-count="4">
+<div style="min-width:120px">
+<div style="font-family:var(--font-sans);font-size:12px;font-weight:500;color:rgba(251,249,245,.62)">{{ f.k }}</div>
+<div style="display:flex;align-items:baseline;gap:6px;margin-top:14px"><span style="font-family:var(--font-western);font-size:clamp(28px,3.4vw,44px);font-weight:300;letter-spacing:-.03em;line-height:1;color:var(--ink-50)">{{ f.v }}</span><span style="font-size:13px;color:rgba(251,249,245,.52)">{{ f.u }}</span></div>
+</div>
+</sc-for>
+</div>
+</div>
+</section>
+<section style="padding:clamp(80px,10vw,160px) clamp(24px,5vw,80px);background:var(--surface-page)">
+<div style="max-width:1200px;margin:0 auto">
+<header style="display:grid;grid-template-columns:auto minmax(0,1fr);gap:32px;margin-bottom:80px">
+<span style="writing-mode:vertical-rl;font-family:var(--font-western);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--text-subtle);padding-top:6px;white-space:nowrap">01 / 02</span>
+<div style="min-width:0">
+<div style="display:flex;align-items:center;gap:10px"><span style="width:8px;height:8px;background:var(--seal);flex:0 0 auto"></span><span style="font-family:var(--font-western);font-size:12px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--text-subtle)">Five entities</span></div>
+<h2 style="margin:24px 0 0;font-family:var(--font-display);font-size:clamp(34px,4.4vw,64px);font-weight:200;letter-spacing:-.032em;line-height:1.12;max-width:15em;text-wrap:balance;color:var(--text-heading)">五家公司，一个共生体</h2>
+<p style="margin:32px 0 0;max-width:26em;font-size:16px;line-height:1.9;color:var(--text-muted)">五大实体共用一套设计语法与治理标准，各自生长出独立的色彩身份。客户从能源切换到贸易时，感受到的不是「换了一家公司」，而是「同一个品牌，不同的专家」。</p>
+</div>
+</header>
+<div style="border-bottom:var(--hairline)">
+<a href="#" style="display:grid;grid-template-columns:56px minmax(0,1fr) minmax(0,1.1fr) auto;align-items:center;gap:clamp(16px,3vw,48px);padding:32px 0;border-top:var(--hairline);text-decoration:none">
+<span style="display:flex;align-items:center;gap:10px"><span style="width:2px;height:22px;background:var(--stg-600);flex:0 0 auto"></span><span style="font-family:var(--font-western);font-size:11px;letter-spacing:.14em;color:var(--text-subtle)">STG</span></span>
+<span style="font-family:var(--font-display);font-size:clamp(20px,2.1vw,28px);font-weight:300;letter-spacing:-.016em;color:var(--text-heading)">源裕兴创新未来</span>
+<span style="font-size:14px;line-height:1.8;color:var(--text-muted)">战略中枢 · 合规治理与资本配置</span>
+<span style="display:flex;align-items:center;gap:16px;flex:0 0 auto"><span style="font-family:var(--font-western);font-size:13px;color:var(--text-muted);white-space:nowrap">集团母体</span><span class="material-symbols-rounded" style="font-size:20px;color:var(--stg-600)">arrow_outward</span></span>
+</a>
+<a href="#" style="display:grid;grid-template-columns:56px minmax(0,1fr) minmax(0,1.1fr) auto;align-items:center;gap:clamp(16px,3vw,48px);padding:32px 0;border-top:var(--hairline);text-decoration:none">
+<span style="display:flex;align-items:center;gap:10px"><span style="width:2px;height:22px;background:var(--ste-600);flex:0 0 auto"></span><span style="font-family:var(--font-western);font-size:11px;letter-spacing:.14em;color:var(--text-subtle)">STE</span></span>
+<span style="font-family:var(--font-display);font-size:clamp(20px,2.1vw,28px);font-weight:300;letter-spacing:-.016em;color:var(--text-heading)">九派国有能源</span>
+<span style="font-size:14px;line-height:1.8;color:var(--text-muted)">生物质热电联产、燃料收储与碳资产开发</span>
+<span style="display:flex;align-items:center;gap:16px;flex:0 0 auto"><span style="font-family:var(--font-western);font-size:13px;color:var(--text-muted);white-space:nowrap">2 × 30 MW</span><span class="material-symbols-rounded" style="font-size:20px;color:var(--ste-600)">arrow_outward</span></span>
+</a>
+<a href="#" style="display:grid;grid-template-columns:56px minmax(0,1fr) minmax(0,1.1fr) auto;align-items:center;gap:clamp(16px,3vw,48px);padding:32px 0;border-top:var(--hairline);text-decoration:none">
+<span style="display:flex;align-items:center;gap:10px"><span style="width:2px;height:22px;background:var(--sti-600);flex:0 0 auto"></span><span style="font-family:var(--font-western);font-size:11px;letter-spacing:.14em;color:var(--text-subtle)">STI</span></span>
+<span style="font-family:var(--font-display);font-size:clamp(20px,2.1vw,28px);font-weight:300;letter-spacing:-.016em;color:var(--text-heading)">源裕兴进出口贸易</span>
+<span style="font-size:14px;line-height:1.8;color:var(--text-muted)">以九江港为枢纽的多式联运与报关合规</span>
+<span style="display:flex;align-items:center;gap:16px;flex:0 0 auto"><span style="font-family:var(--font-western);font-size:13px;color:var(--text-muted);white-space:nowrap">26 个口岸</span><span class="material-symbols-rounded" style="font-size:20px;color:var(--sti-600)">arrow_outward</span></span>
+</a>
+<a href="#" style="display:grid;grid-template-columns:56px minmax(0,1fr) minmax(0,1.1fr) auto;align-items:center;gap:clamp(16px,3vw,48px);padding:32px 0;border-top:var(--hairline);text-decoration:none">
+<span style="display:flex;align-items:center;gap:10px"><span style="width:2px;height:22px;background:var(--sth-600);flex:0 0 auto"></span><span style="font-family:var(--font-western);font-size:11px;letter-spacing:.14em;color:var(--text-subtle)">STH</span></span>
+<span style="font-family:var(--font-display);font-size:clamp(20px,2.1vw,28px);font-weight:300;letter-spacing:-.016em;color:var(--text-heading)">源裕兴健康科技</span>
+<span style="font-size:14px;line-height:1.8;color:var(--text-muted)">PHA 医用材料与药物递送载体的中试与注册</span>
+<span style="display:flex;align-items:center;gap:16px;flex:0 0 auto"><span style="font-family:var(--font-western);font-size:13px;color:var(--text-muted);white-space:nowrap">9 项在研</span><span class="material-symbols-rounded" style="font-size:20px;color:var(--sth-600)">arrow_outward</span></span>
+</a>
+<a href="#" style="display:grid;grid-template-columns:56px minmax(0,1fr) minmax(0,1.1fr) auto;align-items:center;gap:clamp(16px,3vw,48px);padding:32px 0;border-top:var(--hairline);text-decoration:none">
+<span style="display:flex;align-items:center;gap:10px"><span style="width:2px;height:22px;background:var(--edu-600);flex:0 0 auto"></span><span style="font-family:var(--font-western);font-size:11px;letter-spacing:.14em;color:var(--text-subtle)">EDU</span></span>
+<span style="font-family:var(--font-display);font-size:clamp(20px,2.1vw,28px);font-weight:300;letter-spacing:-.016em;color:var(--text-heading)">崇仁教育</span>
+<span style="font-size:14px;line-height:1.8;color:var(--text-muted)">K12 学生成长档案与家校协同</span>
+<span style="display:flex;align-items:center;gap:16px;flex:0 0 auto"><span style="font-family:var(--font-western);font-size:13px;color:var(--text-muted);white-space:nowrap">6,200 名学生</span><span class="material-symbols-rounded" style="font-size:20px;color:var(--edu-600)">arrow_outward</span></span>
+</a>
+</div>
+</div>
+</section>
+<section style="padding:clamp(80px,10vw,160px) clamp(24px,5vw,80px);background:var(--ink-100)">
+<div style="max-width:1200px;margin:0 auto">
+<header style="display:grid;grid-template-columns:auto minmax(0,1fr);gap:32px;margin-bottom:80px">
+<span style="writing-mode:vertical-rl;font-family:var(--font-western);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--text-subtle);padding-top:6px;white-space:nowrap">02 / 02</span>
+<div style="min-width:0">
+<div style="display:flex;align-items:center;gap:10px"><span style="width:8px;height:8px;background:var(--seal);flex:0 0 auto"></span><span style="font-family:var(--font-western);font-size:12px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--text-subtle)">The loop</span></div>
+<h2 style="margin:24px 0 0;font-family:var(--font-display);font-size:clamp(34px,4.4vw,64px);font-weight:200;letter-spacing:-.032em;line-height:1.12;max-width:15em;text-wrap:balance;color:var(--text-heading)">一条闭环，四段价值</h2>
+<p style="margin:32px 0 0;max-width:26em;font-size:16px;line-height:1.9;color:var(--text-muted)">从田间到电网，每一段都留下可核验的凭证：种植合同、收储磅单、燃烧参数、减排签发。</p>
+</div>
+</header>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))">
+<sc-for list="{{ steps }}" as="s" hint-placeholder-count="4">
+<div style="padding:40px 36px 40px 0;border-top:var(--hairline)">
+<div style="font-family:var(--font-western);font-size:12px;letter-spacing:.2em;color:var(--zhu-600)">{{ s.n }}</div>
+<div style="margin-top:24px;font-family:var(--font-display);font-size:22px;font-weight:300;color:var(--text-heading);line-height:1.5">{{ s.t }}</div>
+<p style="margin-top:18px;margin-bottom:0;font-size:14px;line-height:2;color:var(--text-muted);max-width:20em">{{ s.d }}</p>
+</div>
+</sc-for>
+</div>
+</div>
+</section>
+<footer style="background:var(--ink-950);color:var(--ink-500);padding:64px 56px 36px">
+<div style="max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:24px;font-size:12px">
+<img src="../../assets/logo-sinotao-paper.svg" alt="SINOTAO" style="height:20px">
+<span>© 2026 源裕兴创新未来 · Sinotao Innovation Future</span>
+<span style="font-family:var(--font-mono)">守正 · 开物 · 共生</span>
+</div>
+</footer>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      facts: [
+        { k: "装机容量", v: "2 × 30", u: "MW" },
+        { k: "年供汽能力", v: "126", u: "万吨" },
+        { k: "年减排量", v: "41.2", u: "万吨 CO₂e" },
+        { k: "带动农户", v: "3,400", u: "户" },
+      ],
+      steps: [
+        { n: "01", t: "甜高粱与农林废弃物", d: "与 3,400 户农户签订种植与收储合同，秸秆不再露天焚烧。" },
+        { n: "02", t: "燃料收储与化验", d: "含水率、热值逐车化验，不合格即退运，质量档案随供应商长期累积。" },
+        { n: "03", t: "热电联产与供汽", d: "CFB 锅炉替代园区分散小锅炉，同时输出电力与工业蒸汽。" },
+        { n: "04", t: "碳资产与灰渣资源化", d: "减排量进入 CCER 开发，灰渣回田或制建材，闭环收口。" },
+      ],
+    };
+  }
+}
+
+</script>
+</body>
+</html>

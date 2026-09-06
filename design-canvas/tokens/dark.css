@@ -1,0 +1,46 @@
+/* 暗色模式 — Ink 反转，实体色明度提升（OKLCH 明升 + chroma 微降） */
+[data-color-scheme="dark"]{
+  --brand-600:color-mix(in oklch,var(--brand-400) 82%,var(--ink-50));
+  --brand-700:var(--brand-400);
+  --brand-800:var(--brand-200);
+  --brand-50:color-mix(in oklch,var(--brand-800) 42%,var(--ink-950));
+  --brand-100:color-mix(in oklch,var(--brand-800) 60%,var(--ink-950));
+
+  --surface-page:var(--ink-950);
+  --surface-card:#1A1713;
+  --surface-sunken:#131009;
+  --surface-raised:#221E19;
+  --surface-inverse:var(--ink-50);
+  --surface-brand-subtle:var(--brand-50);
+  --surface-hover:#221E19;
+  --scrim:rgba(0,0,0,.62);
+
+  --text-heading:var(--ink-50);
+  --text-body:var(--ink-200);
+  --text-muted:var(--ink-400);
+  --text-subtle:var(--ink-500);
+  --text-on-inverse:var(--ink-900);
+  --text-brand:var(--brand-600);
+  --text-link:var(--brand-600);
+  --text-link-hover:var(--brand-700);
+
+  --btn-primary-bg:var(--ink-50);
+  --btn-primary-bg-hover:#FFFFFF;
+  --btn-primary-bg-active:var(--ink-200);
+  --btn-primary-fg:var(--ink-950);
+
+  --border-subtle:rgba(251,249,245,.10);
+  --border-default:rgba(251,249,245,.18);
+  --border-strong:rgba(251,249,245,.30);
+
+  --state-success-surface:rgba(74,115,96,.22);
+  --state-warning-surface:rgba(154,130,89,.22);
+  --state-error-surface:rgba(168,69,47,.22);
+  --state-info-surface:rgba(69,92,124,.24);
+
+  --card-shadow:0 1px 3px rgba(0,0,0,.5);
+  --table-header-bg:#221E19;
+  --table-row-hover:#201C17;
+  --tooltip-bg:var(--ink-100);
+  --tooltip-fg:var(--ink-900);
+}

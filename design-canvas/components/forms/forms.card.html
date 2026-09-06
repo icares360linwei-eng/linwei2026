@@ -1,0 +1,53 @@
+<!-- @dsCard group="Components" viewport="700x340" name="Forms · 输入 / 选择 / 日期" subtitle="Field · Input · Select · Checkbox · Radio · DatePicker" -->
+<!doctype html><html lang="zh-CN"><head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{margin:0;background:var(--surface-page);font-family:var(--font-sans)}#root{padding:20px}.row{display:flex;align-items:center;gap:12px;flex-wrap:wrap}.col{display:flex;flex-direction:column;gap:14px}.lbl{font-family:var(--font-western);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--text-subtle)}</style>
+</head><body><div id="root"></div>
+<script type="text/babel">
+const { Field, Input, Textarea, Select, Checkbox, Radio, DatePicker } = window.SINOTAODesignSystem_b6947e;
+function Demo(){
+  const [a,setA]=React.useState('STI-2026-0718');
+  const [b,setB]=React.useState('138000');
+  const [ent,setEnt]=React.useState('ste');
+  const [d,setD]=React.useState('2026-07-20');
+  const [v,setV]=React.useState('blur');
+  const [ck,setCk]=React.useState(true);
+  return (
+    <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:'20px 24px'}}>
+      <Field label="报关单号" htmlFor="f1" hint="格式 STI-YYYY-NNNN">
+        <Input id="f1" icon="search" value={a} onChange={setA}/>
+      </Field>
+      <Field label="手机号码" htmlFor="f2" required error="手机号应为 11 位数字">
+        <Input id="f2" value={b} onChange={setB} status="error"/>
+      </Field>
+      <Field label="所属实体" htmlFor="f3">
+        <Select id="f3" value={ent} onChange={setEnt} options={[
+          {value:'stg',label:'STG 源裕兴创新未来'},{value:'ste',label:'STE 九派国有能源'},
+          {value:'sti',label:'STI 进出口贸易'},{value:'sth',label:'STH 健康科技'},{value:'edu',label:'EDU 崇仁教育'}]}/>
+      </Field>
+      <Field label="报关日期" htmlFor="f4" success="已校验">
+        <DatePicker id="f4" value={d} onChange={setD}/>
+      </Field>
+      <Field label="验证时机">
+        <Radio name="vt" value={v} onChange={setV} options={[
+          {value:'blur',label:'失焦验证',hint:'推荐：6–12 字段的中等表单'},
+          {value:'submit',label:'提交时验证',hint:'≤5 字段的简短表单'}]}/>
+      </Field>
+      <Field label="审批意见" htmlFor="f5">
+        <Textarea id="f5" rows={3} maxLength={200} value="同意，按 GMP 流程归档。" onChange={()=>{}}/>
+      </Field>
+      <div className="row" style={{gridColumn:'1 / -1',gap:24}}>
+        <Checkbox id="c1" checked={ck} onChange={setCk} label="同步至 Odoo 审批流"/>
+        <Checkbox id="c2" indeterminate label="全选本页 20 条"/>
+        <Checkbox id="c3" disabled label="不可用选项"/>
+      </div>
+    </div>
+  );
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<Demo/>);
+</script></body></html>

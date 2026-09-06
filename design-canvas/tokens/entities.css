@@ -1,0 +1,13 @@
+/* 五实体主题 — <html data-theme="stg|ste|sti|sth|edu"> 重映射主色族。
+   实体色是身份标记（细线刻度、代号、选中态、图表首序列、焦点环），
+   不是大面积填色；主操作一律用玄墨。默认（无 data-theme）= STG 集团母体。 */
+:root{
+  --brand-50:var(--stg-50); --brand-100:var(--stg-100); --brand-200:var(--stg-200);
+  --brand-400:var(--stg-400); --brand-500:var(--stg-500); --brand-600:var(--stg-600); --brand-700:var(--stg-700); --brand-800:var(--stg-800);
+  --brand-name-label:"源裕兴创新未来"; /* @kind other */
+}
+[data-theme="stg"]{--brand-50:var(--stg-50);--brand-100:var(--stg-100);--brand-200:var(--stg-200);--brand-400:var(--stg-400);--brand-500:var(--stg-500);--brand-600:var(--stg-600);--brand-700:var(--stg-700);--brand-800:var(--stg-800);--brand-name-label:"源裕兴创新未来"; /* @kind other */}
+[data-theme="ste"]{--brand-50:var(--ste-50);--brand-100:var(--ste-100);--brand-200:var(--ste-200);--brand-400:var(--ste-400);--brand-500:var(--ste-500);--brand-600:var(--ste-600);--brand-700:var(--ste-700);--brand-800:var(--ste-800);--brand-name-label:"九派国有能源"; /* @kind other */}
+[data-theme="sti"]{--brand-50:var(--sti-50);--brand-100:var(--sti-100);--brand-200:var(--sti-200);--brand-400:var(--sti-400);--brand-500:var(--sti-500);--brand-600:var(--sti-600);--brand-700:var(--sti-700);--brand-800:var(--sti-800);--brand-name-label:"源裕兴进出口贸易"; /* @kind other */}
+[data-theme="sth"]{--brand-50:var(--sth-50);--brand-100:var(--sth-100);--brand-200:var(--sth-200);--brand-400:var(--sth-400);--brand-500:var(--sth-500);--brand-600:var(--sth-600);--brand-700:var(--sth-700);--brand-800:var(--sth-800);--brand-name-label:"源裕兴健康科技"; /* @kind other */}
+[data-theme="edu"]{--brand-50:var(--edu-50);--brand-100:var(--edu-100);--brand-200:var(--edu-200);--brand-400:var(--edu-400);--brand-500:var(--edu-500);--brand-600:var(--edu-600);--brand-700:var(--edu-700);--brand-800:var(--edu-800);--brand-name-label:"崇仁教育"; /* @kind other */}

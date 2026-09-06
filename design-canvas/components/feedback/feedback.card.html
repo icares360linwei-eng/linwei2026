@@ -1,0 +1,47 @@
+<!-- @dsCard group="Components" viewport="700x330" name="Feedback · 弹窗 / 提示 / 确认" subtitle="Modal · Drawer · Toast · Popconfirm · Tooltip" -->
+<!doctype html><html lang="zh-CN"><head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{margin:0;background:var(--surface-page);font-family:var(--font-sans)}#root{padding:20px}.row{display:flex;align-items:center;gap:12px;flex-wrap:wrap}.col{display:flex;flex-direction:column;gap:14px}.lbl{font-family:var(--font-western);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--text-subtle)}</style>
+</head><body><div id="root"></div>
+<script type="text/babel">
+const { Toast, Popconfirm, Tooltip, Button, Icon, Card } = window.SINOTAODesignSystem_b6947e;
+function Demo(){
+  const [pc,setPc]=React.useState(true);
+  return (
+    <div className="col" style={{gap:18}}>
+      <div className="col" style={{gap:10}}>
+        <span className="lbl">Toast · 四种语义</span>
+        <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:10}}>
+          <Toast tone="success" title="已提交报关单" description="预计 2 小时内完成审核。" duration={0} onClose={()=>{}}/>
+          <Toast tone="warning" title="碳配额接近上限" description="剩余 12,800 吨，建议优化燃烧参数。" duration={0} onClose={()=>{}}/>
+          <Toast tone="error" title="网络连接中断" description="请检查网络后重试。" duration={0} onClose={()=>{}}/>
+          <Toast tone="info" title="报表已进入后台生成" description="完成后将通知你。" duration={0} onClose={()=>{}}/>
+        </div>
+      </div>
+      <div className="row" style={{gap:32,marginTop:60,alignItems:'flex-end'}}>
+        <div className="col" style={{gap:10}}>
+          <span className="lbl">Popconfirm</span>
+          <Popconfirm open={pc} title="归档这条记录？" description="归档后可在「已归档」中找回。"
+            confirmText="归档" onConfirm={()=>setPc(false)} onCancel={()=>setPc(false)}>
+            <Button size="s" variant="text" icon="archive">归档</Button>
+          </Popconfirm>
+        </div>
+        <div className="col" style={{gap:10}}>
+          <span className="lbl">Tooltip</span>
+          <Tooltip content="按发电口径统计，不含厂用电"><span className="row" style={{gap:4,fontSize:'var(--fs-body-s)',color:'var(--text-body)'}}>发电量口径 <Icon name="help" size={16}/></span></Tooltip>
+        </div>
+        <div className="col" style={{gap:10}}>
+          <span className="lbl">Modal / Drawer 触发</span>
+          <div className="row"><Button variant="secondary" size="s" icon="open_in_full">Modal</Button><Button variant="secondary" size="s" icon="dock_to_right">Drawer</Button></div>
+        </div>
+      </div>
+    </div>
+  );
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<Demo/>);
+</script></body></html>

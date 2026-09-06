@@ -1,0 +1,14 @@
+/* Webfonts. Substituted from Google Fonts — see readme.md ▸ 字体替代说明.
+   霞鹜文楷 / 思源宋体 / 思源黑体 的授权字体文件未随资料提供。 */
+@import url("https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200;300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Space+Grotesk:wght@400;500;700&family=Poppins:wght@600;800&family=JetBrains+Mono:wght@400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0&display=swap");
+
+:root{
+  /* 字族 · base */
+  --font-display:"Noto Serif SC",Songti SC,"Source Han Serif SC",serif;   /* 中文展示 · 宋 */
+  --font-serif:"Noto Serif SC",Songti SC,serif;                            /* 中文正文衬线 */
+  --font-sans:"Noto Sans SC","Space Grotesk","PingFang SC",sans-serif;     /* 中文界面 */
+  --font-western:"Space Grotesk","Noto Sans SC",sans-serif;                /* 西文正文 / 数据 */
+  --font-wordmark:"Poppins","Space Grotesk",sans-serif;                    /* SINOTAO 字标 */
+  --font-mono:"JetBrains Mono",ui-monospace,SFMono-Regular,monospace;      /* 代码 / Token */
+}

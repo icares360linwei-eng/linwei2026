@@ -1,0 +1,86 @@
+/* Semantic 语义角色 — 组件只引用本层与 component 层，禁止直接引用 primitive */
+:root{
+  /* 表面 */
+  --surface-page:var(--ink-50);
+  --surface-card:#FFFEFB;
+  --surface-sunken:var(--ink-100);
+  --surface-raised:#FFFEFB;
+  --surface-inverse:var(--ink-900);
+  --surface-brand-subtle:var(--brand-50);
+  --surface-brand:var(--brand-600);
+  --surface-selected:color-mix(in oklch,var(--brand-600) 6%,transparent);
+  --surface-hover:var(--ink-100);
+  --scrim:rgba(26,22,18,.45);
+
+  /* 文本 */
+  --text-heading:var(--ink-900);
+  --text-body:var(--ink-700);
+  --text-muted:var(--ink-600);
+  --text-subtle:var(--ink-500);
+  --text-on-brand:#FFFFFF;
+  --text-on-inverse:var(--ink-100);
+  --text-brand:var(--brand-500);      /* 文字用 500 可读档，填色仍用 600 */
+  --text-gold:var(--gold-600);
+  --text-link:var(--brand-500);
+  --text-link-hover:var(--brand-700);
+
+  /* 描边 */
+  --border-subtle:var(--ink-200);
+  --border-default:var(--ink-300);
+  --border-strong:var(--ink-400);
+  --border-brand:var(--brand-600);
+  --border-inverse:rgba(255,251,245,.16);
+
+  /* 状态 */
+  --state-success:var(--success-600); --state-success-surface:var(--ste-50);
+  --state-warning:var(--warning-600); --state-warning-surface:#FBF2E1;
+  --state-error:var(--error-600);     --state-error-surface:var(--zhu-50);
+  --state-info:var(--info-600);       --state-info-surface:var(--sti-50);
+  --state-disabled-opacity:.4; /* @kind other */
+
+  /* 焦点 */
+  --focus-ring-color:var(--brand-600);
+  --focus-ring-width:2px;
+  --focus-ring-offset:2px;
+
+  /* Component tokens — Button */
+  --btn-height-xl:48px; --btn-height-l:40px; --btn-height-m:36px; --btn-height-s:28px;
+  --btn-pad-xl:0 32px; --btn-pad-l:0 24px; --btn-pad-m:0 20px; --btn-pad-s:0 14px;
+  --btn-radius:var(--radius-md);
+  --btn-radius-cta:var(--radius-full);
+  --btn-primary-bg:var(--ink-900);      /* 主操作用玄墨，不用品牌色 —— 墨是最贵的颜色 */
+  --btn-primary-bg-hover:var(--ink-800);
+  --btn-primary-bg-active:var(--ink-950);
+  --btn-primary-fg:#FFFFFF;
+  --btn-secondary-border:var(--border-default);
+  --btn-secondary-fg:var(--text-heading);
+  --btn-gold-bg:var(--gold-400);
+  --btn-gold-fg:var(--ink-900);
+
+  /* Component tokens — Field */
+  --field-height:40px;
+  --field-radius:var(--radius-md);
+  --field-bg:var(--surface-card);
+  --field-border:var(--border-default);
+  --field-border-hover:var(--brand-400);
+  --field-border-focus:var(--brand-600);
+  --field-placeholder:var(--ink-400);
+  --field-pad-x:12px;
+
+  /* Component tokens — Card / Table / Overlay */
+  --card-radius:var(--radius-xl);
+  --card-border:var(--border-subtle);
+  --card-shadow:none;              /* 平面为默认：边界靠留白与细线，阴影只留给悬浮层 */
+  --card-pad:var(--space-5);
+  --card-pad-lg:var(--space-6);    /* 主面板 32px */
+  --hairline:1px solid var(--border-subtle);
+  --seal:var(--zhu-600);           /* 印章朱 — 章节起点标记，全站唯一装饰元素 */
+  --table-header-bg:var(--ink-100);
+  --table-row-hover:var(--ink-50);
+  --table-divider:var(--border-subtle);
+  --table-row-height:48px;
+  --overlay-radius:var(--radius-xl);
+  --overlay-shadow:var(--shadow-xl);
+  --tooltip-bg:var(--ink-900);
+  --tooltip-fg:var(--ink-100);
+}

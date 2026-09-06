@@ -1,0 +1,50 @@
+<!-- @dsCard group="Components" viewport="700x420" name="Data · 指标带 / 表格 / 分页 / 空状态" subtitle="StatBand 细线指标带 · Table 排序与多选 · Pagination · EmptyState" -->
+<!doctype html><html lang="zh-CN"><head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{margin:0;background:var(--surface-page);font-family:var(--font-sans)}#root{padding:20px}.row{display:flex;align-items:center;gap:12px;flex-wrap:wrap}.col{display:flex;flex-direction:column;gap:14px}.lbl{font-family:var(--font-western);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--text-subtle)}</style>
+</head><body><div id="root"></div>
+<script type="text/babel">
+const { Table, StatBand, Pagination, EmptyState, Tag, Button, IconButton } = window.SINOTAODesignSystem_b6947e;
+const ROWS=[
+ {id:1,no:'STI-2026-0718',cargo:'生物质颗粒燃料',amount:'1,284,500.00',status:'已通过审核',tone:'success'},
+ {id:2,no:'STI-2026-0717',cargo:'CFB 锅炉备件',amount:'386,200.00',status:'待复核',tone:'warning'},
+ {id:3,no:'STI-2026-0716',cargo:'PHA 医用粒料',amount:'2,940,000.00',status:'已退单',tone:'error'},
+ {id:4,no:'STI-2026-0715',cargo:'甜高粱种源',amount:'128,000.00',status:'已通过审核',tone:'success'},
+];
+function Demo(){
+  const [sel,setSel]=React.useState([2]);
+  const [sort,setSort]=React.useState({key:'amount',dir:'desc'});
+  const [p,setP]=React.useState(1);
+  return (
+    <div className="col">
+      <StatBand size="m" items={[
+        {label:'合并营收',value:'18.64',unit:'亿元',delta:9.4,deltaLabel:'同比'},
+        {label:'报关单量',value:'12,800',unit:'票',delta:7.6,deltaLabel:'同比'},
+        {label:'平均通关',value:'1.8',unit:'天',delta:-14.2,deltaLabel:'同比'},
+      ]}/>
+      <Table selectable selected={sel} onSelectedChange={setSel} sort={sort} onSortChange={setSort}
+        columns={[
+          {key:'no',title:'报关单号'},
+          {key:'cargo',title:'货物'},
+          {key:'amount',title:'金额 (¥)',align:'right',sortable:true},
+          {key:'status',title:'状态',render:(v,r)=><Tag tone={r.tone}>{v}</Tag>},
+          {key:'act',title:'',align:'right',render:()=><IconButton icon="more_horiz" label="更多" size="s"/>},
+        ]} rows={ROWS}/>
+      <div className="row" style={{justifyContent:'space-between'}}>
+        <Pagination page={p} pageSize={20} total={128} onChange={setP}/>
+        <Pagination page={3} total={128} onChange={()=>{}} compact/>
+      </div>
+      <div style={{border:'1px solid var(--border-subtle)',borderRadius:'var(--radius-lg)',background:'var(--surface-card)'}}>
+        <EmptyState compact icon="search_off" title="未找到匹配结果" hint="试试调整关键词或放宽筛选条件？"
+          action={<Button size="s" variant="secondary" icon="refresh">重置筛选</Button>}/>
+      </div>
+    </div>
+  );
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<Demo/>);
+</script></body></html>

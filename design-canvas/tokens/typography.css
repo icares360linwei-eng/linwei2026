@@ -1,0 +1,70 @@
+/* 15 级字阶 · 基准 16px · Geist 级字距纪律（展示级负字距，界面级零字距） */
+:root{
+  --fs-display-2xl:112px;
+  --lh-display-2xl:1.02; /* @kind font */
+  --ls-display-2xl:-0.042em; /* @kind font */
+  --fs-display-xl:88px;
+  --lh-display-xl:1.04; /* @kind font */
+  --ls-display-xl:-0.038em; /* @kind font */
+  --fs-display-l:72px;
+  --lh-display-l:1.08; /* @kind font */
+  --ls-display-l:-0.032em; /* @kind font */
+  --fs-display-m:60px;
+  --lh-display-m:1.10; /* @kind font */
+  --ls-display-m:-0.028em; /* @kind font */
+  --fs-display-s:42px;
+  --lh-display-s:1.14; /* @kind font */
+  --ls-display-s:-0.022em; /* @kind font */
+  --fs-h1:36px;
+  --lh-h1:1.18; /* @kind font */
+  --ls-h1:-0.018em; /* @kind font */
+  --fs-h2:30px;
+  --lh-h2:1.22; /* @kind font */
+  --ls-h2:-0.014em; /* @kind font */
+  --fs-h3:24px;
+  --lh-h3:1.28; /* @kind font */
+  --ls-h3:-0.010em; /* @kind font */
+  --fs-h4:20px;
+  --lh-h4:1.34; /* @kind font */
+  --ls-h4:-0.006em; /* @kind font */
+  --fs-h5:18px;
+  --lh-h5:1.40; /* @kind font */
+  --ls-h5:0em; /* @kind font */
+  --fs-h6:16px;
+  --lh-h6:1.45; /* @kind font */
+  --ls-h6:0em; /* @kind font */
+  --fs-body-l:16px;
+  --lh-body-l:1.68; /* @kind font */
+  --ls-body-l:0.004em; /* @kind font */
+  --fs-body-m:15px;
+  --lh-body-m:1.70; /* @kind font */
+  --ls-body-m:0.004em; /* @kind font */
+  --fs-body-s:14px;
+  --lh-body-s:1.72; /* @kind font */
+  --ls-body-s:0.006em; /* @kind font */
+  --fs-caption:12px;
+  --lh-caption:1.60; /* @kind font */
+  --ls-caption:0.02em; /* @kind font */
+  --fs-caption-xs:10px;
+  --lh-caption-xs:1.50; /* @kind font */
+  --ls-caption-xs:0.06em; /* @kind font */
+  --fs-code:13px;
+  --lh-code:1.70; /* @kind font */
+  --ls-code:0em; /* @kind font */
+
+  /* 字重 */
+  --fw-extralight:200; /* @kind font */
+  --fw-light:300; /* @kind font */
+  --fw-regular:400; /* @kind font */
+  --fw-medium:500; /* @kind font */
+  --fw-semibold:600; /* @kind font */
+  --fw-bold:700; /* @kind font */
+
+  --ls-eyebrow:0.18em; /* @kind font */ /* 眼标 · 大写西文宽字距 */
+
+  /* 度量 measure */
+  --measure-narrow:28em; /* @kind spacing */
+  --measure-cn:35em; /* @kind spacing */
+  --measure-en:38em; /* @kind spacing */
+  --measure-wide:48em; /* @kind spacing */
+}

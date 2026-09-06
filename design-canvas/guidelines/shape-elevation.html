@@ -1,0 +1,22 @@
+<!-- @dsCard group="Spacing" viewport="700x190" name="平面与阴影" subtitle="面板默认无描边无阴影；阴影只给真正的悬浮层（下拉 / 抽屉 / 弹窗）" -->
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>body{margin:0;background:var(--surface-sunken);font-family:var(--font-sans)}.wrap{padding:20px}
+.tok{font-family:var(--font-mono);font-size:10px;color:var(--text-subtle)}
+.lbl{font-family:var(--font-western);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--text-subtle)}</style>
+</head><body><div class="wrap">
+<div style="display:flex;gap:16px;align-items:stretch">
+ <div style="flex:1.4;background:var(--surface-card);border-radius:var(--card-radius);padding:18px">
+  <span class="lbl">flat · 默认</span>
+  <div style="font-size:13px;color:var(--text-body);margin-top:10px;line-height:1.8">面板靠中性画布与纯白面之间的明度差划界。无描边、无阴影。</div>
+ </div>
+ <div style="flex:1;background:var(--surface-card);border:1px solid var(--card-border);border-radius:var(--card-radius);padding:18px">
+  <span class="lbl">outlined</span>
+  <div style="font-size:13px;color:var(--text-body);margin-top:10px;line-height:1.8">仅当与同色背景相邻时。</div>
+ </div>
+ <div style="flex:1;background:var(--surface-card);border-radius:var(--card-radius);box-shadow:var(--shadow-xl);padding:18px">
+  <span class="lbl">elevated</span>
+  <div style="font-size:13px;color:var(--text-body);margin-top:10px;line-height:1.8">仅弹窗 / 抽屉 / 下拉。</div>
+ </div>
+</div>
+<div class="tok" style="margin-top:14px">六级阴影 xs–xl 仍在令牌里（暖墨 rgba(23,20,15,.04→.10)），但 <strong style="color:var(--text-body)">禁止描边与阴影同时出现</strong>——那是最主要的视觉噪音来源</div>
+</div></body></html>
