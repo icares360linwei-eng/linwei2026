@@ -1,825 +1,435 @@
 /* ============================================================
-   源裕兴设计系统全典 · Design Tokens · V39.0.0（墨经光纬 · 多页面站点版）
-   由 tokens.json 构建生成，请勿手改。守正 · 开物 · 共生
+   tokens.css · 源裕兴设计系统全典 V40.0.0 · 守正 · 画布对齐版
+   由 build/build.mjs 从 design-canvas/tokens/*.css 生成 —— 画布是唯一权威。
+   本文件 = 画布令牌原文（12 个文件按 styles.css 顺序内联）+ 门禁修正块。
+   实测 52 项对比度，21 项按 OKLCH 明度算法抬升至 WCAG 2.2 AA。
+   请勿手改：改画布，再重跑构建。
    ============================================================ */
+@import url("https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200;300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Space+Grotesk:wght@400;500;700&family=Poppins:wght@600;800&family=JetBrains+Mono:wght@400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0&display=swap");
 
-/* ── Layer 0 · Primitive（亚原子层，模式无关，永不直接用于组件） ── */
+/* ==== design-canvas/tokens/fonts.css ==== */
+/* Webfonts. Substituted from Google Fonts — see readme.md ▸ 字体替代说明.
+   霞鹜文楷 / 思源宋体 / 思源黑体 的授权字体文件未随资料提供。 */
+:root{
+  /* 字族 · base */
+  --font-display:"Noto Serif SC",Songti SC,"Source Han Serif SC",serif;   /* 中文展示 · 宋 */
+  --font-serif:"Noto Serif SC",Songti SC,serif;                            /* 中文正文衬线 */
+  --font-sans:"Noto Sans SC","Space Grotesk","PingFang SC",sans-serif;     /* 中文界面 */
+  --font-western:"Space Grotesk","Noto Sans SC",sans-serif;                /* 西文正文 / 数据 */
+  --font-wordmark:"Poppins","Space Grotesk",sans-serif;                    /* SINOTAO 字标 */
+  --font-mono:"JetBrains Mono",ui-monospace,SFMono-Regular,monospace;      /* 代码 / Token */
+}
+
+/* ==== design-canvas/tokens/colors.css ==== */
+/* Primitive 色板 — 矿物颜料逻辑：低色度、深明度、靠明度落差取贵气。
+   不直接用于组件，经 semantic.css 映射后使用。 */
+:root{
+  /* ── 宣纸墨色 Ink 十一阶（暖炭灰，去掉奶油黄）───────────────── */
+  --ink-50:#FBF9F5;   /* 宣  — 页面底 */
+  --ink-100:#F5F2EC;  /* 轻霜 */
+  --ink-200:#E9E4DA;  /* 薄雾 — 细线 */
+  --ink-300:#D3CCBF;  /* 淡烟 — 描边 */
+  --ink-400:#B2AA9C;  /* 古绢 */
+  --ink-500:#857E71;  /* 中灰 */
+  --ink-600:#635D53;  /* 砚灰 */
+  --ink-700:#45403A;  /* 墨灰 — 正文 */
+  --ink-800:#2A2622;  /* 浓墨 */
+  --ink-900:#17140F;  /* 玄墨 — 标题 · 主操作 */
+  --ink-950:#0D0B08;  /* 焦墨 — 暗色底 */
+
+  /* ── 印章朱 Zhu（唯一重点色，取自印泥与官式朱）───────────────── */
+  --zhu-50:#F7EDEA;
+  --zhu-100:#EFD9D3;
+  --zhu-200:#DDAFA4;
+  --zhu-400:#A8452F;
+  --zhu-600:#8A3323;  /* 标准朱 */
+  --zhu-700:#6E2719;
+  --zhu-800:#541D12;
+
+  /* ── 古铜金 Gold（去橙留灰，箔金而非镀金）───────────────────── */
+  --gold-200:#E8DCC4;
+  --gold-300:#D4C29C;
+  --gold-400:#B9A177;  /* 标准金 */
+  --gold-500:#9A8259;
+  --gold-600:#7A653F;
+
+  /* ── 五实体矿物色（色度统一压到 0.04–0.09，明度 0.32–0.40 带）──
+     旧色值（#851EA3 / #196B42 / #1E4082 / #208F9B / #B81E1E）为高色度中明度，
+     视觉过于轻佻，已整体压深并对齐色度带；色相关系保留。 */
+  --stg-50:#F2EDF5;  --stg-100:#E2D9E8; --stg-200:#B9A7C4; --stg-400:#6A4E7B;
+  --stg-500:#573E68; --stg-600:#463154; --stg-700:#372744; --stg-800:#281B31;  /* 玄紫 */
+  --ste-50:#EFF4F1;  --ste-100:#DCE7E0; --ste-200:#A9C1B4; --ste-400:#4A7360;
+  --ste-500:#3B5E4D; --ste-600:#2C4A3B; --ste-700:#213A2E; --ste-800:#182A21;  /* 松烟绿 */
+  --sti-50:#EFF2F6;  --sti-100:#DAE1EA; --sti-200:#A7B4C6; --sti-400:#455C7C;
+  --sti-500:#35496A; --sti-600:#26374F; --sti-700:#1C2A3E; --sti-800:#131E2C;  /* 藏青 */
+  --sth-50:#EFF5F5;  --sth-100:#DBE8E9; --sth-200:#A8C3C6; --sth-400:#4C7B80;
+  --sth-500:#3D686D; --sth-600:#2D5257; --sth-700:#213F44; --sth-800:#182E32;  /* 石青 */
+  --edu-50:#F7EEEB;  --edu-100:#EDDCD7; --edu-200:#D3AFA6; --edu-400:#A5584A;
+  --edu-500:#8F4438; --edu-600:#7A3229; --edu-700:#5F251E; --edu-800:#451915;  /* 赭朱 */
+
+  /* ── 语义原色（同样压深）───────────────────────────────────── */
+  --success-600:var(--ste-600);
+  --warning-600:#7A5F22;
+  --error-600:var(--zhu-600);
+  --info-600:var(--sti-600);
+
+  /* ── 数据可视化 8 序列：靠明度阶梯而非色相争艳 ───────────────── */
+  --dv-1:#35496A; /* 藏青 500 */
+  --dv-2:#3B5E4D; /* 松绿 500 */
+  --dv-3:#A8452F; /* 朱 400 */
+  --dv-4:#3D686D; /* 石青 500 */
+  --dv-5:#573E68; /* 玄紫 500 */
+  --dv-6:#9A8259; /* 铜金 */
+  --dv-7:#45403A; /* 墨灰 */
+  --dv-8:#B2AA9C; /* 古绢 */
+}
+
+/* ==== design-canvas/tokens/entities.css ==== */
+/* 五实体主题 — <html data-theme="stg|ste|sti|sth|edu"> 重映射主色族。
+   实体色是身份标记（细线刻度、代号、选中态、图表首序列、焦点环），
+   不是大面积填色；主操作一律用玄墨。默认（无 data-theme）= STG 集团母体。 */
+:root{
+  --brand-50:var(--stg-50); --brand-100:var(--stg-100); --brand-200:var(--stg-200);
+  --brand-400:var(--stg-400); --brand-500:var(--stg-500); --brand-600:var(--stg-600); --brand-700:var(--stg-700); --brand-800:var(--stg-800);
+  --brand-name-label:"源裕兴创新未来"; /* @kind other */
+}
+[data-theme="stg"]{--brand-50:var(--stg-50);--brand-100:var(--stg-100);--brand-200:var(--stg-200);--brand-400:var(--stg-400);--brand-500:var(--stg-500);--brand-600:var(--stg-600);--brand-700:var(--stg-700);--brand-800:var(--stg-800);--brand-name-label:"源裕兴创新未来"; /* @kind other */}
+[data-theme="ste"]{--brand-50:var(--ste-50);--brand-100:var(--ste-100);--brand-200:var(--ste-200);--brand-400:var(--ste-400);--brand-500:var(--ste-500);--brand-600:var(--ste-600);--brand-700:var(--ste-700);--brand-800:var(--ste-800);--brand-name-label:"九派国有能源"; /* @kind other */}
+[data-theme="sti"]{--brand-50:var(--sti-50);--brand-100:var(--sti-100);--brand-200:var(--sti-200);--brand-400:var(--sti-400);--brand-500:var(--sti-500);--brand-600:var(--sti-600);--brand-700:var(--sti-700);--brand-800:var(--sti-800);--brand-name-label:"源裕兴进出口贸易"; /* @kind other */}
+[data-theme="sth"]{--brand-50:var(--sth-50);--brand-100:var(--sth-100);--brand-200:var(--sth-200);--brand-400:var(--sth-400);--brand-500:var(--sth-500);--brand-600:var(--sth-600);--brand-700:var(--sth-700);--brand-800:var(--sth-800);--brand-name-label:"源裕兴健康科技"; /* @kind other */}
+[data-theme="edu"]{--brand-50:var(--edu-50);--brand-100:var(--edu-100);--brand-200:var(--edu-200);--brand-400:var(--edu-400);--brand-500:var(--edu-500);--brand-600:var(--edu-600);--brand-700:var(--edu-700);--brand-800:var(--edu-800);--brand-name-label:"崇仁教育"; /* @kind other */}
+
+/* ==== design-canvas/tokens/typography.css ==== */
+/* 15 级字阶 · 基准 16px · Geist 级字距纪律（展示级负字距，界面级零字距） */
+:root{
+  --fs-display-2xl:112px;
+  --lh-display-2xl:1.02; /* @kind font */
+  --ls-display-2xl:-0.042em; /* @kind font */
+  --fs-display-xl:88px;
+  --lh-display-xl:1.04; /* @kind font */
+  --ls-display-xl:-0.038em; /* @kind font */
+  --fs-display-l:72px;
+  --lh-display-l:1.08; /* @kind font */
+  --ls-display-l:-0.032em; /* @kind font */
+  --fs-display-m:60px;
+  --lh-display-m:1.10; /* @kind font */
+  --ls-display-m:-0.028em; /* @kind font */
+  --fs-display-s:42px;
+  --lh-display-s:1.14; /* @kind font */
+  --ls-display-s:-0.022em; /* @kind font */
+  --fs-h1:36px;
+  --lh-h1:1.18; /* @kind font */
+  --ls-h1:-0.018em; /* @kind font */
+  --fs-h2:30px;
+  --lh-h2:1.22; /* @kind font */
+  --ls-h2:-0.014em; /* @kind font */
+  --fs-h3:24px;
+  --lh-h3:1.28; /* @kind font */
+  --ls-h3:-0.010em; /* @kind font */
+  --fs-h4:20px;
+  --lh-h4:1.34; /* @kind font */
+  --ls-h4:-0.006em; /* @kind font */
+  --fs-h5:18px;
+  --lh-h5:1.40; /* @kind font */
+  --ls-h5:0em; /* @kind font */
+  --fs-h6:16px;
+  --lh-h6:1.45; /* @kind font */
+  --ls-h6:0em; /* @kind font */
+  --fs-body-l:16px;
+  --lh-body-l:1.68; /* @kind font */
+  --ls-body-l:0.004em; /* @kind font */
+  --fs-body-m:15px;
+  --lh-body-m:1.70; /* @kind font */
+  --ls-body-m:0.004em; /* @kind font */
+  --fs-body-s:14px;
+  --lh-body-s:1.72; /* @kind font */
+  --ls-body-s:0.006em; /* @kind font */
+  --fs-caption:12px;
+  --lh-caption:1.60; /* @kind font */
+  --ls-caption:0.02em; /* @kind font */
+  --fs-caption-xs:10px;
+  --lh-caption-xs:1.50; /* @kind font */
+  --ls-caption-xs:0.06em; /* @kind font */
+  --fs-code:13px;
+  --lh-code:1.70; /* @kind font */
+  --ls-code:0em; /* @kind font */
+
+  /* 字重 */
+  --fw-extralight:200; /* @kind font */
+  --fw-light:300; /* @kind font */
+  --fw-regular:400; /* @kind font */
+  --fw-medium:500; /* @kind font */
+  --fw-semibold:600; /* @kind font */
+  --fw-bold:700; /* @kind font */
+
+  --ls-eyebrow:0.18em; /* @kind font */ /* 眼标 · 大写西文宽字距 */
+
+  /* 度量 measure */
+  --measure-narrow:28em; /* @kind spacing */
+  --measure-cn:35em; /* @kind spacing */
+  --measure-en:38em; /* @kind spacing */
+  --measure-wide:48em; /* @kind spacing */
+}
+
+/* ==== design-canvas/tokens/spacing.css ==== */
+/* 4px 基准 · 12 级 */
+:root{
+  --space-0:0px;
+  --space-1:4px;  --space-2:8px;  --space-3:12px; --space-4:16px;
+  --space-5:24px; --space-6:32px; --space-7:40px; --space-8:48px;
+  --space-9:56px; --space-10:64px; --space-11:80px; --space-12:96px;
+  --space-13:128px; /* 视口级章节留白（Web 展示面专用） */
+}
+
+/* ==== design-canvas/tokens/shape.css ==== */
+/* 圆角 7 级 + 描边 */
+:root{
+  --radius-xs:2px; --radius-sm:4px; --radius-md:6px; --radius-lg:10px;
+  --radius-xl:16px; --radius-2xl:24px; --radius-full:9999px;
+  --border-hairline:1px; --border-emphasis:2px; --border-indicator:3px; /* @kind spacing */
+}
+
+/* ==== design-canvas/tokens/elevation.css ==== */
+/* 阴影 6 级 — 暖墨色投影，不用纯黑 */
+:root{
+  --shadow-none:none;
+  --shadow-xs:0 1px 2px rgba(23,20,15,.04);
+  --shadow-sm:0 1px 3px rgba(23,20,15,.05),0 1px 2px rgba(23,20,15,.03);
+  --shadow-md:0 4px 12px rgba(23,20,15,.06),0 1px 3px rgba(23,20,15,.04);
+  --shadow-lg:0 8px 24px rgba(23,20,15,.08),0 2px 6px rgba(23,20,15,.04);
+  --shadow-xl:0 16px 48px rgba(23,20,15,.10),0 4px 12px rgba(23,20,15,.05);
+  --shadow-inset-hairline:inset 0 0 0 1px rgba(23,20,15,.06);
+  --ring-focus:0 0 0 3px color-mix(in oklch,var(--brand-600) 22%,transparent);
+}
+
+/* ==== design-canvas/tokens/motion.css ==== */
+/* 动效即叙事 */
+:root{
+  --dur-instant:80ms; /* @kind other */
+  --dur-micro:150ms; /* @kind other */
+  --dur-transition:300ms; /* @kind other */
+  --dur-narrative:500ms; /* @kind other */
+  --dur-loop:2400ms; /* @kind other */
+  --ease-standard:cubic-bezier(.2,0,0,1); /* @kind other */
+  --ease-emphasized:cubic-bezier(.16,1,.3,1); /* @kind other */   /* 页面过渡 · 品牌缓动 */
+  --ease-out:cubic-bezier(0,0,.2,1); /* @kind other */
+  --ease-in:cubic-bezier(.4,0,1,1); /* @kind other */
+  --ease-brush:cubic-bezier(.33,0,.12,1); /* @kind other */       /* 落笔 — 起笔重、收笔轻 */
+}
+@media (prefers-reduced-motion:reduce){
+  :root{--dur-instant:1ms; /* @kind other */
+    --dur-micro:1ms; /* @kind other */
+    --dur-transition:1ms; /* @kind other */
+    --dur-narrative:1ms; /* @kind other */}
+}
+
+/* ==== design-canvas/tokens/layout.css ==== */
+/* 12 列宪法 · 五断点 */
+:root{
+  --bp-xs:0px; /* @kind spacing */
+  --bp-sm:600px; /* @kind spacing */
+  --bp-md:905px; /* @kind spacing */
+  --bp-lg:1240px; /* @kind spacing */
+  --bp-xl:1440px; /* @kind spacing */
+  --grid-cols:12; /* @kind other */
+  --gutter-xs:16px; --gutter-sm:16px; --gutter-md:24px; --gutter-lg:24px; --gutter-xl:24px;
+  --margin-xs:16px; --margin-sm:24px; --margin-md:32px; --margin-lg:40px;
+  --container-max:1200px;   /* 内容区上限 */
+  --container-wide:1440px;  /* 数据大屏 / grid-break */
+  --rail-width:76px; --drawer-width:264px; --panel-width:380px;
+  --appbar-height:64px;
+}
+
+/* ==== design-canvas/tokens/semantic.css ==== */
+/* Semantic 语义角色 — 组件只引用本层与 component 层，禁止直接引用 primitive */
+:root{
+  /* 表面 */
+  --surface-page:var(--ink-50);
+  --surface-card:#FFFEFB;
+  --surface-sunken:var(--ink-100);
+  --surface-raised:#FFFEFB;
+  --surface-inverse:var(--ink-900);
+  --surface-brand-subtle:var(--brand-50);
+  --surface-brand:var(--brand-600);
+  --surface-selected:color-mix(in oklch,var(--brand-600) 6%,transparent);
+  --surface-hover:var(--ink-100);
+  --scrim:rgba(26,22,18,.45);
+
+  /* 文本 */
+  --text-heading:var(--ink-900);
+  --text-body:var(--ink-700);
+  --text-muted:var(--ink-600);
+  --text-subtle:var(--ink-500);
+  --text-on-brand:#FFFFFF;
+  --text-on-inverse:var(--ink-100);
+  --text-brand:var(--brand-500);      /* 文字用 500 可读档，填色仍用 600 */
+  --text-gold:var(--gold-600);
+  --text-link:var(--brand-500);
+  --text-link-hover:var(--brand-700);
+
+  /* 描边 */
+  --border-subtle:var(--ink-200);
+  --border-default:var(--ink-300);
+  --border-strong:var(--ink-400);
+  --border-brand:var(--brand-600);
+  --border-inverse:rgba(255,251,245,.16);
+
+  /* 状态 */
+  --state-success:var(--success-600); --state-success-surface:var(--ste-50);
+  --state-warning:var(--warning-600); --state-warning-surface:#FBF2E1;
+  --state-error:var(--error-600);     --state-error-surface:var(--zhu-50);
+  --state-info:var(--info-600);       --state-info-surface:var(--sti-50);
+  --state-disabled-opacity:.4; /* @kind other */
+
+  /* 焦点 */
+  --focus-ring-color:var(--brand-600);
+  --focus-ring-width:2px;
+  --focus-ring-offset:2px;
+
+  /* Component tokens — Button */
+  --btn-height-xl:48px; --btn-height-l:40px; --btn-height-m:36px; --btn-height-s:28px;
+  --btn-pad-xl:0 32px; --btn-pad-l:0 24px; --btn-pad-m:0 20px; --btn-pad-s:0 14px;
+  --btn-radius:var(--radius-md);
+  --btn-radius-cta:var(--radius-full);
+  --btn-primary-bg:var(--ink-900);      /* 主操作用玄墨，不用品牌色 —— 墨是最贵的颜色 */
+  --btn-primary-bg-hover:var(--ink-800);
+  --btn-primary-bg-active:var(--ink-950);
+  --btn-primary-fg:#FFFFFF;
+  --btn-secondary-border:var(--border-default);
+  --btn-secondary-fg:var(--text-heading);
+  --btn-gold-bg:var(--gold-400);
+  --btn-gold-fg:var(--ink-900);
+
+  /* Component tokens — Field */
+  --field-height:40px;
+  --field-radius:var(--radius-md);
+  --field-bg:var(--surface-card);
+  --field-border:var(--border-default);
+  --field-border-hover:var(--brand-400);
+  --field-border-focus:var(--brand-600);
+  --field-placeholder:var(--ink-400);
+  --field-pad-x:12px;
+
+  /* Component tokens — Card / Table / Overlay */
+  --card-radius:var(--radius-xl);
+  --card-border:var(--border-subtle);
+  --card-shadow:none;              /* 平面为默认：边界靠留白与细线，阴影只留给悬浮层 */
+  --card-pad:var(--space-5);
+  --card-pad-lg:var(--space-6);    /* 主面板 32px */
+  --hairline:1px solid var(--border-subtle);
+  --seal:var(--zhu-600);           /* 印章朱 — 章节起点标记，全站唯一装饰元素 */
+  --table-header-bg:var(--ink-100);
+  --table-row-hover:var(--ink-50);
+  --table-divider:var(--border-subtle);
+  --table-row-height:48px;
+  --overlay-radius:var(--radius-xl);
+  --overlay-shadow:var(--shadow-xl);
+  --tooltip-bg:var(--ink-900);
+  --tooltip-fg:var(--ink-100);
+}
+
+/* ==== design-canvas/tokens/dark.css ==== */
+/* 暗色模式 — Ink 反转，实体色明度提升（OKLCH 明升 + chroma 微降） */
+[data-color-scheme="dark"]{
+  --brand-600:color-mix(in oklch,var(--brand-400) 82%,var(--ink-50));
+  --brand-700:var(--brand-400);
+  --brand-800:var(--brand-200);
+  --brand-50:color-mix(in oklch,var(--brand-800) 42%,var(--ink-950));
+  --brand-100:color-mix(in oklch,var(--brand-800) 60%,var(--ink-950));
+
+  --surface-page:var(--ink-950);
+  --surface-card:#1A1713;
+  --surface-sunken:#131009;
+  --surface-raised:#221E19;
+  --surface-inverse:var(--ink-50);
+  --surface-brand-subtle:var(--brand-50);
+  --surface-hover:#221E19;
+  --scrim:rgba(0,0,0,.62);
+
+  --text-heading:var(--ink-50);
+  --text-body:var(--ink-200);
+  --text-muted:var(--ink-400);
+  --text-subtle:var(--ink-500);
+  --text-on-inverse:var(--ink-900);
+  --text-brand:var(--brand-600);
+  --text-link:var(--brand-600);
+  --text-link-hover:var(--brand-700);
+
+  --btn-primary-bg:var(--ink-50);
+  --btn-primary-bg-hover:#FFFFFF;
+  --btn-primary-bg-active:var(--ink-200);
+  --btn-primary-fg:var(--ink-950);
+
+  --border-subtle:rgba(251,249,245,.10);
+  --border-default:rgba(251,249,245,.18);
+  --border-strong:rgba(251,249,245,.30);
+
+  --state-success-surface:rgba(74,115,96,.22);
+  --state-warning-surface:rgba(154,130,89,.22);
+  --state-error-surface:rgba(168,69,47,.22);
+  --state-info-surface:rgba(69,92,124,.24);
+
+  --card-shadow:0 1px 3px rgba(0,0,0,.5);
+  --table-header-bg:#221E19;
+  --table-row-hover:#201C17;
+  --tooltip-bg:var(--ink-100);
+  --tooltip-fg:var(--ink-900);
+}
+
+/* ==== design-canvas/tokens/base.css ==== */
+/* Elements 层 — 裸元素基线。组件不依赖本层，但页面引入后即有正确的排版底座。 */
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--surface-page);color:var(--text-body);font-family:var(--font-sans);font-size:var(--fs-body-m);line-height:var(--lh-body-m);letter-spacing:var(--ls-body-m);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+h1,h2,h3,h4,h5,h6{margin:0;color:var(--text-heading);font-family:var(--font-display);font-weight:var(--fw-light);text-wrap:pretty;word-break:keep-all}
+h1{font-size:var(--fs-h1);line-height:var(--lh-h1);letter-spacing:var(--ls-h1)}
+h2{font-size:var(--fs-h2);line-height:var(--lh-h2);letter-spacing:var(--ls-h2)}
+h3{font-size:var(--fs-h3);line-height:var(--lh-h3);letter-spacing:var(--ls-h3)}
+h4{font-size:var(--fs-h4);line-height:var(--lh-h4);letter-spacing:var(--ls-h4);font-family:var(--font-sans);font-weight:var(--fw-medium)}
+h5{font-size:var(--fs-h5);line-height:var(--lh-h5);font-family:var(--font-sans);font-weight:var(--fw-medium)}
+h6{font-size:var(--fs-h6);line-height:var(--lh-h6);font-family:var(--font-sans);font-weight:var(--fw-medium)}
+p{margin:0 0 var(--space-4);max-width:var(--measure-cn);text-wrap:pretty}
+a{color:var(--text-link);text-decoration-color:color-mix(in oklch,var(--text-link) 35%,transparent);text-underline-offset:.18em;transition:color var(--dur-micro) var(--ease-out)}
+a:hover{color:var(--text-link-hover);text-decoration-color:currentColor}
+small{font-size:var(--fs-caption);letter-spacing:var(--ls-caption)}
+code,kbd,pre,samp{font-family:var(--font-mono);font-size:var(--fs-code)}
+hr{border:0;border-top:1px solid var(--border-subtle);margin:var(--space-6) 0}
+img,svg{max-width:100%}
+::selection{background:var(--zhu-100);color:var(--zhu-800)}
+:focus-visible{outline:var(--focus-ring-width) solid var(--focus-ring-color);outline-offset:var(--focus-ring-offset)}
+.u-eyebrow{font-family:var(--font-western);font-size:var(--fs-caption);font-weight:var(--fw-medium);letter-spacing:var(--ls-eyebrow);text-transform:uppercase;color:var(--text-muted)}
+.u-num{font-family:var(--font-western);font-variant-numeric:tabular-nums;letter-spacing:-0.01em}
+.material-symbols-rounded{font-family:"Material Symbols Rounded";font-weight:400;font-style:normal;font-size:24px;line-height:1;letter-spacing:normal;text-transform:none;display:inline-block;white-space:nowrap;direction:ltr;-webkit-font-feature-settings:"liga";-webkit-font-smoothing:antialiased;font-variation-settings:"FILL" 0,"wght" 400,"GRAD" 0,"opsz" 24}
+.u-label{font-family:var(--font-sans);font-size:var(--fs-caption);font-weight:var(--fw-medium);letter-spacing:0;color:var(--text-subtle)}
+
+/* ============================================================
+   门禁修正 · Accessibility Gate Overrides
+   画布色值在下列角色上未达 WCAG 2.2 AA。修正只动 OKLCH 明度，保留色相与色度，
+   取满足阈值的最近一档。每条都在治理章 G.9 有记录。
+   ============================================================ */
 :root {
-  --ink-50: #FFFBF5;
-  --ink-100: #FAF7F2;
-  --ink-200: #F0EBE3;
-  --ink-300: #D9D3C8;
-  --ink-400: #BFB8AB;
-  --ink-500: #8C8578;
-  --ink-600: #6B6459;
-  --ink-700: #4A443C;
-  --ink-800: #2D2823;
-  --ink-900: #1A1612;
-  --stg-50: #F8E9FE;
-  --stg-100: #F3D6FD;
-  --stg-200: #E7B5F9;
-  --stg-300: #D58CEE;
-  --stg-400: #BD64DA;
-  --stg-500: #A242C1;
-  --stg-600: #851EA3;
-  --stg-700: #6D0587;
-  --stg-800: #530068;
-  --stg-900: #3A004A;
-  --ste-50: #E7F3EB;
-  --ste-100: #D2E8DA;
-  --ste-200: #B0D6BD;
-  --ste-300: #85BD9A;
-  --ste-400: #5DA279;
-  --ste-500: #3B875C;
-  --ste-600: #196B42;
-  --ste-700: #025631;
-  --ste-800: #004023;
-  --ste-900: #002C17;
-  --sti-50: #E7EEFB;
-  --sti-100: #D2DFF7;
-  --sti-200: #AEC5EC;
-  --sti-300: #84A3DB;
-  --sti-400: #5C80C1;
-  --sti-500: #3B60A4;
-  --sti-600: #1E4082;
-  --sti-700: #0F2D68;
-  --sti-800: #051C4D;
-  --sti-900: #010D30;
-  --sth-50: #E6F4F6;
-  --sth-100: #D2EDF0;
-  --sth-200: #B1E0E6;
-  --sth-300: #87CED7;
-  --sth-400: #5FB9C4;
-  --sth-500: #3FA5B1;
-  --sth-600: #208F9B;
-  --sth-700: #097983;
-  --sth-800: #09636C;
-  --sth-900: #124D54;
-  --edu-50: #FFEAE7;
-  --edu-100: #FFD9D4;
-  --edu-200: #FFBAB1;
-  --edu-300: #FF8E81;
-  --edu-400: #EF6559;
-  --edu-500: #D6423A;
-  --edu-600: #B81E1E;
-  --edu-700: #9A030D;
-  --edu-800: #7A0007;
-  --edu-900: #590305;
-  --gold-50: #FCF6EB;
-  --gold-100: #F7EBD7;
-  --gold-200: #EBD6B2;
-  --gold-300: #DBBE8B;
-  --gold-400: #C9A96E;
-  --gold-500: #AA8A4C;
-  --gold-600: #8C6C2D;
-  --gold-700: #6C5013;
-  --gold-800: #4C3605;
-  --gold-900: #2E1F00;
-  --font-display: 'LXGW WenKai TC', 'LXGW WenKai', 'Noto Serif SC', 'Songti SC', serif;
-  --font-serif: 'Noto Serif SC', 'Source Han Serif SC', 'Songti SC', 'SimSun', serif;
-  --font-sans: 'Noto Sans SC', 'Source Han Sans SC', 'PingFang SC', 'Microsoft YaHei', 'Manrope', system-ui, sans-serif;
-  --font-western: 'Manrope', 'Noto Sans SC', system-ui, sans-serif;
-  --font-mono: 'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, 'Noto Sans SC', monospace;
-  --fs-display-2xl: clamp(3.25rem, 1.7875rem + 7.18vw, 8.25rem);
-  --lh-display-2xl: 0.94;
-  --fw-display-2xl: 200;
-  --ls-display-2xl: -0.035em;
-  --ff-display-2xl: var(--font-serif);
-  --fs-display-xl: clamp(2.75rem, 1.5125rem + 4.99vw, 6rem);
-  --lh-display-xl: 1;
-  --fw-display-xl: 200;
-  --ls-display-xl: -0.03em;
-  --ff-display-xl: var(--font-serif);
-  --fs-display-l: clamp(2.5rem, 1.375rem + 3.47vw, 4.5rem);
-  --lh-display-l: 1.06;
-  --fw-display-l: 200;
-  --ls-display-l: -0.025em;
-  --ff-display-l: var(--font-serif);
-  --fs-display-m: clamp(2.125rem, 1.1688rem + 2.31vw, 3.25rem);
-  --lh-display-m: 1.1;
-  --fw-display-m: 300;
-  --ls-display-m: -0.02em;
-  --ff-display-m: var(--font-serif);
-  --fs-display-s: clamp(1.75rem, 0.9625rem + 1.71vw, 2.5rem);
-  --lh-display-s: 1.14;
-  --fw-display-s: 300;
-  --ls-display-s: -0.015em;
-  --ff-display-s: var(--font-serif);
-  --fs-h1: clamp(1.75rem, 0.9625rem + 1.43vw, 2.25rem);
-  --lh-h1: 1.15;
-  --fw-h1: 300;
-  --ls-h1: -0.01em;
-  --ff-h1: var(--font-serif);
-  --fs-h2: 1.875rem;
-  --lh-h2: 1.2;
-  --fw-h2: 400;
-  --ls-h2: 0.01em;
-  --ff-h2: var(--font-serif);
-  --fs-h3: 1.5rem;
-  --lh-h3: 1.25;
-  --fw-h3: 400;
-  --ls-h3: 0.01em;
-  --ff-h3: var(--font-serif);
-  --fs-h4: 1.375rem;
-  --lh-h4: 1.3;
-  --fw-h4: 500;
-  --ls-h4: 0;
-  --ff-h4: var(--font-serif);
-  --fs-h5: 1.25rem;
-  --lh-h5: 1.35;
-  --fw-h5: 500;
-  --ls-h5: 0;
-  --ff-h5: var(--font-sans);
-  --fs-h6: 1.125rem;
-  --lh-h6: 1.4;
-  --fw-h6: 500;
-  --ls-h6: 0;
-  --ff-h6: var(--font-sans);
-  --fs-body-l: 1rem;
-  --lh-body-l: 1.8;
-  --fw-body-l: 400;
-  --ls-body-l: 0;
-  --ff-body-l: var(--font-sans);
-  --fs-body-m: 0.9375rem;
-  --lh-body-m: 1.7;
-  --fw-body-m: 400;
-  --ls-body-m: 0;
-  --ff-body-m: var(--font-sans);
-  --fs-body-s: 0.875rem;
-  --lh-body-s: 1.75;
-  --fw-body-s: 400;
-  --ls-body-s: 0;
-  --ff-body-s: var(--font-sans);
-  --fs-caption: 0.75rem;
-  --lh-caption: 1.6;
-  --fw-caption: 400;
-  --ls-caption: 0.01em;
-  --ff-caption: var(--font-sans);
-  --fs-caption-xs: 0.625rem;
-  --lh-caption-xs: 1.5;
-  --fw-caption-xs: 500;
-  --ls-caption-xs: 0.06em;
-  --ff-caption-xs: var(--font-sans);
-  --fs-code: 0.8125rem;
-  --lh-code: 1.7;
-  --fw-code: 400;
-  --ls-code: 0;
-  --ff-code: var(--font-mono);
-  --space-1: 4px;
-  --space-2: 8px;
-  --space-3: 12px;
-  --space-4: 16px;
-  --space-5: 24px;
-  --space-6: 32px;
-  --space-7: 40px;
-  --space-8: 48px;
-  --space-9: 56px;
-  --space-10: 64px;
-  --space-11: 80px;
-  --space-12: 96px;
-  --radius-xs: 2px;
-  --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 12px;
-  --radius-xl: 16px;
-  --radius-2xl: 24px;
-  --radius-full: 9999px;
-  --dur-instant: 100ms;
-  --dur-fast: 150ms;
-  --dur-base: 300ms;
-  --dur-slow: 500ms;
-  --dur-loop: 2000ms;
-  --dur-exit-fast: 100ms;
-  --dur-exit-base: 200ms;
-  --dur-exit-slow: 320ms;
-  --ease-out: cubic-bezier(.16, 1, .3, 1);
-  --ease-in: cubic-bezier(.4, 0, 1, 1);
-  --ease-standard: cubic-bezier(.2, 0, 0, 1);
-  --ease-elegant: cubic-bezier(.25, .1, .25, 1);
-  --ease-spring: cubic-bezier(.34, 1.18, .64, 1);
-  --ease-linear: linear;
-  --z-dropdown: 100;
-  --z-sticky: 200;
-  --z-fixed: 300;
-  --z-drawer: 400;
-  --z-modal: 500;
-  --z-popover: 600;
-  --z-tooltip: 700;
-  --z-toast: 800;
-  --bp-xs: 0px;
-  --bp-sm: 600px;
-  --bp-md: 905px;
-  --bp-lg: 1240px;
-  --bp-xl: 1440px;
-  --grid-columns: 12;
-  --grid-max: 1200px;
-  --icon-canvas: 24px;
-  --icon-stroke: 2px;
-  --touch-target: 44px;
+  --text-subtle: #797265;  /* 3.99:1 → 4.72:1（需 ≥4.5） */
+  --field-placeholder: #7D7568;  /* 2.28:1 → 4.51:1（需 ≥4.5） */
+  --field-border: #968F83;  /* 1.52:1 → 3.05:1（需 ≥3） */
+  --dv-8: #9B9385;  /* 2.28:1 → 3.02:1（需 ≥3） */
 }
-
-/* ── 实体映射（五实体切换只替换这一组；默认 STG） ── */
-.sino, [data-theme="stg"] {
-  --e-50: var(--stg-50);
-  --e-100: var(--stg-100);
-  --e-200: var(--stg-200);
-  --e-300: var(--stg-300);
-  --e-400: var(--stg-400);
-  --e-500: var(--stg-500);
-  --e-600: var(--stg-600);
-  --e-700: var(--stg-700);
-  --e-800: var(--stg-800);
-  --e-900: var(--stg-900);
-  --e-primary-light: var(--stg-600);
-  --e-primary-dark: var(--stg-300);
-  --e-code: "STG";
-}
-[data-theme="ste"] {
-  --e-50: var(--ste-50);
-  --e-100: var(--ste-100);
-  --e-200: var(--ste-200);
-  --e-300: var(--ste-300);
-  --e-400: var(--ste-400);
-  --e-500: var(--ste-500);
-  --e-600: var(--ste-600);
-  --e-700: var(--ste-700);
-  --e-800: var(--ste-800);
-  --e-900: var(--ste-900);
-  --e-primary-light: var(--ste-600);
-  --e-primary-dark: var(--ste-300);
-  --e-code: "STE";
-}
-[data-theme="sti"] {
-  --e-50: var(--sti-50);
-  --e-100: var(--sti-100);
-  --e-200: var(--sti-200);
-  --e-300: var(--sti-300);
-  --e-400: var(--sti-400);
-  --e-500: var(--sti-500);
-  --e-600: var(--sti-600);
-  --e-700: var(--sti-700);
-  --e-800: var(--sti-800);
-  --e-900: var(--sti-900);
-  --e-primary-light: var(--sti-600);
-  --e-primary-dark: var(--sti-300);
-  --e-code: "STI";
-}
-[data-theme="sth"] {
-  --e-50: var(--sth-50);
-  --e-100: var(--sth-100);
-  --e-200: var(--sth-200);
-  --e-300: var(--sth-300);
-  --e-400: var(--sth-400);
-  --e-500: var(--sth-500);
-  --e-600: var(--sth-600);
-  --e-700: var(--sth-700);
-  --e-800: var(--sth-800);
-  --e-900: var(--sth-900);
-  --e-primary-light: var(--sth-700);
-  --e-primary-dark: var(--sth-300);
-  --e-code: "STH";
-}
-[data-theme="edu"] {
-  --e-50: var(--edu-50);
-  --e-100: var(--edu-100);
-  --e-200: var(--edu-200);
-  --e-300: var(--edu-300);
-  --e-400: var(--edu-400);
-  --e-500: var(--edu-500);
-  --e-600: var(--edu-600);
-  --e-700: var(--edu-700);
-  --e-800: var(--edu-800);
-  --e-900: var(--edu-900);
-  --e-primary-light: var(--edu-600);
-  --e-primary-dark: var(--edu-300);
-  --e-code: "EDU";
-}
-
-/* ── Layer 1 · Semantic · 浅色（默认；完整定义在裸选择器上；嵌套 [data-theme] 作用域重新解析） ── */
-:root {
-  color-scheme: light;
-  --c-background: var(--ink-100);
-  --c-onBackground: var(--ink-900);
-}
-.sino, .sino [data-theme] {
-  color-scheme: light;
-  --chart-1: #8F2BAE;
-  --chart-2: #AF8221;
-  --chart-3: #0098A6;
-  --chart-4: #DA433B;
-  --chart-5: #2D54A0;
-  --chart-6: #007D4A;
-  --c-void: var(--ink-200);
-  --c-glass: color-mix(in oklab, var(--ink-50) 72%, transparent);
-  --c-glassBorder: color-mix(in oklab, var(--ink-900) 10%, transparent);
-  --c-glassHi: color-mix(in oklab, var(--ink-50) 90%, transparent);
-  --c-glow: color-mix(in oklab, var(--e-500) 26%, transparent);
-  --c-glowSoft: color-mix(in oklab, var(--e-400) 16%, transparent);
-  --c-auroraA: color-mix(in oklab, var(--e-300) 40%, transparent);
-  --c-auroraB: color-mix(in oklab, var(--gold-300) 30%, transparent);
-  --c-rule: color-mix(in oklab, var(--ink-900) 12%, transparent);
-  --c-background: var(--ink-100);
-  --c-onBackground: var(--ink-900);
-  --c-surface: var(--ink-50);
-  --c-surfaceVariant: var(--ink-200);
-  --c-surfaceContainer: var(--ink-100);
-  --c-surfaceHover: color-mix(in oklab, var(--ink-900) 4%, var(--ink-50));
-  --c-onSurface: var(--ink-800);
-  --c-onSurfaceStrong: var(--ink-900);
-  --c-onSurfaceVariant: var(--ink-600);
-  --c-onSurfaceMuted: var(--ink-500);
-  --c-placeholder: var(--ink-600);
-  --c-outline: var(--ink-500);
-  --c-outlineVariant: var(--ink-300);
-  --c-outlineFaint: var(--ink-200);
-  --c-brand: var(--e-600);
-  --c-primary: var(--e-primary-light);
-  --c-onPrimary: var(--ink-50);
-  --c-primaryHover: var(--e-700);
-  --c-primaryActive: var(--e-800);
-  --c-primaryContainer: var(--e-100);
-  --c-onPrimaryContainer: var(--e-800);
-  --c-primarySubtle: var(--e-50);
-  --c-primaryFixed: var(--e-200);
-  --c-secondary: var(--ink-700);
-  --c-onSecondary: var(--ink-50);
-  --c-secondaryContainer: var(--ink-200);
-  --c-onSecondaryContainer: var(--ink-800);
-  --c-tertiary: var(--gold-400);
-  --c-onTertiary: var(--ink-900);
-  --c-tertiaryContainer: var(--gold-100);
-  --c-onTertiaryContainer: var(--gold-800);
-  --c-gold: var(--gold-400);
-  --c-goldLine: var(--gold-500);
-  --c-goldText: var(--gold-700);
-  --c-vermilion: var(--edu-600);
-  --c-success: var(--ste-600);
-  --c-onSuccess: var(--ink-50);
-  --c-successContainer: var(--ste-100);
-  --c-onSuccessContainer: var(--ste-800);
-  --c-warning: var(--gold-700);
-  --c-onWarning: var(--ink-50);
-  --c-warningContainer: var(--gold-100);
-  --c-onWarningContainer: var(--gold-800);
-  --c-error: var(--edu-600);
-  --c-onError: var(--ink-50);
-  --c-errorContainer: var(--edu-100);
-  --c-onErrorContainer: var(--edu-800);
-  --c-info: var(--sti-600);
-  --c-onInfo: var(--ink-50);
-  --c-infoContainer: var(--sti-100);
-  --c-onInfoContainer: var(--sti-800);
-  --c-link: var(--e-primary-light);
-  --c-linkHover: var(--e-800);
-  --c-focusRing: var(--e-primary-light);
-  --c-focusHalo: color-mix(in oklab, var(--e-primary-light) 22%, transparent);
-  --c-selectedBg: color-mix(in oklab, var(--e-primary-light) 7%, var(--ink-50));
-  --c-selectedBorder: var(--e-primary-light);
-  --c-scrim: color-mix(in oklab, var(--ink-900) 48%, transparent);
-  --c-inverseSurface: var(--ink-900);
-  --c-inverseOnSurface: var(--ink-100);
-  --c-inversePrimary: var(--e-300);
-  --c-skeleton: var(--ink-200);
-  --c-skeletonShine: var(--ink-100);
-  --c-chartGrid: var(--ink-200);
-  --c-chartAxis: var(--ink-400);
-  --c-chartMuted: var(--ink-500);
-  --c-chartSurface: var(--ink-50);
-  --c-chartEmphasisDim: var(--ink-300);
-  --c-series1: var(--chart-1);
-  --c-series2: var(--chart-2);
-  --c-series3: var(--chart-3);
-  --c-series4: var(--chart-4);
-  --c-series5: var(--chart-5);
-  --c-series6: var(--chart-6);
-  --shadow-none: none;
-  --shadow-xs: 0 1px 2px oklch(25% 0.02 60 / .06);
-  --shadow-sm: 0 1px 2px oklch(25% 0.02 60 / .06), 0 2px 6px -1px oklch(25% 0.02 60 / .07);
-  --shadow-md: 0 1px 2px oklch(25% 0.02 60 / .06), 0 4px 8px -2px oklch(25% 0.02 60 / .08), 0 12px 24px -8px oklch(25% 0.02 60 / .10);
-  --shadow-lg: 0 2px 4px oklch(25% 0.02 60 / .06), 0 8px 16px -4px oklch(25% 0.02 60 / .10), 0 24px 48px -12px oklch(25% 0.02 60 / .14);
-  --shadow-xl: 0 4px 8px oklch(25% 0.02 60 / .08), 0 16px 32px -8px oklch(25% 0.02 60 / .12), 0 48px 96px -24px oklch(25% 0.02 60 / .18);
-}
-
-/* ── Layer 2 · Component（只引用 Semantic） ── */
-.sino, .sino [data-theme] {
-  --btn-height-xl: 48px;
-  --btn-height-l: 40px;
-  --btn-height-m: 36px;
-  --btn-height-s: 28px;
-  --btn-padx-xl: var(--space-6);
-  --btn-padx-l: var(--space-5);
-  --btn-padx-m: 20px;
-  --btn-padx-s: 14px;
-  --btn-fs-xl: 16px;
-  --btn-fs-l: 15px;
-  --btn-fs-m: 14px;
-  --btn-fs-s: 12px;
-  --btn-radius: var(--radius-full);
-  --btn-weight: 500;
-  --btn-gap: var(--space-2);
-  --btn-primary-bg: var(--c-primary);
-  --btn-primary-fg: var(--c-onPrimary);
-  --btn-primary-bg-hover: var(--c-primaryHover);
-  --btn-primary-bg-active: var(--c-primaryActive);
-  --btn-secondary-fg: var(--c-primary);
-  --btn-secondary-border: var(--c-primary);
-  --btn-secondary-bg-hover: var(--c-primarySubtle);
-  --btn-text-fg: var(--c-primary);
-  --btn-text-bg-hover: var(--c-primarySubtle);
-  --btn-danger-bg: var(--c-error);
-  --btn-danger-fg: var(--c-onError);
-  --btn-gold-bg: var(--c-tertiary);
-  --btn-gold-fg: var(--c-onTertiary);
-  --btn-ghost-fg: var(--c-onSurface);
-  --btn-ghost-border: var(--c-outlineVariant);
-  --btn-disabled-opacity: .4;
-  --btn-hover-lift: -1px;
-  --btn-active-scale: .98;
-  --btn-focus-ring: var(--c-focusRing);
-  --btn-focus-halo: var(--c-focusHalo);
-  --btn-duration: var(--dur-fast);
-  --btn-easing: var(--ease-out);
-  --field-height: 40px;
-  --field-height-s: 32px;
-  --field-radius: var(--radius-md);
-  --field-padx: var(--space-3);
-  --field-fs: 15px;
-  --field-bg: var(--c-surface);
-  --field-fg: var(--c-onSurface);
-  --field-border: var(--c-outline);
-  --field-border-hover: var(--c-onSurfaceVariant);
-  --field-border-focus: var(--c-primary);
-  --field-halo-focus: var(--c-focusHalo);
-  --field-border-error: var(--c-error);
-  --field-border-success: var(--c-success);
-  --field-placeholder: var(--c-placeholder);
-  --field-label-fg: var(--c-onSurface);
-  --field-help-fg: var(--c-onSurfaceVariant);
-  --field-error-fg: var(--c-error);
-  --field-disabled-bg: var(--c-surfaceVariant);
-  --field-gap: 6px;
-  --field-error-minheight: 20px;
-  --check-size: 18px;
-  --check-radius: var(--radius-sm);
-  --check-border: var(--c-outline);
-  --check-bg-on: var(--c-primary);
-  --check-fg-on: var(--c-onPrimary);
-  --check-halo: var(--c-focusHalo);
-  --switch-width: 36px;
-  --switch-height: 20px;
-  --switch-knob: 16px;
-  --switch-track-off: var(--c-outline);
-  --switch-track-on: var(--c-primary);
-  --switch-knob-bg: var(--c-surface);
-  --card-radius: var(--radius-lg);
-  --card-pad: var(--space-5);
-  --card-bg: var(--c-surface);
-  --card-border: var(--c-outlineFaint);
-  --card-shadow: var(--shadow-sm);
-  --card-shadow-hover: var(--shadow-md);
-  --card-title-fs: var(--fs-h5);
-  --table-header-bg: var(--c-surfaceContainer);
-  --table-header-fg: var(--c-onSurfaceVariant);
-  --table-header-rule: var(--c-primary);
-  --table-row-height: 48px;
-  --table-row-height-dense: 40px;
-  --table-row-hover: var(--c-surfaceHover);
-  --table-row-selected: var(--c-selectedBg);
-  --table-row-indicator: var(--c-primary);
-  --table-divider: var(--c-outlineFaint);
-  --table-cell-padx: var(--space-4);
-  --table-fs: 14px;
-  --nav-topbar-height: 64px;
-  --nav-rail-width: 72px;
-  --nav-drawer-width: 240px;
-  --nav-item-height: 40px;
-  --nav-item-radius: var(--radius-md);
-  --nav-item-fg: var(--c-onSurfaceVariant);
-  --nav-item-fg-active: var(--c-primary);
-  --nav-item-bg-active: var(--c-primaryContainer);
-  --nav-item-bg-hover: var(--c-surfaceHover);
-  --nav-bg: var(--c-surface);
-  --nav-border: var(--c-outlineFaint);
-  --modal-width: 600px;
-  --modal-width-s: 400px;
-  --modal-width-l: 900px;
-  --modal-radius: var(--radius-xl);
-  --modal-pad: var(--space-5);
-  --modal-bg: var(--c-surface);
-  --modal-scrim: var(--c-scrim);
-  --modal-shadow: var(--shadow-xl);
-  --modal-duration: var(--dur-base);
-  --modal-easing: var(--ease-spring);
-  --drawer-width: 380px;
-  --drawer-bg: var(--c-surface);
-  --drawer-accent: var(--c-primary);
-  --drawer-accent-size: 3px;
-  --drawer-shadow: var(--shadow-xl);
-  --toast-bg: var(--c-surface);
-  --toast-fg: var(--c-onSurface);
-  --toast-radius: var(--radius-md);
-  --toast-bar: 3px;
-  --toast-shadow: var(--shadow-lg);
-  --toast-duration-visible: 3000ms;
-  --toast-success: var(--c-success);
-  --toast-warning: var(--c-warning);
-  --toast-error: var(--c-error);
-  --toast-info: var(--c-info);
-  --tooltip-bg: var(--c-inverseSurface);
-  --tooltip-fg: var(--c-inverseOnSurface);
-  --tooltip-radius: var(--radius-sm);
-  --tooltip-fs: 12px;
-  --tooltip-pad: 6px 10px;
-  --badge-height: 22px;
-  --badge-radius: var(--radius-full);
-  --badge-fs: 12px;
-  --badge-padx: var(--space-2);
-  --badge-neutral-bg: var(--c-surfaceVariant);
-  --badge-neutral-fg: var(--c-onSurface);
-  --chip-height: 32px;
-  --chip-radius: var(--radius-md);
-  --chip-bg: var(--c-surfaceContainer);
-  --chip-fg: var(--c-onSurface);
-  --chip-border: var(--c-outlineVariant);
-  --chip-bg-on: var(--c-primaryContainer);
-  --chip-fg-on: var(--c-onPrimaryContainer);
-  --chip-border-on: var(--c-primary);
-  --avatar-size-s: 24px;
-  --avatar-size-m: 32px;
-  --avatar-size-l: 40px;
-  --avatar-size-xl: 48px;
-  --avatar-bg: var(--c-primaryContainer);
-  --avatar-fg: var(--c-onPrimaryContainer);
-  --avatar-radius: var(--radius-full);
-  --kpi-label-fs: 13px;
-  --kpi-value-fs: 32px;
-  --kpi-value-weight: 600;
-  --kpi-delta-fs: 13px;
-  --kpi-pad: var(--space-5);
-  --kpi-gap: var(--space-2);
-  --kpi-spark-height: 36px;
-  --kpi-up: var(--c-success);
-  --kpi-down: var(--c-error);
-  --pagination-size: 36px;
-  --pagination-radius: var(--radius-md);
-  --pagination-bg-active: var(--c-primary);
-  --pagination-fg-active: var(--c-onPrimary);
-  --pagination-bg-hover: var(--c-surfaceHover);
-  --tabs-height: 44px;
-  --tabs-indicator: 2px;
-  --tabs-fg: var(--c-onSurfaceVariant);
-  --tabs-fg-active: var(--c-primary);
-  --tabs-indicator-color: var(--c-primary);
-  --tabs-rule: var(--c-outlineFaint);
-  --seal-size: 56px;
-  --seal-color: var(--c-vermilion);
-  --seal-border: 2px;
-  --seal-radius: var(--radius-sm);
-  --seal-font: var(--font-display);
-  --spinner-size: 20px;
-  --spinner-size-l: 40px;
-  --spinner-stroke: 2px;
-  --spinner-color: var(--c-primary);
-  --spinner-track: var(--c-outlineFaint);
-  --spinner-duration: var(--dur-loop);
-  --skeleton-bg: var(--c-skeleton);
-  --skeleton-shine: var(--c-skeletonShine);
-  --skeleton-radius: var(--radius-sm);
-  --skeleton-duration: 1600ms;
-  --progress-height: 6px;
-  --progress-radius: var(--radius-full);
-  --progress-track: var(--c-surfaceVariant);
-  --progress-fill: var(--c-primary);
-  --divider-color: var(--c-outlineFaint);
-  --divider-color-strong: var(--c-outlineVariant);
-  --divider-gold: var(--c-goldLine);
-  --kbd-bg: var(--c-surfaceContainer);
-  --kbd-fg: var(--c-onSurfaceVariant);
-  --kbd-border: var(--c-outlineVariant);
-  --kbd-radius: var(--radius-sm);
-  --kbd-fs: 11px;
-  --phi-shouzheng: var(--stg-600);
-  --phi-kaiwu: var(--sti-600);
-  --phi-gongsheng: var(--ste-600);
-  --phi-bg: var(--c-surfaceContainer);
-  --phi-rule: var(--c-goldLine);
-  --ai-confidence-high: var(--c-success);
-  --ai-confidence-mid: var(--c-warning);
-  --ai-confidence-low: var(--c-error);
-  --ai-bubble-bg: var(--c-surfaceContainer);
-  --ai-bubble-user-bg: var(--c-primaryContainer);
-  --ai-cursor: var(--c-primary);
-}
-
-/* ── Layer 1 · Semantic · 暗色（三态：宿主 data-theme / 系统偏好 / 本典 data-color-scheme，显式选择优先） ── */
-:root[data-theme="dark"] {
-  color-scheme: dark;
-  --c-background: var(--ink-900);
-  --c-onBackground: var(--ink-100);
-}
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    color-scheme: dark;
-    --c-background: var(--ink-900);
-    --c-onBackground: var(--ink-100);
-  }
-}
-.sino[data-color-scheme="dark"], .sino[data-color-scheme="dark"] [data-theme], .sino [data-color-scheme="dark"],
-:root[data-theme="dark"] .sino:not([data-color-scheme="light"]), :root[data-theme="dark"] .sino:not([data-color-scheme="light"]) [data-theme] {
-  color-scheme: dark;
-  --chart-1: #C261E3;
-  --chart-2: #AA7E1A;
-  --chart-3: #009BA9;
-  --chart-4: #EF584E;
-  --chart-5: #547ECD;
-  --chart-6: #1E9059;
-  --c-void: oklch(12% 0.008 66);
-  --c-glass: color-mix(in oklab, var(--ink-50) 6%, transparent);
-  --c-glassBorder: color-mix(in oklab, var(--ink-50) 12%, transparent);
-  --c-glassHi: color-mix(in oklab, var(--ink-50) 10%, transparent);
-  --c-glow: color-mix(in oklab, var(--e-300) 34%, transparent);
-  --c-glowSoft: color-mix(in oklab, var(--e-400) 22%, transparent);
-  --c-auroraA: color-mix(in oklab, var(--e-500) 46%, transparent);
-  --c-auroraB: color-mix(in oklab, var(--gold-600) 34%, transparent);
-  --c-rule: color-mix(in oklab, var(--ink-50) 14%, transparent);
-  --c-background: oklch(15.5% 0.009 66);
-  --c-onBackground: var(--ink-100);
-  --c-surface: oklch(19.5% 0.010 66);
-  --c-surfaceVariant: var(--ink-700);
-  --c-surfaceContainer: oklch(23% 0.011 66);
-  --c-surfaceHover: color-mix(in oklab, var(--ink-50) 6%, var(--ink-800));
-  --c-onSurface: var(--ink-100);
-  --c-onSurfaceStrong: var(--ink-50);
-  --c-onSurfaceVariant: var(--ink-300);
-  --c-onSurfaceMuted: var(--ink-400);
-  --c-placeholder: var(--ink-400);
-  --c-outline: var(--ink-500);
-  --c-outlineVariant: var(--ink-600);
-  --c-outlineFaint: var(--ink-700);
-  --c-brand: var(--e-300);
-  --c-primary: var(--e-primary-dark);
-  --c-onPrimary: var(--ink-900);
-  --c-primaryHover: var(--e-200);
-  --c-primaryActive: var(--e-100);
-  --c-primaryContainer: var(--e-800);
-  --c-onPrimaryContainer: var(--e-100);
-  --c-primarySubtle: color-mix(in oklab, var(--e-800) 45%, var(--ink-800));
-  --c-primaryFixed: var(--e-700);
-  --c-secondary: var(--ink-200);
-  --c-onSecondary: var(--ink-900);
-  --c-secondaryContainer: var(--ink-700);
-  --c-onSecondaryContainer: var(--ink-100);
-  --c-tertiary: var(--gold-300);
-  --c-onTertiary: var(--ink-900);
-  --c-tertiaryContainer: var(--gold-800);
-  --c-onTertiaryContainer: var(--gold-100);
-  --c-gold: var(--gold-300);
-  --c-goldLine: var(--gold-400);
-  --c-goldText: var(--gold-300);
-  --c-vermilion: var(--edu-300);
-  --c-success: var(--ste-300);
-  --c-onSuccess: var(--ink-900);
-  --c-successContainer: var(--ste-800);
-  --c-onSuccessContainer: var(--ste-100);
-  --c-warning: var(--gold-300);
-  --c-onWarning: var(--ink-900);
-  --c-warningContainer: var(--gold-800);
-  --c-onWarningContainer: var(--gold-100);
-  --c-error: var(--edu-300);
-  --c-onError: var(--ink-900);
-  --c-errorContainer: var(--edu-800);
-  --c-onErrorContainer: var(--edu-100);
-  --c-info: var(--sti-300);
-  --c-onInfo: var(--ink-900);
-  --c-infoContainer: var(--sti-800);
-  --c-onInfoContainer: var(--sti-100);
-  --c-link: var(--e-primary-dark);
-  --c-linkHover: var(--e-200);
-  --c-focusRing: var(--e-primary-dark);
-  --c-focusHalo: color-mix(in oklab, var(--e-primary-dark) 28%, transparent);
-  --c-selectedBg: color-mix(in oklab, var(--e-primary-dark) 12%, var(--ink-800));
-  --c-selectedBorder: var(--e-primary-dark);
-  --c-scrim: color-mix(in oklab, var(--ink-900) 72%, transparent);
-  --c-inverseSurface: var(--ink-100);
-  --c-inverseOnSurface: var(--ink-900);
-  --c-inversePrimary: var(--e-600);
-  --c-skeleton: var(--ink-700);
-  --c-skeletonShine: var(--ink-600);
-  --c-chartGrid: var(--ink-700);
-  --c-chartAxis: var(--ink-500);
-  --c-chartMuted: var(--ink-400);
-  --c-chartSurface: var(--ink-800);
-  --c-chartEmphasisDim: var(--ink-600);
-  --c-series1: var(--chart-1);
-  --c-series2: var(--chart-2);
-  --c-series3: var(--chart-3);
-  --c-series4: var(--chart-4);
-  --c-series5: var(--chart-5);
-  --c-series6: var(--chart-6);
-  --shadow-none: none;
-  --shadow-xs: 0 0 0 1px oklch(100% 0 0 / .05);
-  --shadow-sm: 0 0 0 1px oklch(100% 0 0 / .06), 0 2px 6px -1px oklch(0% 0 0 / .4);
-  --shadow-md: 0 0 0 1px oklch(100% 0 0 / .07), 0 8px 24px -8px oklch(0% 0 0 / .55);
-  --shadow-lg: 0 0 0 1px oklch(100% 0 0 / .08), 0 16px 40px -12px oklch(0% 0 0 / .65);
-  --shadow-xl: 0 0 0 1px oklch(100% 0 0 / .10), 0 32px 80px -20px oklch(0% 0 0 / .75);
-}
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .sino:not([data-color-scheme="light"]), :root:not([data-theme="light"]) .sino:not([data-color-scheme="light"]) [data-theme] {
-    color-scheme: dark;
-    --chart-1: #C261E3;
-    --chart-2: #AA7E1A;
-    --chart-3: #009BA9;
-    --chart-4: #EF584E;
-    --chart-5: #547ECD;
-    --chart-6: #1E9059;
-    --c-void: oklch(12% 0.008 66);
-    --c-glass: color-mix(in oklab, var(--ink-50) 6%, transparent);
-    --c-glassBorder: color-mix(in oklab, var(--ink-50) 12%, transparent);
-    --c-glassHi: color-mix(in oklab, var(--ink-50) 10%, transparent);
-    --c-glow: color-mix(in oklab, var(--e-300) 34%, transparent);
-    --c-glowSoft: color-mix(in oklab, var(--e-400) 22%, transparent);
-    --c-auroraA: color-mix(in oklab, var(--e-500) 46%, transparent);
-    --c-auroraB: color-mix(in oklab, var(--gold-600) 34%, transparent);
-    --c-rule: color-mix(in oklab, var(--ink-50) 14%, transparent);
-    --c-background: oklch(15.5% 0.009 66);
-    --c-onBackground: var(--ink-100);
-    --c-surface: oklch(19.5% 0.010 66);
-    --c-surfaceVariant: var(--ink-700);
-    --c-surfaceContainer: oklch(23% 0.011 66);
-    --c-surfaceHover: color-mix(in oklab, var(--ink-50) 6%, var(--ink-800));
-    --c-onSurface: var(--ink-100);
-    --c-onSurfaceStrong: var(--ink-50);
-    --c-onSurfaceVariant: var(--ink-300);
-    --c-onSurfaceMuted: var(--ink-400);
-    --c-placeholder: var(--ink-400);
-    --c-outline: var(--ink-500);
-    --c-outlineVariant: var(--ink-600);
-    --c-outlineFaint: var(--ink-700);
-    --c-brand: var(--e-300);
-    --c-primary: var(--e-primary-dark);
-    --c-onPrimary: var(--ink-900);
-    --c-primaryHover: var(--e-200);
-    --c-primaryActive: var(--e-100);
-    --c-primaryContainer: var(--e-800);
-    --c-onPrimaryContainer: var(--e-100);
-    --c-primarySubtle: color-mix(in oklab, var(--e-800) 45%, var(--ink-800));
-    --c-primaryFixed: var(--e-700);
-    --c-secondary: var(--ink-200);
-    --c-onSecondary: var(--ink-900);
-    --c-secondaryContainer: var(--ink-700);
-    --c-onSecondaryContainer: var(--ink-100);
-    --c-tertiary: var(--gold-300);
-    --c-onTertiary: var(--ink-900);
-    --c-tertiaryContainer: var(--gold-800);
-    --c-onTertiaryContainer: var(--gold-100);
-    --c-gold: var(--gold-300);
-    --c-goldLine: var(--gold-400);
-    --c-goldText: var(--gold-300);
-    --c-vermilion: var(--edu-300);
-    --c-success: var(--ste-300);
-    --c-onSuccess: var(--ink-900);
-    --c-successContainer: var(--ste-800);
-    --c-onSuccessContainer: var(--ste-100);
-    --c-warning: var(--gold-300);
-    --c-onWarning: var(--ink-900);
-    --c-warningContainer: var(--gold-800);
-    --c-onWarningContainer: var(--gold-100);
-    --c-error: var(--edu-300);
-    --c-onError: var(--ink-900);
-    --c-errorContainer: var(--edu-800);
-    --c-onErrorContainer: var(--edu-100);
-    --c-info: var(--sti-300);
-    --c-onInfo: var(--ink-900);
-    --c-infoContainer: var(--sti-800);
-    --c-onInfoContainer: var(--sti-100);
-    --c-link: var(--e-primary-dark);
-    --c-linkHover: var(--e-200);
-    --c-focusRing: var(--e-primary-dark);
-    --c-focusHalo: color-mix(in oklab, var(--e-primary-dark) 28%, transparent);
-    --c-selectedBg: color-mix(in oklab, var(--e-primary-dark) 12%, var(--ink-800));
-    --c-selectedBorder: var(--e-primary-dark);
-    --c-scrim: color-mix(in oklab, var(--ink-900) 72%, transparent);
-    --c-inverseSurface: var(--ink-100);
-    --c-inverseOnSurface: var(--ink-900);
-    --c-inversePrimary: var(--e-600);
-    --c-skeleton: var(--ink-700);
-    --c-skeletonShine: var(--ink-600);
-    --c-chartGrid: var(--ink-700);
-    --c-chartAxis: var(--ink-500);
-    --c-chartMuted: var(--ink-400);
-    --c-chartSurface: var(--ink-800);
-    --c-chartEmphasisDim: var(--ink-600);
-    --c-series1: var(--chart-1);
-    --c-series2: var(--chart-2);
-    --c-series3: var(--chart-3);
-    --c-series4: var(--chart-4);
-    --c-series5: var(--chart-5);
-    --c-series6: var(--chart-6);
-    --shadow-none: none;
-    --shadow-xs: 0 0 0 1px oklch(100% 0 0 / .05);
-    --shadow-sm: 0 0 0 1px oklch(100% 0 0 / .06), 0 2px 6px -1px oklch(0% 0 0 / .4);
-    --shadow-md: 0 0 0 1px oklch(100% 0 0 / .07), 0 8px 24px -8px oklch(0% 0 0 / .55);
-    --shadow-lg: 0 0 0 1px oklch(100% 0 0 / .08), 0 16px 40px -12px oklch(0% 0 0 / .65);
-    --shadow-xl: 0 0 0 1px oklch(100% 0 0 / .10), 0 32px 80px -20px oklch(0% 0 0 / .75);
-  }
+[data-color-scheme="dark"] {
+  --text-subtle: #867F72;  /* 4.44:1 → 4.5:1（需 ≥4.5） */
+  --text-brand: color-mix(in oklch, var(--brand-600) 90%, var(--ink-50));  /* 3.76:1 → 4.5:1（需 ≥4.5） */
+  --text-link: color-mix(in oklch, var(--brand-600) 94%, var(--ink-50));  /* 4.14:1 → 4.62:1（需 ≥4.5） */
+  --text-gold: #937E57;  /* 3.2:1 → 4.56:1（需 ≥4.5） */
+  --field-border: #605E5B;  /* 1.63:1 → 3.04:1（需 ≥3） */
+  --seal: #9C4332;  /* 2.41:1 → 3.05:1（需 ≥3） */
+  --state-success: #688877;  /* 1.83:1 → 4.57:1（需 ≥4.5） */
+  --state-warning: #987C41;  /* 2.97:1 → 4.5:1（需 ≥4.5） */
+  --state-error: #C26653;  /* 2.19:1 → 4.52:1（需 ≥4.5） */
+  --state-info: #6F839E;  /* 1.48:1 → 4.61:1（需 ≥4.5） */
+  --dv-1: #506588;  /* 1.97:1 → 3.03:1（需 ≥3） */
+  --dv-2: #496C5B;  /* 2.46:1 → 3.04:1（需 ≥3） */
+  --dv-4: #406B70;  /* 2.89:1 → 3.02:1（需 ≥3） */
+  --dv-5: #735A86;  /* 1.95:1 → 3.01:1（需 ≥3） */
+  --dv-7: #69645D;  /* 1.74:1 → 3.05:1（需 ≥3） */
+  --field-placeholder: #877F72;  /* 7.76:1 → 4.51:1（需 ≥4.5） */
+  --dv-8: #B2AA9C;  /* 7.76:1 → 7.76:1（需 ≥3） */
 }

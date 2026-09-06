@@ -1,97 +1,83 @@
 /* ============================================================
-   06 · Templates（模板）与 Pages（页面）
-   模板只定结构（占位内容）；页面把真实内容注入模板。
+   06 · Templates & Pages — 只定结构（模板）· 注入真实内容（页面）
+   模板取自画布 templates/entity-dashboard 与 ui_kits/ 三个产品面的版面密度。
    ============================================================ */
 
-/* 线框占位（模板层专用：模板不含真实内容） */
-.wf { display: grid; place-content: center; min-width: 0; overflow: hidden; min-height: 40px; border: 1px dashed var(--c-outlineVariant); border-radius: var(--radius-md); background: repeating-linear-gradient(135deg, transparent 0 8px, color-mix(in oklab, var(--c-onSurface) 4%, transparent) 8px 9px); color: var(--c-onSurfaceVariant); font-size: 11.5px; letter-spacing: .04em; text-align: center; padding: 6px 8px; font-family: var(--font-western); }
-.wf--solid { background: var(--c-surfaceContainer); border-style: solid; }
-.wf--accent { border-color: var(--c-primary); color: var(--c-primary); background: var(--c-primarySubtle); }
-.wf--tall { min-height: 120px; } .wf--xtall { min-height: 200px; } .wf--short { min-height: 28px; }
-.wf small { display: block; font-size: 10px; opacity: .7; margin-top: 2px; letter-spacing: 0; font-family: var(--font-sans); }
+/* ── 线框元件：模板层只表达结构，不含真实内容 ── */
+.sino .wf { display: block; border-radius: var(--radius-md); background: var(--surface-sunken); min-height: 40px; }
+.sino .wf--solid { background: var(--border-subtle); }
+.sino .wf--accent { background: var(--surface-brand-subtle); }
+.sino .wf--tall { min-height: 120px; }
 
-/* T1 · 看板模板（Ledgerix 结构：侧轨 + 顶栏 + 筛选行 + KPI 行 + 图表 + 表） */
-.t-dashboard { display: grid; grid-template-columns: 56px 1fr; gap: 8px; min-height: 420px; }
-.t-dashboard__rail { display: flex; flex-direction: column; gap: 6px; }
-.t-dashboard__main { display: grid; grid-template-rows: 40px 32px auto auto 1fr; gap: 8px; }
-.t-dashboard__kpis { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
-.t-dashboard__charts { display: grid; grid-template-columns: 8fr 4fr; gap: 8px; }
+/* ── T1 看板 ── */
+.sino .t-dashboard { display: grid; grid-template-columns: var(--drawer-width) minmax(0, 1fr); gap: 1px; background: var(--border-subtle); border-radius: var(--card-radius); overflow: hidden; min-height: 460px; }
+.sino .t-dashboard__rail { background: var(--surface-card); padding: var(--space-4); display: flex; flex-direction: column; gap: 8px; }
+.sino .t-dashboard__main { background: var(--surface-sunken); padding: var(--space-6); display: flex; flex-direction: column; gap: var(--space-5); min-width: 0; }
+.sino .t-dashboard__kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1px; background: var(--border-subtle); border-radius: var(--card-radius); overflow: hidden; }
+.sino .t-dashboard__kpis > * { background: var(--surface-card); padding: var(--space-5); min-height: 92px; }
+.sino .t-dashboard__charts { display: grid; grid-template-columns: 2fr 1fr; gap: var(--space-5); min-width: 0; }
+.sino .t-dashboard__charts > * { background: var(--surface-card); border-radius: var(--card-radius); padding: var(--space-5); min-height: 180px; }
 
-/* T2 · 文档模板（力起·秀承：目录 + 正文 + 旁注） */
-.t-doc { display: grid; grid-template-columns: 180px minmax(0, 1fr) 160px; gap: 16px; min-height: 420px; }
-.t-doc__toc, .t-doc__notes { display: flex; flex-direction: column; gap: 6px; }
-.t-doc__article { display: grid; grid-template-rows: 96px 24px auto auto auto; gap: 10px; }
+/* ── T2 文档 ── */
+.sino .t-doc { display: grid; grid-template-columns: minmax(0, 1fr) 220px; gap: var(--space-8); }
+.sino .t-doc__article { display: flex; flex-direction: column; gap: var(--space-5); min-width: 0; max-width: var(--measure-cn); }
+.sino .t-doc__toc { display: flex; flex-direction: column; gap: 8px; padding-left: var(--space-4); border-left: var(--hairline); font-size: var(--fs-caption); color: var(--text-subtle); }
 
-/* T3 · 列表–详情模板 */
-.t-detail { display: grid; grid-template-columns: 5fr 7fr; gap: 8px; min-height: 420px; }
-.t-detail__list { display: grid; grid-template-rows: 40px repeat(6, 44px) 1fr; gap: 6px; }
-.t-detail__pane { display: grid; grid-template-rows: 56px 40px 1fr 56px; gap: 8px; }
+/* ── T3 列表–详情 ── */
+.sino .t-detail { display: grid; grid-template-columns: 300px minmax(0, 1fr); gap: 1px; background: var(--border-subtle); border-radius: var(--card-radius); overflow: hidden; min-height: 360px; }
+.sino .t-detail__list { background: var(--surface-card); padding: var(--space-4); display: flex; flex-direction: column; gap: 6px; }
+.sino .t-detail__pane { background: var(--surface-card); padding: var(--space-6); display: flex; flex-direction: column; gap: var(--space-5); min-width: 0; }
 
-/* T4 · 品牌页模板（Sui 结构：一体化品牌 → 网站） */
-.t-brand { display: grid; grid-template-rows: 48px 220px 100px 120px 90px 80px; gap: 8px; min-height: 420px; }
-.t-brand__hero { display: grid; grid-template-columns: 7fr 5fr; gap: 8px; }
-.t-brand__triad { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
-.t-brand__entities { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; }
-.t-brand__foot { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 8px; }
+/* ── T4 品牌页 ── */
+.sino .t-brand { display: flex; flex-direction: column; gap: var(--space-6); }
+.sino .t-brand__hero { display: flex; flex-direction: column; gap: var(--space-4); padding: var(--space-11) var(--space-6); background: var(--ink-900); color: var(--ink-100); border-radius: var(--card-radius); }
+.sino .t-brand__triad { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; background: var(--border-subtle); border-radius: var(--card-radius); overflow: hidden; }
+.sino .t-brand__triad > * { background: var(--surface-card); padding: var(--space-6); }
+.sino .t-brand__entities { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1px; background: var(--border-subtle); border-radius: var(--card-radius); overflow: hidden; }
+.sino .t-brand__entities > * { background: var(--surface-card); padding: var(--space-5); }
+.sino .t-brand__foot { padding: var(--space-5) 0; border-top: var(--hairline); font-size: var(--fs-caption); color: var(--text-subtle); }
 
-/* T5 · 陈述模板（PRODIGIES 结构：纪念碑式字体 + 严格栅格 + 单一信号色） */
-.t-deck { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); grid-auto-rows: 52px; gap: 8px; min-height: 420px; }
-.t-deck .c12 { grid-column: span 12; } .t-deck .c8 { grid-column: span 8; } .t-deck .c6 { grid-column: span 6; } .t-deck .c4 { grid-column: span 4; } .t-deck .c3 { grid-column: span 3; }
-.t-deck .r2 { grid-row: span 2; } .t-deck .r3 { grid-row: span 3; }
+/* ── T5 陈述 ── */
+.sino .t-deck { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--space-5); }
+.sino .t-deck > * { background: var(--surface-card); border-radius: var(--card-radius); padding: var(--space-6); aspect-ratio: 16 / 10; display: flex; flex-direction: column; justify-content: space-between; }
 
-/* ── 页面（真实内容）：在 frame 内以真实组件渲染 ── */
-.p-frame { --nav-topbar-height: 56px; background: var(--c-background); border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--c-outlineVariant); }
-.p-frame .o-shell { min-height: 0; }
-.p-frame .o-rail { height: auto; position: static; }
-.p-frame .o-topbar { position: static; }
-.p-frame .o-shell__content { padding: var(--space-4); gap: var(--space-4); }
-.p-frame .o-kpi-row { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-.p-frame .m-kpi { padding: var(--space-4); }
-.p-frame .m-kpi__value { font-size: 26px; }
-.p-frame .o-chart { padding: var(--space-4); }
-.p-charts-2 { display: grid; grid-template-columns: minmax(0, 8fr) minmax(0, 4fr); gap: var(--space-4); }
-.p-charts-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-4); }
-.p-split { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: var(--space-4); }
-.p-gauge { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-3); }
-.p-gauge__item { display: flex; flex-direction: column; gap: 6px; padding: 12px; border: 1px solid var(--c-outlineFaint); border-radius: var(--radius-md); background: var(--c-surfaceContainer); }
-.p-gauge__label { font-size: 12px; color: var(--c-onSurfaceVariant); display: flex; justify-content: space-between; }
-.p-gauge__val { font-size: 20px; font-weight: 600; color: var(--c-onSurfaceStrong); font-family: var(--font-western); }
-.p-gauge__val small { font-size: 12px; font-weight: 400; color: var(--c-onSurfaceVariant); margin-left: 3px; font-family: var(--font-sans); }
-.p-report { font-family: var(--font-serif); }
-.p-report__head { display: flex; justify-content: space-between; align-items: flex-start; gap: var(--space-4); padding-bottom: var(--space-4); border-bottom: 2px solid var(--c-primary); }
-.p-report__title { font-size: 22px; font-weight: 500; color: var(--c-onSurfaceStrong); letter-spacing: .02em; }
-.p-report__head > div:first-child { min-width: 0; }
-.p-report__meta { flex: 0 0 auto; font-family: var(--font-sans); font-size: 12px; color: var(--c-onSurfaceVariant); line-height: 1.8; font-variant-numeric: tabular-nums; text-align: right; }
-.p-report table { width: 100%; font-family: var(--font-sans); font-size: 13px; margin-top: var(--space-4); }
-.p-report th, .p-report td { padding: 8px 10px; border-bottom: 1px solid var(--c-outlineFaint); text-align: left; }
-.p-report th { font-size: 12px; color: var(--c-onSurfaceVariant); font-weight: 600; background: var(--c-surfaceContainer); }
-.p-report .num { text-align: right; font-variant-numeric: tabular-nums; }
-.p-report__note { margin-top: var(--space-4); font-family: var(--font-sans); font-size: 12.5px; color: var(--c-onSurfaceVariant); line-height: 1.7; padding: 10px 12px; border-left: 3px solid var(--c-warning); background: var(--c-warningContainer); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; }
-.p-student { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: var(--space-4); }
-.p-student__profile { display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center; }
-.p-radar { width: 100%; height: auto; }
-.p-radar .ring { fill: none; stroke: var(--c-chartGrid); }
-.p-radar .axis { stroke: var(--c-chartGrid); }
-.p-radar .area { fill: color-mix(in oklab, var(--c-primary) 18%, transparent); stroke: var(--c-primary); stroke-width: 2; stroke-linejoin: round; }
-.p-radar text { font-size: 11px; fill: var(--c-onSurfaceVariant); }
-.p-shipment { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0; position: relative; padding: 8px 0; }
-.p-shipment__node { display: flex; flex-direction: column; align-items: center; gap: 6px; text-align: center; font-size: 12px; color: var(--c-onSurfaceVariant); position: relative; }
-.p-shipment__node::before { content: ""; position: absolute; top: 11px; left: -50%; right: 50%; height: 2px; background: var(--c-outlineVariant); z-index: 0; }
-.p-shipment__node:first-child::before { display: none; }
-.p-shipment__node.is-done::before, .p-shipment__node.is-active::before { background: var(--c-primary); }
-.p-shipment__dot { width: 24px; height: 24px; border-radius: 50%; display: grid; place-content: center; background: var(--c-surface); border: 2px solid var(--c-outlineVariant); position: relative; z-index: 1; }
-.p-shipment__node.is-done .p-shipment__dot { background: var(--c-primary); border-color: var(--c-primary); color: var(--c-onPrimary); }
-.p-shipment__node.is-active .p-shipment__dot { border-color: var(--c-primary); color: var(--c-primary); box-shadow: 0 0 0 4px color-mix(in oklab, var(--c-primary) 18%, transparent); }
-.p-shipment__node.is-active { color: var(--c-onSurfaceStrong); font-weight: 600; }
-.p-shipment__dot .a-icon { width: 14px; height: 14px; }
+/* ── L5 页面：五实体真实内容 ── */
+.sino .p-frame { display: grid; grid-template-columns: var(--rail-width) minmax(0, 1fr); background: var(--surface-sunken); border-radius: var(--card-radius); overflow: hidden; min-height: 480px; }
+.sino .p-frame > .o-shell__main, .sino .p-frame > div:last-child { min-width: 0; }
+.sino .p-split { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-5); min-width: 0; }
+.sino .p-charts-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--space-5); min-width: 0; }
+.sino .p-charts-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: var(--space-5); min-width: 0; }
+
+/* 仪表 · 雷达 */
+.sino .p-gauge { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: var(--space-4); }
+.sino .p-gauge__item { display: flex; flex-direction: column; gap: 8px; }
+.sino .p-gauge__label { font-size: var(--fs-caption); color: var(--text-subtle); }
+.sino .p-gauge__val { font-family: var(--font-western); font-size: var(--fs-h3); font-weight: var(--fw-light); font-variant-numeric: tabular-nums; color: var(--text-heading); }
+.sino .p-radar { display: block; width: 100%; height: auto; }
+.sino .p-radar .ring { fill: none; stroke: var(--border-subtle); }
+.sino .p-radar .axis { stroke: var(--border-subtle); }
+.sino .p-radar text { fill: var(--text-subtle); font-family: var(--font-sans); font-size: 10px; }
+.sino .p-radar .area { fill: var(--brand-600); fill-opacity: .16; stroke: var(--brand-600); stroke-width: 1.5; }
+
+/* 报表 · 物流 · 学生 */
+.sino .p-report { background: var(--surface-card); border-radius: var(--card-radius); padding: var(--card-pad-lg); }
+.sino .p-report__head { display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-4); padding-bottom: var(--space-4); border-bottom: var(--border-emphasis) solid var(--border-default); }
+.sino .p-report__title { font-family: var(--font-display); font-size: var(--fs-h3); color: var(--text-heading); }
+.sino .p-report__meta { font-family: var(--font-western); font-size: var(--fs-caption); font-variant-numeric: tabular-nums; color: var(--text-subtle); }
+.sino .p-report__note { margin-top: var(--space-4); padding-left: var(--space-4); border-left: var(--border-indicator) solid var(--seal); font-size: var(--fs-caption); line-height: 1.8; color: var(--text-muted); }
+.sino .p-shipment { display: flex; align-items: center; gap: 0; }
+.sino .p-shipment__node { display: flex; flex-direction: column; align-items: center; gap: 8px; flex: 1; font-size: var(--fs-caption); color: var(--text-subtle); text-align: center; position: relative; }
+.sino .p-shipment__node::before { content: ""; position: absolute; top: 5px; left: -50%; width: 100%; height: 1px; background: var(--border-subtle); }
+.sino .p-shipment__node:first-child::before { display: none; }
+.sino .p-shipment__dot { width: 10px; height: 10px; border-radius: 50%; background: var(--border-strong); position: relative; z-index: 1; }
+.sino .p-shipment__node.is-done .p-shipment__dot { background: var(--state-success); }
+.sino .p-shipment__node.is-now .p-shipment__dot { background: var(--brand-600); box-shadow: 0 0 0 4px var(--surface-brand-subtle); }
+.sino .p-student { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: var(--space-5); align-items: center; }
+.sino .p-student__profile { display: flex; flex-direction: column; gap: 4px; }
 
 @media (max-width: 904px) {
-  .t-dashboard, .t-doc, .t-detail { grid-template-columns: minmax(0, 1fr); }
-  .p-frame .o-topbar { flex-wrap: wrap; height: auto; min-height: var(--nav-topbar-height); padding-block: 8px; row-gap: 8px; }
-  .p-frame .o-kpi-row { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
-  .t-dashboard__kpis { grid-template-columns: 1fr 1fr; } .t-dashboard__charts { grid-template-columns: 1fr; }
-  .t-brand__hero, .t-brand__triad, .t-brand__entities, .t-brand__foot { grid-template-columns: 1fr 1fr; }
-  .p-frame .o-kpi-row { grid-template-columns: 1fr 1fr; }
-  .p-charts-2, .p-charts-3, .p-split, .p-student { grid-template-columns: 1fr; }
-  .p-gauge { grid-template-columns: 1fr; }
+  .sino .t-dashboard, .sino .t-detail, .sino .p-frame { grid-template-columns: minmax(0, 1fr); }
+  .sino .t-dashboard__charts, .sino .t-doc { grid-template-columns: minmax(0, 1fr); }
+  .sino .o-shell, .sino .o-shell--rail { grid-template-columns: minmax(0, 1fr); }
+  .sino .o-footer { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }

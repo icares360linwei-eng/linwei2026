@@ -1,77 +1,10 @@
-window.SINO_DATA = {"version":"39.0.0","edition":"墨经光纬 · 多页面站点版","counts":{"primitive":217,"semantic":154,"component":207,"total":578},"entity":{"stg":{"sino.name":"绛紫","sino.entity":"STG","sino.full":"源裕兴集团母体","sino.role":"战略中枢 · 合规治理","sino.meaning":"包容万象、多元统一","anchor":"#851EA3","scale":{"50":"#F8E9FE","100":"#F3D6FD","200":"#E7B5F9","300":"#D58CEE","400":"#BD64DA","500":"#A242C1","600":"#851EA3","700":"#6D0587","800":"#530068","900":"#3A004A"},"oklch":{"50":"oklch(95.2% 0.032 316)","100":"oklch(91.2% 0.061 317)","200":"oklch(84.0% 0.107 317)","300":"oklch(74.9% 0.156 317)","400":"oklch(65.3% 0.188 317)","500":"oklch(56.2% 0.201 317)","600":"oklch(46.8% 0.204 317)","700":"oklch(39.7% 0.189 317)","800":"oklch(32.7% 0.159 317)","900":"oklch(25.8% 0.126 317)"},"primaryLightStep":600,"primaryLight":"#851EA3","primaryLightVsInk50":7.51,"ink50OnPrimaryLight":7.51,"primaryDarkStep":300,"primaryDark":"#D58CEE","primaryDarkVsInk800":6.12,"ink900OnPrimaryDark":7.55,"brandVsInk50":7.51,"brandVsInk800":1.88},"ste":{"sino.name":"苍木绿","sino.entity":"STE","sino.full":"九派能源","sino.role":"清洁能源 · 碳中和","sino.meaning":"生生不息、自然循环","anchor":"#196B42","scale":{"50":"#E7F3EB","100":"#D2E8DA","200":"#B0D6BD","300":"#85BD9A","400":"#5DA279","500":"#3B875C","600":"#196B42","700":"#025631","800":"#004023","900":"#002C17"},"oklch":{"50":"oklch(95.3% 0.017 157)","100":"oklch(91.1% 0.030 158)","200":"oklch(84.2% 0.053 156)","300":"oklch(75.0% 0.077 157)","400":"oklch(65.5% 0.094 157)","500":"oklch(56.3% 0.101 156)","600":"oklch(46.9% 0.102 156)","700":"oklch(39.9% 0.095 156)","800":"oklch(32.7% 0.079 156)","900":"oklch(25.8% 0.061 157)"},"primaryLightStep":600,"primaryLight":"#196B42","primaryLightVsInk50":6.32,"ink50OnPrimaryLight":6.32,"primaryDarkStep":300,"primaryDark":"#85BD9A","primaryDarkVsInk800":6.77,"ink900OnPrimaryDark":8.35,"brandVsInk50":6.32,"brandVsInk800":2.24},"sti":{"sino.name":"深空蓝","sino.entity":"STI","sino.full":"进出口贸易","sino.role":"全球贸易 · 报关物流","sino.meaning":"深远的全球视野","anchor":"#1E4082","scale":{"50":"#E7EEFB","100":"#D2DFF7","200":"#AEC5EC","300":"#84A3DB","400":"#5C80C1","500":"#3B60A4","600":"#1E4082","700":"#0F2D68","800":"#051C4D","900":"#010D30"},"oklch":{"50":"oklch(94.8% 0.019 263)","100":"oklch(90.1% 0.036 263)","200":"oklch(81.9% 0.061 261)","300":"oklch(71.4% 0.089 262)","400":"oklch(60.1% 0.108 262)","500":"oklch(49.6% 0.117 262)","600":"oklch(38.6% 0.118 262)","700":"oklch(31.5% 0.110 262)","800":"oklch(24.6% 0.095 262)","900":"oklch(17.6% 0.073 262)"},"primaryLightStep":600,"primaryLight":"#1E4082","primaryLightVsInk50":9.65,"ink50OnPrimaryLight":9.65,"primaryDarkStep":300,"primaryDark":"#84A3DB","primaryDarkVsInk800":5.73,"ink900OnPrimaryDark":7.06,"brandVsInk50":9.65,"brandVsInk800":1.47},"sth":{"sino.name":"沧浪青","sino.entity":"STH","sino.full":"健康科技","sino.role":"医疗器械 · 健康监测","sino.meaning":"澄澈通透的生命质感","anchor":"#208F9B","scale":{"50":"#E6F4F6","100":"#D2EDF0","200":"#B1E0E6","300":"#87CED7","400":"#5FB9C4","500":"#3FA5B1","600":"#208F9B","700":"#097983","800":"#09636C","900":"#124D54"},"oklch":{"50":"oklch(95.7% 0.015 207)","100":"oklch(92.7% 0.029 205)","200":"oklch(87.6% 0.049 206)","300":"oklch(80.8% 0.072 206)","400":"oklch(73.4% 0.087 206)","500":"oklch(66.8% 0.094 206)","600":"oklch(59.7% 0.095 206)","700":"oklch(52.6% 0.088 205)","800":"oklch(45.7% 0.076 206)","900":"oklch(38.7% 0.059 207)"},"primaryLightStep":700,"primaryLight":"#097983","primaryLightVsInk50":5,"ink50OnPrimaryLight":5,"primaryDarkStep":300,"primaryDark":"#87CED7","primaryDarkVsInk800":8.23,"ink900OnPrimaryDark":10.14,"brandVsInk50":3.73,"brandVsInk800":3.8},"edu":{"sino.name":"朱砂红","sino.entity":"EDU","sino.full":"崇仁教育","sino.role":"教育启智 · 家校协同","sino.meaning":"炽热的教育初心","anchor":"#B81E1E","scale":{"50":"#FFEAE7","100":"#FFD9D4","200":"#FFBAB1","300":"#FF8E81","400":"#EF6559","500":"#D6423A","600":"#B81E1E","700":"#9A030D","800":"#7A0007","900":"#590305"},"oklch":{"50":"oklch(95.3% 0.023 27)","100":"oklch(91.6% 0.043 27)","200":"oklch(85.0% 0.082 27)","300":"oklch(76.6% 0.139 28)","400":"oklch(67.7% 0.173 28)","500":"oklch(59.2% 0.186 27)","600":"oklch(50.5% 0.188 27)","700":"oklch(43.3% 0.175 27)","800":"oklch(36.4% 0.149 27)","900":"oklch(29.4% 0.116 27)"},"primaryLightStep":600,"primaryLight":"#B81E1E","primaryLightVsInk50":6.28,"ink50OnPrimaryLight":6.28,"primaryDarkStep":300,"primaryDark":"#FF8E81","primaryDarkVsInk800":6.56,"ink900OnPrimaryDark":8.08,"brandVsInk50":6.28,"brandVsInk800":2.25}},"gold":{"anchor":"#C9A96E","scale":{"50":"#FCF6EB","100":"#F7EBD7","200":"#EBD6B2","300":"#DBBE8B","400":"#C9A96E","500":"#AA8A4C","600":"#8C6C2D","700":"#6C5013","800":"#4C3605","900":"#2E1F00"},"oklch":{"50":"oklch(97.5% 0.016 83)","100":"oklch(94.4% 0.029 81)","200":"oklch(88.4% 0.053 81)","300":"oklch(81.4% 0.075 81)","400":"oklch(75.0% 0.085 82)","500":"oklch(65.0% 0.089 83)","600":"oklch(55.0% 0.090 82)","700":"oklch(45.0% 0.084 82)","800":"oklch(34.9% 0.068 82)","900":"oklch(25.1% 0.052 82)"}},"ink":{"50":"#FFFBF5","100":"#FAF7F2","200":"#F0EBE3","300":"#D9D3C8","400":"#BFB8AB","500":"#8C8578","600":"#6B6459","700":"#4A443C","800":"#2D2823","900":"#1A1612"},"matrix":[{"entity":"stg","name":"绛紫","hex600":"#851EA3","oklch":"oklch(46.8% 0.204 317)","onInk50":7.51,"onInk800":1.88,"primaryLight":"#851EA3","primaryLightStep":600,"primaryLightOnInk50":7.51,"primaryDark":"#D58CEE","primaryDarkStep":300,"primaryDarkOnInk800":6.12},{"entity":"ste","name":"苍木绿","hex600":"#196B42","oklch":"oklch(46.9% 0.102 156)","onInk50":6.32,"onInk800":2.24,"primaryLight":"#196B42","primaryLightStep":600,"primaryLightOnInk50":6.32,"primaryDark":"#85BD9A","primaryDarkStep":300,"primaryDarkOnInk800":6.77},{"entity":"sti","name":"深空蓝","hex600":"#1E4082","oklch":"oklch(38.6% 0.118 262)","onInk50":9.65,"onInk800":1.47,"primaryLight":"#1E4082","primaryLightStep":600,"primaryLightOnInk50":9.65,"primaryDark":"#84A3DB","primaryDarkStep":300,"primaryDarkOnInk800":5.73},{"entity":"sth","name":"沧浪青","hex600":"#208F9B","oklch":"oklch(59.7% 0.095 206)","onInk50":3.73,"onInk800":3.8,"primaryLight":"#097983","primaryLightStep":700,"primaryLightOnInk50":5,"primaryDark":"#87CED7","primaryDarkStep":300,"primaryDarkOnInk800":8.23},{"entity":"edu","name":"朱砂红","hex600":"#B81E1E","oklch":"oklch(50.5% 0.188 27)","onInk50":6.28,"onInk800":2.25,"primaryLight":"#B81E1E","primaryLightStep":600,"primaryLightOnInk50":6.28,"primaryDark":"#FF8E81","primaryDarkStep":300,"primaryDarkOnInk800":6.56}],"chart":{"$description":"数据墨色 · 由 build/chart-order.mjs 枚举生成（dataviz 六检验证通过），顺序即 CVD 安全机制，不得手改","order":["stg","gold","sth","edu","sti","ste"],"light":["#8F2BAE","#AF8221","#0098A6","#DA433B","#2D54A0","#007D4A"],"dark":["#C261E3","#AA7E1A","#009BA9","#EF584E","#547ECD","#1E9059"],"worstAdjacentCVD":13.9,"surfaces":{"light":"#FFFBF5","dark":"#2D2823"}},"type":{"$description":"15 级字阶（基准 16px）。力起·秀承：Display/H1 用力（大、紧），H2 以下用秀（阶梯缓、行高舒）。V38 修正：H4 由 28px 改为 22px 使阶梯单调；Body L 行高 1.60→1.80（长文卷舒）。","display-2xl":{"size":132,"lh":0.94,"weight":200,"family":"serif","ls":"-0.035em","fluidMin":52,"use":"首页 Hero · 全站唯一之锋"},"display-xl":{"size":96,"lh":1,"weight":200,"family":"serif","ls":"-0.03em","fluidMin":44,"use":"章节封面主标题"},"display-l":{"size":72,"lh":1.06,"weight":200,"family":"serif","ls":"-0.025em","fluidMin":40,"use":"区块主标题"},"display-m":{"size":52,"lh":1.1,"weight":300,"family":"serif","ls":"-0.02em","fluidMin":34,"use":"次级 Hero"},"display-s":{"size":40,"lh":1.14,"weight":300,"family":"serif","ls":"-0.015em","fluidMin":28,"use":"小型展示标题"},"h1":{"size":36,"lh":1.15,"weight":300,"family":"serif","ls":"-0.01em","fluidMin":28,"use":"页面标题"},"h2":{"size":30,"lh":1.2,"weight":400,"family":"serif","ls":"0.01em","use":"章标题"},"h3":{"size":24,"lh":1.25,"weight":400,"family":"serif","ls":"0.01em","use":"节标题"},"h4":{"size":22,"lh":1.3,"weight":500,"family":"serif","ls":"0","use":"子区块标题"},"h5":{"size":20,"lh":1.35,"weight":500,"family":"sans","ls":"0","use":"卡片标题"},"h6":{"size":18,"lh":1.4,"weight":500,"family":"sans","ls":"0","use":"小标题"},"body-l":{"size":16,"lh":1.8,"weight":400,"family":"sans","ls":"0","use":"正文阅读（长文用 serif）"},"body-m":{"size":15,"lh":1.7,"weight":400,"family":"sans","ls":"0","use":"界面文字"},"body-s":{"size":14,"lh":1.75,"weight":400,"family":"sans","ls":"0","use":"辅助文字"},"caption":{"size":12,"lh":1.6,"weight":400,"family":"sans","ls":"0.01em","use":"标签 / 说明"},"caption-xs":{"size":10,"lh":1.5,"weight":500,"family":"sans","ls":"0.06em","use":"法律文本 / 眼标（仅印刷与法务）"},"code":{"size":13,"lh":1.7,"weight":400,"family":"mono","ls":"0","use":"代码行内 / Token"}},"motion":{"duration":{"$type":"duration","instant":"100ms","fast":"150ms","base":"300ms","slow":"500ms","loop":"2000ms","exit-fast":"100ms","exit-base":"200ms","exit-slow":"320ms"},"easing":{"$type":"cubicBezier","out":"cubic-bezier(.16, 1, .3, 1)","in":"cubic-bezier(.4, 0, 1, 1)","standard":"cubic-bezier(.2, 0, 0, 1)","elegant":"cubic-bezier(.25, .1, .25, 1)","spring":"cubic-bezier(.34, 1.18, .64, 1)","linear":"linear"}},"search":[{"r":"home","id":"","n":"00","t":"源裕兴设计系统全典","k":"章节"},{"r":"tokens","id":"","n":"L0","t":"设计令牌：亚原子层","k":"章节"},{"r":"tokens","id":"tokens-color","n":"0.1","t":"色彩：五实体 · 宣纸墨色 · 藤黄","d":"OKLCH 推导十阶，600 阶锚点原值锁定","k":"小节"},{"r":"tokens","id":"tokens-type","n":"0.2","t":"字体：五族字体栈 · 15 级字阶 · 力起秀承","d":"","k":"小节"},{"r":"tokens","id":"tokens-space","n":"0.3","t":"间距 · 圆角 · 阴影","d":"4px 步进 · 同心圆角 · 单一光源","k":"小节"},{"r":"tokens","id":"tokens-motion","n":"0.4","t":"动效 · 栅格 · 层级","d":"动效即编排 · 12 列宪法 · 语义化 z-index","k":"小节"},{"r":"tokens","id":"tokens-naming","n":"0.5","t":"命名 · 三层引用 · 构建管线","d":"tokens.json 是唯一可信源","k":"小节"},{"r":"atoms","id":"","n":"L1","t":"原子：不可再分的功能单元","k":"章节"},{"r":"atoms","id":"atom-button","n":"1.1","t":"按钮 Button","d":"7 型 × 4 档 × 8 态 · 全圆角","k":"小节"},{"r":"atoms","id":"atom-icon","n":"1.2","t":"图标 Icon","d":"SVG Sprite · currentColor · 点击复制名称","k":"小节"},{"r":"atoms","id":"atom-input","n":"1.3","t":"输入 Input · Textarea · Select","d":"高 40 · 圆角 8 · 边界 Ink 500（3.55:1）","k":"小节"},{"r":"atoms","id":"atom-check","n":"1.4","t":"复选 · 单选 · 开关","d":"18px · 半选横线 · 8% 悬停光环 · 回锋弹入","k":"小节"},{"r":"atoms","id":"atom-badge","n":"1.5","t":"徽标 Badge · 芯片 Chip · 状态点","d":"状态永远带文字，颜色不是唯一载体","k":"小节"},{"r":"atoms","id":"atom-misc","n":"1.6","t":"头像 · 分割线 · 键帽 · 工具提示 · 印章","d":"","k":"小节"},{"r":"atoms","id":"atom-feedback","n":"1.7","t":"太极 Spinner · 进度 · 骨架屏","d":"加载不是让用户等，是陪用户等","k":"小节"},{"r":"atoms","id":"atom-table","n":"1.8","t":"表格元素 · 品牌标志","d":"表头 2px 主色下划线 · 数字右对齐等宽","k":"小节"},{"r":"molecules","id":"","n":"L2","t":"分子：原子的最小有意义组合","k":"章节"},{"r":"molecules","id":"mol-field","n":"2.1","t":"表单字段 Field","d":"label + control + help/error · 失焦验证 · 预留错误行高","k":"小节"},{"r":"molecules","id":"mol-search","n":"2.2","t":"搜索框 · 按钮组 · 分段控制 · 标签页","d":"","k":"小节"},{"r":"molecules","id":"mol-nav","n":"2.3","t":"面包屑 · 分页 · 导航项 · 五实体切换器","d":"","k":"小节"},{"r":"molecules","id":"mol-kpi","n":"2.4","t":"KPI 瓦片 Stat Tile","d":"label · value · delta（vs 命名周期）· 12 点迷你折线","k":"小节"},{"r":"molecules","id":"mol-toast","n":"2.5","t":"轻提示 Toast · 菜单 Menu · 芯片组 · 行内提醒","d":"","k":"小节"},{"r":"molecules","id":"mol-phi","n":"2.6","t":"哲学锚点 · AI 置信度 · 空状态","d":"","k":"小节"},{"r":"organisms","id":"","n":"L3","t":"有机体：可独立运作的界面区块","k":"章节"},{"r":"organisms","id":"org-shell","n":"3.1","t":"应用外壳：顶栏 + 侧轨 + 主区","d":"顶栏 64 · 抽屉 240 / 侧轨 72 · 毛玻璃仅顶栏一处","k":"小节"},{"r":"organisms","id":"org-table","n":"3.2","t":"数据表 Data Table","d":"工具栏 · 排序 · 行选择 · 分页 —— 点击表头试试","k":"小节"},{"r":"organisms","id":"org-chart","n":"3.3","t":"图表面板 Chart Panel","d":"单轴 · 2px 线 · 十字线找 X · 每图必有表格孪生","k":"小节"},{"r":"organisms","id":"org-form","n":"3.4","t":"表单段 Form Section","d":"左标题右字段 · 失焦验证 · 提交后 Toast","k":"小节"},{"r":"organisms","id":"org-modal","n":"3.5","t":"对话框 · 抽屉 · Toast 容器","d":"焦点陷阱 · Esc 关闭 · 焦点归还触发元素 · spring 入场","k":"小节"},{"r":"organisms","id":"org-ai","n":"3.6","t":"AI 助手面板","d":"Copilot / Autopilot / Advisor · 逐字流式 · 置信度 · 依据可展开","k":"小节"},{"r":"organisms","id":"org-hero","n":"3.7","t":"品牌 Hero · 页脚 · 时间轴","d":"7 : 5 分栏 · 主标题是全页唯一的力","k":"小节"},{"r":"templates","id":"","n":"L4","t":"模板：只定结构，不含内容","k":"章节"},{"r":"templates","id":"tpl-dashboard","n":"4.1","t":"T1 · 看板模板 Dashboard","d":"借 Ledgerix 的信息密度秩序 · 用于 STG / STE 页面","k":"小节"},{"r":"templates","id":"tpl-doc","n":"4.2","t":"T2 · 文档模板 Document","d":"力起·秀承 · 目录 + 正文 + 旁注 · 用于 STH 检测报告、品牌宪法","k":"小节"},{"r":"templates","id":"tpl-detail","n":"4.3","t":"T3 · 列表–详情模板 List–Detail","d":"父到子深入 · 用于 STI 报关追踪、EDU 学生档案","k":"小节"},{"r":"templates","id":"tpl-brand","n":"4.4","t":"T4 · 品牌页模板 Brand","d":"借 Sui 的一体化：识别 → 网站 · 用于集团官网","k":"小节"},{"r":"templates","id":"tpl-deck","n":"4.5","t":"T5 · 陈述模板 Deck","d":"借 PRODIGIES 的纪念碑式字体与严格栅格 · 用于报奖、提案","k":"小节"},{"r":"pages","id":"","n":"L5","t":"页面：五实体，一套语法","k":"章节"},{"r":"pages","id":"page-stg","n":"5.1","t":"STG · 集团经营看板","d":"绛紫 · T1 看板模板 · Persona：集团 CFO 李总","k":"小节"},{"r":"pages","id":"page-ste","n":"5.2","t":"STE · 九派能源 CFB 锅炉监控","d":"苍木绿 · T1 看板模板 · Persona：工厂经理 王工","k":"小节"},{"r":"pages","id":"page-sti","n":"5.3","t":"STI · 进出口报关追踪","d":"深空蓝 · T3 列表–详情模板 · Persona：贸易经理 陈先生","k":"小节"},{"r":"pages","id":"page-sth","n":"5.4","t":"STH · 健康科技检测报告","d":"沧浪青（可访问主色自动落到 700 阶）· T2 文档模板 · Persona：产品经理 张博士","k":"小节"},{"r":"pages","id":"page-edu","n":"5.5","t":"EDU · 崇仁教育学生成长档案","d":"朱砂红 · T3 列表–详情模板 · Persona：教务主任 刘老师","k":"小节"},{"r":"motion","id":"","n":"M","t":"动效：编排、缓动与连续","k":"章节"},{"r":"motion","id":"motion-why","n":"M.1","t":"动效的唯一理由","d":"六个目的 · 服务不了就删掉","k":"小节"},{"r":"motion","id":"motion-easing","n":"M.2","t":"缓动是性格 Easing","d":"6 条曲线 · 全站不得出现第七条","k":"小节"},{"r":"motion","id":"motion-duration","n":"M.3","t":"时长尺度与进退场不对称","d":"退场 ≈ 进场 × 0.65","k":"小节"},{"r":"motion","id":"motion-orchestration","n":"M.4","t":"编排：Stagger 实验室","d":"30–60ms 是节奏，&gt;80ms 是拖沓","k":"小节"},{"r":"motion","id":"motion-continuity","n":"M.5","t":"连续性：共享元素与 FLIP","d":"不要 A 淡出 + B 淡入","k":"小节"},{"r":"motion","id":"motion-scroll","n":"M.6","t":"滚动驱动叙事","d":"触发式 vs 绑定式","k":"小节"},{"r":"motion","id":"motion-oriental","n":"M.7","t":"东方动效：間与运笔","d":"轻 · 慢 · 含蓄","k":"小节"},{"r":"motion","id":"motion-states","n":"M.8","t":"状态编排：加载、反馈与浮层","d":"空态与错态才是专业度的分水岭","k":"小节"},{"r":"motion","id":"motion-a11y","n":"M.9","t":"无障碍契约与性能预算","d":"reduced-motion 是硬要求，不是可选项","k":"小节"},{"r":"governance","id":"","n":"G","t":"治理：让系统在生长中不漂移","k":"章节"},{"r":"governance","id":"gov-rules","n":"G.1","t":"核心十条（工艺判断准则）","d":"","k":"小节"},{"r":"governance","id":"gov-atomic","n":"G.2","t":"原子设计五律与 lint 规则","d":"","k":"小节"},{"r":"governance","id":"gov-states","n":"G.3","t":"8 状态机与组件状态矩阵","d":"","k":"小节"},{"r":"governance","id":"gov-review","n":"G.4","t":"质量门禁：构建门禁 + 四阶评审 + Design QA","d":"","k":"小节"},{"r":"governance","id":"gov-a11y","n":"G.5","t":"无障碍 WCAG 2.2 AA：出厂设置","d":"","k":"小节"},{"r":"governance","id":"gov-antd","n":"G.6","t":"Ant Design 5.x 映射","d":"源裕兴不是 Ant Design 的中文克隆","k":"小节"},{"r":"governance","id":"gov-odoo","n":"G.7","t":"Odoo 18 原生映射","d":"","k":"小节"},{"r":"governance","id":"gov-pipeline","n":"G.8","t":"管线 · 版本 · 交付清单","d":"","k":"小节"},{"r":"governance","id":"gov-changelog","n":"G.9","t":"变更日志 V37 → V38 → V39","d":"对文字稿的每一处修正都可回溯到实测","k":"小节"},{"r":"governance","id":"gov-glossary","n":"G.10","t":"术语表","d":"","k":"小节"}],"routes":[{"path":"home","num":"00","nav":"首页","en":"Index","title":"源裕兴设计系统全典","file":"index.html"},{"path":"tokens","num":"L0","nav":"令牌","en":"Design Tokens","title":"设计令牌：亚原子层","file":"tokens.html"},{"path":"atoms","num":"L1","nav":"原子","en":"Atoms","title":"原子：不可再分的功能单元","file":"atoms.html"},{"path":"molecules","num":"L2","nav":"分子","en":"Molecules","title":"分子：原子的最小有意义组合","file":"molecules.html"},{"path":"organisms","num":"L3","nav":"有机体","en":"Organisms","title":"有机体：可独立运作的界面区块","file":"organisms.html"},{"path":"templates","num":"L4","nav":"模板","en":"Templates","title":"模板：只定结构，不含内容","file":"templates.html"},{"path":"pages","num":"L5","nav":"页面","en":"Pages · Five Entities","title":"页面：五实体，一套语法","file":"pages.html"},{"path":"motion","num":"M","nav":"动效","en":"Motion & Interaction","title":"动效：编排、缓动与连续","file":"motion.html"},{"path":"governance","num":"G","nav":"治理","en":"Governance","title":"治理：让系统在生长中不漂移","file":"governance.html"}]};
-/* ==== art.js ==== */
-/* ============================================================
-   art.js · 太极流纹 · 生成式流场（Canvas 2D，零依赖）
-   源 = 水之源：细线沿噪声场流动，聚于一点又散开。每章不同种子，随实体换色。
-   ============================================================ */
-(function () {
-  'use strict';
-  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  /* 值噪声（三倍频） */
-  function makeNoise(seed) {
-    let s = seed >>> 0 || 1; const rnd = () => (s = (s * 1664525 + 1013904223) >>> 0) / 4294967296;
-    const P = new Uint8Array(512); const perm = Array.from({ length: 256 }, (_, i) => i);
-    for (let i = 255; i > 0; i--) { const j = Math.floor(rnd() * (i + 1)); [perm[i], perm[j]] = [perm[j], perm[i]]; }
-    for (let i = 0; i < 512; i++) P[i] = perm[i & 255];
-    const fade = t => t * t * t * (t * (t * 6 - 15) + 10);
-    const grad = (h, x, y) => { switch (h & 3) { case 0: return x + y; case 1: return -x + y; case 2: return x - y; default: return -x - y; } };
-    const n2 = (x, y) => { const X = Math.floor(x) & 255, Y = Math.floor(y) & 255; x -= Math.floor(x); y -= Math.floor(y); const u = fade(x), v = fade(y); const a = P[X] + Y, b = P[X + 1] + Y; return (1 + (grad(P[a], x, y) * (1 - u) + grad(P[b], x - 1, y) * u) * (1 - v) + (grad(P[a + 1], x, y - 1) * (1 - u) + grad(P[b + 1], x - 1, y - 1) * u) * v) / 2; };
-    return { rnd, noise: (x, y) => 0.6 * n2(x, y) + 0.3 * n2(x * 2.1, y * 2.1) + 0.1 * n2(x * 4.3, y * 4.3) };
-  }
-  const SEEDS = { home: 7, tokens: 11, atoms: 19, molecules: 23, organisms: 31, templates: 41, pages: 53, motion: 97, governance: 61, manifesto: 71, entities: 83 };
-  function cssColor(el, name) { return getComputedStyle(el).getPropertyValue(name).trim() || '#851EA3'; }
-  function render(canvas) {
-    const host = canvas.parentElement; const rect = host.getBoundingClientRect();
-    if (rect.width < 10 || rect.height < 10) return;
-    const dpr = Math.min(devicePixelRatio || 1, 2);
-    const W = Math.round(rect.width), H = Math.round(rect.height);
-    canvas.width = W * dpr; canvas.height = H * dpr; canvas.style.width = W + 'px'; canvas.style.height = H + 'px';
-    const ctx = canvas.getContext('2d'); ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.clearRect(0, 0, W, H);
-    const key = canvas.dataset.artKey || host.dataset.art || 'home';
-    const { rnd, noise } = makeNoise(SEEDS[key] || 5);
-    const primary = cssColor(canvas, '--c-primary'), gold = cssColor(canvas, '--c-goldLine');
-    const dark = getComputedStyle(canvas).getPropertyValue('color-scheme').includes('dark');
-    const density = Number(canvas.dataset.density || (key === 'home' ? 1 : 0.7));
-    const N = Math.round(Math.min(620, (W * H) / 2300) * density), STEPS = 120, SC = 1 / Math.max(W, H) * 1.6;
-    /* 焦点：右侧 62% 处的漩涡（太极） */
-    const fx = W * (Number(canvas.dataset.fx) || 0.66), fy = H * (Number(canvas.dataset.fy) || 0.5);
-    const parts = Array.from({ length: N }, () => ({ x: rnd() * W * 1.1 - W * 0.05, y: rnd() * H * 1.1 - H * 0.05, gold: rnd() < 0.06 }));
-    ctx.lineWidth = 1; ctx.lineCap = 'round';
-    const alphaBase = dark ? 0.17 : 0.14;
-    let step = 0;
-    /* 每帧按 k 分组：同一 k 的所有粒子合并为一条路径，一次 stroke（主色 / 藤黄各一） */
-    const draw = (from, to) => {
-      for (let k = from; k < to; k++) {
-        const pathP = new Path2D(), pathG = new Path2D();
-        for (const p of parts) {
-          const dx = fx - p.x, dy = fy - p.y, d = Math.hypot(dx, dy) + 1;
-          const swirl = Math.atan2(dy, dx) + Math.PI / 2; const w = Math.max(0, 1 - d / (Math.min(W, H) * 0.55));
-          const a = noise(p.x * SC, p.y * SC) * Math.PI * 2.4 * (1 - w * 0.6) + swirl * w * 1.2;
-          const nx = p.x + Math.cos(a) * 1.6, ny = p.y + Math.sin(a) * 1.6;
-          const path = p.gold ? pathG : pathP; path.moveTo(p.x, p.y); path.lineTo(nx, ny);
-          p.x = nx; p.y = ny;
-        }
-        const fade = 0.35 + 0.65 * (1 - k / STEPS);
-        ctx.globalAlpha = alphaBase * fade; ctx.strokeStyle = primary; ctx.stroke(pathP);
-        ctx.globalAlpha = alphaBase * fade * 0.9; ctx.strokeStyle = gold; ctx.stroke(pathG);
-      }
-    };
-    if (reduced) { draw(0, STEPS); return; }
-    const tick = () => { const to = Math.min(STEPS, step + 4); draw(step, to); step = to; if (step < STEPS && document.contains(canvas)) requestAnimationFrame(tick); };
-    setTimeout(() => requestAnimationFrame(tick), 120);
-  }
-  const renderAll = (scope = document) => scope.querySelectorAll('canvas[data-art], [data-art] > canvas').forEach(c => { if (c.closest('[hidden]')) return; render(c); });
-  window.sinoArt = { render, renderAll };
-  document.addEventListener('sino:entity', () => renderAll());
-  document.addEventListener('sino:scheme', () => setTimeout(() => renderAll(), 60));
-  let t; addEventListener('resize', () => { clearTimeout(t); t = setTimeout(() => renderAll(), 200); });
-})();
-
+window.SINO_DATA = {"version":"40.0.0","edition":"守正 · 画布对齐版","counts":{"canvas":369,"files":12,"fixes":21},"entity":[{"entity":"stg","cn":"玄紫","full":"源裕兴创新未来","role":"战略中枢 · 合规治理","hex":"#463154","oklch":"oklch(35.3% 0.065 311)","onPaper":10.93,"whiteOn":11.49,"scale":{"50":"#F2EDF5","100":"#E2D9E8","200":"#B9A7C4","400":"#6A4E7B","500":"#573E68","600":"#463154","700":"#372744","800":"#281B31"}},{"entity":"ste","cn":"松烟绿","full":"九派国有能源","role":"生物质热电联产 · 碳资产","hex":"#2C4A3B","oklch":"oklch(38.1% 0.044 162)","onPaper":9.29,"whiteOn":9.77,"scale":{"50":"#EFF4F1","100":"#DCE7E0","200":"#A9C1B4","400":"#4A7360","500":"#3B5E4D","600":"#2C4A3B","700":"#213A2E","800":"#182A21"}},{"entity":"sti","cn":"藏青","full":"源裕兴进出口贸易","role":"全球贸易 · 报关物流","hex":"#26374F","oklch":"oklch(33.4% 0.048 257)","onPaper":11.47,"whiteOn":12.06,"scale":{"50":"#EFF2F6","100":"#DAE1EA","200":"#A7B4C6","400":"#455C7C","500":"#35496A","600":"#26374F","700":"#1C2A3E","800":"#131E2C"}},{"entity":"sth","cn":"石青","full":"源裕兴健康科技","role":"医疗器械 · PHA 医用材料","hex":"#2D5257","oklch":"oklch(41.3% 0.043 207)","onPaper":8.13,"whiteOn":8.55,"scale":{"50":"#EFF5F5","100":"#DBE8E9","200":"#A8C3C6","400":"#4C7B80","500":"#3D686D","600":"#2D5257","700":"#213F44","800":"#182E32"}},{"entity":"edu","cn":"赭朱","full":"崇仁教育","role":"教育启智 · 家校协同","hex":"#7A3229","oklch":"oklch(41.5% 0.103 29)","onPaper":8.62,"whiteOn":9.07,"scale":{"50":"#F7EEEB","100":"#EDDCD7","200":"#D3AFA6","400":"#A5584A","500":"#8F4438","600":"#7A3229","700":"#5F251E","800":"#451915"}}],"checks":[{"scheme":"light","name":"标题 heading","fg":"--text-heading","bg":"--surface-card","min":4.5,"themed":false,"before":18.21,"after":18.21,"fixed":null,"worstTheme":"stg","pass":true},{"scheme":"light","name":"正文 body","fg":"--text-body","bg":"--surface-card","min":4.5,"themed":false,"before":10.17,"after":10.17,"fixed":null,"worstTheme":"stg","pass":true},{"scheme":"light","name":"次文 muted","fg":"--text-muted","bg":"--surface-card","min":4.5,"themed":false,"before":6.46,"after":6.46,"fixed":null,"worstTheme":"stg","pass":true},{"scheme":"light","name":"辅助 subtle · 卡面","fg":"--text-subtle","bg":"--surface-card","min":4.5,"themed":false,"before":3.99,"after":4.72,"fixed":"#797265","worstTheme":"stg","pass":true},{"scheme":"light","name":"辅助 subtle · 页面底","fg":"--text-subtle","bg":"--surface-page","min":4.5,"themed":false,"before":3.83,"after":4.53,"fixed":"#797265","worstTheme":"stg","pass":true},{"scheme":"light","name":"品牌文字 brand","fg":"--text-brand","bg":"--surface-card","min":4.5,"themed":true,"before":6.13,"after":6.13,"fixed":null,"worstTheme":"sth","pass":true},{"scheme":"light","name":"链接 link","fg":"--text-link","bg":"--surface-page","min":4.5,"themed":true,"before":5.87,"after":5.87,"fixed":null,"worstTheme":"sth","pass":true},{"scheme":"light","name":"金文字 gold","fg":"--text-gold","bg":"--surface-card","min":4.5,"themed":false,"before":5.54,"after":5.54,"fixed":null,"worstTheme":"stg","pass":true},{"scheme":"light","name":"主按钮文字","fg":"--btn-primary-fg","bg":"--btn-primary-bg","min":4.5,"themed":false,"before":18.37,"after":18.37,"fixed":null,"worstTheme":"stg","pass":true},{"scheme":"light","name":"金 CTA 文字","fg":"--btn-gold-fg","bg":"--btn-gold-bg","min":4.5,"themed":false,"before":7.37,"after":7.37,"fixed":null,"worstTheme":"stg","pass":true},{"scheme":"light","name":"占位符 placeholder","fg":"--field-placeholder","bg":"--field-bg","min":4.5,"themed":false,"before":2.28,"after":4.51,"fixed":"#7D7568","worstTheme":"stg","pass":true},{"scheme":"light","name":"输入框描边","fg":"--field-border","bg":"--surface-page","min":3,"themed":false,"before":1.52,"after":3.05,"fixed":"#968F83","worstTheme":"stg","pass":true},{"scheme":"light","name":"焦点环","fg":"--focus-ring-color","bg":"--surface-page","min":3,"themed":true,"before":8.13,"after":8.13,"fixed":null,"worstTheme":"sth","pass":true},{"scheme":"light","name":"印章朱 seal","fg":"--seal","bg":"--surface-page","min":3,"themed":false,"before":7.75,"after":7.75,"fixed":null,"worstTheme":"stg","pass":true},{"scheme":"light","name":"成功","fg":"--state-success","bg":"--surface-card","min":4.5,"themed":false,"before":9.69,"after":9.69,"fixed":null,"worstTheme":"stg","pass":true},{"scheme":"light","name":"警告","fg":"--state-warning","bg":"--surface-card","min":4.5,"themed":false,"before":5.97,"after":5.97,"fixed":null,"worstTheme":"stg","pass":true},{"scheme":"light","name":"错误","fg":"--state-error","bg":"--surface-card","min":4.5,"themed":false,"before":8.08,"after":8.08,"fixed":null,"worstTheme":"stg","pass":true},{"scheme":"light","name":"信息","fg":"--state-info","bg":"--surface-card","min":4.5,"themed":false,"before":11.95,"after":11.95,"fixed":null,"worstTheme":"stg","pass":true},{"scheme":"light","name":"数据序列 1","fg":"--dv-1","bg":"--surface-card","min":3,"themed":false,"before":9,"after":9,"fixed":null,"worstTheme":"stg","pass":true},{"scheme":"light","name":"数据序列 2","fg":"--dv-2","bg":"--surface-card","min":3,"themed":false,"before":7.19,"after":7.19,"fixed":null,"worstTheme":"stg","pass":true},{"scheme":"light","name":"数据序列 3","fg":"--dv-3","bg":"--surface-card","min":3,"themed":false,"before":5.85,"after":5.85,"fixed":null,"worstTheme":"stg","pass":true},{"scheme":"light","name":"数据序列 4","fg":"--dv-4","bg":"--surface-card","min":3,"themed":false,"before":6.13,"after":6.13,"fixed":null,"worstTheme":"stg","pass":true},{"scheme":"light","name":"数据序列 5","fg":"--dv-5","bg":"--surface-card","min":3,"themed":false,"before":9.08,"after":9.08,"fixed":null,"worstTheme":"stg","pass":true},{"scheme":"light","name":"数据序列 6","fg":"--dv-6","bg":"--surface-card","min":3,"themed":false,"before":3.65,"after":3.65,"fixed":null,"worstTheme":"stg","pass":true},{"scheme":"light","name":"数据序列 7","fg":"--dv-7","bg":"--surface-card","min":3,"themed":false,"before":10.17,"after":10.17,"fixed":null,"worstTheme":"stg","pass":true},{"scheme":"light","name":"数据序列 8","fg":"--dv-8","bg":"--surface-card","min":3,"themed":false,"before":2.28,"after":3.02,"fixed":"#9B9385","worstTheme":"stg","pass":true},{"scheme":"dark","name":"标题 heading","fg":"--text-heading","bg":"--surface-card","min":4.5,"themed":false,"before":16.98,"after":16.98,"fixed":null,"worstTheme":"stg","pass":true},{"scheme":"dark","name":"正文 body","fg":"--text-body","bg":"--surface-card","min":4.5,"themed":false,"before":14.1,"after":14.1,"fixed":null,"worstTheme":"stg","pass":true},{"scheme":"dark","name":"次文 muted","fg":"--text-muted","bg":"--surface-card","min":4.5,"themed":false,"before":7.76,"after":7.76,"fixed":null,"worstTheme":"stg","pass":true},{"scheme":"dark","name":"辅助 subtle · 卡面","fg":"--text-subtle","bg":"--surface-card","min":4.5,"themed":false,"before":4.44,"after":4.5,"fixed":"#867F72","worstTheme":"stg","pass":true},{"scheme":"dark","name":"辅助 subtle · 页面底","fg":"--text-subtle","bg":"--surface-page","min":4.5,"themed":false,"before":4.89,"after":4.95,"fixed":"#867F72","worstTheme":"stg","pass":true},{"scheme":"dark","name":"品牌文字 brand","fg":"--text-brand","bg":"--surface-card","min":4.5,"themed":true,"before":3.76,"after":4.5,"fixed":"color-mix(in oklch, var(--brand-600) 90%, var(--ink-50))","worstTheme":"stg","pass":true},{"scheme":"dark","name":"链接 link","fg":"--text-link","bg":"--surface-page","min":4.5,"themed":true,"before":4.14,"after":4.62,"fixed":"color-mix(in oklch, var(--brand-600) 94%, var(--ink-50))","worstTheme":"stg","pass":true},{"scheme":"dark","name":"金文字 gold","fg":"--text-gold","bg":"--surface-card","min":4.5,"themed":false,"before":3.2,"after":4.56,"fixed":"#937E57","worstTheme":"stg","pass":true},{"scheme":"dark","name":"主按钮文字","fg":"--btn-primary-fg","bg":"--btn-primary-bg","min":4.5,"themed":false,"before":18.69,"after":18.69,"fixed":null,"worstTheme":"stg","pass":true},{"scheme":"dark","name":"金 CTA 文字","fg":"--btn-gold-fg","bg":"--btn-gold-bg","min":4.5,"themed":false,"before":7.37,"after":7.37,"fixed":null,"worstTheme":"stg","pass":true},{"scheme":"dark","name":"占位符 placeholder","fg":"--field-placeholder","bg":"--field-bg","min":4.5,"themed":false,"before":7.76,"after":4.51,"fixed":"#877F72","worstTheme":"stg","pass":true},{"scheme":"dark","name":"输入框描边","fg":"--field-border","bg":"--surface-page","min":3,"themed":false,"before":1.63,"after":3.04,"fixed":"#605E5B","worstTheme":"stg","pass":true},{"scheme":"dark","name":"焦点环","fg":"--focus-ring-color","bg":"--surface-page","min":3,"themed":true,"before":4.14,"after":4.14,"fixed":null,"worstTheme":"stg","pass":true},{"scheme":"dark","name":"印章朱 seal","fg":"--seal","bg":"--surface-page","min":3,"themed":false,"before":2.41,"after":3.05,"fixed":"#9C4332","worstTheme":"stg","pass":true},{"scheme":"dark","name":"成功","fg":"--state-success","bg":"--surface-card","min":4.5,"themed":false,"before":1.83,"after":4.57,"fixed":"#688877","worstTheme":"stg","pass":true},{"scheme":"dark","name":"警告","fg":"--state-warning","bg":"--surface-card","min":4.5,"themed":false,"before":2.97,"after":4.5,"fixed":"#987C41","worstTheme":"stg","pass":true},{"scheme":"dark","name":"错误","fg":"--state-error","bg":"--surface-card","min":4.5,"themed":false,"before":2.19,"after":4.52,"fixed":"#C26653","worstTheme":"stg","pass":true},{"scheme":"dark","name":"信息","fg":"--state-info","bg":"--surface-card","min":4.5,"themed":false,"before":1.48,"after":4.61,"fixed":"#6F839E","worstTheme":"stg","pass":true},{"scheme":"dark","name":"数据序列 1","fg":"--dv-1","bg":"--surface-card","min":3,"themed":false,"before":1.97,"after":3.03,"fixed":"#506588","worstTheme":"stg","pass":true},{"scheme":"dark","name":"数据序列 2","fg":"--dv-2","bg":"--surface-card","min":3,"themed":false,"before":2.46,"after":3.04,"fixed":"#496C5B","worstTheme":"stg","pass":true},{"scheme":"dark","name":"数据序列 3","fg":"--dv-3","bg":"--surface-card","min":3,"themed":false,"before":3.03,"after":3.03,"fixed":null,"worstTheme":"stg","pass":true},{"scheme":"dark","name":"数据序列 4","fg":"--dv-4","bg":"--surface-card","min":3,"themed":false,"before":2.89,"after":3.02,"fixed":"#406B70","worstTheme":"stg","pass":true},{"scheme":"dark","name":"数据序列 5","fg":"--dv-5","bg":"--surface-card","min":3,"themed":false,"before":1.95,"after":3.01,"fixed":"#735A86","worstTheme":"stg","pass":true},{"scheme":"dark","name":"数据序列 6","fg":"--dv-6","bg":"--surface-card","min":3,"themed":false,"before":4.86,"after":4.86,"fixed":null,"worstTheme":"stg","pass":true},{"scheme":"dark","name":"数据序列 7","fg":"--dv-7","bg":"--surface-card","min":3,"themed":false,"before":1.74,"after":3.05,"fixed":"#69645D","worstTheme":"stg","pass":true},{"scheme":"dark","name":"数据序列 8","fg":"--dv-8","bg":"--surface-card","min":3,"themed":false,"before":7.76,"after":7.76,"fixed":"#B2AA9C","worstTheme":"stg","pass":true}],"fixes":{"light":{"--text-subtle":"#797265","--field-placeholder":"#7D7568","--field-border":"#968F83","--dv-8":"#9B9385"},"dark":{"--text-subtle":"#867F72","--text-brand":"color-mix(in oklch, var(--brand-600) 90%, var(--ink-50))","--text-link":"color-mix(in oklch, var(--brand-600) 94%, var(--ink-50))","--text-gold":"#937E57","--field-border":"#605E5B","--seal":"#9C4332","--state-success":"#688877","--state-warning":"#987C41","--state-error":"#C26653","--state-info":"#6F839E","--dv-1":"#506588","--dv-2":"#496C5B","--dv-4":"#406B70","--dv-5":"#735A86","--dv-7":"#69645D","--field-placeholder":"#877F72","--dv-8":"#B2AA9C"}},"search":[{"r":"home","id":"","n":"00","t":"源裕兴设计系统全典","k":"章节"},{"r":"tokens","id":"","n":"L0","t":"设计令牌：亚原子层","k":"章节"},{"r":"tokens","id":"tokens-color","n":"0.1","t":"色彩：五实体 · 宣纸墨色 · 藤黄","d":"OKLCH 推导十阶，600 阶锚点原值锁定","k":"小节"},{"r":"tokens","id":"tokens-type","n":"0.2","t":"字体：五族字体栈 · 15 级字阶 · 力起秀承","d":"","k":"小节"},{"r":"tokens","id":"tokens-space","n":"0.3","t":"间距 · 圆角 · 阴影","d":"4px 步进 · 同心圆角 · 单一光源","k":"小节"},{"r":"tokens","id":"tokens-motion","n":"0.4","t":"动效 · 栅格 · 层级","d":"动效即编排 · 12 列宪法 · 语义化 z-index","k":"小节"},{"r":"tokens","id":"tokens-naming","n":"0.5","t":"命名 · 三层引用 · 构建管线","d":"tokens.json 是唯一可信源","k":"小节"},{"r":"atoms","id":"","n":"L1","t":"原子：不可再分的功能单元","k":"章节"},{"r":"atoms","id":"atom-button","n":"1.1","t":"按钮 Button","d":"7 型 × 4 档 × 8 态 · 全圆角","k":"小节"},{"r":"atoms","id":"atom-icon","n":"1.2","t":"图标 Icon","d":"SVG Sprite · currentColor · 点击复制名称","k":"小节"},{"r":"atoms","id":"atom-input","n":"1.3","t":"输入 Input · Textarea · Select","d":"高 40 · 圆角 8 · 边界 Ink 500（3.55:1）","k":"小节"},{"r":"atoms","id":"atom-check","n":"1.4","t":"复选 · 单选 · 开关","d":"18px · 半选横线 · 8% 悬停光环 · 回锋弹入","k":"小节"},{"r":"atoms","id":"atom-badge","n":"1.5","t":"徽标 Badge · 芯片 Chip · 状态点","d":"状态永远带文字，颜色不是唯一载体","k":"小节"},{"r":"atoms","id":"atom-misc","n":"1.6","t":"头像 · 分割线 · 键帽 · 工具提示 · 印章","d":"","k":"小节"},{"r":"atoms","id":"atom-feedback","n":"1.7","t":"太极 Spinner · 进度 · 骨架屏","d":"加载不是让用户等，是陪用户等","k":"小节"},{"r":"atoms","id":"atom-table","n":"1.8","t":"表格元素 · 品牌标志","d":"表头 2px 描边下划线 · 数字右对齐等宽 · 字标三色版","k":"小节"},{"r":"molecules","id":"","n":"L2","t":"分子：原子的最小有意义组合","k":"章节"},{"r":"molecules","id":"mol-field","n":"2.1","t":"表单字段 Field","d":"label + control + help/error · 失焦验证 · 预留错误行高","k":"小节"},{"r":"molecules","id":"mol-search","n":"2.2","t":"搜索框 · 按钮组 · 分段控制 · 标签页","d":"","k":"小节"},{"r":"molecules","id":"mol-nav","n":"2.3","t":"面包屑 · 分页 · 导航项 · 五实体切换器","d":"","k":"小节"},{"r":"molecules","id":"mol-kpi","n":"2.4","t":"KPI 瓦片 Stat Tile","d":"label · value · delta（vs 命名周期）· 12 点迷你折线","k":"小节"},{"r":"molecules","id":"mol-toast","n":"2.5","t":"轻提示 Toast · 菜单 Menu · 芯片组 · 行内提醒","d":"","k":"小节"},{"r":"molecules","id":"mol-phi","n":"2.6","t":"哲学锚点 · AI 置信度 · 空状态","d":"","k":"小节"},{"r":"organisms","id":"","n":"L3","t":"有机体：可独立运作的界面区块","k":"章节"},{"r":"organisms","id":"org-shell","n":"3.1","t":"应用外壳：顶栏 + 侧轨 + 主区","d":"顶栏 64 · 抽屉 240 / 侧轨 72 · 毛玻璃仅顶栏一处","k":"小节"},{"r":"organisms","id":"org-table","n":"3.2","t":"数据表 Data Table","d":"工具栏 · 排序 · 行选择 · 分页 —— 点击表头试试","k":"小节"},{"r":"organisms","id":"org-chart","n":"3.3","t":"图表面板 Chart Panel","d":"单轴 · 2px 线 · 十字线找 X · 每图必有表格孪生","k":"小节"},{"r":"organisms","id":"org-form","n":"3.4","t":"表单段 Form Section","d":"左标题右字段 · 失焦验证 · 提交后 Toast","k":"小节"},{"r":"organisms","id":"org-modal","n":"3.5","t":"对话框 · 抽屉 · Toast 容器","d":"焦点陷阱 · Esc 关闭 · 焦点归还触发元素 · spring 入场","k":"小节"},{"r":"organisms","id":"org-ai","n":"3.6","t":"AI 助手面板","d":"Copilot / Autopilot / Advisor · 逐字流式 · 置信度 · 依据可展开","k":"小节"},{"r":"organisms","id":"org-hero","n":"3.7","t":"品牌 Hero · 页脚 · 时间轴","d":"7 : 5 分栏 · 主标题是全页唯一的力","k":"小节"},{"r":"templates","id":"","n":"L4","t":"模板：只定结构，不含内容","k":"章节"},{"r":"templates","id":"tpl-dashboard","n":"4.1","t":"T1 · 看板模板 Dashboard","d":"借 Ledgerix 的信息密度秩序 · 用于 STG / STE 页面","k":"小节"},{"r":"templates","id":"tpl-doc","n":"4.2","t":"T2 · 文档模板 Document","d":"力起·秀承 · 目录 + 正文 + 旁注 · 用于 STH 检测报告、品牌宪法","k":"小节"},{"r":"templates","id":"tpl-detail","n":"4.3","t":"T3 · 列表–详情模板 List–Detail","d":"父到子深入 · 用于 STI 报关追踪、EDU 学生档案","k":"小节"},{"r":"templates","id":"tpl-brand","n":"4.4","t":"T4 · 品牌页模板 Brand","d":"借 Sui 的一体化：识别 → 网站 · 用于集团官网","k":"小节"},{"r":"templates","id":"tpl-deck","n":"4.5","t":"T5 · 陈述模板 Deck","d":"借 PRODIGIES 的纪念碑式字体与严格栅格 · 用于报奖、提案","k":"小节"},{"r":"pages","id":"","n":"L5","t":"页面：五实体，一套语法","k":"章节"},{"r":"pages","id":"page-stg","n":"5.1","t":"STG · 集团经营看板","d":"绛紫 · T1 看板模板 · Persona：集团 CFO 李总","k":"小节"},{"r":"pages","id":"page-ste","n":"5.2","t":"STE · 九派能源 CFB 锅炉监控","d":"苍木绿 · T1 看板模板 · Persona：工厂经理 王工","k":"小节"},{"r":"pages","id":"page-sti","n":"5.3","t":"STI · 进出口报关追踪","d":"深空蓝 · T3 列表–详情模板 · Persona：贸易经理 陈先生","k":"小节"},{"r":"pages","id":"page-sth","n":"5.4","t":"STH · 健康科技检测报告","d":"沧浪青（可访问主色自动落到 700 阶）· T2 文档模板 · Persona：产品经理 张博士","k":"小节"},{"r":"pages","id":"page-edu","n":"5.5","t":"EDU · 崇仁教育学生成长档案","d":"朱砂红 · T3 列表–详情模板 · Persona：教务主任 刘老师","k":"小节"},{"r":"motion","id":"","n":"M","t":"动效：编排、缓动与连续","k":"章节"},{"r":"motion","id":"motion-why","n":"M.1","t":"动效的唯一理由","d":"六个目的 · 服务不了就删掉","k":"小节"},{"r":"motion","id":"motion-easing","n":"M.2","t":"缓动是性格 Easing","d":"6 条曲线 · 全站不得出现第七条","k":"小节"},{"r":"motion","id":"motion-duration","n":"M.3","t":"时长尺度与进退场不对称","d":"退场 ≈ 进场 × 0.65","k":"小节"},{"r":"motion","id":"motion-orchestration","n":"M.4","t":"编排：Stagger 实验室","d":"30–60ms 是节奏，&gt;80ms 是拖沓","k":"小节"},{"r":"motion","id":"motion-continuity","n":"M.5","t":"连续性：共享元素与 FLIP","d":"不要 A 淡出 + B 淡入","k":"小节"},{"r":"motion","id":"motion-scroll","n":"M.6","t":"滚动驱动叙事","d":"触发式 vs 绑定式","k":"小节"},{"r":"motion","id":"motion-oriental","n":"M.7","t":"东方动效：間与运笔","d":"轻 · 慢 · 含蓄","k":"小节"},{"r":"motion","id":"motion-states","n":"M.8","t":"状态编排：加载、反馈与浮层","d":"空态与错态才是专业度的分水岭","k":"小节"},{"r":"motion","id":"motion-a11y","n":"M.9","t":"无障碍契约与性能预算","d":"reduced-motion 是硬要求，不是可选项","k":"小节"},{"r":"governance","id":"","n":"G","t":"治理：让系统在生长中不漂移","k":"章节"},{"r":"governance","id":"gov-rules","n":"G.1","t":"核心十条（工艺判断准则）","d":"","k":"小节"},{"r":"governance","id":"gov-atomic","n":"G.2","t":"原子设计五律与 lint 规则","d":"","k":"小节"},{"r":"governance","id":"gov-states","n":"G.3","t":"8 状态机与组件状态矩阵","d":"","k":"小节"},{"r":"governance","id":"gov-review","n":"G.4","t":"质量门禁：构建门禁 + 四阶评审 + Design QA","d":"","k":"小节"},{"r":"governance","id":"gov-a11y","n":"G.5","t":"无障碍 WCAG 2.2 AA：出厂设置","d":"","k":"小节"},{"r":"governance","id":"gov-antd","n":"G.6","t":"Ant Design 5.x 映射","d":"源裕兴不是 Ant Design 的中文克隆","k":"小节"},{"r":"governance","id":"gov-odoo","n":"G.7","t":"Odoo 18 原生映射","d":"","k":"小节"},{"r":"governance","id":"gov-pipeline","n":"G.8","t":"管线 · 版本 · 交付清单","d":"","k":"小节"},{"r":"governance","id":"gov-changelog","n":"G.9","t":"变更日志 V37 → V38 → V39","d":"对文字稿的每一处修正都可回溯到实测","k":"小节"},{"r":"governance","id":"gov-glossary","n":"G.10","t":"术语表","d":"","k":"小节"}],"routes":[{"path":"home","num":"00","nav":"首页","en":"Index","title":"源裕兴设计系统全典","file":"index.html"},{"path":"tokens","num":"L0","nav":"令牌","en":"Design Tokens","title":"设计令牌：亚原子层","file":"tokens.html"},{"path":"atoms","num":"L1","nav":"原子","en":"Atoms","title":"原子：不可再分的功能单元","file":"atoms.html"},{"path":"molecules","num":"L2","nav":"分子","en":"Molecules","title":"分子：原子的最小有意义组合","file":"molecules.html"},{"path":"organisms","num":"L3","nav":"有机体","en":"Organisms","title":"有机体：可独立运作的界面区块","file":"organisms.html"},{"path":"templates","num":"L4","nav":"模板","en":"Templates","title":"模板：只定结构，不含内容","file":"templates.html"},{"path":"pages","num":"L5","nav":"页面","en":"Pages · Five Entities","title":"页面：五实体，一套语法","file":"pages.html"},{"path":"motion","num":"M","nav":"动效","en":"Motion & Interaction","title":"动效：编排、缓动与连续","file":"motion.html"},{"path":"governance","num":"G","nav":"治理","en":"Governance","title":"治理：让系统在生长中不漂移","file":"governance.html"}]};
 /* ==== motion.js ==== */
 /* ============================================================
-   motion.js · 动效编排层 · V39
-   一处点睛之动（主标题分行/分字揭示）+ 全站滚动揭示 + 指针微交互 + 动效实验室。
-   铁律：只动 transform / opacity；prefers-reduced-motion 一律给终态。
+   motion.js · 动效编排层 · V40「守正」
+   画布准则：动效词汇只有三样 —— Reveal · RuleReveal · Marquee。
+   无弹跳、无缩放入场、无视差、无指针跟随物。只动 transform 与 opacity。
+   prefers-reduced-motion 下给终态，不是全关。
    ============================================================ */
 (function () {
   'use strict';
@@ -86,190 +19,96 @@ window.SINO_DATA = {"version":"39.0.0","edition":"墨经光纬 · 多页面站�
   const nativeTimeline = CSS.supports?.('animation-timeline: view()') ?? false;
   if (!nativeTimeline && !reduced()) html.classList.add('js-rv');
 
-  /* ── 1 · 滚动揭示（原生不可用时的观察者回退） ── */
-  let rvObs;
+  /* ── 1 · Reveal / RuleReveal（原生滚动驱动不可用时的观察者回退） ── */
+  let obs;
   function bindReveal(scope = document) {
-    $$('[data-stagger]', scope).forEach(box => $$(':scope > *', box).forEach((c, i) => c.style.setProperty('--rv-d', i)));
+    /* 错峰不超过 6 级 */
+    $$('[data-stagger]', scope).forEach(box => $$(':scope > *', box).forEach((c, i) => c.style.setProperty('--rv-d', Math.min(i, 5))));
     if (nativeTimeline || reduced()) return;
-    rvObs = rvObs || new IntersectionObserver(es => es.forEach(e => {
+    obs = obs || new IntersectionObserver(es => es.forEach(e => {
       if (!e.isIntersecting) return;
-      e.target.classList.add('is-in'); rvObs.unobserve(e.target);
-    }), { rootMargin: '0px 0px -12% 0px', threshold: 0.06 });
-    $$('.rv', scope).forEach(el => { if (!el.classList.contains('is-in')) rvObs.observe(el); });
+      e.target.classList.add('is-in'); obs.unobserve(e.target);
+    }), { rootMargin: '0px 0px -10% 0px', threshold: 0.05 });
+    $$('.rv, .rule-reveal', scope).forEach(el => { if (!el.classList.contains('is-in')) obs.observe(el); });
   }
 
-  /* ── 2 · 文字揭示：中文按视觉行分组（CJK 无词间空格，必须实测） ── */
-  const store = new WeakMap();
-  function splitChars(el) {
-    const text = store.get(el) ?? el.textContent;
-    store.set(el, text);
-    el.classList.add('split', 'split--chars');
-    el.replaceChildren(...[...text].map((ch, i) => {
-      if (ch === ' ') return document.createTextNode(' ');
-      const s = document.createElement('span');
-      s.className = 'split__char'; s.textContent = ch; s.style.setProperty('--i', i);
-      return s;
-    }));
-  }
-  function splitLines(el) {
-    const text = store.get(el) ?? el.textContent;
-    store.set(el, text);
-    el.classList.add('split');
-    /* 先逐字铺开以测量视觉行 */
-    const probes = [...text].map(ch => { const s = document.createElement('span'); s.textContent = ch; return s; });
-    el.replaceChildren(...probes);
-    const lines = []; let top = null;
-    probes.forEach(p => {
-      const t = Math.round(p.getBoundingClientRect().top);
-      if (top === null || Math.abs(t - top) > 4) { lines.push([]); top = t; }
-      lines[lines.length - 1].push(p.textContent);
-    });
-    el.replaceChildren(...lines.map((chars, i) => {
-      const line = document.createElement('span'); line.className = 'split__line';
-      const inner = document.createElement('span'); inner.className = 'split__inner';
-      inner.textContent = chars.join(''); line.style.setProperty('--i', i);
-      line.appendChild(inner); return line;
-    }));
-  }
-  function runSplit(scope = document) {
-    $$('[data-split]', scope).forEach(el => {
-      el.classList.remove('split--ready', 'split--done');
-      (el.dataset.split === 'char' ? splitChars : splitLines)(el);
-      if (reduced() || el.dataset.splitPlayed) { el.classList.add('split--ready', 'split--done'); return; }
-      el.dataset.splitPlayed = '1';
-      requestAnimationFrame(() => requestAnimationFrame(() => el.classList.add('split--ready')));
-    });
-  }
-  let rsT; addEventListener('resize', () => { clearTimeout(rsT); rsT = setTimeout(() => runSplit(), 260); });
-
-  /* ── 3 · 数字滚动（等宽数字，进入视口触发一次） ── */
+  /* ── 2 · 数字滚动（等宽数字，进入视口触发一次） ── */
   function bindCounters(scope = document) {
     const els = $$('[data-count]', scope);
     if (!els.length) return;
-    if (reduced() || !('IntersectionObserver' in window)) {
-      els.forEach(el => { el.textContent = Number(el.dataset.count).toLocaleString('zh-CN'); });
-      return;
-    }
+    const settle = el => { el.textContent = Number(el.dataset.count).toLocaleString('zh-CN'); };
+    if (reduced() || !('IntersectionObserver' in window)) return els.forEach(settle);
     const io = new IntersectionObserver(es => es.forEach(e => {
       if (!e.isIntersecting) return;
-      const el = e.target, end = Number(el.dataset.count), dec = Number(el.dataset.countDec || 0), t0 = performance.now(), dur = 1200;
+      const el = e.target, end = Number(el.dataset.count), t0 = performance.now(), dur = 900;
       const step = now => {
         const k = Math.min(1, (now - t0) / dur);
-        const v = end * (1 - Math.pow(1 - k, 3));
-        el.textContent = dec ? v.toFixed(dec) : Math.round(v).toLocaleString('zh-CN');
-        if (k < 1) requestAnimationFrame(step);
+        el.textContent = Math.round(end * (1 - Math.pow(1 - k, 3))).toLocaleString('zh-CN');
+        if (k < 1) requestAnimationFrame(step); else settle(el);
       };
       requestAnimationFrame(step); io.unobserve(el);
     }), { threshold: 0.5 });
     els.forEach(el => io.observe(el));
   }
 
-  /* ── 4 · 指针微交互：聚光 / 磁吸 / 倾斜 ── */
-  function bindPointer(scope = document) {
-    if (matchMedia('(hover: none)').matches) return;
-    $$('[data-spot]', scope).forEach(el => el.addEventListener('pointermove', ev => {
-      const r = el.getBoundingClientRect();
-      el.style.setProperty('--mx', `${ev.clientX - r.left}px`);
-      el.style.setProperty('--my', `${ev.clientY - r.top}px`);
-    }));
-    if (reduced()) return;
-    $$('[data-magnet]', scope).forEach(el => {
-      const k = Number(el.dataset.magnet) || 0.22;
-      el.addEventListener('pointermove', ev => {
-        const r = el.getBoundingClientRect();
-        el.classList.add('is-pull');
-        el.style.transform = `translate(${(ev.clientX - r.left - r.width / 2) * k}px, ${(ev.clientY - r.top - r.height / 2) * k}px)`;
-      });
-      el.addEventListener('pointerleave', () => { el.classList.remove('is-pull'); el.style.transform = ''; });
-    });
-    $$('[data-tilt]', scope).forEach(el => {
-      const k = Number(el.dataset.tilt) || 6;
-      el.addEventListener('pointermove', ev => {
-        const r = el.getBoundingClientRect();
-        const x = (ev.clientX - r.left) / r.width - .5, y = (ev.clientY - r.top) / r.height - .5;
-        el.style.transform = `perspective(900px) rotateX(${-y * k}deg) rotateY(${x * k}deg)`;
-      });
-      el.addEventListener('pointerleave', () => { el.style.transform = ''; });
-    });
-  }
-
-  /* ── 5 · 跑马灯：内容不足两屏时复制补齐 ── */
+  /* ── 3 · Marquee：内容不足两屏时复制补齐（一页最多一次，≥30s/圈） ── */
   function bindMarquee(scope = document) {
-    $$('[data-marquee]', scope).forEach(mqEl => {
-      const rows = $$('.mq__row', mqEl);
+    $$('[data-marquee]', scope).forEach(el => {
+      const rows = $$('.mq__row', el);
       if (!rows.length) return;
-      const host = mqEl.parentElement;
+      const host = el.parentElement;
       let guard = 0;
-      while (mqEl.scrollWidth < host.clientWidth * 2 && guard++ < 8) rows.forEach(r => mqEl.appendChild(r.cloneNode(true)));
+      while (el.scrollWidth < host.clientWidth * 2 && guard++ < 8) rows.forEach(r => el.appendChild(r.cloneNode(true)));
     });
   }
 
-  /* ── 6 · 动效实验室（M 章） ── */
+  /* ── 4 · 动效章实验室 ── */
   function bindLab(scope = document) {
-    /* 缓动曲线：绘制 + 点击播放 */
+    /* 缓动曲线：绘制 + 播放 */
     $$('.mo-curve', scope).forEach(card => {
-      const bez = card.dataset.bezier; const plot = $('.mo-curve__plot', card);
+      const bez = card.dataset.bezier, plot = $('.mo-curve__plot', card);
       if (plot && bez) {
         const [x1, y1, x2, y2] = bez.split(',').map(Number);
-        const W = 100, H = 72;
-        const px = v => (v * W).toFixed(2), py = v => (H - v * H).toFixed(2);
-        plot.innerHTML = `<svg viewBox="0 0 ${W} ${H}" aria-hidden="true"><path class="mo-curve__path" d="M0,${py(0)} C${px(x1)},${py(y1)} ${px(x2)},${py(y2)} ${W},${py(1)}"/><circle class="mo-curve__dot" cx="${px(x1)}" cy="${py(y1)}" r="2.4"/><circle class="mo-curve__dot" cx="${px(x2)}" cy="${py(y2)}" r="2.4"/></svg>`;
-        const p = $('.mo-curve__path', plot);
-        if (!reduced()) { const L = p.getTotalLength(); p.style.strokeDasharray = L; p.style.strokeDashoffset = L; p.animate([{ strokeDashoffset: L }, { strokeDashoffset: 0 }], { duration: 900, easing: 'ease-out', fill: 'forwards' }); }
+        const W = 100, H = 72, px = v => (v * W).toFixed(2), py = v => (H - v * H).toFixed(2);
+        plot.innerHTML = `<svg viewBox="0 0 ${W} ${H}" aria-hidden="true"><path class="mo-curve__path" d="M0,${py(0)} C${px(x1)},${py(y1)} ${px(x2)},${py(y2)} ${W},${py(1)}"/><circle class="mo-curve__dot" cx="${px(x1)}" cy="${py(y1)}" r="2.2"/><circle class="mo-curve__dot" cx="${px(x2)}" cy="${py(y2)}" r="2.2"/></svg>`;
       }
       const play = () => {
         if (reduced()) return;
         const track = $('.mo-curve__track', card); if (!track) return;
         card.style.setProperty('--_w', track.clientWidth + 'px');
         card.style.setProperty('--_e', card.dataset.easing || 'linear');
-        card.style.setProperty('--_d', (card.dataset.dur || 900) + 'ms');
+        card.style.setProperty('--_d', (card.dataset.dur || 300) + 'ms');
         card.classList.remove('is-play'); void card.offsetWidth; card.classList.add('is-play');
       };
       card.addEventListener('click', play);
       card.addEventListener('pointerenter', play);
     });
-    /* 进退场不对称 */
+    /* 进退场对照 */
     $$('[data-ee]', scope).forEach(btn => btn.addEventListener('click', () => {
       const card = document.getElementById(btn.dataset.ee); if (!card) return;
       const cls = btn.dataset.eeKind === 'exit' ? 'is-exit' : 'is-enter';
       card.classList.remove('is-enter', 'is-exit'); void card.offsetWidth; card.classList.add(cls);
     }));
-    /* Stagger 实验室 */
+    /* Reveal 错峰实验室 */
     $$('.mo-stag', scope).forEach(lab => {
-      const grid = $('.mo-stag__grid', lab), sRange = $('[data-stag-step]', lab), dRange = $('[data-stag-dur]', lab);
+      const grid = $('.mo-stag__grid', lab), sR = $('[data-stag-step]', lab), dR = $('[data-stag-dur]', lab);
       if (!grid) return;
       if (!grid.children.length) for (let i = 0; i < 18; i++) { const c = document.createElement('span'); c.className = 'mo-stag__cell'; grid.appendChild(c); }
       $$('.mo-stag__cell', grid).forEach((c, i) => c.style.setProperty('--i', i));
       const apply = () => {
-        lab.style.setProperty('--_s', (sRange?.value || 40) + 'ms');
-        lab.style.setProperty('--_d', (dRange?.value || 420) + 'ms');
-        $('[data-stag-step-out]', lab) && ($('[data-stag-step-out]', lab).value = (sRange?.value || 40) + ' ms');
-        $('[data-stag-dur-out]', lab) && ($('[data-stag-dur-out]', lab).value = (dRange?.value || 420) + ' ms');
+        lab.style.setProperty('--_s', (sR?.value || 70) + 'ms');
+        lab.style.setProperty('--_d', (dR?.value || 500) + 'ms');
+        const so = $('[data-stag-step-out]', lab), do_ = $('[data-stag-dur-out]', lab);
+        if (so) so.value = (sR?.value || 70) + ' ms';
+        if (do_) do_.value = (dR?.value || 500) + ' ms';
       };
       const play = () => { if (reduced()) return; apply(); lab.classList.remove('is-play'); void lab.offsetWidth; lab.classList.add('is-play'); };
-      [sRange, dRange].forEach(r => r?.addEventListener('input', () => { apply(); play(); }));
+      [sR, dR].forEach(r => r?.addEventListener('input', () => { apply(); play(); }));
       $('[data-stag-play]', lab)?.addEventListener('click', play);
       apply();
       if ('IntersectionObserver' in window) { const o = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { play(); o.unobserve(e.target); } }), { threshold: .4 }); o.observe(lab); }
     });
-    /* FLIP · 共享元素连续性 */
-    const scrim = $('.mo-flip__scrim', scope);
-    $$('.mo-flip__card', scope).forEach(card => card.addEventListener('click', () => {
-      const first = card.getBoundingClientRect();
-      const open = !card.classList.contains('is-open');
-      card.classList.toggle('is-open', open); scrim?.classList.toggle('is-on', open);
-      if (reduced()) return;
-      const last = card.getBoundingClientRect();
-      const dx = first.left - last.left, dy = first.top - last.top;
-      const sx = first.width / last.width, sy = first.height / last.height;
-      card.animate(
-        [{ transform: `translate(${dx}px, ${dy}px) scale(${sx}, ${sy})` }, { transform: 'none' }],
-        { duration: open ? 520 : 340, easing: open ? 'cubic-bezier(.2,0,0,1)' : 'cubic-bezier(.4,0,1,1)' }
-      );
-    }));
-    scrim?.addEventListener('click', () => { $('.mo-flip__card.is-open', scope)?.click(); });
-    document.addEventListener('keydown', ev => { if (ev.key === 'Escape') $('.mo-flip__card.is-open')?.click(); });
-    /* 滚动驱动演示：进度条 */
+    /* 滚动驱动演示进度 */
     $$('.mo-scroll', scope).forEach(box => {
       const bar = $('.mo-scroll__prog i', box);
       box.addEventListener('scroll', () => { if (bar) bar.style.width = (box.scrollTop / (box.scrollHeight - box.clientHeight)) * 100 + '%'; }, { passive: true });
@@ -284,58 +123,16 @@ window.SINO_DATA = {"version":"39.0.0","edition":"墨经光纬 · 多页面站�
     /* 骨架 → 内容 */
     $$('[data-load]', scope).forEach(btn => btn.addEventListener('click', () => {
       const box = document.getElementById(btn.dataset.load); if (!box) return;
-      box.classList.remove('is-loaded'); box.classList.add('is-loading');
+      box.classList.remove('is-loaded');
       $$('.mo-load__row', box).forEach((r, i) => r.style.setProperty('--i', i));
-      setTimeout(() => { box.classList.remove('is-loading'); box.classList.add('is-loaded'); }, 900);
+      setTimeout(() => box.classList.add('is-loaded'), 700);
     }));
   }
 
-
-  /* ── 7 · 指针尾随环 + 视差（合成器友好，只动 transform） ── */
-  function bindAmbient() {
-    const fine = matchMedia('(hover: hover) and (pointer: fine)').matches;
-    if (fine && !reduced() && !document.querySelector('.cursor-ring')) {
-      const ring = document.createElement('div');
-      ring.className = 'cursor-ring'; ring.setAttribute('aria-hidden', 'true');
-      document.body.appendChild(ring);
-      let tx = innerWidth / 2, ty = innerHeight / 2, cx = tx, cy = ty, on = false;
-      addEventListener('pointermove', ev => {
-        tx = ev.clientX; ty = ev.clientY;
-        if (!on) { on = true; cx = tx; cy = ty; ring.classList.add('is-on'); }
-        const hot = ev.target.closest?.('a, button, [role="button"], input, .mo-curve, .mo-flip__card, .swatch');
-        ring.classList.toggle('is-hot', !!hot);
-      }, { passive: true });
-      addEventListener('pointerleave', () => { on = false; ring.classList.remove('is-on'); }, { passive: true });
-      const loop = () => { cx += (tx - cx) * 0.16; cy += (ty - cy) * 0.16; ring.style.transform = `translate3d(${cx.toFixed(1)}px, ${cy.toFixed(1)}px, 0)`; requestAnimationFrame(loop); };
-      requestAnimationFrame(loop);
-    }
-    const layers = $$('[data-parallax]');
-    if (!layers.length || reduced()) return;
-    let t = false;
-    const run = () => {
-      layers.forEach(l => {
-        const k = Number(l.dataset.parallax) || 0.15;
-        const r = l.parentElement.getBoundingClientRect();
-        if (r.bottom < -200 || r.top > innerHeight + 200) return;
-        const y = Math.max(-40, Math.min(40, -r.top * k));
-        l.style.transform = `translate3d(0, ${y.toFixed(1)}px, 0) scale(1.12)`;
-      });
-      t = false;
-    };
-    addEventListener('scroll', () => { if (!t) { t = true; requestAnimationFrame(run); } }, { passive: true });
-    run();
-  }
-
-  /* ── 汇总 ── */
-  function refresh(scope = document) {
-    bindReveal(scope); runSplit(scope); bindCounters(scope);
-    bindPointer(scope); bindMarquee(scope); bindLab(scope); bindAmbient();
-  }
-  window.sinoMotion = { refresh, splitLines, splitChars };
+  function refresh(scope = document) { bindReveal(scope); bindCounters(scope); bindMarquee(scope); bindLab(scope); }
+  window.sinoMotion = { refresh };
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', () => refresh());
   else refresh();
-  /* 字体加载后重排视觉行 */
-  document.fonts?.ready.then(() => runSplit());
 })();
 
 /* ==== sino.js ==== */
@@ -367,7 +164,7 @@ window.SINO_DATA = {"version":"39.0.0","edition":"墨经光纬 · 多页面站�
     },
     init() {
       this.setEntity(store.get('sino.entity') || root.dataset.theme || 'stg');
-      this.setScheme(store.get('sino.scheme') || 'dark');
+      this.setScheme(store.get('sino.scheme') || 'light');
       document.addEventListener('click', ev => {
         const e = ev.target.closest('[data-entity-btn]'); if (e) return this.setEntity(e.dataset.entityBtn);
         const s = ev.target.closest('[data-scheme-btn]'); if (s) return this.setScheme(s.dataset.schemeBtn);

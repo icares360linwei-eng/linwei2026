@@ -1,232 +1,248 @@
 #!/usr/bin/env node
 /**
- * build.mjs · 源裕兴设计系统全典 · 构建器
- *  tokens.json ──► dist/tokens.css（三层 Token，五实体映射，三态暗色）
- *              ──► dist/tokens.resolved.json（含推导色阶与实测对比度）
- *  src/partials + src/css + src/js ──► dist/index.html（独立文档）+ dist/artifact.html（Artifact 片段）
- * 质量门禁：WCAG AA 对比度不达标即构建失败（守正：以数据守正）。
+ * build.mjs · 源裕兴设计系统全典 · 构建器 V40「守正」
+ *
+ * 事实来源倒转：design-canvas/tokens/*.css（Claude Design 画布）是唯一权威。
+ * 本构建器不再推导色阶 —— 画布已完成配色工作 —— 改为：
+ *   1. 解析画布令牌  2. 实测对比度  3. 对不达 WCAG 2.2 AA 的角色按 OKLCH 明度算法抬升
+ *   4. 输出 tokens.css（画布原文 + 具名修正块）与 resolved.json  5. 装配多页面站点
+ * 修正一律记录在案（治理章 G.9），不静默改动画布色值。
  */
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { deriveScale, deriveGoldScale, contrast, hexToOklch, fmtOklch, r2 } from './color.mjs';
+import { contrast, r2, fmtOklch, hexToOklch, oklchToHex } from './color.mjs';
+import { loadCanvas, makeResolver, flatten, ENTITIES } from './tokens.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, '..');
+const REPO = path.resolve(ROOT, '..');
+const CANVAS = path.join(REPO, 'design-canvas');
 const SRC = path.join(ROOT, 'src');
 const DIST = path.join(ROOT, 'dist');
 const REPORT_ONLY = process.argv.includes('--report');
 fs.mkdirSync(DIST, { recursive: true });
 
-const T = JSON.parse(fs.readFileSync(path.join(ROOT, 'tokens', 'tokens.json'), 'utf8'));
-const ENTITIES = ['stg', 'ste', 'sti', 'sth', 'edu'];
-const CHART = JSON.parse(fs.readFileSync(path.join(ROOT, 'tokens', 'chart-palette.json'), 'utf8'));
-const STEPS = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900];
+const VERSION = '40.0.0';
+const EDITION = '守正 · 画布对齐版';
 
-/* ───────────────────────── 1. 推导色阶 ───────────────────────── */
-const ink = Object.fromEntries(STEPS.map(s => [s, T.primitive.color.ink[s].$value]));
-const scales = {};
-for (const e of ENTITIES) scales[e] = deriveScale(T.primitive.color.entity[e].$value);
-const gold = deriveGoldScale(T.primitive.color.gold.$value);
+/* ───────────────────────── 1. 装载画布令牌 ───────────────────────── */
+const C = loadCanvas(CANVAS);
+const R0 = makeResolver(C);
+const val = (name, scope = {}) => R0(`var(${name})`, scope);
 
-/* ───────────────────────── 2. 质量门禁：可访问主色选取 ───────────────────────── */
-const AA = 4.5, AA_LARGE = 3.0;
-const gates = [];   // 记录每一次门禁判断
-const derived = {}; // 每实体：primaryLight / primaryDark 及实测
-for (const e of ENTITIES) {
-  const sc = scales[e];
-  // 浅色：从 600 起向深处找第一阶满足 文字≥4.5:1 对 Ink50（用于链接/文字）且 Ink50 文字压其上 ≥4.5:1（用于按钮）
-  let pl = null;
-  for (const s of [600, 700, 800]) {
-    const cText = contrast(sc[s], ink[50]);
-    const cBtn = contrast(ink[50], sc[s]);
-    gates.push({ entity: e, mode: 'light', step: s, hex: sc[s], vsInk50: r2(cText), ink50On: r2(cBtn), pass: cText >= AA && cBtn >= AA });
-    if (cText >= AA && cBtn >= AA) { pl = s; break; }
+/* ───────────────────────── 2. 门禁：实测 → 算法修正 ───────────────────────── */
+const AA = 4.5, AA_UI = 3.0;
+
+/** 保持色相与色度，沿 OKLCH 明度找到最近的、满足对比度要求的色 */
+function lift(hex, bgHex, target, dir) {
+  const base = hexToOklch(hex);
+  const bgL = hexToOklch(bgHex).L;
+  const up = dir === 'up' || (dir === undefined && bgL < 0.5);
+  let best = hex, bestRatio = contrast(hex, bgHex);
+  for (let i = 1; i <= 100; i++) {
+    const L = up ? Math.min(0.995, base.L + i * 0.005) : Math.max(0.005, base.L - i * 0.005);
+    const cand = oklchToHex({ ...base, L });
+    const ratio = contrast(cand, bgHex);
+    if (ratio > bestRatio) { best = cand; bestRatio = ratio; }
+    if (ratio >= target) return { hex: cand, ratio: r2(ratio) };
   }
-  // 暗色：从 300 起向浅处找第一阶满足 文字≥4.5:1 对 Ink800（surface）与 Ink900（background），且 Ink900 文字压其上 ≥4.5:1
-  let pd = null;
-  for (const s of [300, 200, 100]) {
-    const c1 = contrast(sc[s], ink[800]), c2 = contrast(sc[s], ink[900]), c3 = contrast(ink[900], sc[s]);
-    gates.push({ entity: e, mode: 'dark', step: s, hex: sc[s], vsInk800: r2(c1), vsInk900: r2(c2), ink900On: r2(c3), pass: c1 >= AA && c2 >= AA && c3 >= AA });
-    if (c1 >= AA && c2 >= AA && c3 >= AA) { pd = s; break; }
-  }
-  if (pl === null || pd === null) { console.error(`✖ 门禁失败：${e} 无法找到可访问主色`); process.exit(1); }
-  derived[e] = {
-    primaryLightStep: pl, primaryLight: sc[pl], primaryLightVsInk50: r2(contrast(sc[pl], ink[50])), ink50OnPrimaryLight: r2(contrast(ink[50], sc[pl])),
-    primaryDarkStep: pd, primaryDark: sc[pd], primaryDarkVsInk800: r2(contrast(sc[pd], ink[800])), ink900OnPrimaryDark: r2(contrast(ink[900], sc[pd])),
-    brandVsInk50: r2(contrast(sc[600], ink[50])), brandVsInk800: r2(contrast(sc[600], ink[800])),
-  };
+  return { hex: best, ratio: r2(bestRatio) };
 }
-/* 语义色门禁（浅色）：正文、次文、占位、边框、语义状态色 */
-const semanticChecks = [
-  ['onSurface Ink800 / surface Ink50', ink[800], ink[50], AA],
-  ['onSurfaceVariant Ink600 / surface Ink50', ink[600], ink[50], AA],
-  ['placeholder Ink600 / surface Ink50', ink[600], ink[50], AA],
-  ['outline Ink500 / surface Ink50（非文本 3:1）', ink[500], ink[50], AA_LARGE],
-  ['success STE600 / Ink50', scales.ste[600], ink[50], AA],
-  ['error EDU600 / Ink50', scales.edu[600], ink[50], AA],
-  ['info STI600 / Ink50', scales.sti[600], ink[50], AA],
-  ['warning Gold700 / Ink50', gold[700], ink[50], AA],
-  ['onTertiary Ink900 / tertiary Gold400', ink[900], gold[400], AA],
-  ['goldText Gold700 / Ink50', gold[700], ink[50], AA],
-  ['dark onSurface Ink100 / Ink800', ink[100], ink[800], AA],
-  ['dark onSurfaceVariant Ink300 / Ink800', ink[300], ink[800], AA],
-  ['dark placeholder Ink400 / Ink800', ink[400], ink[800], AA],
-  ['dark outline Ink500 / Ink800（非文本 3:1）', ink[500], ink[800], AA_LARGE],
-  ['dark success STE300 / Ink800', scales.ste[300], ink[800], AA],
-  ['dark error EDU300 / Ink800', scales.edu[300], ink[800], AA],
-  ['dark info STI300 / Ink800', scales.sti[300], ink[800], AA],
-  ['dark warning Gold300 / Ink800', gold[300], ink[800], AA],
-  ['dark tertiary Gold300 / Ink800', gold[300], ink[800], AA],
-  ['dark onTertiary Ink900 / Gold300', ink[900], gold[300], AA],
-].map(([name, fg, bg, min]) => ({ name, fg, bg, min, ratio: r2(contrast(fg, bg)), pass: contrast(fg, bg) >= min }));
-const failed = semanticChecks.filter(c => !c.pass);
-if (failed.length) { console.error('✖ 语义色门禁失败：'); console.table(failed); process.exit(1); }
 
-/* 对比度矩阵：五实体 600/主色 × 宣纸白 / 浓墨 / 玄墨 */
-const matrix = ENTITIES.map(e => ({
-  entity: e, name: T.primitive.color.entity[e].$extensions['sino.name'],
-  hex600: scales[e][600], oklch: fmtOklch(scales[e][600]),
-  onInk50: r2(contrast(scales[e][600], ink[50])), onInk800: r2(contrast(scales[e][600], ink[800])),
-  primaryLight: derived[e].primaryLight, primaryLightStep: derived[e].primaryLightStep, primaryLightOnInk50: derived[e].primaryLightVsInk50,
-  primaryDark: derived[e].primaryDark, primaryDarkStep: derived[e].primaryDarkStep, primaryDarkOnInk800: derived[e].primaryDarkVsInk800,
-}));
+/* 需要验证的角色：[显示名, 前景令牌, 背景令牌, 阈值, 可修正, 随实体变化] */
+const ROLES = [
+  ['标题 heading', '--text-heading', '--surface-card', AA, false, false],
+  ['正文 body', '--text-body', '--surface-card', AA, false, false],
+  ['次文 muted', '--text-muted', '--surface-card', AA, true, false],
+  ['辅助 subtle · 卡面', '--text-subtle', '--surface-card', AA, true, false],
+  ['辅助 subtle · 页面底', '--text-subtle', '--surface-page', AA, true, false],
+  ['品牌文字 brand', '--text-brand', '--surface-card', AA, true, true],
+  ['链接 link', '--text-link', '--surface-page', AA, true, true],
+  ['金文字 gold', '--text-gold', '--surface-card', AA, true, false],
+  ['主按钮文字', '--btn-primary-fg', '--btn-primary-bg', AA, false, false],
+  ['金 CTA 文字', '--btn-gold-fg', '--btn-gold-bg', AA, false, false],
+  ['占位符 placeholder', '--field-placeholder', '--field-bg', AA, true, false],
+  ['输入框描边', '--field-border', '--surface-page', AA_UI, true, false],
+  ['焦点环', '--focus-ring-color', '--surface-page', AA_UI, true, true],
+  ['印章朱 seal', '--seal', '--surface-page', AA_UI, true, false],
+  ['成功', '--state-success', '--surface-card', AA, true, false],
+  ['警告', '--state-warning', '--surface-card', AA, true, false],
+  ['错误', '--state-error', '--surface-card', AA, true, false],
+  ['信息', '--state-info', '--surface-card', AA, true, false],
+  ...Array.from({ length: 8 }, (_, i) => [`数据序列 ${i + 1}`, `--dv-${i + 1}`, '--surface-card', AA_UI, true, false]),
+];
+
+const checks = [];
+const fixes = { light: {}, dark: {} };
+const THEMES = ENTITIES;
+
+/** 当前修正下的解析器 */
+const resolver = () => makeResolver({
+  base: { ...C.base, ...fixes.light }, themes: C.themes, dark: { ...C.dark, ...fixes.dark },
+});
+/** 某角色在某模式下的最差实测（随实体变化的取五实体最差） */
+function measure(Rz, fgT, bgT, scheme, themed) {
+  const list = themed ? THEMES : ['stg'];
+  let worst = Infinity, at = 'stg';
+  for (const t of list) {
+    const scope = { theme: t, scheme };
+    const bg = Rz(`var(${bgT})`, scope);
+    const got = r2(contrast(flatten(Rz(`var(${fgT})`, scope), bg), bg));
+    if (got < worst) { worst = got; at = t; }
+  }
+  return { ratio: worst, theme: at };
+}
+/** 随实体变化的令牌：不写死色值，而是找一个对五实体都成立的 color-mix 配比 */
+function fixThemed(fgT, bgT, scheme, min) {
+  const toward = scheme === 'dark' ? 'var(--ink-50)' : 'var(--ink-950)';
+  const src = scheme === 'dark' ? (C.dark[fgT] ?? C.base[fgT]) : C.base[fgT];
+  for (let k = 100; k >= 0; k -= 2) {
+    const expr = `color-mix(in oklch, ${src} ${k}%, ${toward})`;
+    const trial = { ...fixes, [scheme]: { ...fixes[scheme], [fgT]: expr } };
+    const Rz = makeResolver({ base: { ...C.base, ...trial.light }, themes: C.themes, dark: { ...C.dark, ...trial.dark } });
+    if (measure(Rz, fgT, bgT, scheme, true).ratio >= min) return { expr, ratio: measure(Rz, fgT, bgT, scheme, true).ratio };
+  }
+  throw new Error(`无法为随实体变化的 ${fgT}（${scheme}）找到满足 ${min}:1 的配比`);
+}
+
+/* 迭代修正直到收敛 —— 每轮都用最新修正重建解析器 */
+for (let pass = 0; pass < 8; pass++) {
+  let changed = false;
+  const Rz = resolver();
+  for (const scheme of ['light', 'dark']) {
+    for (const [name, fgT, bgT, min, fixable, themed] of ROLES) {
+      const m = measure(Rz, fgT, bgT, scheme, themed);
+      if (m.ratio >= min) continue;
+      if (!fixable) throw new Error(`门禁失败且不可自动修正：${scheme} · ${name} ${m.ratio}:1 < ${min}:1`);
+      if (themed) {
+        fixes[scheme][fgT] = fixThemed(fgT, bgT, scheme, min).expr;
+      } else {
+        const scope = { theme: 'stg', scheme };
+        const bg = Rz(`var(${bgT})`, scope);
+        fixes[scheme][fgT] = lift(flatten(Rz(`var(${fgT})`, scope), bg), bg, min).hex;
+      }
+      changed = true;
+    }
+  }
+  if (!changed) break;
+  if (pass === 7) throw new Error('门禁修正未收敛');
+}
+
+/* 回填：:root 上的浅色修正会被暗色继承。若某令牌在暗色下用画布原值反而更好，
+   就在暗色块里显式钉回原值，避免浅色修正把暗色拖低。 */
+{
+  for (const [name, fgT, bgT, min, , themed] of ROLES) {
+    if (!fixes.light[fgT] || fixes.dark[fgT]) continue;
+    const orig = C.dark[fgT] ?? C.base[fgT];
+    if (orig === undefined) continue;
+    const cur = measure(resolver(), fgT, bgT, 'dark', themed).ratio;
+    const trial = makeResolver({
+      base: { ...C.base, ...fixes.light }, themes: C.themes,
+      dark: { ...C.dark, ...fixes.dark, [fgT]: orig },
+    });
+    const alt = measure(trial, fgT, bgT, 'dark', themed).ratio;
+    if (alt >= min && alt > cur) fixes.dark[fgT] = orig;
+  }
+}
+
+/* 复验并记账：任何一项仍不达标即构建失败 */
+{
+  const Rz = resolver();
+  for (const scheme of ['light', 'dark']) {
+    for (const [name, fgT, bgT, min, , themed] of ROLES) {
+      const before = measure(makeResolver(C), fgT, bgT, scheme, themed);
+      const after = measure(Rz, fgT, bgT, scheme, themed);
+      if (after.ratio < min) throw new Error(`门禁失败：${scheme} · ${name} ${after.ratio}:1 < ${min}:1`);
+      checks.push({
+        scheme, name, fg: fgT, bg: bgT, min, themed,
+        before: before.ratio, after: after.ratio,
+        fixed: fixes[scheme][fgT] || null,
+        worstTheme: after.theme, pass: true,
+      });
+    }
+  }
+}
+
+/* 五实体锚点验证（画布自身声明：600 档对宣纸底 ≥8:1，白字其上 ≥4.5:1） */
+const ENTITY_NAMES = { stg: ['玄紫', '源裕兴创新未来', '战略中枢 · 合规治理'], ste: ['松烟绿', '九派国有能源', '生物质热电联产 · 碳资产'], sti: ['藏青', '源裕兴进出口贸易', '全球贸易 · 报关物流'], sth: ['石青', '源裕兴健康科技', '医疗器械 · PHA 医用材料'], edu: ['赭朱', '崇仁教育', '教育启智 · 家校协同'] };
+const matrix = ENTITIES.map(e => {
+  const hex = val(`--${e}-600`, {});
+  const paper = val('--ink-50', {});
+  const onPaper = r2(contrast(hex, paper));
+  const whiteOn = r2(contrast('#FFFFFF', hex));
+  if (onPaper < 8) throw new Error(`门禁失败：${e.toUpperCase()} 600 对宣纸底 ${onPaper}:1 < 8:1`);
+  if (whiteOn < AA) throw new Error(`门禁失败：白字在 ${e.toUpperCase()} 600 上 ${whiteOn}:1 < 4.5:1`);
+  const [cn, full, role] = ENTITY_NAMES[e];
+  return { entity: e, cn, full, role, hex, oklch: fmtOklch(hex), onPaper, whiteOn, scale: Object.fromEntries([50, 100, 200, 400, 500, 600, 700, 800].map(s => [s, val(`--${e}-${s}`, {})])) };
+});
+
+const nFix = Object.keys(fixes.light).length + Object.keys(fixes.dark).length;
+
+/* ───────────────────────── 3. 输出 tokens.css ───────────────────────── */
+const FONT_IMPORTS = [...C.raw['tokens/fonts.css'].matchAll(/@import\s+url\("([^"]+)"\);/g)].map(m => m[0]);
+let css = `/* ============================================================
+   tokens.css · 源裕兴设计系统全典 V${VERSION} · ${EDITION}
+   由 build/build.mjs 从 design-canvas/tokens/*.css 生成 —— 画布是唯一权威。
+   本文件 = 画布令牌原文（12 个文件按 styles.css 顺序内联）+ 门禁修正块。
+   实测 ${checks.length} 项对比度，${nFix} 项按 OKLCH 明度算法抬升至 WCAG 2.2 AA。
+   请勿手改：改画布，再重跑构建。
+   ============================================================ */
+${FONT_IMPORTS.join('\n')}
+
+`;
+for (const f of C.order) {
+  const body = C.raw[f].replace(/@import\s+url\("[^"]+"\);\s*/g, '');
+  css += `/* ==== design-canvas/${f} ==== */\n${body.trim()}\n\n`;
+}
+if (nFix) {
+  css += `/* ============================================================\n   门禁修正 · Accessibility Gate Overrides\n   画布色值在下列角色上未达 WCAG 2.2 AA。修正只动 OKLCH 明度，保留色相与色度，\n   取满足阈值的最近一档。每条都在治理章 G.9 有记录。\n   ============================================================ */\n`;
+  const emit = (sel, map, scheme) => {
+    if (!Object.keys(map).length) return;
+    css += `${sel} {\n`;
+    for (const [k, v] of Object.entries(map)) {
+      const c = checks.find(x => x.scheme === scheme && x.fg === k && x.fixed);
+      css += `  ${k}: ${v};  /* ${c.before}:1 → ${c.after}:1（需 ≥${c.min}） */\n`;
+    }
+    css += `}\n`;
+  };
+  emit(':root', fixes.light, 'light');
+  emit('[data-color-scheme="dark"]', fixes.dark, 'dark');
+}
+if (!REPORT_ONLY) fs.writeFileSync(path.join(DIST, 'tokens.css'), css);
+
+/* ───────────────────────── 4. 解析后的令牌 JSON ───────────────────────── */
+const R = makeResolver({
+  base: { ...C.base, ...fixes.light },
+  themes: C.themes,
+  dark: { ...C.dark, ...fixes.dark },
+});
+const resolveAll = scope => Object.fromEntries(
+  [...new Set([...Object.keys(C.base), ...Object.keys(C.dark)])].sort()
+    .map(k => { try { return [k, R(`var(${k})`, scope)]; } catch { return [k, null]; } })
+    .filter(([, v]) => v !== null)
+);
+const counts = { canvas: Object.keys(C.base).length + Object.keys(C.dark).length + ENTITIES.length * 9, files: C.order.length, fixes: nFix };
+const resolved = {
+  $name: '源裕兴设计系统全典 · Design Tokens',
+  $version: VERSION, $edition: EDITION,
+  $authority: 'design-canvas/tokens/*.css（Claude Design b6947ee9）· 本文件为构建产物，勿手改',
+  builtAt: new Date().toISOString(),
+  counts, entity: matrix, checks, fixes,
+  light: resolveAll({ theme: 'stg', scheme: 'light' }),
+  dark: resolveAll({ theme: 'stg', scheme: 'dark' }),
+};
+if (!REPORT_ONLY) fs.writeFileSync(path.join(DIST, 'tokens.resolved.json'), JSON.stringify(resolved, null, 2));
 
 if (REPORT_ONLY) {
-  for (const e of ENTITIES) {
-    console.log(`\n${e.toUpperCase()} ${T.primitive.color.entity[e].$extensions['sino.name']}`);
-    for (const s of STEPS) { const o = hexToOklch(scales[e][s]); console.log(`  ${String(s).padStart(3)} ${scales[e][s]}  L=${(o.L*100).toFixed(1)} C=${o.C.toFixed(3)} H=${o.H.toFixed(0)}  /Ink50 ${r2(contrast(scales[e][s], ink[50]))}  /Ink800 ${r2(contrast(scales[e][s], ink[800]))}`); }
-  }
-  console.log('\nGOLD'); for (const s of STEPS) { const o = hexToOklch(gold[s]); console.log(`  ${String(s).padStart(3)} ${gold[s]}  L=${(o.L*100).toFixed(1)} C=${o.C.toFixed(3)}  /Ink50 ${r2(contrast(gold[s], ink[50]))}  /Ink800 ${r2(contrast(gold[s], ink[800]))}  Ink900on ${r2(contrast(ink[900], gold[s]))}`); }
-  console.log('\nINK'); for (const s of STEPS) console.log(`  ${String(s).padStart(3)} ${ink[s]}  ${fmtOklch(ink[s])}  /Ink50 ${r2(contrast(ink[s], ink[50]))}  /Ink800 ${r2(contrast(ink[s], ink[800]))}`);
-  console.log('\nDERIVED'); console.table(matrix);
-  console.log('\nSEMANTIC CHECKS'); console.table(semanticChecks);
+  console.log(`\n源裕兴设计系统全典 V${VERSION} · 令牌门禁报告\n`);
+  console.log('五实体锚点（600 档）');
+  matrix.forEach(m => console.log(`  ${m.entity.toUpperCase()} ${m.cn.padEnd(4)} ${m.hex} ${m.oklch.padEnd(26)} 对宣纸 ${String(m.onPaper).padStart(5)}:1  白字其上 ${String(m.whiteOn).padStart(5)}:1`));
+  console.log('\n对比度实测');
+  for (const c of checks) console.log(`  ${c.scheme.padEnd(5)} ${c.name.padEnd(20)} ${String(c.before).padStart(6)}:1${c.fixed ? ` → ${String(c.after).padStart(6)}:1  修正 ${c.fixed}` : ''}  ${c.pass ? '通过' : '未通过'}`);
+  console.log(`\n合计 ${checks.length} 项，门禁修正 ${nFix} 项。`);
   process.exit(0);
 }
-
-/* ───────────────────────── 3. Token 引用解析 ───────────────────────── */
-function refToVar(ref, mode) {
-  const p = ref.split('.');
-  if (p[0] === 'primitive') {
-    if (p[1] === 'color') {
-      if (p[2] === 'ink') return `var(--ink-${p[3]})`;
-      if (p[2] === 'entity') return `var(--${p[3]}-${p[4]})`;
-      if (p[2] === 'gold') return `var(--gold-${p[3]})`;
-      if (p[2] === 'chart') return `var(--chart-${p[3]})`;
-    }
-    if (p[1] === 'font') return `var(--font-${p[2]})`;
-    if (p[1] === 'space') return `var(--space-${p[2]})`;
-    if (p[1] === 'radius') return `var(--radius-${p[2]})`;
-    if (p[1] === 'motion' && p[2] === 'duration') return `var(--dur-${p[3]})`;
-    if (p[1] === 'motion' && p[2] === 'easing') return `var(--ease-${p[3]})`;
-    if (p[1] === 'z') return `var(--z-${p[2]})`;
-    if (p[1] === 'type') return `var(--fs-${p[2]})`;
-  }
-  if (p[0] === 'entity') {
-    if (p[1] === 'primary-light' || p[1] === 'primary-dark') return `var(--e-${p[1]})`;
-    return `var(--e-${p[1]})`;
-  }
-  if (p[0] === 'semantic' && p[1] === 'color') return `var(--c-${p[2]})`;
-  if (p[0] === 'semantic' && p[1] === 'shadow') return `var(--shadow-${p[2]})`;
-  throw new Error('未知 Token 引用：' + ref);
-}
-const resolve = (v, mode) => String(v).replace(/\{([^}]+)\}/g, (_, ref) => refToVar(ref, mode));
-
-/* ───────────────────────── 4. 生成 tokens.css ───────────────────────── */
-let css = '';
-const counts = { primitive: 0, semantic: 0, component: 0 };
-const decl = (name, value, layer) => { counts[layer]++; return `  ${name}: ${value};\n`; };
-
-css += `/* ============================================================\n   源裕兴设计系统全典 · Design Tokens · V${T.$version}（${T.$edition}）\n   由 tokens.json 构建生成，请勿手改。守正 · 开物 · 共生\n   ============================================================ */\n\n`;
-css += `/* ── Layer 0 · Primitive（亚原子层，模式无关，永不直接用于组件） ── */\n:root {\n`;
-for (const s of STEPS) css += decl(`--ink-${s}`, ink[s], 'primitive');
-for (const e of ENTITIES) for (const s of STEPS) css += decl(`--${e}-${s}`, scales[e][s], 'primitive');
-for (const s of STEPS) css += decl(`--gold-${s}`, gold[s], 'primitive');
-for (const [k, v] of Object.entries(T.primitive.font)) if (!k.startsWith('$')) css += decl(`--font-${k}`, v.$value, 'primitive');
-for (const [k, v] of Object.entries(T.primitive.type)) {
-  if (k.startsWith('$')) continue;
-  const rem = px => `${(px / 16).toFixed(4).replace(/\.?0+$/, '')}rem`;
-  const fs = v.fluidMin ? `clamp(${rem(v.fluidMin)}, ${rem(v.fluidMin * 0.55)} + ${((v.size - v.fluidMin * 0.55) / 14.4).toFixed(2)}vw, ${rem(v.size)})` : rem(v.size);
-  css += decl(`--fs-${k}`, fs, 'primitive');
-  css += decl(`--lh-${k}`, v.lh, 'primitive');
-  css += decl(`--fw-${k}`, v.weight, 'primitive');
-  css += decl(`--ls-${k}`, v.ls, 'primitive');
-  css += decl(`--ff-${k}`, `var(--font-${v.family})`, 'primitive');
-}
-for (const [k, v] of Object.entries(T.primitive.space)) if (!k.startsWith('$')) css += decl(`--space-${k}`, v, 'primitive');
-for (const [k, v] of Object.entries(T.primitive.radius)) if (!k.startsWith('$')) css += decl(`--radius-${k}`, v, 'primitive');
-for (const [k, v] of Object.entries(T.primitive.motion.duration)) if (!k.startsWith('$')) css += decl(`--dur-${k}`, v, 'primitive');
-for (const [k, v] of Object.entries(T.primitive.motion.easing)) if (!k.startsWith('$')) css += decl(`--ease-${k}`, v, 'primitive');
-for (const [k, v] of Object.entries(T.primitive.z)) if (!k.startsWith('$')) css += decl(`--z-${k}`, v, 'primitive');
-for (const [k, v] of Object.entries(T.primitive.breakpoint)) if (!k.startsWith('$')) css += decl(`--bp-${k}`, `${v.min}px`, 'primitive');
-css += decl('--grid-columns', T.primitive.grid.columns, 'primitive');
-css += decl('--grid-max', T.primitive.grid.maxWidth, 'primitive');
-css += decl('--icon-canvas', T.primitive.icon.canvas, 'primitive');
-css += decl('--icon-stroke', T.primitive.icon.stroke, 'primitive');
-css += decl('--touch-target', T.primitive.icon.touchTarget, 'primitive');
-css += `}\n\n`;
-
-/* 实体映射 */
-css += `/* ── 实体映射（五实体切换只替换这一组；默认 STG） ── */\n`;
-for (const e of ENTITIES) {
-  const sel = e === 'stg' ? `.sino, [data-theme="stg"]` : `[data-theme="${e}"]`;
-  css += `${sel} {\n`;
-  for (const s of STEPS) css += decl(`--e-${s}`, `var(--${e}-${s})`, 'semantic');
-  css += decl('--e-primary-light', `var(--${e}-${derived[e].primaryLightStep})`, 'semantic');
-  css += decl('--e-primary-dark', `var(--${e}-${derived[e].primaryDarkStep})`, 'semantic');
-  css += decl('--e-code', `"${e.toUpperCase()}"`, 'semantic');
-  css += `}\n`;
-}
-css += '\n';
-
-/* 语义：浅色 */
-const semLight = () => {
-  let s = '';
-  s += `  color-scheme: light;\n`;
-  CHART.light.forEach((hex, i) => { s += decl(`--chart-${i + 1}`, hex, 'primitive'); });
-  for (const [k, v] of Object.entries(T.semantic.color.light)) s += decl(`--c-${k}`, resolve(v, 'light'), 'semantic');
-  for (const [k, v] of Object.entries(T.semantic.shadow.light)) s += decl(`--shadow-${k}`, v, 'semantic');
-  return s;
-};
-const semDark = () => {
-  let s = '';
-  s += `  color-scheme: dark;\n`;
-  CHART.dark.forEach((hex, i) => { s += `  --chart-${i + 1}: ${hex};\n`; });
-  for (const [k, v] of Object.entries(T.semantic.color.dark)) s += `  --c-${k}: ${resolve(v, 'dark')};\n`;
-  for (const [k, v] of Object.entries(T.semantic.shadow.dark)) s += `  --shadow-${k}: ${v};\n`;
-  return s;
-};
-css += `/* ── Layer 1 · Semantic · 浅色（默认；完整定义在裸选择器上；嵌套 [data-theme] 作用域重新解析） ── */\n:root {\n  color-scheme: light;\n  --c-background: var(--ink-100);\n  --c-onBackground: var(--ink-900);\n}\n.sino, .sino [data-theme] {\n${semLight()}}\n\n`;
-
-/* 组件层 */
-css += `/* ── Layer 2 · Component（只引用 Semantic） ── */\n.sino, .sino [data-theme] {\n`;
-for (const [g, group] of Object.entries(T.component)) {
-  if (g.startsWith('$')) continue;
-  for (const [k, v] of Object.entries(group)) css += decl(`--${g}-${k}`, resolve(v, 'light'), 'component');
-}
-css += `}\n\n`;
-
-/* 语义：暗色三态 */
-const darkBody = semDark();
-css += `/* ── Layer 1 · Semantic · 暗色（三态：宿主 data-theme / 系统偏好 / 本典 data-color-scheme，显式选择优先） ── */\n`;
-css += `:root[data-theme="dark"] {\n  color-scheme: dark;\n  --c-background: var(--ink-900);\n  --c-onBackground: var(--ink-100);\n}\n`;
-css += `@media (prefers-color-scheme: dark) {\n  :root:not([data-theme="light"]) {\n    color-scheme: dark;\n    --c-background: var(--ink-900);\n    --c-onBackground: var(--ink-100);\n  }\n}\n`;
-css += `.sino[data-color-scheme="dark"], .sino[data-color-scheme="dark"] [data-theme], .sino [data-color-scheme="dark"],\n:root[data-theme="dark"] .sino:not([data-color-scheme="light"]), :root[data-theme="dark"] .sino:not([data-color-scheme="light"]) [data-theme] {\n${darkBody}}\n`;
-css += `@media (prefers-color-scheme: dark) {\n  :root:not([data-theme="light"]) .sino:not([data-color-scheme="light"]), :root:not([data-theme="light"]) .sino:not([data-color-scheme="light"]) [data-theme] {\n${darkBody.replace(/^  /gm, '    ')}  }\n}\n`;
-
-fs.writeFileSync(path.join(DIST, 'tokens.css'), css);
-
-/* 解析后的 JSON（供文档、Figma、Odoo/AntD 映射使用） */
-const resolved = {
-  $name: T.$name, $version: T.$version, $edition: T.$edition, builtAt: new Date().toISOString(),
-  counts: { ...counts, total: counts.primitive + counts.semantic + counts.component },
-  ink, entity: Object.fromEntries(ENTITIES.map(e => [e, { ...T.primitive.color.entity[e].$extensions, anchor: T.primitive.color.entity[e].$value, scale: scales[e], oklch: Object.fromEntries(STEPS.map(s => [s, fmtOklch(scales[e][s])])), ...derived[e] }])),
-  gold: { anchor: T.primitive.color.gold.$value, scale: gold, oklch: Object.fromEntries(STEPS.map(s => [s, fmtOklch(gold[s])])) },
-  matrix, gates, semanticChecks, chart: CHART,
-  type: T.primitive.type, space: T.primitive.space, radius: T.primitive.radius, motion: T.primitive.motion, z: T.primitive.z, breakpoint: T.primitive.breakpoint,
-};
-fs.writeFileSync(path.join(DIST, 'tokens.resolved.json'), JSON.stringify(resolved, null, 2));
-
 /* ───────────────────────── 5. 装配 HTML ───────────────────────── */
 /* V39「墨经光纬」：真·多页面站点（每章一份 HTML，跨文档 View Transition）
    + 单文件全典 artifact.html（hash 路由，供 Artifact / 离线分发）。 */
@@ -272,6 +288,51 @@ const toMpaLinks = (html, self) => html
   .replace(/href="#\/([a-z-]+)"/g, (_, r) => (r === self ? 'href="#top"' : `href="${fileOf(r)}"`))
   .replace(/href="#\/"/g, self === 'home' ? 'href="#top"' : 'href="index.html"');
 
+/* ── 图标迁移：自绘 SVG sprite → Material Symbols Rounded ──
+   画布准则：图标只来自 Material Symbols Rounded，经统一入口渲染；
+   品牌资产只有 SINOTAO 字标，没有 logomark —— 不得自造图形标志。 */
+const ICONS = {
+  search: 'search', menu: 'menu', x: 'close', 'chevron-down': 'expand_more', 'chevron-right': 'chevron_right',
+  'chevron-left': 'chevron_left', 'chevron-up': 'expand_less', 'arrow-right': 'arrow_forward',
+  'arrow-up-right': 'north_east', 'arrow-down-right': 'south_east', 'arrow-down': 'arrow_downward',
+  check: 'check', 'check-circle': 'check_circle', 'x-circle': 'cancel', alert: 'warning', info: 'info',
+  plus: 'add', minus: 'remove', edit: 'edit', trash: 'delete', filter: 'filter_alt', sort: 'swap_vert',
+  download: 'download', upload: 'upload', bell: 'notifications', settings: 'settings', user: 'person',
+  home: 'home', dashboard: 'dashboard', table: 'table_chart', chart: 'bar_chart', doc: 'description',
+  calendar: 'calendar_month', mail: 'mail', copy: 'content_copy', external: 'open_in_new',
+  sun: 'light_mode', moon: 'dark_mode', monitor: 'computer', palette: 'palette', layers: 'layers',
+  atom: 'hub', grid: 'grid_on', eye: 'visibility', lock: 'lock', refresh: 'refresh', more: 'more_horiz',
+  code: 'code', book: 'menu_book', leaf: 'eco', ship: 'directions_boat', heart: 'favorite', cap: 'school',
+  building: 'apartment', flame: 'local_fire_department', globe: 'public', shield: 'verified_user',
+  sparkles: 'auto_awesome', send: 'send', keyboard: 'keyboard', seal: 'approval', flask: 'science',
+  pill: 'medication', truck: 'local_shipping', clock: 'schedule',
+  'taiji-full': 'motion_photos_on', 'taiji-dot': 'radio_button_checked', 'taiji-flow': 'waves', 'taiji-spin': 'rotate_right',
+};
+const WORDMARK = (() => {
+  const raw = read(path.join(CANVAS, 'assets', 'logo-sinotao-current.svg'));
+  const inner = raw.replace(/<metadata>[\s\S]*?<\/metadata>/g, '').replace(/^[\s\S]*?<svg[^>]*>/, '').replace(/<\/svg>\s*$/, '');
+  return `<svg class="a-logo__mark" viewBox="0 0 399.6 127.2" role="img" aria-label="SINOTAO 源裕兴">${inner}</svg>`;
+})();
+function transformIcons(html) {
+  /* 字标：替换自绘 logomark 为唯一品牌资产 */
+  html = html.replace(/<svg class="a-logo__mark"[^>]*>\s*<use href="#i-mark"\s*\/?>\s*<\/svg>/g, WORDMARK);
+  /* 空状态插画位：画布明确「33+ 幅品牌插画完全缺失，空状态用 Material Symbols 圆底图标占位」 */
+  html = html.replace(/<svg class="m-empty__art"[^>]*>\s*<use href="#i-[a-z0-9-]+"\s*\/?>\s*<\/svg>/g,
+    '<span class="m-empty__art a-icon" aria-hidden="true" translate="no">inbox</span>');
+  /* 图标：<svg class="a-icon …"><use href="#i-x"/></svg> → Material Symbols 连字 */
+  html = html.replace(/<svg class="([^"]*a-icon[^"]*)"[^>]*>\s*<use href="#i-([a-z0-9-]+)"\s*\/?>\s*<\/svg>/g, (all, cls, id) => {
+    const name = ICONS[id];
+    if (!name) throw new Error('未映射的图标：#i-' + id);
+    return `<span class="${cls}" aria-hidden="true" translate="no">${name}</span>`;
+  });
+  /* 移除自绘 sprite（画布：没有品牌图标集） */
+  html = html.replace(/<svg width="0" height="0"[\s\S]*?<\/defs>\s*<\/svg>\s*/g, '');
+  /* 兜底：任何残留的 <use href="#i-…"> 都是遗漏 */
+  const left = html.match(/<use href="#i-[a-z0-9-]+"/);
+  if (left) throw new Error('仍有未迁移的图标引用：' + left[0]);
+  return html;
+}
+
 const PHI = { shouzheng: '守正', kaiwu: '开物', gongsheng: '共生' };
 
 /* ── 每章正文：封面（编辑式）+ 内容 + 章节导航 ── */
@@ -285,8 +346,7 @@ ROUTES.forEach((r, i) => {
     const phis = head ? [...head[1].matchAll(/m-phi__tag--(\w+)/g)].map(m => m[1]) : [];
     html = head ? html.replace(head[0], '') : html;
     const layer = r.num === 'G' ? 'GOVERNANCE' : r.num === 'M' ? 'MOTION' : 'LAYER ' + r.num.slice(1);
-    cover = `<header class="cover" data-art="${r.path}" id="top">
-  <canvas class="cover__art" aria-hidden="true" data-parallax="0.07"></canvas>
+    cover = `<header class="cover" id="top">
   <div class="cover__in wrap">
     <div class="cover__rail" aria-hidden="true"><span class="cover__num">${r.num}</span><span class="cover__vline"></span><span class="cover__layer">${layer}</span></div>
     <div class="cover__body">
@@ -308,7 +368,8 @@ ROUTES.forEach((r, i) => {
   const inner = r.path === 'home'
     ? html
     : `${cover}<div class="cx-wrap${r.wide ? ' cx-wrap--wide' : ''}" id="chapter"><div class="cx-content">${html}</div>${r.wide ? '' : '<aside class="toc" aria-label="本章目录"><div class="toc__inner"><div class="toc__label"><span class="t-overline">本章</span><span class="toc__prog"><i data-toc-prog></i></span></div><nav class="toc__list" data-toc></nav><a class="toc__top" href="#top"><svg class="a-icon"><use href="#i-chevron-up"/></svg>回到章首</a></div></aside>'}</div>${chap}`;
-  ARTICLE[r.path] = `<article class="route" data-route="${r.path}" data-num="${r.num}" data-title="${r.title}">\n${inner}\n</article>\n`;
+  const inner2 = transformIcons(inner);
+  ARTICLE[r.path] = `<article class="route" data-route="${r.path}" data-num="${r.num}" data-title="${r.title}">\n${inner2}\n</article>\n`;
 });
 
 /* ── 站点外壳（导航由 ROUTES 生成，保持唯一可信源） ── */
@@ -318,9 +379,9 @@ const sheetLinks = ROUTES
   .map(r => `<a class="nav-sheet__link" href="#/${r.path === 'home' ? '' : r.path}" data-nav="${r.path}"><i>${r.num}</i><span class="nav-sheet__t">${r.path === 'home' ? '首页' : r.title}</span><span class="nav-sheet__en">${r.en}</span><svg class="a-icon"><use href="#i-arrow-right"/></svg></a>`).join('');
 const footLinks = ROUTES.filter(r => r.path !== 'home')
   .map(r => `<a href="#/${r.path}">${r.num} ${r.nav}</a>`).join('');
-let shellOpen = read(path.join(SRC, 'partials', '00-shell-open.html'))
+let shellOpen = transformIcons(read(path.join(SRC, 'partials', '00-shell-open.html')))
   .replace('<!-- @nav -->', navLinks).replace('<!-- @nav-sheet -->', sheetLinks);
-let shellClose = read(path.join(SRC, 'partials', '09-shell-close.html')).replace('<!-- @nav-foot -->', footLinks);
+let shellClose = transformIcons(read(path.join(SRC, 'partials', '09-shell-close.html'))).replace('<!-- @nav-foot -->', footLinks);
 
 /* ── 资产钩子：标准 LOGO 与品牌影像（存在即内联） ── */
 const assetDir = path.join(SRC, 'assets');
@@ -331,58 +392,128 @@ if (logoFile) {
   shellOpen = shellOpen.replace(/<symbol id="i-mark" viewBox="[^"]+">[\s\S]*?<\/symbol>/, `<symbol id="i-mark" viewBox="${vb}">${innerSvg}</symbol>`);
   console.log('✔ 已内联标准 LOGO：' + path.basename(logoFile));
 }
-const heroFile = ['hero.jpg', 'hero.jpeg', 'hero.png', 'hero.webp'].map(f => path.join(assetDir, f)).find(f => fs.existsSync(f));
+const heroFile = [path.join(CANVAS, 'assets', 'imagery', 'biomass-plant-aerial.jpg'),
+  ...['hero.jpg', 'hero.jpeg', 'hero.png', 'hero.webp'].map(f => path.join(assetDir, f))].find(f => fs.existsSync(f));
 const heroHtml = heroFile
-  ? `<figure class="hm-photo rv"><img src="data:image/${path.extname(heroFile).slice(1).replace('jpg', 'jpeg')};base64,${fs.readFileSync(heroFile).toString('base64')}" alt="源裕兴 · 九派能源赤湖工业园航拍：生物质能源工厂与光伏矩阵" loading="lazy"><figcaption><span class="t-overline">Brand Imagery</span><span>镜头语言：纪实 · 自然光 · 低饱和。工厂与田野同框，是共生的直观证据。</span></figcaption></figure>`
+  ? `<figure class="hm-photo rv"><img src="data:image/${path.extname(heroFile).slice(1).replace('jpg', 'jpeg')};base64,${fs.readFileSync(heroFile).toString('base64')}" alt="九派国有能源赤湖工业园航拍：生物质热电联产设施与农田、林地、光伏阵列共处一景（画布标注为 AI 生成示意图）" loading="lazy"><figcaption><span class="t-overline">Brand Imagery</span><span>影像语言：纪实 · 人文 · 自然光 · 低饱和。不摆拍、不过度修图、不用绿色滤镜美化。当前仅此一张影像资产，需补充图库。</span></figcaption></figure>`
   : '';
 if (heroFile) console.log('✔ 已内联品牌影像：' + path.basename(heroFile));
 ARTICLE.home = ARTICLE.home.replace('<!-- @asset:hero -->', heroHtml);
-/* 生成器占位符 */
+
+/* ───────────────────────── 生成器占位符（全部由画布令牌实时生成） ───────────────────────── */
+const L = s => val(s, { theme: 'stg', scheme: 'light' });
+const D = s => val(s, { theme: 'stg', scheme: 'dark' });
+const num = (a, b) => r2(contrast(flatten(a, b), b));
+const verdict = (v, min) => v >= (min === AA_UI ? AA_UI : AA)
+  ? '<span class="ok">通过</span>' : '<span class="bad">未通过</span>';
+const INK_STEPS = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950];
+const INK_CN = { 50: '宣', 100: '轻霜', 200: '薄雾', 300: '淡烟', 400: '古绢', 500: '中灰', 600: '砚灰', 700: '墨灰', 800: '浓墨', 900: '玄墨', 950: '焦墨' };
+const INK_ROLE = { 50: '页面底 surface-page · 暗色标题', 100: '轻霜 · surface-sunken', 200: '薄雾 · border-subtle 细线', 300: '淡烟 · border-default 描边', 400: '古绢 · 占位符', 500: '中灰 · text-subtle', 600: '砚灰 · text-muted', 700: '墨灰 · text-body 正文', 800: '浓墨 · 主按钮 hover', 900: '玄墨 · text-heading 标题与主操作', 950: '焦墨 · 暗色页面底' };
+const ENT_STEPS = [50, 100, 200, 400, 500, 600, 700, 800];
+const swatch = (tokenName, hex, step, anchor, cn) =>
+  `<button class="swatch${anchor ? ' swatch--anchor' : ''}" type="button" style="--sw:${hex}" data-copy="${tokenName}" title="${tokenName} ${hex}"><span class="swatch__chip"></span><span class="swatch__step">${step}</span><span class="swatch__hex mono">${hex.slice(1)}</span>${cn ? `<span class="swatch__cn">${cn}</span>` : ''}</button>`;
+
 const gen = {
-  'token-count': () => String(resolved.counts.total),
-  'token-count-primitive': () => String(counts.primitive),
-  'token-count-semantic': () => String(counts.semantic),
-  'token-count-component': () => String(counts.component),
-  'version': () => T.$version,
+  'version': () => VERSION,
+  'edition': () => EDITION,
   'build-date': () => new Date().toISOString().slice(0, 10),
-  'entity-scales': () => ENTITIES.map(e => {
-    const x = T.primitive.color.entity[e].$extensions;
-    return `<div class="scale" data-entity="${e}">
-  <div class="scale__head"><span class="scale__code">${e.toUpperCase()}</span><span class="scale__name">${x['sino.name']}</span><span class="scale__anchor mono">${scales[e][600]} · ${fmtOklch(scales[e][600])}</span></div>
-  <div class="scale__row">${STEPS.map(s => `<button class="swatch${s === 600 ? ' swatch--anchor' : ''}" type="button" style="--sw:var(--${e}-${s})" data-copy="--${e}-${s}" title="--${e}-${s} ${scales[e][s]}"><span class="swatch__chip"></span><span class="swatch__step">${s}</span><span class="swatch__hex mono">${scales[e][s].slice(1)}</span></button>`).join('')}</div>
-</div>`;
-  }).join('\n'),
+  'token-count': () => String(counts.canvas),
+  'token-count-primitive': () => String(Object.keys(C.base).filter(k => /^--(ink|zhu|gold|stg|ste|sti|sth|edu|dv|success|warning|error|info)-/.test(k)).length),
+  'token-count-semantic': () => String(Object.keys(C.base).filter(k => /^--(surface|text|border|state|focus|scrim)/.test(k)).length),
+  'token-count-component': () => String(Object.keys(C.base).filter(k => /^--(btn|field|card|table|overlay|tooltip|hairline|seal)/.test(k)).length),
+  'component-token-count': () => '34',
+  'gate-count': () => String(checks.length),
+  'fix-count': () => String(nFix),
+
+  'entity-scales': () => matrix.map(m => `<div class="scale" data-entity="${m.entity}">
+  <div class="scale__head"><span class="scale__code">${m.entity.toUpperCase()}</span><span class="scale__name">${m.cn}</span><span class="scale__anchor mono">${m.hex} · ${m.oklch}</span><span class="scale__note">${m.full} · ${m.role}</span></div>
+  <div class="scale__row scale__row--8">${ENT_STEPS.map(s => swatch(`--${m.entity}-${s}`, m.scale[s], s, s === 600)).join('')}</div>
+</div>`).join('\n'),
+
   'gold-scale': () => `<div class="scale" data-entity="gold">
-  <div class="scale__head"><span class="scale__code">GOLD</span><span class="scale__name">藤黄</span><span class="scale__anchor mono">${gold[400]} · ${fmtOklch(gold[400])}</span></div>
-  <div class="scale__row">${STEPS.map(s => `<button class="swatch${s === 400 ? ' swatch--anchor' : ''}" type="button" style="--sw:var(--gold-${s})" data-copy="--gold-${s}" title="--gold-${s} ${gold[s]}"><span class="swatch__chip"></span><span class="swatch__step">${s}</span><span class="swatch__hex mono">${gold[s].slice(1)}</span></button>`).join('')}</div>
+  <div class="scale__head"><span class="scale__code">GOLD</span><span class="scale__name">古铜金</span><span class="scale__anchor mono">${L('--gold-400')} · ${fmtOklch(L('--gold-400'))}</span><span class="scale__note">去橙留灰 —— 箔金而非镀金。每屏最多一处</span></div>
+  <div class="scale__row scale__row--5">${[200, 300, 400, 500, 600].map(s => swatch(`--gold-${s}`, L(`--gold-${s}`), s, s === 400)).join('')}</div>
+</div>
+<div class="scale" data-entity="zhu">
+  <div class="scale__head"><span class="scale__code">ZHU</span><span class="scale__name">印章朱</span><span class="scale__anchor mono">${L('--zhu-600')} · ${fmtOklch(L('--zhu-600'))}</span><span class="scale__note">取自印泥与官式朱。全站唯一重点色，每章一枚</span></div>
+  <div class="scale__row scale__row--7">${[50, 100, 200, 400, 600, 700, 800].map(s => swatch(`--zhu-${s}`, L(`--zhu-${s}`), s, s === 600)).join('')}</div>
 </div>`,
+
   'ink-scale': () => `<div class="scale" data-entity="ink">
-  <div class="scale__head"><span class="scale__code">INK</span><span class="scale__name">宣纸墨色九阶</span><span class="scale__anchor mono">Ink 50 宣纸白 → Ink 900 玄墨</span></div>
-  <div class="scale__row">${STEPS.map(s => `<button class="swatch" type="button" style="--sw:var(--ink-${s})" data-copy="--ink-${s}" title="--ink-${s} ${ink[s]}"><span class="swatch__chip"></span><span class="swatch__step">${s}</span><span class="swatch__hex mono">${ink[s].slice(1)}</span><span class="swatch__cn">${T.primitive.color.ink[s].$extensions['sino.name']}</span></button>`).join('')}</div>
+  <div class="scale__head"><span class="scale__code">INK</span><span class="scale__name">宣纸墨色十一阶</span><span class="scale__anchor mono">Ink 50 宣 → Ink 950 焦墨</span><span class="scale__note">暖炭灰。绝不用纯黑 #000 或纯白 #FFF 作文字与页面底</span></div>
+  <div class="scale__row scale__row--11">${INK_STEPS.map(s => swatch(`--ink-${s}`, L(`--ink-${s}`), s, false, INK_CN[s])).join('')}</div>
 </div>`,
-  'contrast-matrix': () => `<table class="a-table a-table--data"><thead><tr><th>实体</th><th>品牌锚点（600）</th><th class="num">对宣纸白 Ink 50</th><th class="num">对浓墨 Ink 800</th><th>浅色可访问主色</th><th class="num">实测</th><th>暗色可访问主色</th><th class="num">实测</th></tr></thead><tbody>${matrix.map(m => `<tr><td><span class="dot" style="--sw:var(--${m.entity}-600)"></span>${m.entity.toUpperCase()} ${m.name}</td><td class="mono">${m.hex600}<br><span class="muted">${m.oklch}</span></td><td class="num">${m.onInk50.toFixed(2)}:1 ${m.onInk50 >= 4.5 ? '<span class="ok">AA</span>' : m.onInk50 >= 3 ? '<span class="warn">仅大字</span>' : '<span class="bad">✕</span>'}</td><td class="num">${m.onInk800.toFixed(2)}:1 ${m.onInk800 >= 4.5 ? '<span class="ok">AA</span>' : '<span class="bad">✕</span>'}</td><td class="mono">--${m.entity}-${m.primaryLightStep} ${m.primaryLight}</td><td class="num">${m.primaryLightOnInk50.toFixed(2)}:1 <span class="ok">AA</span></td><td class="mono">--${m.entity}-${m.primaryDarkStep} ${m.primaryDark}</td><td class="num">${m.primaryDarkOnInk800.toFixed(2)}:1 <span class="ok">AA</span></td></tr>`).join('')}</tbody></table>`,
-  'semantic-checks': () => `<table class="a-table a-table--data a-table--dense"><thead><tr><th>语义角色 / 底色</th><th>前景</th><th>背景</th><th class="num">要求</th><th class="num">实测</th><th>结论</th></tr></thead><tbody>${semanticChecks.map(c => `<tr><td>${c.name}</td><td class="mono">${c.fg}</td><td class="mono">${c.bg}</td><td class="num">≥ ${c.min}:1</td><td class="num">${c.ratio.toFixed(2)}:1</td><td>${c.pass ? '<span class="ok">通过</span>' : '<span class="bad">失败</span>'}</td></tr>`).join('')}</tbody></table>`,
-  'type-scale': () => Object.entries(T.primitive.type).filter(([k]) => !k.startsWith('$')).map(([k, v]) => `<div class="type-row" data-role="${k}"><div class="type-row__meta"><span class="mono">${k}</span><span>${v.size}px · ${v.lh} · ${v.weight} · ${v.family}${v.ls !== '0' ? ' · ' + v.ls : ''}</span><span class="muted">${v.use}</span></div><div class="type-row__specimen" style="font-family:var(--ff-${k});font-size:var(--fs-${k});line-height:var(--lh-${k});font-weight:var(--fw-${k});letter-spacing:var(--ls-${k})">${v.size >= 42 ? '守正开物' : v.size >= 20 ? '守正 · 开物 · 共生' : '源裕兴不是 Ant Design 的中文克隆，也不是 Material 的东方皮肤。它是第三条路。Sinotao 2026'}</div></div>`).join('\n'),
-  'space-scale': () => Object.entries(T.primitive.space).filter(([k]) => !k.startsWith('$')).map(([k, v]) => `<div class="space-row"><span class="mono">--space-${k}</span><span class="space-row__bar" style="width:${v}"></span><span class="num mono">${v}</span></div>`).join('\n'),
-  'radius-scale': () => Object.entries(T.primitive.radius).filter(([k]) => !k.startsWith('$')).map(([k, v]) => `<div class="radius-item"><span class="radius-item__box" style="border-radius:${v}"></span><span class="mono">--radius-${k}</span><span class="muted">${v}</span></div>`).join('\n'),
-  'shadow-scale': () => Object.keys(T.semantic.shadow.light).map(k => `<div class="shadow-item"><span class="shadow-item__box" style="box-shadow:var(--shadow-${k})"></span><span class="mono">--shadow-${k}</span></div>`).join('\n'),
-  'motion-table': () => `<table class="a-table a-table--data a-table--dense"><thead><tr><th>Token</th><th>值</th><th>用途</th></tr></thead><tbody>${Object.entries(T.primitive.motion.duration).filter(([k]) => !k.startsWith('$')).map(([k, v]) => `<tr><td class="mono">--dur-${k}</td><td class="mono">${v}</td><td>${({ instant: '即时反馈（按压形变、开关）', fast: '微交互（hover、图标切换）', base: '页面过渡（路由、弹窗入场）', slow: '叙事动效（Hero 入场）', loop: '无限循环（太极 Loading）', 'exit-fast': '微交互退场', 'exit-base': '过渡退场（≈ 进场 × 0.65）', 'exit-slow': '叙事退场' })[k]}</td></tr>`).join('')}${Object.entries(T.primitive.motion.easing).filter(([k]) => !k.startsWith('$')).map(([k, v]) => `<tr><td class="mono">--ease-${k}</td><td class="mono">${v}</td><td>${({ out: '进场减速到位（最常用）', in: '退场果断加速', standard: '通用中性', elegant: '东方从容 · 慢过渡', spring: '轻微回锋（<10% overshoot）· 弹窗入场', linear: '仅用于循环与滚动绑定' })[k]}</td></tr>`).join('')}</tbody></table>`,
-  'breakpoint-table': () => `<table class="a-table a-table--data"><thead><tr><th>断点</th><th>屏幕宽度</th><th class="num">列数</th><th class="num">槽宽</th><th class="num">边距</th><th>典型设备</th></tr></thead><tbody>${Object.entries(T.primitive.breakpoint).filter(([k]) => !k.startsWith('$')).map(([k, v]) => `<tr><td class="mono">${k}</td><td class="num">${v.max === null ? `≥ ${v.min}px` : v.min === 0 ? `< ${v.max + 1}px` : `${v.min}–${v.max}px`}</td><td class="num">${v.cols}</td><td class="num">${v.gutter}</td><td class="num">${v.margin}</td><td>${v.device}</td></tr>`).join('')}</tbody></table>`,
-  'z-table': () => `<div class="z-stack">${Object.entries(T.primitive.z).filter(([k]) => !k.startsWith('$')).map(([k, v]) => `<div class="z-stack__layer"><span class="mono">--z-${k}</span><span class="num mono">${v}</span></div>`).join('')}</div>`,
-  'component-token-count': () => String(Object.keys(T.component).filter(k => !k.startsWith('$')).length),
-  'ink-table': () => `<table class="a-table a-table--data a-table--dense"><thead><tr><th>Token</th><th>名称</th><th>Hex</th><th>OKLCH</th><th class="num">对 Ink 50</th><th class="num">对 Ink 800</th><th>浅色角色</th><th>暗色角色</th></tr></thead><tbody>${STEPS.map(s => `<tr><td class="mono">--ink-${s}</td><td>${T.primitive.color.ink[s].$extensions['sino.name']}</td><td class="mono">${ink[s]}</td><td class="mono muted">${fmtOklch(ink[s])}</td><td class="num">${r2(contrast(ink[s], ink[50])).toFixed(2)}</td><td class="num">${r2(contrast(ink[s], ink[800])).toFixed(2)}</td><td>${({ 50: 'surface 表面', 100: 'background 页面底 · surfaceContainer', 200: 'surfaceVariant · outlineFaint 发丝线', 300: 'outlineVariant 分割线', 400: 'chartAxis 轴线', 500: 'outline 表单边界（3.55:1）', 600: 'onSurfaceVariant · placeholder', 700: 'secondary', 800: 'onSurface 正文', 900: 'onSurfaceStrong 标题 · inverseSurface' })[s]}</td><td>${({ 50: 'onSurfaceStrong', 100: 'onSurface 正文', 200: 'secondary', 300: 'onSurfaceVariant', 400: 'placeholder · chartMuted', 500: 'outline', 600: 'outlineVariant', 700: 'outlineFaint · surfaceVariant', 800: 'surface 表面', 900: 'background 页面底' })[s]}</td></tr>`).join('')}</tbody></table>`,
+
+  'contrast-matrix': () => `<table class="a-table a-table--data"><thead><tr><th>实体</th><th>矿物色</th><th>600 档</th><th>OKLCH</th><th class="num">对宣纸底</th><th class="num">白字其上</th><th>业务</th></tr></thead><tbody>${matrix.map(m => `<tr><td><span class="dot" style="--sw:${m.hex}"></span>${m.entity.toUpperCase()}</td><td>${m.cn}</td><td class="mono">${m.hex}</td><td class="mono muted">${m.oklch}</td><td class="num">${m.onPaper.toFixed(2)}:1 <span class="ok">≥8</span></td><td class="num">${m.whiteOn.toFixed(2)}:1 <span class="ok">AA</span></td><td class="muted">${m.role}</td></tr>`).join('')}</tbody></table>`,
+
+  'semantic-checks': () => `<table class="a-table a-table--data a-table--dense"><thead><tr><th>角色</th><th>模式</th><th>前景 / 背景</th><th class="num">要求</th><th class="num">画布实测</th><th class="num">门禁后</th><th>结论</th></tr></thead><tbody>${checks.map(c => `<tr><td>${c.name}</td><td class="mono">${c.scheme === 'dark' ? '暗色' : '浅色'}</td><td class="mono muted">${c.fg} / ${c.bg}</td><td class="num">≥ ${c.min}:1</td><td class="num${c.fixed ? ' bad' : ''}">${c.before.toFixed(2)}:1</td><td class="num">${c.fixed ? `<b>${c.after.toFixed(2)}:1</b>` : '—'}</td><td>${c.fixed ? `<span class="warn">已修正</span> <code>${c.fixed}</code>` : verdict(c.before, c.min)}</td></tr>`).join('')}</tbody></table>`,
+
+  'type-scale': () => {
+    const ROLES_T = [
+      ['display-2xl', 'display', '首页主标题 · 全站唯一之锋'], ['display-xl', 'display', '章节封面'], ['display-l', 'display', '区块主标题'],
+      ['display-m', 'display', '次级展示'], ['display-s', 'display', '小型展示标题'],
+      ['h1', 'display', '页面标题'], ['h2', 'display', '章标题'], ['h3', 'display', '节标题 · 面板标题'],
+      ['h4', 'sans', '子区块（转界面黑体）'], ['h5', 'sans', '卡片标题'], ['h6', 'sans', '小标题'],
+      ['body-l', 'sans', '正文阅读'], ['body-m', 'sans', '界面文字'], ['body-s', 'sans', '辅助文字'],
+      ['caption', 'sans', '标签 · 说明'], ['caption-xs', 'western', '眼标 · 法律文本'], ['code', 'mono', '代码 / Token'],
+    ];
+    const sample = px => px >= 60 ? '守正开物' : px >= 24 ? '守正 · 开物 · 共生' : '源裕兴不是既有体系的中文皮肤，它是第三条路。Sinotao 2026';
+    return ROLES_T.map(([k, fam, use]) => {
+      const size = L(`--fs-${k}`), lh = L(`--lh-${k}`), ls = L(`--ls-${k}`);
+      const px = parseFloat(size);
+      return `<div class="type-row" data-role="${k}"><div class="type-row__meta"><span class="mono">--fs-${k}</span><span>${size} · ${lh} · ${ls} · ${fam}</span><span class="muted">${use}</span></div><div class="type-row__specimen" style="font-family:var(--font-${fam});font-size:${size};line-height:${lh};letter-spacing:${ls};font-weight:${px >= 42 ? 200 : px >= 24 ? 300 : 400}">${sample(px)}</div></div>`;
+    }).join('\n');
+  },
+
+  'space-scale': () => Array.from({ length: 14 }, (_, i) => i).map(i => {
+    const v = L(`--space-${i}`); if (!v) return '';
+    return `<div class="space-row"><span class="mono">--space-${i}</span><span class="space-row__bar" style="width:${v}"></span><span class="num mono">${v}</span></div>`;
+  }).filter(Boolean).join('\n'),
+
+  'radius-scale': () => [['xs', '标签内层'], ['sm', '标签 · 徽标'], ['md', '产品按钮 · 输入框'], ['lg', '下拉 · 气泡 · 导航项'], ['xl', '卡片 · 弹窗'], ['2xl', '大面板'], ['full', '营销 CTA · 状态点 · 头像']]
+    .map(([k, use]) => `<div class="radius-item"><span class="radius-item__box" style="border-radius:${L(`--radius-${k}`)}"></span><span class="mono">--radius-${k}</span><span class="muted">${L(`--radius-${k}`)}</span><span class="radius-item__use">${use}</span></div>`).join('\n'),
+
+  'shadow-scale': () => ['none', 'xs', 'sm', 'md', 'lg', 'xl'].map(k => `<div class="shadow-item"><span class="shadow-item__box" style="box-shadow:${L(`--shadow-${k}`)}"></span><span class="mono">--shadow-${k}</span></div>`).join('\n'),
+
+  'motion-table': () => {
+    const DUR = { instant: '即时反馈（按压形变）', micro: '微交互（hover · 图标切换）', transition: '页面过渡 · 弹层', narrative: '叙事入场（Reveal · RuleReveal）', loop: '无限循环（走马灯 · Loading）' };
+    const EASE = { standard: '通用中性', emphasized: '页面过渡 · 品牌缓动', out: '进场减速到位', in: '退场果断加速', brush: '落笔 —— 起笔重、收笔轻' };
+    return `<table class="a-table a-table--data a-table--dense"><thead><tr><th>Token</th><th>值</th><th>用途</th></tr></thead><tbody>${
+      Object.entries(DUR).map(([k, u]) => `<tr><td class="mono">--dur-${k}</td><td class="mono">${L(`--dur-${k}`)}</td><td>${u}</td></tr>`).join('')
+    }${Object.entries(EASE).map(([k, u]) => `<tr><td class="mono">--ease-${k}</td><td class="mono">${L(`--ease-${k}`)}</td><td>${u}</td></tr>`).join('')}</tbody></table>`;
+  },
+
+  'breakpoint-table': () => {
+    const BP = [['xs', '< 600px', 4, '16px', '16px', '手机竖屏'], ['sm', '600–904px', 8, '16px', '24px', '手机横屏 / 小平板'], ['md', '905–1239px', 12, '24px', '32px', '平板 / 小笔记本'], ['lg', '1240–1439px', 12, '24px', '40px', '桌面显示器'], ['xl', '≥ 1440px', 12, '24px', 'auto', '大屏（内容区 1200px / 大屏 1440px）']];
+    return `<table class="a-table a-table--data"><thead><tr><th>断点</th><th>屏幕宽度</th><th class="num">列数</th><th class="num">槽宽</th><th class="num">边距</th><th>典型设备</th></tr></thead><tbody>${BP.map(([k, w, c, g, m, d]) => `<tr><td class="mono">${k}</td><td class="num">${w}</td><td class="num">${c}</td><td class="num">${g}</td><td class="num">${m}</td><td>${d}</td></tr>`).join('')}</tbody></table>`;
+  },
+
+  'z-table': () => {
+    const Z = [['appbar', '64px 粘性顶栏'], ['rail', '76 / 264px 侧轨'], ['drawer', '380px 右侧抽屉'], ['modal', '视口居中 · 最大 86vh'], ['toast', '顶部居中'], ['tooltip', '指针跟随']];
+    return `<div class="z-stack">${Z.map(([k, u], i) => `<div class="z-stack__layer"><span class="mono">${k}</span><span class="muted">${u}</span></div>`).join('')}</div>`;
+  },
+
+  'ink-table': () => `<table class="a-table a-table--data a-table--dense"><thead><tr><th>Token</th><th>名称</th><th>Hex</th><th>OKLCH</th><th class="num">对宣 Ink 50</th><th class="num">对焦墨 Ink 950</th><th>角色</th></tr></thead><tbody>${INK_STEPS.map(s => {
+    const hex = L(`--ink-${s}`);
+    return `<tr><td class="mono">--ink-${s}</td><td>${INK_CN[s]}</td><td class="mono">${hex}</td><td class="mono muted">${fmtOklch(hex)}</td><td class="num">${num(hex, L('--ink-50')).toFixed(2)}</td><td class="num">${num(hex, L('--ink-950')).toFixed(2)}</td><td>${INK_ROLE[s]}</td></tr>`;
+  }).join('')}</tbody></table>`,
+
+  'dv-scale': () => `<div class="dv-row">${Array.from({ length: 8 }, (_, i) => {
+    const t = `--dv-${i + 1}`; const hex = L(t);
+    return `<div class="dv-item"><span class="dv-item__chip" style="background:${hex}"></span><span class="mono">${t}</span><span class="num muted">${num(hex, L('--surface-card')).toFixed(2)}:1</span></div>`;
+  }).join('')}</div>`,
 };
 const applyGen = s => s.replace(/<!--\s*@gen:([a-z0-9-]+)\s*-->/g, (_, k) => { if (!gen[k]) throw new Error('未知生成器：' + k); return gen[k](); });
 
 /* ───────────────────────── 6. 输出 ───────────────────────── */
 const SITE = '源裕兴设计系统全典';
-const DESC = `源裕兴设计系统全典 V${T.$version} · ${T.$edition} · 守正 · 开物 · 共生`;
+const DESC = `源裕兴设计系统全典 V${VERSION} · ${EDITION} · 守正 · 开物 · 共生`;
 const fontsHref = 'https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200..900&family=Noto+Sans+SC:wght@200..700&family=LXGW+WenKai+TC:wght@300;400;700&family=Manrope:wght@200..800&family=JetBrains+Mono:wght@400;500&display=swap';
 const FAVICON = `<link rel="icon" href="data:image/svg+xml,${encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><circle cx="16" cy="16" r="15" fill="#1A1612"/><path d="M16 3a6.5 6.5 0 0 1 0 13 6.5 6.5 0 0 0 0 13A13 13 0 0 0 16 3z" fill="#C9A96E"/><circle cx="16" cy="9.5" r="2" fill="#1A1612"/><circle cx="16" cy="22.5" r="2" fill="#C9A96E"/></svg>')}">`;
-const fontHead = `<link rel="preconnect" href="https://fonts.googleapis.com">\n<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n<link rel="stylesheet" href="${fontsHref}">`;
+const fontHead = `<link rel="preconnect" href="https://fonts.googleapis.com">\n<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>`;
 
 const styles = css + '\n' + cssFiles.map(f => `/* ==== ${f} ==== */\n` + read(path.join(SRC, 'css', f))).join('\n');
-const scripts = `window.SINO_DATA = ${JSON.stringify({ version: T.$version, edition: T.$edition, counts: resolved.counts, entity: resolved.entity, gold: resolved.gold, ink, matrix, chart: CHART, type: T.primitive.type, motion: T.primitive.motion, search: SEARCH, routes: ROUTES.map(r => ({ path: r.path, num: r.num, nav: r.nav, en: r.en, title: r.title, file: fileOf(r.path) })) })};\n`
+const scripts = `window.SINO_DATA = ${JSON.stringify({ version: VERSION, edition: EDITION, counts, entity: matrix, checks, fixes, search: SEARCH, routes: ROUTES.map(r => ({ path: r.path, num: r.num, nav: r.nav, en: r.en, title: r.title, file: fileOf(r.path) })) })};\n`
   + jsFiles.map(f => `/* ==== ${f} ==== */\n` + read(path.join(SRC, 'js', f))).join('\n');
 
 fs.writeFileSync(path.join(DIST, 'sino.css'), styles);
@@ -394,7 +525,7 @@ const pageDoc = (r, i) => {
   const bodyHtml = toMpaLinks(applyGen(normAnchors(shellOpen) + normAnchors(ARTICLE[r.path]) + normAnchors(shellClose)), r.path)
     .replace('data-mode="@MODE@"', 'data-mode="mpa"')
     .replace(`data-nav="${r.path}"`, `data-nav="${r.path}" aria-current="page"`);
-  const title = r.path === 'home' ? `${SITE} · V${T.$version}` : `${r.num} ${r.title} · ${SITE}`;
+  const title = r.path === 'home' ? `${SITE} · V${VERSION}` : `${r.num} ${r.title} · ${SITE}`;
   const prev = ROUTES[i - 1], next = ROUTES[i + 1];
   const preload = [prev, next].filter(Boolean).map(x => `<link rel="prefetch" href="${fileOf(x.path)}">`).join('\n');
   return `<!doctype html>
@@ -429,7 +560,7 @@ const spaHead = `<title>${SITE}</title>\n${FAVICON}\n<meta name="description" co
 const artifact = `${spaHead}${spaBody}\n<script>\n${scripts}\n</script>\n`;
 fs.writeFileSync(path.join(DIST, 'artifact.html'), artifact);
 
-console.log(`✔ tokens.css  Primitive ${counts.primitive} + Semantic ${counts.semantic} + Component ${counts.component} = ${resolved.counts.total} tokens`);
-console.log(`✔ 门禁通过：${semanticChecks.length} 项语义对比度 + ${ENTITIES.length} 实体可访问主色`);
+console.log(`✔ tokens.css  画布 ${C.order.length} 个令牌文件 · ${counts.canvas} 个令牌 · 门禁修正 ${nFix} 项`);
+console.log(`✔ 门禁通过：${checks.length} 项对比度实测 + ${ENTITIES.length} 实体锚点（600 档对宣纸底 ≥8:1）`);
 console.log(`✔ 多页面站点 ${ROUTES.length} 页：${ROUTES.map(r => fileOf(r.path)).join(' · ')}`);
 console.log(`✔ sino.css ${(styles.length / 1024).toFixed(0)} KB · site.js ${(scripts.length / 1024).toFixed(0)} KB · artifact.html ${(artifact.length / 1024).toFixed(0)} KB`);

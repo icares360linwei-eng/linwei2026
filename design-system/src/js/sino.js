@@ -26,7 +26,7 @@
     },
     init() {
       this.setEntity(store.get('sino.entity') || root.dataset.theme || 'stg');
-      this.setScheme(store.get('sino.scheme') || 'dark');
+      this.setScheme(store.get('sino.scheme') || 'light');
       document.addEventListener('click', ev => {
         const e = ev.target.closest('[data-entity-btn]'); if (e) return this.setEntity(e.dataset.entityBtn);
         const s = ev.target.closest('[data-scheme-btn]'); if (s) return this.setScheme(s.dataset.schemeBtn);
