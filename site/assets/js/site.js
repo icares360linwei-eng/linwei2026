@@ -84,13 +84,23 @@
     document.dispatchEvent(new CustomEvent('sinotao:scheme', { detail: { dark: dark } }));
   }
 
-  /* ── Reveal · 滚动揭示 · 错峰不超过 6 级 ─────────────────────────── */
-  function reveal() {
-    var items = document.querySelectorAll('.fx-reveal, .fx-rule, [data-anim]');
+  /* ── Reveal · 滚动揭示 · 错峰不超过 6 级 ───────────────────────────
+     settleVisible=true 时，已在视口内的元素直接落定不再入场 ——
+     内容被换掉之后（路由换页）必须立刻可读，不能停在 opacity:0 等观察器。 */
+  function reveal(settleVisible) {
+    var items = document.querySelectorAll('.fx-reveal:not(.is-in), .fx-rule:not(.is-in), [data-anim]:not(.is-in)');
     if (!('IntersectionObserver' in window) ||
       matchMedia('(prefers-reduced-motion: reduce)').matches) {
       items.forEach(function (n) { n.classList.add('is-in'); });
       return;
+    }
+    if (settleVisible) {
+      var vh = window.innerHeight || 0, rest = [];
+      items.forEach(function (n) {
+        if (n.getBoundingClientRect().top < vh) n.classList.add('is-in');
+        else rest.push(n);
+      });
+      items = rest;
     }
     var io = new IntersectionObserver(function (es) {
       es.forEach(function (e) {
@@ -104,7 +114,8 @@
         e.target.classList.add('is-in');
         io.unobserve(e.target);
       });
-    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+      // 提前一档触发：元素刚探进视口就起，不留「已在屏内却仍透明」的窗口
+    }, { rootMargin: '0px 0px 10% 0px', threshold: 0 });
     items.forEach(function (n) { io.observe(n); });
   }
 
@@ -304,16 +315,28 @@
     });
   }
 
+  /* ── 重扫 ────────────────────────────────────────────────────────
+     内容被换掉之后重新接管：揭示、条形宽度、闭环联动。
+     复制走的是 document 级委托，无需重绑。                        ── */
+  function rescan(root) {
+    reveal(true);
+    loops();
+    if (window.Charts) window.Charts.bars(root || document);
+  }
+
   /* ── 引导 ────────────────────────────────────────────────────────── */
   function init() {
     setTheme(getTheme());
     applyScheme(getScheme());
     switcher(); schemeToggle(); palette(); drawer();
-    reveal(); copyables(); loops(); currentNav();
-    if (window.Charts) window.Charts.bars(document);
+    copyables(); currentNav();
+    rescan(document);
   }
 
-  window.Site = { ENTITIES: ENTITIES, INDEX: INDEX, toast: toast, copy: copy, setTheme: setTheme };
+  window.Site = {
+    ENTITIES: ENTITIES, INDEX: INDEX,
+    toast: toast, copy: copy, setTheme: setTheme, rescan: rescan
+  };
 
   document.readyState === 'loading'
     ? document.addEventListener('DOMContentLoaded', init)
