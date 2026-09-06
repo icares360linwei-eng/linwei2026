@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="zh-Hans" data-theme="stg">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>总纲 · 源裕兴设计系统全典 V7.0</title>
+<meta name="description" content="源裕兴设计系统全典 V7.0 —— 五个实体，一套设计语法。21 章、37 组件、421 个可编译令牌。">
+<meta name="color-scheme" content="light dark">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Noto+Sans+SC:wght@200;300;400;500;600&family=Noto+Serif+SC:wght@200;300;400;500&family=Poppins:wght@500;600&family=Space+Grotesk:wght@300;400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0..1,0&display=swap">
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/components.css">
+<link rel="stylesheet" href="assets/css/site.css">
+<script>
+/* 上色前先定主题与明暗，避免首帧闪白 */
+(function(){try{
+  var t=localStorage.getItem('sinotao.theme')||'stg';
+  document.documentElement.setAttribute('data-theme',t);
+  var s=localStorage.getItem('sinotao.scheme')||'auto';
+  var d=s==='dark'||(s==='auto'&&matchMedia('(prefers-color-scheme: dark)').matches);
+  document.documentElement.setAttribute('data-color-scheme',d?'dark':'light');
+}catch(e){}})();
+</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+<header class="topbar">
+  <div class="topbar__in">
+    <a class="topbar__brand" href="index.html">
+      <span class="topbar__wm">SINOTAO</span>
+      <span class="topbar__div"></span>
+      <span class="topbar__ent"><span class="topbar__tick"></span><span class="topbar__code" data-ent-code>STG</span></span>
+    </a>
+    <nav class="topbar__nav" aria-label="全典导航">
+      <a class="navlink" href="volume-1.html"><span class="navlink__i">一</span>序与总纲</a>
+      <a class="navlink" href="volume-2.html"><span class="navlink__i">二</span>基础</a>
+      <a class="navlink" href="volume-3.html"><span class="navlink__i">三</span>表达</a>
+      <a class="navlink" href="volume-4.html"><span class="navlink__i">四</span>数据与行为</a>
+      <a class="navlink" href="volume-5.html"><span class="navlink__i">五</span>治理</a>
+      <a class="navlink" href="atlas.html">图谱</a>
+      <a class="navlink" href="tokens.html">令牌</a>
+    </nav>
+    <div class="topbar__tools">
+      <button class="kbtn" data-k-open type="button" aria-label="搜索全典"><span class="ms" style="font-size:16px" aria-hidden="true">search</span><span class="kbtn__t">检索</span><kbd>⌘K</kbd></button>
+      <div class="entsw" id="entsw">
+        <button class="iconbtn" data-entsw-btn type="button" aria-haspopup="menu" aria-expanded="false" aria-label="切换实体主题"><span class="ms" aria-hidden="true">hub</span></button>
+        <div class="entsw__menu" role="menu" hidden></div>
+      </div>
+      <button class="iconbtn" data-scheme-btn type="button" aria-label="切换明暗模式"><span class="ms" data-scheme-icon aria-hidden="true">contrast</span></button>
+      <button class="iconbtn" data-drawer-open type="button" aria-label="打开目录"><span class="ms" aria-hidden="true">menu</span></button>
+    </div>
+  </div>
+</header>
+<main id="main">
+
+<section class="hero on-dark">
+  <canvas class="hero__canvas" data-art="confluence" aria-hidden="true"></canvas>
+  <div class="wrap hero__in">
+    <div class="hero__eyebrow"><span class="seal" style="background:var(--gold-400)"></span><span class="u-eyebrow">SINOTAO Design System · V7.0</span></div>
+    <h1 class="hero__t">墨是<br>最贵的颜色</h1>
+    <p class="hero__sub">命名来自 Sino 与 Tao。源为守正，裕为开物，兴为共生。五个实体不是五家割裂的公司，而是共用一套设计语法、各自生长出独立主色的价值共生体。</p>
+    <div class="hero__acts">
+      <a class="btn" href="volume-1.html">从第一册读起<span class="ms" style="font-size:18px" aria-hidden="true">arrow_forward</span></a>
+      <a class="btn btn--secondary" href="tokens.html">令牌总表</a>
+      <button class="btn btn--secondary" data-k-open type="button">检索全典 <kbd style="font-family:var(--font-mono);font-size:10px;opacity:.7">⌘K</kbd></button>
+    </div>
+    <div class="hero__band">
+      <div class="hero__stat"><b>5</b><span>实体，一套语法</span></div>
+      <div class="hero__stat"><b>21</b><span>章 · 五册</span></div>
+      <div class="hero__stat"><b>37</b><span>组件</span></div>
+      <div class="hero__stat"><b>421</b><span>可编译令牌</span></div>
+      <div class="hero__stat"><b>9</b><span>级字阶，无冗余档</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+
+<section class="chapter" aria-labelledby="phil-t">
+  <header class="chapter__head fx-reveal">
+    <span class="chapter__num">序 / PROLOGUE</span>
+    <div style="min-width:0">
+      <div class="chapter__meta"><span class="seal"></span><span class="u-eyebrow">Philosophy</span></div>
+      <h2 class="chapter__title" id="phil-t">三源合流：守正 · 开物 · 共生</h2>
+      <p class="chapter__lead">哲学只在能落成规则时才写进本典。凡本典的哲学表述，后面都跟着一条可执行的规则 —— 找不到那条规则的，说明这句哲学不该写。</p>
+    </div>
+  </header>
+
+  <div class="grid grid--3">
+    <div class="panel panel--brand fx-reveal">
+      <div class="u-eyebrow">Preserving Integrity</div>
+      <h3 style="font-family:var(--font-display);font-size:28px;font-weight:var(--fw-light);margin-top:var(--space-3)">守正</h3>
+      <p style="margin-top:var(--space-4);font-size:var(--fs-body-s);line-height:1.85">落到设计上是纪律：颜色只用令牌、间距只用刻度、术语不可替换。守正不是保守，是让第一百个界面与第一个界面出自同一只手。</p>
+    </div>
+    <div class="panel panel--brand fx-reveal">
+      <div class="u-eyebrow">Pioneering Innovation</div>
+      <h3 style="font-family:var(--font-display);font-size:28px;font-weight:var(--fw-light);margin-top:var(--space-3)">开物</h3>
+      <p style="margin-top:var(--space-4);font-size:var(--fs-body-s);line-height:1.85">落到设计上是生成规则优于逐个手绘。品牌标记不画一百五十枚，而是定一条网格与点径的规则让它自己长出来。能被规则表达的，就不该靠人手重复。</p>
+    </div>
+    <div class="panel panel--brand fx-reveal">
+      <div class="u-eyebrow">Symbiotic Coexistence</div>
+      <h3 style="font-family:var(--font-display);font-size:28px;font-weight:var(--fw-light);margin-top:var(--space-3)">共生</h3>
+      <p style="margin-top:var(--space-4);font-size:var(--fs-body-s);line-height:1.85">落到设计上是一套语法、五种身份。客户从能源切换到贸易时，感受到的不该是「换了一家公司」，而是「同一个品牌，不同的专家」。版式与组件零差异。</p>
+    </div>
+  </div>
+
+  <div class="block fx-reveal">
+  <div class="block__head"><span class="u-eyebrow">The core judgement</span></div>
+  
+  <div class="grid grid--8-4" style="align-items:start">
+    <div>
+      <h3 style="font-family:var(--font-display);font-size:clamp(24px,3vw,38px);font-weight:var(--fw-light);letter-spacing:var(--track-title);max-width:14em;word-break:keep-all">高阶不靠色度，靠明度落差。</h3>
+      <p style="margin-top:var(--space-5);max-width:34em;line-height:1.9">同一色相，压深压灰显贵，提亮增艳显廉。宋瓷、明式家具、褪色壁画、官式建筑的朱墨金，用的都是掺了灰的矿物颜料。</p>
+      <p style="max-width:34em;line-height:1.9">瑞士编辑设计同样是近乎单色加一个深色重点。东方矿物颜料与瑞士编辑设计指向同一条规律，本系统按它重建了全部色值。</p>
+      <p style="max-width:34em;line-height:1.9;color:var(--text-heading)">于是有了本系统最重要的一条色彩决策：<strong>主操作按钮用玄墨，不用品牌色。墨是最贵的颜色。</strong></p>
+    </div>
+    <div class="grid" style="gap:var(--space-4)">
+      <div>
+        <div style="height:96px;background:oklch(.32 .09 310);border-radius:var(--shape-card)"></div>
+        <div style="display:flex;justify-content:space-between;margin-top:var(--space-2)">
+          <span class="u-mono" style="font-size:11px">oklch(.32 .09)</span><span class="u-label" style="color:var(--text-heading)">显贵</span>
+        </div>
+      </div>
+      <div>
+        <div style="height:96px;background:oklch(.45 .22 310);border-radius:var(--shape-card)"></div>
+        <div style="display:flex;justify-content:space-between;margin-top:var(--space-2)">
+          <span class="u-mono" style="font-size:11px">oklch(.45 .22)</span><span class="u-label">显廉 · 已废止</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<section class="chapter" aria-labelledby="ent-t">
+  <header class="chapter__head fx-reveal">
+    <span class="chapter__num">001 / 021</span>
+    <div style="min-width:0">
+      <div class="chapter__meta"><span class="seal"></span><span class="u-eyebrow">Context</span></div>
+      <h2 class="chapter__title" id="ent-t">五家公司，一套设计语法</h2>
+      <p class="chapter__lead">五个实体共用一套语法，各自生长出独立主色。版式与组件零差异，只通过 <code>data-theme</code> 切换主色。点一下任意实体，整站主色立刻改写 —— 而版式一个像素都不动。</p>
+    </div>
+  </header>
+
+  <div class="entities fx-reveal">
+    
+    <button class="entity" type="button" data-ent-opt="stg" style="--tile:#463154" aria-label="切换到 STG 源裕兴创新未来">
+      <span class="entity__mark" data-lattice="stg" data-size="56" aria-hidden="true"></span>
+      <span class="entity__code">STG</span>
+      <span class="entity__name">源裕兴创新未来</span>
+      <span class="entity__desc">战略中枢 · 合规治理与资本配置</span>
+      <span class="entity__hex">#463154 玄紫</span>
+    </button>
+    <button class="entity" type="button" data-ent-opt="ste" style="--tile:#2C4A3B" aria-label="切换到 STE 九派国有能源">
+      <span class="entity__mark" data-lattice="ste" data-size="56" aria-hidden="true"></span>
+      <span class="entity__code">STE</span>
+      <span class="entity__name">九派国有能源</span>
+      <span class="entity__desc">生物质热电联产、燃料收储与碳资产开发</span>
+      <span class="entity__hex">#2C4A3B 松烟绿</span>
+    </button>
+    <button class="entity" type="button" data-ent-opt="sti" style="--tile:#26374F" aria-label="切换到 STI 源裕兴进出口贸易">
+      <span class="entity__mark" data-lattice="sti" data-size="56" aria-hidden="true"></span>
+      <span class="entity__code">STI</span>
+      <span class="entity__name">源裕兴进出口贸易</span>
+      <span class="entity__desc">以九江港为枢纽的多式联运与报关合规</span>
+      <span class="entity__hex">#26374F 藏青</span>
+    </button>
+    <button class="entity" type="button" data-ent-opt="sth" style="--tile:#2D5257" aria-label="切换到 STH 源裕兴健康科技">
+      <span class="entity__mark" data-lattice="sth" data-size="56" aria-hidden="true"></span>
+      <span class="entity__code">STH</span>
+      <span class="entity__name">源裕兴健康科技</span>
+      <span class="entity__desc">PHA 医用材料与药物递送载体的中试与注册</span>
+      <span class="entity__hex">#2D5257 石青</span>
+    </button>
+    <button class="entity" type="button" data-ent-opt="edu" style="--tile:#7A3229" aria-label="切换到 EDU 崇仁教育">
+      <span class="entity__mark" data-lattice="edu" data-size="56" aria-hidden="true"></span>
+      <span class="entity__code">EDU</span>
+      <span class="entity__name">崇仁教育</span>
+      <span class="entity__desc">K12 学生成长档案与家校协同</span>
+      <span class="entity__hex">#7A3229 赭朱</span>
+    </button>
+  </div>
+
+  <div class="note fx-reveal" style="margin-top:var(--space-7)">
+    <div class="note__b">
+      <div class="note__t">业务重心在 STE</div>
+      <div class="note__d">赤湖工业园的生物质热电联产园区，串起甜高粱与农林废弃物种植、燃料收储化验、发电供汽、碳资产开发与灰渣资源化的闭环。本典受众是用户而非读者 —— Odoo 18 实施团队、前端工程师、UI/UX 设计师，以及品牌委员会。</div>
+    </div>
+  </div>
+</section>
+
+<section class="chapter" aria-labelledby="quota-t">
+  <header class="chapter__head fx-reveal">
+    <span class="chapter__num">003 / 021</span>
+    <div style="min-width:0">
+      <div class="chapter__meta"><span class="seal"></span><span class="u-eyebrow">Color quota</span></div>
+      <h2 class="chapter__title" id="quota-t">配色配额是验收标准，不是画法</h2>
+      <p class="chapter__lead">出稿流程：任何新界面先全墨出一稿，再逐处论证加色，论证不出理由的地方保持墨色。</p>
+    </div>
+  </header>
+
+  <div class="grid grid--4 fx-reveal" style="gap:0">
+    
+    <div style="padding:var(--space-6) var(--space-5);border-left:var(--hairline)">
+      <div style="width:100%;height:4px;background:var(--ink-900);margin-bottom:var(--space-5)"></div>
+      <div class="u-num" style="font-size:34px;letter-spacing:-.02em">80%</div>
+      <div style="margin-top:var(--space-2);font-size:var(--fs-body-s);font-weight:var(--fw-medium);color:var(--text-heading)">墨与宣</div>
+      <p style="margin-top:var(--space-3);font-size:var(--fs-label);line-height:1.8;color:var(--text-muted)">底色 --ink-50 宣，正文 --ink-700，标题与主操作按钮 --ink-900</p>
+    </div>
+    <div style="padding:var(--space-6) var(--space-5);border-left:var(--hairline)">
+      <div style="width:100%;height:4px;background:var(--brand-600);margin-bottom:var(--space-5)"></div>
+      <div class="u-num" style="font-size:34px;letter-spacing:-.02em">15%</div>
+      <div style="margin-top:var(--space-2);font-size:var(--fs-body-s);font-weight:var(--fw-medium);color:var(--text-heading)">五实体矿物色</div>
+      <p style="margin-top:var(--space-3);font-size:var(--fs-label);line-height:1.8;color:var(--text-muted)">2px 细线刻度 + 代号，不是 40px 填色块。驱动选中态、导航激活、链接、焦点环、图表首序列</p>
+    </div>
+    <div style="padding:var(--space-6) var(--space-5);border-left:var(--hairline)">
+      <div style="width:100%;height:4px;background:var(--zhu-600);margin-bottom:var(--space-5)"></div>
+      <div class="u-num" style="font-size:34px;letter-spacing:-.02em">5%</div>
+      <div style="margin-top:var(--space-2);font-size:var(--fs-body-s);font-weight:var(--fw-medium);color:var(--text-heading)">印章朱 #8A3323</div>
+      <p style="margin-top:var(--space-3);font-size:var(--fs-label);line-height:1.8;color:var(--text-muted)">全站唯一重点色。每个章节仅一枚方块，错误态与之同值因而同享配额</p>
+    </div>
+    <div style="padding:var(--space-6) var(--space-5);border-left:var(--hairline)">
+      <div style="width:100%;height:4px;background:var(--gold-400);margin-bottom:var(--space-5)"></div>
+      <div class="u-num" style="font-size:34px;letter-spacing:-.02em">5%</div>
+      <div style="margin-top:var(--space-2);font-size:var(--fs-body-s);font-weight:var(--fw-medium);color:var(--text-heading)">古铜金 #B9A177</div>
+      <p style="margin-top:var(--space-3);font-size:var(--fs-label);line-height:1.8;color:var(--text-muted)">箔金不是镀金。营销 CTA、奖项资质、深底眼标。每屏最多一处</p>
+    </div>
+  </div>
+</section>
+
+<section class="chapter" aria-labelledby="rules-t">
+  <header class="chapter__head fx-reveal">
+    <span class="chapter__num">017 / 021</span>
+    <div style="min-width:0">
+      <div class="chapter__meta"><span class="seal"></span><span class="u-eyebrow">Twelve rules</span></div>
+      <h2 class="chapter__title" id="rules-t">十二条工艺准则</h2>
+      <p class="chapter__lead">每一条都要能被编译成令牌，或被验收时指着说「这里不合规」。本站自身即按这十二条建成 —— 页面就是验收样本。</p>
+    </div>
+  </header>
+  <div class="rules fx-reveal">
+    <div class="rule"><span class="rule__n">01</span><span class="rule__t">颜色只用令牌，不硬编码色值</span></div>
+    <div class="rule"><span class="rule__n">02</span><span class="rule__t">间距只用 4px 步进的令牌</span></div>
+    <div class="rule"><span class="rule__n">03</span><span class="rule__t">先全墨出一稿，再逐处论证加色</span></div>
+    <div class="rule"><span class="rule__n">04</span><span class="rule__t">主操作用玄墨；实体色只作身份标记；朱与金各不超过一处</span></div>
+    <div class="rule"><span class="rule__n">05</span><span class="rule__t">状态色不借实体色，涨跌双重编码</span></div>
+    <div class="rule"><span class="rule__n">06</span><span class="rule__t">不用纯黑 #000 / 纯白 #FFF 作为文字或页面底色</span></div>
+    <div class="rule"><span class="rule__n">07</span><span class="rule__t">一重边界：描边与阴影不同现，面板不嵌套</span></div>
+    <div class="rule"><span class="rule__n">08</span><span class="rule__t">动效即叙事，不做无意义动效</span></div>
+    <div class="rule"><span class="rule__n">09</span><span class="rule__t">组件覆盖八状态，键盘可达，焦点永远可见</span></div>
+    <div class="rule"><span class="rule__n">10</span><span class="rule__t">正文对比度 ≥4.5:1，触摸目标 ≥44 × 44px</span></div>
+    <div class="rule"><span class="rule__n">11</span><span class="rule__t">品牌标记走生成规则，不凭记忆重绘品牌资产</span></div>
+    <div class="rule"><span class="rule__n">12</span><span class="rule__t">五实体只通过 data-theme 切换主色，版式与组件零差异</span></div>
+  </div>
+</section>
+
+</div>
+
+<div class="marquee" aria-hidden="true">
+  <div class="marquee__t">
+    <div class="marquee__g"><span class="marquee__i">守正 · 开物 · 共生</span><span class="marquee__i">墨是最贵的颜色</span><span class="marquee__i">高阶不靠色度，靠明度落差</span><span class="marquee__i">一重边界，不许第二重</span><span class="marquee__i">写动作，不写「确定」</span><span class="marquee__i">生成规则优于逐个手绘</span><span class="marquee__i">一套语法，五种身份</span><span class="marquee__i">装饰一律不留</span><span class="marquee__i">动效即叙事</span><span class="marquee__i">受众是用户，不是读者</span></div>
+    <div class="marquee__g"><span class="marquee__i">守正 · 开物 · 共生</span><span class="marquee__i">墨是最贵的颜色</span><span class="marquee__i">高阶不靠色度，靠明度落差</span><span class="marquee__i">一重边界，不许第二重</span><span class="marquee__i">写动作，不写「确定」</span><span class="marquee__i">生成规则优于逐个手绘</span><span class="marquee__i">一套语法，五种身份</span><span class="marquee__i">装饰一律不留</span><span class="marquee__i">动效即叙事</span><span class="marquee__i">受众是用户，不是读者</span></div>
+  </div>
+</div>
+
+<div class="wrap">
+<section class="chapter" aria-labelledby="vol-t" style="border-bottom:0">
+  <header class="chapter__head fx-reveal">
+    <span class="chapter__num">全典 / FIVE VOLUMES</span>
+    <div style="min-width:0">
+      <div class="chapter__meta"><span class="seal"></span><span class="u-eyebrow">Contents</span></div>
+      <h2 class="chapter__title" id="vol-t">五册二十一章</h2>
+    </div>
+  </header>
+  <div class="grid grid--2 fx-reveal" style="gap:0">
+    
+    <a href="volume-1.html" style="display:grid;grid-template-columns:auto minmax(0,1fr);gap:var(--space-5);padding:var(--space-6) var(--space-5);border-top:var(--hairline);text-decoration:none;color:inherit">
+      <span class="chapter__num" style="writing-mode:vertical-rl;font-size:11px">01</span>
+      <span style="min-width:0">
+        <span class="u-eyebrow">Volume 一</span>
+        <span style="display:block;margin-top:var(--space-2);font-family:var(--font-display);font-size:30px;font-weight:var(--fw-light);color:var(--text-heading);letter-spacing:var(--track-title)">序与总纲</span>
+        <span style="display:block;margin-top:var(--space-3);font-size:var(--fs-label);color:var(--text-muted)">设计哲学 · 变更摘要 · 语境 · 文案</span>
+      </span>
+    </a>
+    <a href="volume-2.html" style="display:grid;grid-template-columns:auto minmax(0,1fr);gap:var(--space-5);padding:var(--space-6) var(--space-5);border-top:var(--hairline);text-decoration:none;color:inherit">
+      <span class="chapter__num" style="writing-mode:vertical-rl;font-size:11px">02</span>
+      <span style="min-width:0">
+        <span class="u-eyebrow">Volume 二</span>
+        <span style="display:block;margin-top:var(--space-2);font-family:var(--font-display);font-size:30px;font-weight:var(--fw-light);color:var(--text-heading);letter-spacing:var(--track-title)">基础</span>
+        <span style="display:block;margin-top:var(--space-3);font-size:var(--fs-label);color:var(--text-muted)">色彩 · 色板 · 模块识别 · 字体 · 刻度 · 版面</span>
+      </span>
+    </a>
+    <a href="volume-3.html" style="display:grid;grid-template-columns:auto minmax(0,1fr);gap:var(--space-5);padding:var(--space-6) var(--space-5);border-top:var(--hairline);text-decoration:none;color:inherit">
+      <span class="chapter__num" style="writing-mode:vertical-rl;font-size:11px">03</span>
+      <span style="min-width:0">
+        <span class="u-eyebrow">Volume 三</span>
+        <span style="display:block;margin-top:var(--space-2);font-family:var(--font-display);font-size:30px;font-weight:var(--fw-light);color:var(--text-heading);letter-spacing:var(--track-title)">表达</span>
+        <span style="display:block;margin-top:var(--space-3);font-size:var(--fs-label);color:var(--text-muted)">面板 · 图标系统 · 业务图标 · 字标</span>
+      </span>
+    </a>
+    <a href="volume-4.html" style="display:grid;grid-template-columns:auto minmax(0,1fr);gap:var(--space-5);padding:var(--space-6) var(--space-5);border-top:var(--hairline);text-decoration:none;color:inherit">
+      <span class="chapter__num" style="writing-mode:vertical-rl;font-size:11px">04</span>
+      <span style="min-width:0">
+        <span class="u-eyebrow">Volume 四</span>
+        <span style="display:block;margin-top:var(--space-2);font-family:var(--font-display);font-size:30px;font-weight:var(--fw-light);color:var(--text-heading);letter-spacing:var(--track-title)">数据与行为</span>
+        <span style="display:block;margin-top:var(--space-3);font-size:var(--fs-label);color:var(--text-muted)">图表 · 图解 · 可视化与影像 · 动效</span>
+      </span>
+    </a>
+    <a href="volume-5.html" style="display:grid;grid-template-columns:auto minmax(0,1fr);gap:var(--space-5);padding:var(--space-6) var(--space-5);border-top:var(--hairline);text-decoration:none;color:inherit">
+      <span class="chapter__num" style="writing-mode:vertical-rl;font-size:11px">05</span>
+      <span style="min-width:0">
+        <span class="u-eyebrow">Volume 五</span>
+        <span style="display:block;margin-top:var(--space-2);font-family:var(--font-display);font-size:30px;font-weight:var(--fw-light);color:var(--text-heading);letter-spacing:var(--track-title)">治理</span>
+        <span style="display:block;margin-top:var(--space-3);font-size:var(--fs-label);color:var(--text-muted)">组件令牌 · 产品面 · 仓库 · M3 · 来源</span>
+      </span>
+    </a>
+    <a href="atlas.html" style="display:grid;grid-template-columns:auto minmax(0,1fr);gap:var(--space-5);padding:var(--space-6) var(--space-5);border-top:var(--hairline);text-decoration:none;color:inherit">
+      <span class="chapter__num" style="writing-mode:vertical-rl;font-size:11px">附</span>
+      <span style="min-width:0">
+        <span class="u-eyebrow">Appendix</span>
+        <span style="display:block;margin-top:var(--space-2);font-family:var(--font-display);font-size:30px;font-weight:var(--fw-light);color:var(--text-heading);letter-spacing:var(--track-title)">图谱</span>
+        <span style="display:block;margin-top:var(--space-3);font-size:var(--fs-label);color:var(--text-muted)">生成式插图集 · 六幅扉画的规则与读法</span>
+      </span>
+    </a>
+  </div>
+</section>
+</div>
+</main>
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot__top">
+      <div>
+        <div class="foot__wm">SINOTAO</div>
+        <p class="foot__m">源裕兴设计系统全典 V7.0。五个实体不是五家割裂的公司，而是共用一套设计语法、各自生长出独立主色的价值共生体。本典不是画册，是施工图。</p>
+      </div>
+      <div>
+        <div class="foot__st">Volumes</div>
+        <a class="foot__l" href="volume-1.html">一 · 序与总纲</a>
+        <a class="foot__l" href="volume-2.html">二 · 基础</a>
+        <a class="foot__l" href="volume-3.html">三 · 表达</a>
+        <a class="foot__l" href="volume-4.html">四 · 数据与行为</a>
+        <a class="foot__l" href="volume-5.html">五 · 治理</a>
+      </div>
+      <div>
+        <div class="foot__st">Appendix</div>
+        <a class="foot__l" href="atlas.html">图谱 · 插图集</a>
+        <a class="foot__l" href="tokens.html">令牌总表</a>
+        <a class="foot__l" href="index.html">首页 · 总纲</a>
+      </div>
+      <div>
+        <div class="foot__st">Discipline</div>
+        <span class="foot__l">37 组件 · 421 令牌</span>
+        <span class="foot__l">九级字阶 · 四种图表</span>
+        <span class="foot__l">五种图解 · 四样动效</span>
+      </div>
+    </div>
+    <div class="foot__bot">
+      <span>源裕兴设计系统全典 V7.0 · 2026-09-06</span>
+      <span>守正 · 开物 · 共生</span>
+    </div>
+  </div>
+</footer>
+<div class="drawer" id="drawer" hidden>
+  <button class="drawer__scrim" type="button" aria-label="关闭目录"></button>
+  <nav class="drawer__panel" aria-label="全典目录">
+    <div class="drawer__sec">
+      <div class="drawer__st">Volumes</div>
+      <a class="drawer__l" href="volume-1.html"><i>一</i><span>序与总纲<br><small style="color:var(--text-subtle)">设计哲学 · 变更摘要 · 语境 · 文案</small></span></a>
+      <a class="drawer__l" href="volume-2.html"><i>二</i><span>基础<br><small style="color:var(--text-subtle)">色彩 · 色板 · 模块识别 · 字体 · 刻度 · 版面</small></span></a>
+      <a class="drawer__l" href="volume-3.html"><i>三</i><span>表达<br><small style="color:var(--text-subtle)">面板 · 图标系统 · 业务图标 · 字标</small></span></a>
+      <a class="drawer__l" href="volume-4.html"><i>四</i><span>数据与行为<br><small style="color:var(--text-subtle)">图表 · 图解 · 可视化与影像 · 动效</small></span></a>
+      <a class="drawer__l" href="volume-5.html"><i>五</i><span>治理<br><small style="color:var(--text-subtle)">组件令牌 · 产品面 · 仓库 · M3 · 来源</small></span></a>
+    </div>
+    <div class="drawer__sec">
+      <div class="drawer__st">Chapters</div>
+      <a class="drawer__l" href="volume-1.html#ch-prologue"><i>序</i><span>设计哲学</span></a>
+      <a class="drawer__l" href="volume-1.html#ch-00"><i>000</i><span>变更摘要</span></a>
+      <a class="drawer__l" href="volume-1.html#ch-01"><i>001</i><span>语境与实体</span></a>
+      <a class="drawer__l" href="volume-1.html#ch-02"><i>002</i><span>内容与文案</span></a>
+      <a class="drawer__l" href="volume-2.html#ch-03"><i>003</i><span>色彩</span></a>
+      <a class="drawer__l" href="volume-2.html#ch-04"><i>004</i><span>色板全景</span></a>
+      <a class="drawer__l" href="volume-2.html#ch-05"><i>005</i><span>模块识别</span></a>
+      <a class="drawer__l" href="volume-2.html#ch-06"><i>006</i><span>字体</span></a>
+      <a class="drawer__l" href="volume-2.html#ch-07"><i>007</i><span>刻度与断点</span></a>
+      <a class="drawer__l" href="volume-2.html#ch-08"><i>008</i><span>间距与版面</span></a>
+      <a class="drawer__l" href="volume-3.html#ch-09"><i>009</i><span>面板与边界</span></a>
+      <a class="drawer__l" href="volume-3.html#ch-10"><i>010</i><span>图标系统</span></a>
+      <a class="drawer__l" href="volume-3.html#ch-11"><i>011</i><span>业务图标清单</span></a>
+      <a class="drawer__l" href="volume-3.html#ch-12"><i>012</i><span>字标与应用</span></a>
+      <a class="drawer__l" href="volume-4.html#ch-13"><i>013</i><span>图表</span></a>
+      <a class="drawer__l" href="volume-4.html#ch-14"><i>014</i><span>图解语言</span></a>
+      <a class="drawer__l" href="volume-4.html#ch-15"><i>015</i><span>可视化与影像</span></a>
+      <a class="drawer__l" href="volume-4.html#ch-16"><i>016</i><span>动效与状态</span></a>
+      <a class="drawer__l" href="volume-5.html#ch-17"><i>017</i><span>组件与令牌总账</span></a>
+      <a class="drawer__l" href="volume-5.html#ch-18"><i>018</i><span>产品面与屏幕</span></a>
+      <a class="drawer__l" href="volume-5.html#ch-19"><i>019</i><span>仓库结构</span></a>
+      <a class="drawer__l" href="volume-5.html#ch-20"><i>020</i><span>M3 对照</span></a>
+      <a class="drawer__l" href="volume-5.html#ch-21"><i>021</i><span>来源与授权</span></a>
+    </div>
+    <div class="drawer__sec">
+      <div class="drawer__st">Appendix</div>
+      <a class="drawer__l" href="atlas.html"><i>图</i><span>图谱 · 生成式插图集</span></a>
+      <a class="drawer__l" href="tokens.html"><i>令</i><span>令牌总表</span></a>
+    </div>
+  </nav>
+</div>
+<div class="kmenu" id="kmenu" hidden>
+  <button class="kmenu__scrim" type="button" aria-label="关闭检索"></button>
+  <div class="kmenu__box" role="dialog" aria-modal="true" aria-label="全典检索">
+    <input class="kmenu__in" type="text" placeholder="检索全典 —— 章节、术语、令牌" aria-label="检索全典" autocomplete="off" spellcheck="false">
+    <div class="kmenu__list"></div>
+    <div class="kmenu__foot"><span><kbd>↑</kbd><kbd>↓</kbd> 移动</span><span><kbd>↵</kbd> 打开</span><span><kbd>esc</kbd> 关闭</span><span style="margin-left:auto"><kbd>G</kbd> 栅格</span></div>
+  </div>
+</div>
+<div class="gridlay" id="gridlay" aria-hidden="true"><div class="gridlay__in"><div class="gridlay__c"></div><div class="gridlay__c"></div><div class="gridlay__c"></div><div class="gridlay__c"></div><div class="gridlay__c"></div><div class="gridlay__c"></div><div class="gridlay__c"></div><div class="gridlay__c"></div><div class="gridlay__c"></div><div class="gridlay__c"></div><div class="gridlay__c"></div><div class="gridlay__c"></div></div></div>
+<script src="assets/js/lattice.js"></script>
+<script src="assets/js/charts.js"></script>
+<script src="assets/js/site.js"></script>
+
+</body>
+</html>

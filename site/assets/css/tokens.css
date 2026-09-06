@@ -1,0 +1,385 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   源裕兴设计系统全典 · SINOTAO Design System — V7.0 令牌层
+   Layer 0 Primitive → Layer 1 Semantic → Layer 2 Component
+   Primitive 只定义一次；Semantic 只引用 Primitive；Component 只引用 Semantic。
+   任何组件 CSS 不得出现字面色值或魔法数字。
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ─── 字族 · 三轨分工 ─────────────────────────────────────────────────── */
+:root{
+  --font-display:"Noto Serif SC",Songti SC,"Source Han Serif SC",serif;
+  --font-serif:"Noto Serif SC",Songti SC,serif;
+  --font-sans:"Noto Sans SC","Space Grotesk","PingFang SC",sans-serif;
+  --font-western:"Space Grotesk","Noto Sans SC",sans-serif;
+  --font-wordmark:"Poppins","Space Grotesk",sans-serif;
+  --font-mono:"JetBrains Mono",ui-monospace,SFMono-Regular,monospace;
+}
+
+/* ═══ LAYER 0 · PRIMITIVE ═══════════════════════════════════════════════ */
+
+/* ─── 宣纸墨色 Ink 十一阶 · 暖炭灰 ──────────────────────────────────── */
+:root{
+  --ink-50:#FBF9F5;   /* 宣   · 页面底 */
+  --ink-100:#F5F2EC;  /* 轻霜 */
+  --ink-200:#E9E4DA;  /* 薄雾 · 细线 */
+  --ink-300:#D3CCBF;  /* 淡烟 · 描边 */
+  --ink-400:#B2AA9C;  /* 古绢 */
+  --ink-500:#857E71;  /* 中灰 */
+  --ink-600:#635D53;  /* 砚灰 */
+  --ink-700:#45403A;  /* 墨灰 · 正文 */
+  --ink-800:#2A2622;  /* 浓墨 */
+  --ink-900:#17140F;  /* 玄墨 · 标题 · 主操作 */
+  --ink-950:#0D0B08;  /* 焦墨 · 暗色底 */
+
+  /* ─── 印章朱 Zhu 七阶 · 全站唯一装饰元素 ───────────────────────── */
+  --zhu-50:#F7EDEA;  --zhu-100:#EFD9D3; --zhu-200:#DDAFA4; --zhu-400:#A8452F;
+  --zhu-600:#8A3323; /* 标准朱 */ --zhu-700:#6E2719; --zhu-800:#541D12;
+
+  /* ─── 古铜金 Gold 五阶 · 箔金不是镀金 ─────────────────────────── */
+  --gold-200:#E8DCC4; --gold-300:#D4C29C;
+  --gold-400:#B9A177; /* 标准金 */ --gold-500:#9A8259; --gold-600:#7A653F;
+
+  /* ─── 五实体矿物色 · 色度 0.04–0.09，明度 0.32–0.40 带 ─────────── */
+  --stg-50:#F2EDF5; --stg-100:#E2D9E8; --stg-200:#B9A7C4; --stg-400:#6A4E7B;
+  --stg-500:#573E68; --stg-600:#463154; --stg-700:#372744; --stg-800:#281B31; /* 玄紫 */
+  --ste-50:#EFF4F1; --ste-100:#DCE7E0; --ste-200:#A9C1B4; --ste-400:#4A7360;
+  --ste-500:#3B5E4D; --ste-600:#2C4A3B; --ste-700:#213A2E; --ste-800:#182A21; /* 松烟绿 */
+  --sti-50:#EFF2F6; --sti-100:#DAE1EA; --sti-200:#A7B4C6; --sti-400:#455C7C;
+  --sti-500:#35496A; --sti-600:#26374F; --sti-700:#1C2A3E; --sti-800:#131E2C; /* 藏青 */
+  --sth-50:#EFF5F5; --sth-100:#DBE8E9; --sth-200:#A8C3C6; --sth-400:#4C7B80;
+  --sth-500:#3D686D; --sth-600:#2D5257; --sth-700:#213F44; --sth-800:#182E32; /* 石青 */
+  --edu-50:#F7EEEB; --edu-100:#EDDCD7; --edu-200:#D3AFA6; --edu-400:#A5584A;
+  --edu-500:#8F4438; --edu-600:#7A3229; --edu-700:#5F251E; --edu-800:#451915; /* 赭朱 */
+
+  /* ─── 状态色族 · V7.0 新立 · 与实体色彻底分离，不随 data-theme 变动 ── */
+  --status-success:#2F6B4F;  --status-warning:#8A6A1F;
+  --status-error:#8A3323;    --status-info:#2B4A63;
+}
+
+/* ─── 九级字阶 · 全部在用，无冗余档 ───────────────────────────────── */
+:root{
+  --fs-chapter:clamp(34px,4.4vw,64px); /* 章节标题 · 200 */
+  --fs-page:36px;                      /* 页面标题 · 200 */
+  --fs-panel:24px;                     /* 面板标题 · 300 */
+  --fs-stat:clamp(28px,2.4vw,34px);    /* KPI · 300 */
+  --fs-block:20px;                     /* 区块小标题 · 500 */
+  --fs-body:16px;                      /* 正文 · 400 */
+  --fs-body-s:14px;                    /* 次级正文与表格 · 400 */
+  --fs-label:12px;                     /* 中文小标签 · 500 · 零字距 */
+  --fs-eyebrow:12px;                   /* 眼标 · western only · +.18em */
+
+  --lh-chapter:1.08; --lh-page:1.16; --lh-panel:1.32; --lh-stat:1.1;
+  --lh-block:1.4;    --lh-body:1.7;  --lh-body-s:1.65; --lh-label:1.5;
+
+  /* 四支字距令牌 */
+  --track-display:-0.032em;  /* 展示级负字距 */
+  --track-title:-0.02em;     /* 24–36px 档标题 */
+  --track-ui:0;              /* 界面级一律归零，含中文小标签 */
+  --track-eyebrow:0.18em;    /* 只作用于西文眼标。汉字用 .u-label */
+
+  /* 字重 */
+  --fw-extralight:200; --fw-light:300; --fw-regular:400;
+  --fw-medium:500;     --fw-semibold:600;
+
+  --num-weight:300;          /* 全部数值统一字重 */
+
+  /* 宋体三条硬规则 */
+  --serif-min-thin:32px;     /* 200 字重的字号下限 */
+  --serif-min-size:16px;     /* 宋体本身的字号下限，再小改界面黑体 */
+  --serif-dark-comp:100;     /* 深底反白的字重补偿 */
+
+  /* 度量 */
+  --measure-cn:35em; --measure-en:38em; --measure-narrow:28em;
+}
+
+/* ─── 4px 基准 · 十三级 ──────────────────────────────────────────── */
+:root{
+  --space-0:0px;   --space-1:4px;   --space-2:8px;   --space-3:12px;
+  --space-4:16px;  --space-5:24px;  --space-6:32px;  --space-7:40px;
+  --space-8:48px;  --space-9:56px;  --space-10:64px; --space-11:80px;
+  --space-12:96px; --space-13:128px;
+
+  /* 两档节奏 · 语义别名 */
+  --rhythm-brand:var(--space-13);  /* 品牌面章节节奏 */
+  --rhythm-app:var(--space-8);     /* 产品面区块节奏 */
+  --pad-brand:var(--space-7);      /* 品牌面面板内边距 40 */
+  --pad-app:var(--space-6);        /* 产品面面板内边距 32 */
+  --pad-dense:var(--space-5);      /* 密集档 24 */
+}
+
+/* ─── 圆角七级 → 形状角色（M3 采纳项 05）· 描边三级 ────────────────── */
+:root{
+  --radius-xs:2px; --radius-sm:4px;  --radius-md:6px;  --radius-lg:10px;
+  --radius-xl:16px; --radius-2xl:24px; --radius-full:9999px;
+
+  --shape-button:var(--radius-md);   --shape-field:var(--radius-md);
+  --shape-tag:var(--radius-sm);      --shape-popover:var(--radius-lg);
+  --shape-card:var(--radius-xl);     --shape-overlay:var(--radius-xl);
+  --shape-cta:var(--radius-full);
+
+  --border-hairline:1px;   /* 默认分隔 */
+  --border-emphasis:2px;   /* 表头下划线与 Tabs 选中 */
+  --border-indicator:3px;  /* 选中行与 Toast 语义条 */
+}
+
+/* ─── 阴影六级 · 暖墨投影，不用纯黑 ──────────────────────────────── */
+:root{
+  --shadow-none:none;
+  --shadow-xs:0 1px 2px rgba(26,22,18,.04);
+  --shadow-sm:0 1px 3px rgba(26,22,18,.05),0 1px 2px rgba(26,22,18,.03);
+  --shadow-md:0 4px 12px rgba(26,22,18,.06),0 1px 3px rgba(26,22,18,.04);
+  --shadow-lg:0 8px 24px rgba(26,22,18,.08),0 2px 6px rgba(26,22,18,.04);
+  --shadow-xl:0 16px 48px rgba(26,22,18,.10),0 4px 12px rgba(26,22,18,.05);
+}
+
+/* ─── 动效即叙事 · 时长五档 + 缓动五条 ───────────────────────────── */
+:root{
+  --dur-instant:80ms; --dur-micro:150ms; --dur-transition:300ms;
+  --dur-narrative:500ms; --dur-loop:2400ms;
+  --ease-standard:cubic-bezier(.2,0,0,1);
+  --ease-emphasized:cubic-bezier(.16,1,.3,1);
+  --ease-out:cubic-bezier(0,0,.2,1);
+  --ease-in:cubic-bezier(.4,0,1,1);
+  --ease-brush:cubic-bezier(.33,0,.12,1);   /* 落笔 — 起笔重、收笔轻 */
+  --stagger:70ms;                            /* Reveal 错峰，上限 6 级 */
+}
+@media (prefers-reduced-motion:reduce){
+  :root{--dur-instant:1ms;--dur-micro:1ms;--dur-transition:1ms;--dur-narrative:1ms;--stagger:0ms}
+}
+
+/* ─── 断点五级 · 12 列 · 窗口尺寸类（M3 采纳项 03）───────────────── */
+:root{
+  --bp-sm:600px; --bp-md:905px; --bp-lg:1240px; --bp-xl:1440px;
+  --grid-cols:12;
+  --gutter:24px;
+  --container-doc:1120px;    /* 长文内容区上限 */
+  --container-brand:1200px;  /* 品牌页 */
+  --container-wide:1440px;   /* 数据大屏 */
+  --rail-width:76px; --drawer-width:264px; --panel-width:380px;
+  --appbar-height:64px; --appbar-brand:72px;
+  --touch-min:44px;
+}
+
+/* ─── 图表令牌 · V7.0 新增 ───────────────────────────────────────── */
+:root{
+  --chart-stroke:1.5px;
+  --chart-bar-h:8px;
+  --chart-series-max:3;
+  --dot-grid:48;             /* EntityLattice 网格 */
+  --dot-r-data:1.5px;        /* DotDensity 点径 1.4–1.6 */
+}
+
+/* ─── 图解令牌 · 六原子 ──────────────────────────────────────────── */
+:root{
+  --node-r-1:9px; --node-r-2:7px; --node-r-3:5px;
+  --edge-default:1px;
+  --edge-primary:2px;
+  --tree-indent:20px;
+}
+
+/* ═══ LAYER 1 · SEMANTIC ════════════════════════════════════════════════
+   五实体主题：data-theme="stg|ste|sti|sth|edu" 只重映射 --brand-* 整族。
+   版式与组件零差异。默认（无 data-theme）= STG 集团母体。
+   ═══════════════════════════════════════════════════════════════════════ */
+:root,[data-theme="stg"]{
+  --brand-50:var(--stg-50);   --brand-100:var(--stg-100); --brand-200:var(--stg-200);
+  --brand-400:var(--stg-400); --brand-500:var(--stg-500); --brand-600:var(--stg-600);
+  --brand-700:var(--stg-700); --brand-800:var(--stg-800);
+  --brand-code:"STG"; --brand-name:"源裕兴创新未来";
+}
+[data-theme="ste"]{
+  --brand-50:var(--ste-50);   --brand-100:var(--ste-100); --brand-200:var(--ste-200);
+  --brand-400:var(--ste-400); --brand-500:var(--ste-500); --brand-600:var(--ste-600);
+  --brand-700:var(--ste-700); --brand-800:var(--ste-800);
+  --brand-code:"STE"; --brand-name:"九派国有能源";
+}
+[data-theme="sti"]{
+  --brand-50:var(--sti-50);   --brand-100:var(--sti-100); --brand-200:var(--sti-200);
+  --brand-400:var(--sti-400); --brand-500:var(--sti-500); --brand-600:var(--sti-600);
+  --brand-700:var(--sti-700); --brand-800:var(--sti-800);
+  --brand-code:"STI"; --brand-name:"源裕兴进出口贸易";
+}
+[data-theme="sth"]{
+  --brand-50:var(--sth-50);   --brand-100:var(--sth-100); --brand-200:var(--sth-200);
+  --brand-400:var(--sth-400); --brand-500:var(--sth-500); --brand-600:var(--sth-600);
+  --brand-700:var(--sth-700); --brand-800:var(--sth-800);
+  --brand-code:"STH"; --brand-name:"源裕兴健康科技";
+}
+[data-theme="edu"]{
+  --brand-50:var(--edu-50);   --brand-100:var(--edu-100); --brand-200:var(--edu-200);
+  --brand-400:var(--edu-400); --brand-500:var(--edu-500); --brand-600:var(--edu-600);
+  --brand-700:var(--edu-700); --brand-800:var(--edu-800);
+  --brand-code:"EDU"; --brand-name:"崇仁教育";
+}
+
+:root{
+  /* 表面四层 · 层级只靠明度差，不靠框线 */
+  --surface-page:var(--ink-50);
+  --surface-sunken:var(--ink-100);
+  --surface-card:#FFFEFB;         /* 非纯白 */
+  --surface-raised:#FFFEFB;
+  --surface-inverse:var(--ink-900);
+  --surface-brand-subtle:var(--brand-50);
+  --surface-selected:color-mix(in oklch,var(--brand-600) 6%,transparent);
+  --surface-hover:var(--ink-100);
+  --scrim:rgba(26,22,18,.45);
+
+  /* 文本 */
+  --text-heading:var(--ink-900);
+  --text-body:var(--ink-700);
+  --text-muted:var(--ink-600);
+  /* 三级文在浅色下并到 ink-600：ink-500 在宣纸底上实测 3.83:1，不满足准则 10。
+     浅色的第三层级改由字号与字重承担；暗色下 ink-500 达 5.6:1，四级仍成立。
+     待令牌方补一阶 ink-550（目标 4.5–5:1）后可恢复四级。 */
+  --text-subtle:var(--ink-600);
+  --text-brand:var(--brand-500);
+  --text-gold:var(--gold-600);
+  --text-link:var(--brand-500);
+  --text-link-hover:var(--brand-700);
+
+  /* 描边 */
+  --border-subtle:var(--ink-200);
+  --border-default:var(--ink-300);
+  --border-strong:var(--ink-400);
+  --border-brand:var(--brand-600);
+  --border-inverse:rgba(251,249,245,.18);
+  --hairline:var(--border-hairline) solid var(--border-subtle);
+
+  /* on-* 配对族 · M3 采纳项 01 · 对比度在令牌层锁死 */
+  --on-ink:var(--ink-50);
+  --on-brand:var(--ink-50);
+  --on-brand-subtle:var(--brand-700);
+  --on-gold:var(--ink-900);        /* 金上用玄墨不用白 */
+  --on-error:var(--ink-50);
+  --on-success:var(--ink-50);
+  --on-warning:var(--ink-50);
+  --on-info:var(--ink-50);
+
+  /* 状态层 · M3 采纳项 02 · 仅作用于表面，不作用于文字与图标 */
+  --state-layer-hover:.08;
+  --state-layer-focus:.10;
+  --state-layer-press:.10;
+  --state-layer-drag:.16;
+
+  /* 状态表面 */
+  --surface-success:var(--ste-50);  --surface-warning:#FBF2E1;
+  --surface-error:var(--zhu-50);    --surface-info:var(--sti-50);
+  --state-disabled-opacity:.4;
+
+  /* 焦点 · 永远可见 */
+  --focus-ring-color:var(--brand-600);
+  --focus-ring-width:2px;
+  --focus-ring-offset:2px;
+  --ring-hairline:var(--border-hairline) solid var(--ink-200);
+
+  /* 印章朱 —— 章节起点标记，全站唯一装饰元素 */
+  --seal:var(--zhu-600);
+
+  /* 图表语义 */
+  --rail:var(--ink-200);             /* 量表 / 条形的未填充轨 —— 必须比面板亮一档 */
+  --chart-baseline:var(--ink-200);   /* 唯一保留的一条轴线 */
+  --chart-muted:var(--ink-300);      /* 对比序列。不占用古铜金的配额 */
+  --chart-s1:var(--brand-600);
+  --chart-s2:var(--ink-400);
+  --chart-s3:var(--ink-300);
+
+  /* 图解语义 */
+  --edge-color:var(--ink-300);
+  --node-fill:var(--ink-900);
+  --node-hollow:var(--surface-card);
+
+  /* 溯源胶囊 */
+  --capsule-bg:var(--ink-100);
+}
+
+/* ═══ LAYER 2 · COMPONENT ═══════════════════════════════════════════════ */
+:root{
+  --btn-h-xl:48px; --btn-h-l:44px; --btn-h-m:40px; --btn-h-s:36px;
+  --btn-primary-bg:var(--ink-900);          /* 主操作用玄墨 —— 墨是最贵的颜色 */
+  --btn-primary-bg-hover:var(--ink-800);
+  --btn-primary-bg-active:var(--ink-950);
+  --btn-primary-fg:var(--on-ink);
+  --btn-secondary-border:var(--border-default);
+  --btn-secondary-fg:var(--text-heading);
+  --btn-gold-bg:var(--gold-400);
+  --btn-gold-fg:var(--on-gold);
+
+  --field-h:40px; --field-h-compact:36px; --field-pad-x:12px;
+  --field-bg:var(--surface-card);
+  --field-placeholder:var(--ink-600);   /* ink-500 实测 3.99:1，不达 AA */
+
+  --panel-max-per-screen:3;
+  --card-shadow:none;                       /* 平面为默认 */
+
+  --table-head-rule:var(--border-emphasis) solid var(--ink-900);
+  --table-row-h:48px;
+  --table-divider:var(--border-subtle);
+
+  --tooltip-bg:var(--ink-900);
+  --tooltip-fg:var(--ink-100);
+}
+
+/* ═══ 暗色模式 · 墨海生光 ═══════════════════════════════════════════════
+   Ink 反转，实体色明度提升。不另写一套组件。
+   ═══════════════════════════════════════════════════════════════════════ */
+[data-color-scheme="dark"]{
+  --brand-600:color-mix(in oklch,var(--brand-400) 74%,var(--ink-50));
+  --brand-700:var(--brand-400);
+  --brand-800:var(--brand-200);
+  --brand-50:color-mix(in oklch,var(--brand-800) 42%,var(--ink-950));
+  --brand-100:color-mix(in oklch,var(--brand-800) 60%,var(--ink-950));
+
+  --surface-page:var(--ink-950);
+  --surface-sunken:#131009;
+  --surface-card:#1A1713;
+  --surface-raised:#221E19;
+  --surface-inverse:var(--ink-50);
+  --surface-hover:#221E19;
+  --scrim:rgba(0,0,0,.62);
+
+  --text-heading:var(--ink-50);
+  --text-body:var(--ink-200);
+  --text-muted:var(--ink-400);
+  --text-subtle:var(--ink-500);
+  --text-brand:var(--brand-600);
+  --text-gold:var(--gold-300);
+  --text-link:var(--brand-600);
+  --text-link-hover:var(--brand-700);
+
+  --border-subtle:rgba(251,249,245,.10);
+  --border-default:rgba(251,249,245,.18);
+  --border-strong:rgba(251,249,245,.30);
+  --ring-hairline:var(--border-hairline) solid rgba(251,249,245,.14);
+
+  --on-ink:var(--ink-950);
+  --on-brand:var(--ink-950);
+  --on-brand-subtle:var(--brand-800);
+
+  --status-success:#5F9E7E; --status-warning:#C0A055;
+  --status-error:#C9705C;   --status-info:#6E93B0;
+  --surface-success:rgba(74,115,96,.22);  --surface-warning:rgba(154,130,89,.22);
+  --surface-error:rgba(168,69,47,.22);    --surface-info:rgba(69,92,124,.24);
+
+  --seal:var(--zhu-400);
+
+  --btn-primary-bg:var(--ink-50);
+  --btn-primary-bg-hover:#FFFFFF;
+  --btn-primary-bg-active:var(--ink-200);
+  --btn-primary-fg:var(--ink-950);
+
+  --card-shadow:0 1px 3px rgba(0,0,0,.5);
+  --table-head-rule:var(--border-emphasis) solid var(--ink-200);
+  --tooltip-bg:var(--ink-100);
+  --tooltip-fg:var(--ink-900);
+
+  --rail:var(--ink-800);             /* 暗色下轨要比面板 #1A1713 亮，不能用 sunken */
+  --chart-baseline:rgba(251,249,245,.16);
+  --chart-muted:var(--ink-600);
+  --chart-s2:var(--ink-500);
+  --chart-s3:var(--ink-600);
+  --edge-color:var(--ink-700);
+  --node-fill:var(--ink-50);
+  --node-hollow:var(--surface-page);
+  --capsule-bg:rgba(251,249,245,.16);
+  --field-placeholder:var(--ink-400);   /* ink-500 实测 4.44:1，不达 AA */
+}

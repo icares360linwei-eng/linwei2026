@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="zh-Hans" data-theme="stg">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>令牌总表 · 源裕兴设计系统全典 V7.0</title>
+<meta name="description" content="源裕兴设计系统 V7.0 令牌总表。可检索、可复制，与 tokens.css 逐条对应。">
+<meta name="color-scheme" content="light dark">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Noto+Sans+SC:wght@200;300;400;500;600&family=Noto+Serif+SC:wght@200;300;400;500&family=Poppins:wght@500;600&family=Space+Grotesk:wght@300;400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0..1,0&display=swap">
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/components.css">
+<link rel="stylesheet" href="assets/css/site.css">
+<script>
+/* 上色前先定主题与明暗，避免首帧闪白 */
+(function(){try{
+  var t=localStorage.getItem('sinotao.theme')||'stg';
+  document.documentElement.setAttribute('data-theme',t);
+  var s=localStorage.getItem('sinotao.scheme')||'auto';
+  var d=s==='dark'||(s==='auto'&&matchMedia('(prefers-color-scheme: dark)').matches);
+  document.documentElement.setAttribute('data-color-scheme',d?'dark':'light');
+}catch(e){}})();
+</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+<header class="topbar">
+  <div class="topbar__in">
+    <a class="topbar__brand" href="index.html">
+      <span class="topbar__wm">SINOTAO</span>
+      <span class="topbar__div"></span>
+      <span class="topbar__ent"><span class="topbar__tick"></span><span class="topbar__code" data-ent-code>STG</span></span>
+    </a>
+    <nav class="topbar__nav" aria-label="全典导航">
+      <a class="navlink" href="volume-1.html"><span class="navlink__i">一</span>序与总纲</a>
+      <a class="navlink" href="volume-2.html"><span class="navlink__i">二</span>基础</a>
+      <a class="navlink" href="volume-3.html"><span class="navlink__i">三</span>表达</a>
+      <a class="navlink" href="volume-4.html"><span class="navlink__i">四</span>数据与行为</a>
+      <a class="navlink" href="volume-5.html"><span class="navlink__i">五</span>治理</a>
+      <a class="navlink" href="atlas.html">图谱</a>
+      <a class="navlink" href="tokens.html" aria-current="page">令牌</a>
+    </nav>
+    <div class="topbar__tools">
+      <button class="kbtn" data-k-open type="button" aria-label="搜索全典"><span class="ms" style="font-size:16px" aria-hidden="true">search</span><span class="kbtn__t">检索</span><kbd>⌘K</kbd></button>
+      <div class="entsw" id="entsw">
+        <button class="iconbtn" data-entsw-btn type="button" aria-haspopup="menu" aria-expanded="false" aria-label="切换实体主题"><span class="ms" aria-hidden="true">hub</span></button>
+        <div class="entsw__menu" role="menu" hidden></div>
+      </div>
+      <button class="iconbtn" data-scheme-btn type="button" aria-label="切换明暗模式"><span class="ms" data-scheme-icon aria-hidden="true">contrast</span></button>
+      <button class="iconbtn" data-drawer-open type="button" aria-label="打开目录"><span class="ms" aria-hidden="true">menu</span></button>
+    </div>
+  </div>
+</header>
+<main id="main">
+
+<section class="vhero on-dark">
+  <canvas class="vhero__canvas" data-art="tokens" aria-hidden="true"></canvas>
+  <div class="wrap vhero__in">
+    <div class="hero__eyebrow"><span class="seal" style="background:var(--gold-400)"></span><span class="u-eyebrow" style="color:var(--gold-300)">SINOTAO Design System · V7.0 · 附录</span></div>
+    <h1 class="vhero__t">令牌总表</h1>
+    <p class="vhero__s">数量不是质量。只在语义层与组件层保留真正会被复用或主题化的部分 —— 本表 159 条为对外索引，与 <code style="color:var(--ink-200)">assets/css/tokens.css</code> 逐条对应。点击任意行复制令牌名。</p>
+    <nav class="vols" aria-label="分册导航">
+      <a class="vol-pill" href="volume-1.html"><i>一</i>序与总纲</a>
+      <a class="vol-pill" href="volume-2.html"><i>二</i>基础</a>
+      <a class="vol-pill" href="volume-3.html"><i>三</i>表达</a>
+      <a class="vol-pill" href="volume-4.html"><i>四</i>数据与行为</a>
+      <a class="vol-pill" href="volume-5.html"><i>五</i>治理</a>
+      <a class="vol-pill" href="tokens.html" aria-current="page"><i>附</i>令牌</a>
+    </nav>
+  </div>
+</section>
+
+<div class="toc"><div class="wrap">
+  <div style="display:flex;gap:var(--space-4);align-items:center;flex-wrap:wrap">
+    <label class="field" style="flex:1 1 280px">
+      <span class="u-sr">检索令牌</span>
+      <input class="input" id="tq" type="search" placeholder="检索令牌名、取值或用途 —— 例如 ink、字距、48px" autocomplete="off" spellcheck="false">
+    </label>
+    <div id="tcount" class="u-label" style="white-space:nowrap">159 条</div>
+    <button class="btn btn--secondary btn--s" type="button" id="tclear">清除</button>
+  </div>
+  <div id="tfilters" style="display:flex;flex-wrap:wrap;gap:var(--space-2);margin-top:var(--space-4)">
+    <button class="tag tag--plain" type="button" data-fam="" aria-pressed="true" style="cursor:pointer;border:0;font:inherit">全部</button>
+    <button class="tag tag--plain" type="button" data-fam="色彩 · Ink" aria-pressed="false" style="cursor:pointer;border:0;font:inherit">色彩 · Ink</button><button class="tag tag--plain" type="button" data-fam="色彩 · 朱与金" aria-pressed="false" style="cursor:pointer;border:0;font:inherit">色彩 · 朱与金</button><button class="tag tag--plain" type="button" data-fam="色彩 · 五实体" aria-pressed="false" style="cursor:pointer;border:0;font:inherit">色彩 · 五实体</button><button class="tag tag--plain" type="button" data-fam="色彩 · 状态色族" aria-pressed="false" style="cursor:pointer;border:0;font:inherit">色彩 · 状态色族</button><button class="tag tag--plain" type="button" data-fam="字体" aria-pressed="false" style="cursor:pointer;border:0;font:inherit">字体</button><button class="tag tag--plain" type="button" data-fam="间距 · 4px × 13 级" aria-pressed="false" style="cursor:pointer;border:0;font:inherit">间距 · 4px × 13 级</button><button class="tag tag--plain" type="button" data-fam="形状" aria-pressed="false" style="cursor:pointer;border:0;font:inherit">形状</button><button class="tag tag--plain" type="button" data-fam="高程 · 暖墨投影" aria-pressed="false" style="cursor:pointer;border:0;font:inherit">高程 · 暖墨投影</button><button class="tag tag--plain" type="button" data-fam="动效" aria-pressed="false" style="cursor:pointer;border:0;font:inherit">动效</button><button class="tag tag--plain" type="button" data-fam="版面" aria-pressed="false" style="cursor:pointer;border:0;font:inherit">版面</button><button class="tag tag--plain" type="button" data-fam="语义 · 表面与文本" aria-pressed="false" style="cursor:pointer;border:0;font:inherit">语义 · 表面与文本</button><button class="tag tag--plain" type="button" data-fam="语义 · on- 配对族" aria-pressed="false" style="cursor:pointer;border:0;font:inherit">语义 · on- 配对族</button><button class="tag tag--plain" type="button" data-fam="组件" aria-pressed="false" style="cursor:pointer;border:0;font:inherit">组件</button><button class="tag tag--plain" type="button" data-fam="图表与点阵" aria-pressed="false" style="cursor:pointer;border:0;font:inherit">图表与点阵</button><button class="tag tag--plain" type="button" data-fam="图解" aria-pressed="false" style="cursor:pointer;border:0;font:inherit">图解</button>
+  </div>
+</div></div>
+
+<div class="wrap">
+<section class="chapter" style="border-bottom:0" aria-label="令牌总表">
+  
+  <div class="block fx-reveal" data-fam-sec="色彩 · Ink">
+    <div class="block__head"><span class="u-eyebrow">色彩 · Ink</span><span class="block__note">11 条</span></div>
+    <div class="tokens">
+      <div class="token-row" data-copy="--ink-50" data-row role="button" tabindex="0" title="点击复制 --ink-50">
+        <span class="token-row__name">--ink-50</span><span class="token-row__val">#FBF9F5</span><span class="token-row__use">宣 · 页面底</span></div><div class="token-row" data-copy="--ink-100" data-row role="button" tabindex="0" title="点击复制 --ink-100">
+        <span class="token-row__name">--ink-100</span><span class="token-row__val">#F5F2EC</span><span class="token-row__use">轻霜</span></div><div class="token-row" data-copy="--ink-200" data-row role="button" tabindex="0" title="点击复制 --ink-200">
+        <span class="token-row__name">--ink-200</span><span class="token-row__val">#E9E4DA</span><span class="token-row__use">薄雾 · 细线</span></div><div class="token-row" data-copy="--ink-300" data-row role="button" tabindex="0" title="点击复制 --ink-300">
+        <span class="token-row__name">--ink-300</span><span class="token-row__val">#D3CCBF</span><span class="token-row__use">淡烟 · 描边</span></div><div class="token-row" data-copy="--ink-400" data-row role="button" tabindex="0" title="点击复制 --ink-400">
+        <span class="token-row__name">--ink-400</span><span class="token-row__val">#B2AA9C</span><span class="token-row__use">古绢</span></div><div class="token-row" data-copy="--ink-500" data-row role="button" tabindex="0" title="点击复制 --ink-500">
+        <span class="token-row__name">--ink-500</span><span class="token-row__val">#857E71</span><span class="token-row__use">中灰</span></div><div class="token-row" data-copy="--ink-600" data-row role="button" tabindex="0" title="点击复制 --ink-600">
+        <span class="token-row__name">--ink-600</span><span class="token-row__val">#635D53</span><span class="token-row__use">砚灰</span></div><div class="token-row" data-copy="--ink-700" data-row role="button" tabindex="0" title="点击复制 --ink-700">
+        <span class="token-row__name">--ink-700</span><span class="token-row__val">#45403A</span><span class="token-row__use">墨灰 · 正文</span></div><div class="token-row" data-copy="--ink-800" data-row role="button" tabindex="0" title="点击复制 --ink-800">
+        <span class="token-row__name">--ink-800</span><span class="token-row__val">#2A2622</span><span class="token-row__use">浓墨</span></div><div class="token-row" data-copy="--ink-900" data-row role="button" tabindex="0" title="点击复制 --ink-900">
+        <span class="token-row__name">--ink-900</span><span class="token-row__val">#17140F</span><span class="token-row__use">玄墨 · 标题 · 主操作</span></div><div class="token-row" data-copy="--ink-950" data-row role="button" tabindex="0" title="点击复制 --ink-950">
+        <span class="token-row__name">--ink-950</span><span class="token-row__val">#0D0B08</span><span class="token-row__use">焦墨 · 暗色底</span></div>
+    </div>
+  </div>
+  <div class="block fx-reveal" data-fam-sec="色彩 · 朱与金">
+    <div class="block__head"><span class="u-eyebrow">色彩 · 朱与金</span><span class="block__note">7 条</span></div>
+    <div class="tokens">
+      <div class="token-row" data-copy="--zhu-600" data-row role="button" tabindex="0" title="点击复制 --zhu-600">
+        <span class="token-row__name">--zhu-600</span><span class="token-row__val">#8A3323</span><span class="token-row__use">标准朱 · 全站唯一装饰元素</span></div><div class="token-row" data-copy="--zhu-400" data-row role="button" tabindex="0" title="点击复制 --zhu-400">
+        <span class="token-row__name">--zhu-400</span><span class="token-row__val">#A8452F</span><span class="token-row__use">朱 400 · 图表第三序列</span></div><div class="token-row" data-copy="--zhu-700" data-row role="button" tabindex="0" title="点击复制 --zhu-700">
+        <span class="token-row__name">--zhu-700</span><span class="token-row__val">#6E2719</span><span class="token-row__use">朱 700</span></div><div class="token-row" data-copy="--gold-400" data-row role="button" tabindex="0" title="点击复制 --gold-400">
+        <span class="token-row__name">--gold-400</span><span class="token-row__val">#B9A177</span><span class="token-row__use">标准金 · 箔金不是镀金</span></div><div class="token-row" data-copy="--gold-300" data-row role="button" tabindex="0" title="点击复制 --gold-300">
+        <span class="token-row__name">--gold-300</span><span class="token-row__val">#D4C29C</span><span class="token-row__use">深底眼标</span></div><div class="token-row" data-copy="--gold-600" data-row role="button" tabindex="0" title="点击复制 --gold-600">
+        <span class="token-row__name">--gold-600</span><span class="token-row__val">#7A653F</span><span class="token-row__use">浅底文字 --text-gold</span></div><div class="token-row" data-copy="--seal" data-row role="button" tabindex="0" title="点击复制 --seal">
+        <span class="token-row__name">--seal</span><span class="token-row__val">var(--zhu-600)</span><span class="token-row__use">章节起点标记</span></div>
+    </div>
+  </div>
+  <div class="block fx-reveal" data-fam-sec="色彩 · 五实体">
+    <div class="block__head"><span class="u-eyebrow">色彩 · 五实体</span><span class="block__note">6 条</span></div>
+    <div class="tokens">
+      <div class="token-row" data-copy="--stg-600" data-row role="button" tabindex="0" title="点击复制 --stg-600">
+        <span class="token-row__name">--stg-600</span><span class="token-row__val">#463154</span><span class="token-row__use">玄紫 · 源裕兴创新未来</span></div><div class="token-row" data-copy="--ste-600" data-row role="button" tabindex="0" title="点击复制 --ste-600">
+        <span class="token-row__name">--ste-600</span><span class="token-row__val">#2C4A3B</span><span class="token-row__use">松烟绿 · 九派国有能源</span></div><div class="token-row" data-copy="--sti-600" data-row role="button" tabindex="0" title="点击复制 --sti-600">
+        <span class="token-row__name">--sti-600</span><span class="token-row__val">#26374F</span><span class="token-row__use">藏青 · 源裕兴进出口贸易</span></div><div class="token-row" data-copy="--sth-600" data-row role="button" tabindex="0" title="点击复制 --sth-600">
+        <span class="token-row__name">--sth-600</span><span class="token-row__val">#2D5257</span><span class="token-row__use">石青 · 源裕兴健康科技</span></div><div class="token-row" data-copy="--edu-600" data-row role="button" tabindex="0" title="点击复制 --edu-600">
+        <span class="token-row__name">--edu-600</span><span class="token-row__val">#7A3229</span><span class="token-row__use">赭朱 · 崇仁教育</span></div><div class="token-row" data-copy="--brand-600" data-row role="button" tabindex="0" title="点击复制 --brand-600">
+        <span class="token-row__name">--brand-600</span><span class="token-row__val">var(--{entity}-600)</span><span class="token-row__use">由 data-theme 重映射整族 50…800</span></div>
+    </div>
+  </div>
+  <div class="block fx-reveal" data-fam-sec="色彩 · 状态色族">
+    <div class="block__head"><span class="u-eyebrow">色彩 · 状态色族</span><span class="block__note">4 条</span></div>
+    <div class="tokens">
+      <div class="token-row" data-copy="--status-success" data-row role="button" tabindex="0" title="点击复制 --status-success">
+        <span class="token-row__name">--status-success</span><span class="token-row__val">#2F6B4F</span><span class="token-row__use">达标 · 上涨 · 在线</span></div><div class="token-row" data-copy="--status-warning" data-row role="button" tabindex="0" title="点击复制 --status-warning">
+        <span class="token-row__name">--status-warning</span><span class="token-row__val">#8A6A1F</span><span class="token-row__use">临界 · 待核 · 需人工复核</span></div><div class="token-row" data-copy="--status-error" data-row role="button" tabindex="0" title="点击复制 --status-error">
+        <span class="token-row__name">--status-error</span><span class="token-row__val">#8A3323</span><span class="token-row__use">超限 · 下跌 · 失败</span></div><div class="token-row" data-copy="--status-info" data-row role="button" tabindex="0" title="点击复制 --status-info">
+        <span class="token-row__name">--status-info</span><span class="token-row__val">#2B4A63</span><span class="token-row__use">提示 · 进行中</span></div>
+    </div>
+  </div>
+  <div class="block fx-reveal" data-fam-sec="字体">
+    <div class="block__head"><span class="u-eyebrow">字体</span><span class="block__note">23 条</span></div>
+    <div class="tokens">
+      <div class="token-row" data-copy="--font-display" data-row role="button" tabindex="0" title="点击复制 --font-display">
+        <span class="token-row__name">--font-display</span><span class="token-row__val">Noto Serif SC</span><span class="token-row__use">展示轨 · H1/H2 与章节标题</span></div><div class="token-row" data-copy="--font-sans" data-row role="button" tabindex="0" title="点击复制 --font-sans">
+        <span class="token-row__name">--font-sans</span><span class="token-row__val">Noto Sans SC</span><span class="token-row__use">界面轨 · 中文</span></div><div class="token-row" data-copy="--font-western" data-row role="button" tabindex="0" title="点击复制 --font-western">
+        <span class="token-row__name">--font-western</span><span class="token-row__val">Space Grotesk</span><span class="token-row__use">界面轨 · 西文与数值</span></div><div class="token-row" data-copy="--font-mono" data-row role="button" tabindex="0" title="点击复制 --font-mono">
+        <span class="token-row__name">--font-mono</span><span class="token-row__val">JetBrains Mono</span><span class="token-row__use">标识轨 · 单号批次哈希</span></div><div class="token-row" data-copy="--font-wordmark" data-row role="button" tabindex="0" title="点击复制 --font-wordmark">
+        <span class="token-row__name">--font-wordmark</span><span class="token-row__val">Poppins</span><span class="token-row__use">SINOTAO 字标</span></div><div class="token-row" data-copy="--fs-chapter" data-row role="button" tabindex="0" title="点击复制 --fs-chapter">
+        <span class="token-row__name">--fs-chapter</span><span class="token-row__val">clamp(34px,4.4vw,64px)</span><span class="token-row__use">章节标题 · 200</span></div><div class="token-row" data-copy="--fs-page" data-row role="button" tabindex="0" title="点击复制 --fs-page">
+        <span class="token-row__name">--fs-page</span><span class="token-row__val">36px</span><span class="token-row__use">页面标题 · 200</span></div><div class="token-row" data-copy="--fs-panel" data-row role="button" tabindex="0" title="点击复制 --fs-panel">
+        <span class="token-row__name">--fs-panel</span><span class="token-row__val">24px</span><span class="token-row__use">面板标题 · 300</span></div><div class="token-row" data-copy="--fs-stat" data-row role="button" tabindex="0" title="点击复制 --fs-stat">
+        <span class="token-row__name">--fs-stat</span><span class="token-row__val">clamp(28px,2.4vw,34px)</span><span class="token-row__use">KPI · 300</span></div><div class="token-row" data-copy="--fs-block" data-row role="button" tabindex="0" title="点击复制 --fs-block">
+        <span class="token-row__name">--fs-block</span><span class="token-row__val">20px</span><span class="token-row__use">区块小标题 · 500</span></div><div class="token-row" data-copy="--fs-body" data-row role="button" tabindex="0" title="点击复制 --fs-body">
+        <span class="token-row__name">--fs-body</span><span class="token-row__val">16px</span><span class="token-row__use">正文 · 400</span></div><div class="token-row" data-copy="--fs-body-s" data-row role="button" tabindex="0" title="点击复制 --fs-body-s">
+        <span class="token-row__name">--fs-body-s</span><span class="token-row__val">14px</span><span class="token-row__use">次级正文与表格 · 400</span></div><div class="token-row" data-copy="--fs-label" data-row role="button" tabindex="0" title="点击复制 --fs-label">
+        <span class="token-row__name">--fs-label</span><span class="token-row__val">12px</span><span class="token-row__use">中文小标签 · 500 · 零字距</span></div><div class="token-row" data-copy="--fs-eyebrow" data-row role="button" tabindex="0" title="点击复制 --fs-eyebrow">
+        <span class="token-row__name">--fs-eyebrow</span><span class="token-row__val">12px</span><span class="token-row__use">眼标 · western only</span></div><div class="token-row" data-copy="--track-display" data-row role="button" tabindex="0" title="点击复制 --track-display">
+        <span class="token-row__name">--track-display</span><span class="token-row__val">-0.032em</span><span class="token-row__use">展示级负字距</span></div><div class="token-row" data-copy="--track-title" data-row role="button" tabindex="0" title="点击复制 --track-title">
+        <span class="token-row__name">--track-title</span><span class="token-row__val">-0.02em</span><span class="token-row__use">24–36px 档标题</span></div><div class="token-row" data-copy="--track-ui" data-row role="button" tabindex="0" title="点击复制 --track-ui">
+        <span class="token-row__name">--track-ui</span><span class="token-row__val">0</span><span class="token-row__use">界面级一律归零</span></div><div class="token-row" data-copy="--track-eyebrow" data-row role="button" tabindex="0" title="点击复制 --track-eyebrow">
+        <span class="token-row__name">--track-eyebrow</span><span class="token-row__val">0.18em</span><span class="token-row__use">只作用于西文眼标</span></div><div class="token-row" data-copy="--num-weight" data-row role="button" tabindex="0" title="点击复制 --num-weight">
+        <span class="token-row__name">--num-weight</span><span class="token-row__val">300</span><span class="token-row__use">全部数值统一字重</span></div><div class="token-row" data-copy="--measure-cn" data-row role="button" tabindex="0" title="点击复制 --measure-cn">
+        <span class="token-row__name">--measure-cn</span><span class="token-row__val">35em</span><span class="token-row__use">中文阅读度量 · 写在元素自身上</span></div><div class="token-row" data-copy="--serif-min-thin" data-row role="button" tabindex="0" title="点击复制 --serif-min-thin">
+        <span class="token-row__name">--serif-min-thin</span><span class="token-row__val">32px</span><span class="token-row__use">200 字重的字号下限</span></div><div class="token-row" data-copy="--serif-min-size" data-row role="button" tabindex="0" title="点击复制 --serif-min-size">
+        <span class="token-row__name">--serif-min-size</span><span class="token-row__val">16px</span><span class="token-row__use">宋体本身的字号下限</span></div><div class="token-row" data-copy="--serif-dark-comp" data-row role="button" tabindex="0" title="点击复制 --serif-dark-comp">
+        <span class="token-row__name">--serif-dark-comp</span><span class="token-row__val">+100</span><span class="token-row__use">深底反白的字重补偿</span></div>
+    </div>
+  </div>
+  <div class="block fx-reveal" data-fam-sec="间距 · 4px × 13 级">
+    <div class="block__head"><span class="u-eyebrow">间距 · 4px × 13 级</span><span class="block__note">15 条</span></div>
+    <div class="tokens">
+      <div class="token-row" data-copy="--space-1" data-row role="button" tabindex="0" title="点击复制 --space-1">
+        <span class="token-row__name">--space-1</span><span class="token-row__val">4px</span><span class="token-row__use">图标与文字之间</span></div><div class="token-row" data-copy="--space-2" data-row role="button" tabindex="0" title="点击复制 --space-2">
+        <span class="token-row__name">--space-2</span><span class="token-row__val">8px</span><span class="token-row__use">标签与数值之间</span></div><div class="token-row" data-copy="--space-3" data-row role="button" tabindex="0" title="点击复制 --space-3">
+        <span class="token-row__name">--space-3</span><span class="token-row__val">12px</span><span class="token-row__use">行内元素</span></div><div class="token-row" data-copy="--space-4" data-row role="button" tabindex="0" title="点击复制 --space-4">
+        <span class="token-row__name">--space-4</span><span class="token-row__val">16px</span><span class="token-row__use">栅格槽宽下限</span></div><div class="token-row" data-copy="--space-5" data-row role="button" tabindex="0" title="点击复制 --space-5">
+        <span class="token-row__name">--space-5</span><span class="token-row__val">24px</span><span class="token-row__use">组件间距 · 密集档内边距</span></div><div class="token-row" data-copy="--space-6" data-row role="button" tabindex="0" title="点击复制 --space-6">
+        <span class="token-row__name">--space-6</span><span class="token-row__val">32px</span><span class="token-row__use">面板内边距（产品面）</span></div><div class="token-row" data-copy="--space-7" data-row role="button" tabindex="0" title="点击复制 --space-7">
+        <span class="token-row__name">--space-7</span><span class="token-row__val">40px</span><span class="token-row__use">面板内边距（品牌面）</span></div><div class="token-row" data-copy="--space-8" data-row role="button" tabindex="0" title="点击复制 --space-8">
+        <span class="token-row__name">--space-8</span><span class="token-row__val">48px</span><span class="token-row__use">产品面区块节奏 · 表格行高</span></div><div class="token-row" data-copy="--space-9" data-row role="button" tabindex="0" title="点击复制 --space-9">
+        <span class="token-row__name">--space-9</span><span class="token-row__val">56px</span><span class="token-row__use">面板内部大分段</span></div><div class="token-row" data-copy="--space-10" data-row role="button" tabindex="0" title="点击复制 --space-10">
+        <span class="token-row__name">--space-10</span><span class="token-row__val">64px</span><span class="token-row__use">章节头到内容</span></div><div class="token-row" data-copy="--space-11" data-row role="button" tabindex="0" title="点击复制 --space-11">
+        <span class="token-row__name">--space-11</span><span class="token-row__val">80px</span><span class="token-row__use">Web 小区块</span></div><div class="token-row" data-copy="--space-12" data-row role="button" tabindex="0" title="点击复制 --space-12">
+        <span class="token-row__name">--space-12</span><span class="token-row__val">96px</span><span class="token-row__use">Web 中区块</span></div><div class="token-row" data-copy="--space-13" data-row role="button" tabindex="0" title="点击复制 --space-13">
+        <span class="token-row__name">--space-13</span><span class="token-row__val">128px</span><span class="token-row__use">品牌面章节节奏</span></div><div class="token-row" data-copy="--rhythm-brand" data-row role="button" tabindex="0" title="点击复制 --rhythm-brand">
+        <span class="token-row__name">--rhythm-brand</span><span class="token-row__val">var(--space-13)</span><span class="token-row__use">品牌面节奏 · 语义别名</span></div><div class="token-row" data-copy="--rhythm-app" data-row role="button" tabindex="0" title="点击复制 --rhythm-app">
+        <span class="token-row__name">--rhythm-app</span><span class="token-row__val">var(--space-8)</span><span class="token-row__use">产品面节奏 · 语义别名</span></div>
+    </div>
+  </div>
+  <div class="block fx-reveal" data-fam-sec="形状">
+    <div class="block__head"><span class="u-eyebrow">形状</span><span class="block__note">16 条</span></div>
+    <div class="tokens">
+      <div class="token-row" data-copy="--radius-xs" data-row role="button" tabindex="0" title="点击复制 --radius-xs">
+        <span class="token-row__name">--radius-xs</span><span class="token-row__val">2px</span><span class="token-row__use"></span></div><div class="token-row" data-copy="--radius-sm" data-row role="button" tabindex="0" title="点击复制 --radius-sm">
+        <span class="token-row__name">--radius-sm</span><span class="token-row__val">4px</span><span class="token-row__use">标签</span></div><div class="token-row" data-copy="--radius-md" data-row role="button" tabindex="0" title="点击复制 --radius-md">
+        <span class="token-row__name">--radius-md</span><span class="token-row__val">6px</span><span class="token-row__use">产品按钮与输入框</span></div><div class="token-row" data-copy="--radius-lg" data-row role="button" tabindex="0" title="点击复制 --radius-lg">
+        <span class="token-row__name">--radius-lg</span><span class="token-row__val">10px</span><span class="token-row__use">下拉与气泡</span></div><div class="token-row" data-copy="--radius-xl" data-row role="button" tabindex="0" title="点击复制 --radius-xl">
+        <span class="token-row__name">--radius-xl</span><span class="token-row__val">16px</span><span class="token-row__use">卡片与弹窗</span></div><div class="token-row" data-copy="--radius-2xl" data-row role="button" tabindex="0" title="点击复制 --radius-2xl">
+        <span class="token-row__name">--radius-2xl</span><span class="token-row__val">24px</span><span class="token-row__use"></span></div><div class="token-row" data-copy="--radius-full" data-row role="button" tabindex="0" title="点击复制 --radius-full">
+        <span class="token-row__name">--radius-full</span><span class="token-row__val">9999px</span><span class="token-row__use">营销 CTA · 状态点 · 溯源胶囊</span></div><div class="token-row" data-copy="--shape-button" data-row role="button" tabindex="0" title="点击复制 --shape-button">
+        <span class="token-row__name">--shape-button</span><span class="token-row__val">var(--radius-md)</span><span class="token-row__use">M3 采纳项 05 · 形状角色</span></div><div class="token-row" data-copy="--shape-field" data-row role="button" tabindex="0" title="点击复制 --shape-field">
+        <span class="token-row__name">--shape-field</span><span class="token-row__val">var(--radius-md)</span><span class="token-row__use">输入类控件</span></div><div class="token-row" data-copy="--shape-card" data-row role="button" tabindex="0" title="点击复制 --shape-card">
+        <span class="token-row__name">--shape-card</span><span class="token-row__val">var(--radius-xl)</span><span class="token-row__use">面板与卡片</span></div><div class="token-row" data-copy="--shape-overlay" data-row role="button" tabindex="0" title="点击复制 --shape-overlay">
+        <span class="token-row__name">--shape-overlay</span><span class="token-row__val">var(--radius-xl)</span><span class="token-row__use">弹窗与抽屉</span></div><div class="token-row" data-copy="--shape-cta" data-row role="button" tabindex="0" title="点击复制 --shape-cta">
+        <span class="token-row__name">--shape-cta</span><span class="token-row__val">var(--radius-full)</span><span class="token-row__use">营销面 CTA</span></div><div class="token-row" data-copy="--border-hairline" data-row role="button" tabindex="0" title="点击复制 --border-hairline">
+        <span class="token-row__name">--border-hairline</span><span class="token-row__val">1px</span><span class="token-row__use">默认分隔</span></div><div class="token-row" data-copy="--border-emphasis" data-row role="button" tabindex="0" title="点击复制 --border-emphasis">
+        <span class="token-row__name">--border-emphasis</span><span class="token-row__val">2px</span><span class="token-row__use">表头下划线与 Tabs 选中</span></div><div class="token-row" data-copy="--border-indicator" data-row role="button" tabindex="0" title="点击复制 --border-indicator">
+        <span class="token-row__name">--border-indicator</span><span class="token-row__val">3px</span><span class="token-row__use">选中行与 Toast 语义条</span></div><div class="token-row" data-copy="--ring-hairline" data-row role="button" tabindex="0" title="点击复制 --ring-hairline">
+        <span class="token-row__name">--ring-hairline</span><span class="token-row__val">1px ink-200 + 6px</span><span class="token-row__use">输入类控件的静默边界</span></div>
+    </div>
+  </div>
+  <div class="block fx-reveal" data-fam-sec="高程 · 暖墨投影">
+    <div class="block__head"><span class="u-eyebrow">高程 · 暖墨投影</span><span class="block__note">6 条</span></div>
+    <div class="tokens">
+      <div class="token-row" data-copy="--shadow-xs" data-row role="button" tabindex="0" title="点击复制 --shadow-xs">
+        <span class="token-row__name">--shadow-xs</span><span class="token-row__val">0 1px 2px rgba(26,22,18,.04)</span><span class="token-row__use"></span></div><div class="token-row" data-copy="--shadow-sm" data-row role="button" tabindex="0" title="点击复制 --shadow-sm">
+        <span class="token-row__name">--shadow-sm</span><span class="token-row__val">0 1px 3px + 0 1px 2px</span><span class="token-row__use">卡片</span></div><div class="token-row" data-copy="--shadow-md" data-row role="button" tabindex="0" title="点击复制 --shadow-md">
+        <span class="token-row__name">--shadow-md</span><span class="token-row__val">0 4px 12px + 0 1px 3px</span><span class="token-row__use">hover</span></div><div class="token-row" data-copy="--shadow-lg" data-row role="button" tabindex="0" title="点击复制 --shadow-lg">
+        <span class="token-row__name">--shadow-lg</span><span class="token-row__val">0 8px 24px + 0 2px 6px</span><span class="token-row__use">抽屉</span></div><div class="token-row" data-copy="--shadow-xl" data-row role="button" tabindex="0" title="点击复制 --shadow-xl">
+        <span class="token-row__name">--shadow-xl</span><span class="token-row__val">0 16px 48px + 0 4px 12px</span><span class="token-row__use">弹窗</span></div><div class="token-row" data-copy="--card-shadow" data-row role="button" tabindex="0" title="点击复制 --card-shadow">
+        <span class="token-row__name">--card-shadow</span><span class="token-row__val">none</span><span class="token-row__use">平面为默认 · 描边与阴影不同现</span></div>
+    </div>
+  </div>
+  <div class="block fx-reveal" data-fam-sec="动效">
+    <div class="block__head"><span class="u-eyebrow">动效</span><span class="block__note">10 条</span></div>
+    <div class="tokens">
+      <div class="token-row" data-copy="--dur-instant" data-row role="button" tabindex="0" title="点击复制 --dur-instant">
+        <span class="token-row__name">--dur-instant</span><span class="token-row__val">80ms</span><span class="token-row__use"></span></div><div class="token-row" data-copy="--dur-micro" data-row role="button" tabindex="0" title="点击复制 --dur-micro">
+        <span class="token-row__name">--dur-micro</span><span class="token-row__val">150ms</span><span class="token-row__use">微交互</span></div><div class="token-row" data-copy="--dur-transition" data-row role="button" tabindex="0" title="点击复制 --dur-transition">
+        <span class="token-row__name">--dur-transition</span><span class="token-row__val">300ms</span><span class="token-row__use">页面过渡 · 弹层</span></div><div class="token-row" data-copy="--dur-narrative" data-row role="button" tabindex="0" title="点击复制 --dur-narrative">
+        <span class="token-row__name">--dur-narrative</span><span class="token-row__val">500ms</span><span class="token-row__use">叙事入场</span></div><div class="token-row" data-copy="--dur-loop" data-row role="button" tabindex="0" title="点击复制 --dur-loop">
+        <span class="token-row__name">--dur-loop</span><span class="token-row__val">2400ms</span><span class="token-row__use">循环 · LatticeSpin</span></div><div class="token-row" data-copy="--ease-standard" data-row role="button" tabindex="0" title="点击复制 --ease-standard">
+        <span class="token-row__name">--ease-standard</span><span class="token-row__val">cubic-bezier(.2,0,0,1)</span><span class="token-row__use"></span></div><div class="token-row" data-copy="--ease-emphasized" data-row role="button" tabindex="0" title="点击复制 --ease-emphasized">
+        <span class="token-row__name">--ease-emphasized</span><span class="token-row__val">cubic-bezier(.16,1,.3,1)</span><span class="token-row__use">页面过渡 · 品牌缓动</span></div><div class="token-row" data-copy="--ease-out" data-row role="button" tabindex="0" title="点击复制 --ease-out">
+        <span class="token-row__name">--ease-out</span><span class="token-row__val">cubic-bezier(0,0,.2,1)</span><span class="token-row__use">微交互</span></div><div class="token-row" data-copy="--ease-brush" data-row role="button" tabindex="0" title="点击复制 --ease-brush">
+        <span class="token-row__name">--ease-brush</span><span class="token-row__val">cubic-bezier(.33,0,.12,1)</span><span class="token-row__use">落笔 —— 起笔重、收笔轻</span></div><div class="token-row" data-copy="--stagger" data-row role="button" tabindex="0" title="点击复制 --stagger">
+        <span class="token-row__name">--stagger</span><span class="token-row__val">70ms</span><span class="token-row__use">Reveal 错峰，上限 6 级</span></div>
+    </div>
+  </div>
+  <div class="block fx-reveal" data-fam-sec="版面">
+    <div class="block__head"><span class="u-eyebrow">版面</span><span class="block__note">14 条</span></div>
+    <div class="tokens">
+      <div class="token-row" data-copy="--bp-sm" data-row role="button" tabindex="0" title="点击复制 --bp-sm">
+        <span class="token-row__name">--bp-sm</span><span class="token-row__val">600px</span><span class="token-row__use">Compact → Medium</span></div><div class="token-row" data-copy="--bp-md" data-row role="button" tabindex="0" title="点击复制 --bp-md">
+        <span class="token-row__name">--bp-md</span><span class="token-row__val">905px</span><span class="token-row__use"></span></div><div class="token-row" data-copy="--bp-lg" data-row role="button" tabindex="0" title="点击复制 --bp-lg">
+        <span class="token-row__name">--bp-lg</span><span class="token-row__val">1240px</span><span class="token-row__use">Medium → Expanded</span></div><div class="token-row" data-copy="--bp-xl" data-row role="button" tabindex="0" title="点击复制 --bp-xl">
+        <span class="token-row__name">--bp-xl</span><span class="token-row__val">1440px</span><span class="token-row__use"></span></div><div class="token-row" data-copy="--grid-cols" data-row role="button" tabindex="0" title="点击复制 --grid-cols">
+        <span class="token-row__name">--grid-cols</span><span class="token-row__val">12</span><span class="token-row__use">12 列宪法</span></div><div class="token-row" data-copy="--gutter" data-row role="button" tabindex="0" title="点击复制 --gutter">
+        <span class="token-row__name">--gutter</span><span class="token-row__val">24px</span><span class="token-row__use">槽宽</span></div><div class="token-row" data-copy="--container-doc" data-row role="button" tabindex="0" title="点击复制 --container-doc">
+        <span class="token-row__name">--container-doc</span><span class="token-row__val">1120px</span><span class="token-row__use">长文内容区上限</span></div><div class="token-row" data-copy="--container-brand" data-row role="button" tabindex="0" title="点击复制 --container-brand">
+        <span class="token-row__name">--container-brand</span><span class="token-row__val">1200px</span><span class="token-row__use">品牌页</span></div><div class="token-row" data-copy="--container-wide" data-row role="button" tabindex="0" title="点击复制 --container-wide">
+        <span class="token-row__name">--container-wide</span><span class="token-row__val">1440px</span><span class="token-row__use">数据大屏</span></div><div class="token-row" data-copy="--rail-width" data-row role="button" tabindex="0" title="点击复制 --rail-width">
+        <span class="token-row__name">--rail-width</span><span class="token-row__val">76px</span><span class="token-row__use">图标侧轨 · Medium</span></div><div class="token-row" data-copy="--drawer-width" data-row role="button" tabindex="0" title="点击复制 --drawer-width">
+        <span class="token-row__name">--drawer-width</span><span class="token-row__val">264px</span><span class="token-row__use">展开侧轨 · Expanded</span></div><div class="token-row" data-copy="--panel-width" data-row role="button" tabindex="0" title="点击复制 --panel-width">
+        <span class="token-row__name">--panel-width</span><span class="token-row__val">380px</span><span class="token-row__use">右侧抽屉</span></div><div class="token-row" data-copy="--appbar-height" data-row role="button" tabindex="0" title="点击复制 --appbar-height">
+        <span class="token-row__name">--appbar-height</span><span class="token-row__val">64px</span><span class="token-row__use">顶栏 sticky</span></div><div class="token-row" data-copy="--touch-min" data-row role="button" tabindex="0" title="点击复制 --touch-min">
+        <span class="token-row__name">--touch-min</span><span class="token-row__val">44px</span><span class="token-row__use">触摸目标下限 · WCAG</span></div>
+    </div>
+  </div>
+  <div class="block fx-reveal" data-fam-sec="语义 · 表面与文本">
+    <div class="block__head"><span class="u-eyebrow">语义 · 表面与文本</span><span class="block__note">11 条</span></div>
+    <div class="tokens">
+      <div class="token-row" data-copy="--surface-page" data-row role="button" tabindex="0" title="点击复制 --surface-page">
+        <span class="token-row__name">--surface-page</span><span class="token-row__val">var(--ink-50)</span><span class="token-row__use">页面底</span></div><div class="token-row" data-copy="--surface-sunken" data-row role="button" tabindex="0" title="点击复制 --surface-sunken">
+        <span class="token-row__name">--surface-sunken</span><span class="token-row__val">var(--ink-100)</span><span class="token-row__use">中性画布</span></div><div class="token-row" data-copy="--surface-card" data-row role="button" tabindex="0" title="点击复制 --surface-card">
+        <span class="token-row__name">--surface-card</span><span class="token-row__val">#FFFEFB</span><span class="token-row__use">面板，非纯白</span></div><div class="token-row" data-copy="--surface-inverse" data-row role="button" tabindex="0" title="点击复制 --surface-inverse">
+        <span class="token-row__name">--surface-inverse</span><span class="token-row__val">var(--ink-900)</span><span class="token-row__use">反白区块</span></div><div class="token-row" data-copy="--text-heading" data-row role="button" tabindex="0" title="点击复制 --text-heading">
+        <span class="token-row__name">--text-heading</span><span class="token-row__val">var(--ink-900)</span><span class="token-row__use">标题</span></div><div class="token-row" data-copy="--text-body" data-row role="button" tabindex="0" title="点击复制 --text-body">
+        <span class="token-row__name">--text-body</span><span class="token-row__val">var(--ink-700)</span><span class="token-row__use">正文</span></div><div class="token-row" data-copy="--text-muted" data-row role="button" tabindex="0" title="点击复制 --text-muted">
+        <span class="token-row__name">--text-muted</span><span class="token-row__val">var(--ink-600)</span><span class="token-row__use">次文</span></div><div class="token-row" data-copy="--text-subtle" data-row role="button" tabindex="0" title="点击复制 --text-subtle">
+        <span class="token-row__name">--text-subtle</span><span class="token-row__val">var(--ink-500)</span><span class="token-row__use">三级文</span></div><div class="token-row" data-copy="--border-subtle" data-row role="button" tabindex="0" title="点击复制 --border-subtle">
+        <span class="token-row__name">--border-subtle</span><span class="token-row__val">var(--ink-200)</span><span class="token-row__use">默认分隔</span></div><div class="token-row" data-copy="--border-default" data-row role="button" tabindex="0" title="点击复制 --border-default">
+        <span class="token-row__name">--border-default</span><span class="token-row__val">var(--ink-300)</span><span class="token-row__use">描边</span></div><div class="token-row" data-copy="--border-strong" data-row role="button" tabindex="0" title="点击复制 --border-strong">
+        <span class="token-row__name">--border-strong</span><span class="token-row__val">var(--ink-400)</span><span class="token-row__use">强描边</span></div>
+    </div>
+  </div>
+  <div class="block fx-reveal" data-fam-sec="语义 · on- 配对族">
+    <div class="block__head"><span class="u-eyebrow">语义 · on- 配对族</span><span class="block__note">9 条</span></div>
+    <div class="tokens">
+      <div class="token-row" data-copy="--on-ink" data-row role="button" tabindex="0" title="点击复制 --on-ink">
+        <span class="token-row__name">--on-ink</span><span class="token-row__val">var(--ink-50)</span><span class="token-row__use">玄墨底上的前景</span></div><div class="token-row" data-copy="--on-brand" data-row role="button" tabindex="0" title="点击复制 --on-brand">
+        <span class="token-row__name">--on-brand</span><span class="token-row__val">var(--ink-50)</span><span class="token-row__use">实体填色上的前景</span></div><div class="token-row" data-copy="--on-brand-subtle" data-row role="button" tabindex="0" title="点击复制 --on-brand-subtle">
+        <span class="token-row__name">--on-brand-subtle</span><span class="token-row__val">var(--brand-700)</span><span class="token-row__use">实体浅底上的前景</span></div><div class="token-row" data-copy="--on-gold" data-row role="button" tabindex="0" title="点击复制 --on-gold">
+        <span class="token-row__name">--on-gold</span><span class="token-row__val">var(--ink-900)</span><span class="token-row__use">金上用玄墨不用白</span></div><div class="token-row" data-copy="--on-error" data-row role="button" tabindex="0" title="点击复制 --on-error">
+        <span class="token-row__name">--on-error</span><span class="token-row__val">var(--ink-50)</span><span class="token-row__use"></span></div><div class="token-row" data-copy="--state-layer-hover" data-row role="button" tabindex="0" title="点击复制 --state-layer-hover">
+        <span class="token-row__name">--state-layer-hover</span><span class="token-row__val">.08</span><span class="token-row__use">状态层兜底 · 仅作用于表面</span></div><div class="token-row" data-copy="--state-layer-focus" data-row role="button" tabindex="0" title="点击复制 --state-layer-focus">
+        <span class="token-row__name">--state-layer-focus</span><span class="token-row__val">.10</span><span class="token-row__use"></span></div><div class="token-row" data-copy="--state-layer-press" data-row role="button" tabindex="0" title="点击复制 --state-layer-press">
+        <span class="token-row__name">--state-layer-press</span><span class="token-row__val">.10</span><span class="token-row__use"></span></div><div class="token-row" data-copy="--state-layer-drag" data-row role="button" tabindex="0" title="点击复制 --state-layer-drag">
+        <span class="token-row__name">--state-layer-drag</span><span class="token-row__val">.16</span><span class="token-row__use"></span></div>
+    </div>
+  </div>
+  <div class="block fx-reveal" data-fam-sec="组件">
+    <div class="block__head"><span class="u-eyebrow">组件</span><span class="block__note">12 条</span></div>
+    <div class="tokens">
+      <div class="token-row" data-copy="--btn-primary-bg" data-row role="button" tabindex="0" title="点击复制 --btn-primary-bg">
+        <span class="token-row__name">--btn-primary-bg</span><span class="token-row__val">var(--ink-900)</span><span class="token-row__use">主操作用玄墨，不用品牌色</span></div><div class="token-row" data-copy="--btn-h-l" data-row role="button" tabindex="0" title="点击复制 --btn-h-l">
+        <span class="token-row__name">--btn-h-l</span><span class="token-row__val">44px</span><span class="token-row__use">主操作 · 触摸目标</span></div><div class="token-row" data-copy="--btn-h-m" data-row role="button" tabindex="0" title="点击复制 --btn-h-m">
+        <span class="token-row__name">--btn-h-m</span><span class="token-row__val">40px</span><span class="token-row__use">表单档</span></div><div class="token-row" data-copy="--btn-h-s" data-row role="button" tabindex="0" title="点击复制 --btn-h-s">
+        <span class="token-row__name">--btn-h-s</span><span class="token-row__val">36px</span><span class="token-row__use">行内 · 工具栏</span></div><div class="token-row" data-copy="--btn-gold-bg" data-row role="button" tabindex="0" title="点击复制 --btn-gold-bg">
+        <span class="token-row__name">--btn-gold-bg</span><span class="token-row__val">var(--gold-400)</span><span class="token-row__use">营销 CTA</span></div><div class="token-row" data-copy="--field-h" data-row role="button" tabindex="0" title="点击复制 --field-h">
+        <span class="token-row__name">--field-h</span><span class="token-row__val">40px</span><span class="token-row__use">输入框</span></div><div class="token-row" data-copy="--field-h-compact" data-row role="button" tabindex="0" title="点击复制 --field-h-compact">
+        <span class="token-row__name">--field-h-compact</span><span class="token-row__val">36px</span><span class="token-row__use">V7.0 新增紧凑档</span></div><div class="token-row" data-copy="--panel-max-per-screen" data-row role="button" tabindex="0" title="点击复制 --panel-max-per-screen">
+        <span class="token-row__name">--panel-max-per-screen</span><span class="token-row__val">3</span><span class="token-row__use">超出改用 1px 墨线分隔</span></div><div class="token-row" data-copy="--table-head-rule" data-row role="button" tabindex="0" title="点击复制 --table-head-rule">
+        <span class="token-row__name">--table-head-rule</span><span class="token-row__val">2px solid ink-900</span><span class="token-row__use">取代表头底色</span></div><div class="token-row" data-copy="--table-row-h" data-row role="button" tabindex="0" title="点击复制 --table-row-h">
+        <span class="token-row__name">--table-row-h</span><span class="token-row__val">48px</span><span class="token-row__use">表格行高</span></div><div class="token-row" data-copy="--focus-ring-width" data-row role="button" tabindex="0" title="点击复制 --focus-ring-width">
+        <span class="token-row__name">--focus-ring-width</span><span class="token-row__val">2px</span><span class="token-row__use">焦点永远可见</span></div><div class="token-row" data-copy="--focus-ring-offset" data-row role="button" tabindex="0" title="点击复制 --focus-ring-offset">
+        <span class="token-row__name">--focus-ring-offset</span><span class="token-row__val">2px</span><span class="token-row__use"></span></div>
+    </div>
+  </div>
+  <div class="block fx-reveal" data-fam-sec="图表与点阵">
+    <div class="block__head"><span class="u-eyebrow">图表与点阵</span><span class="block__note">9 条</span></div>
+    <div class="tokens">
+      <div class="token-row" data-copy="--chart-stroke" data-row role="button" tabindex="0" title="点击复制 --chart-stroke">
+        <span class="token-row__name">--chart-stroke</span><span class="token-row__val">1.5px</span><span class="token-row__use">折线粗细</span></div><div class="token-row" data-copy="--chart-baseline" data-row role="button" tabindex="0" title="点击复制 --chart-baseline">
+        <span class="token-row__name">--chart-baseline</span><span class="token-row__val">var(--ink-200)</span><span class="token-row__use">唯一保留的一条轴线</span></div><div class="token-row" data-copy="--rail" data-row role="button" tabindex="0" title="点击复制 --rail">
+        <span class="token-row__name">--rail</span><span class="token-row__val">var(--ink-200) / dark var(--ink-800)</span><span class="token-row__use">量表与条形的未填充轨 · 必须比面板亮一档</span></div><div class="token-row" data-copy="--chart-muted" data-row role="button" tabindex="0" title="点击复制 --chart-muted">
+        <span class="token-row__name">--chart-muted</span><span class="token-row__val">var(--ink-300)</span><span class="token-row__use">对比序列</span></div><div class="token-row" data-copy="--chart-bar-h" data-row role="button" tabindex="0" title="点击复制 --chart-bar-h">
+        <span class="token-row__name">--chart-bar-h</span><span class="token-row__val">8px</span><span class="token-row__use">条形行与量表条共用</span></div><div class="token-row" data-copy="--chart-series-max" data-row role="button" tabindex="0" title="点击复制 --chart-series-max">
+        <span class="token-row__name">--chart-series-max</span><span class="token-row__val">3</span><span class="token-row__use">实体色 + ink-400 + ink-300</span></div><div class="token-row" data-copy="--dot-grid" data-row role="button" tabindex="0" title="点击复制 --dot-grid">
+        <span class="token-row__name">--dot-grid</span><span class="token-row__val">48</span><span class="token-row__use">EntityLattice 网格</span></div><div class="token-row" data-copy="--dot-r-data" data-row role="button" tabindex="0" title="点击复制 --dot-r-data">
+        <span class="token-row__name">--dot-r-data</span><span class="token-row__val">1.5px</span><span class="token-row__use">DotDensity 点径 1.4–1.6</span></div><div class="token-row" data-copy="--capsule-bg" data-row role="button" tabindex="0" title="点击复制 --capsule-bg">
+        <span class="token-row__name">--capsule-bg</span><span class="token-row__val">var(--ink-100)</span><span class="token-row__use">溯源胶囊底 · 实景上换 rgba(251,249,245,.16)</span></div>
+    </div>
+  </div>
+  <div class="block fx-reveal" data-fam-sec="图解">
+    <div class="block__head"><span class="u-eyebrow">图解</span><span class="block__note">6 条</span></div>
+    <div class="tokens">
+      <div class="token-row" data-copy="--node-r-1" data-row role="button" tabindex="0" title="点击复制 --node-r-1">
+        <span class="token-row__name">--node-r-1</span><span class="token-row__val">9px</span><span class="token-row__use">一级节点</span></div><div class="token-row" data-copy="--node-r-2" data-row role="button" tabindex="0" title="点击复制 --node-r-2">
+        <span class="token-row__name">--node-r-2</span><span class="token-row__val">7px</span><span class="token-row__use">二级节点</span></div><div class="token-row" data-copy="--node-r-3" data-row role="button" tabindex="0" title="点击复制 --node-r-3">
+        <span class="token-row__name">--node-r-3</span><span class="token-row__val">5px</span><span class="token-row__use">三、四级节点</span></div><div class="token-row" data-copy="--edge-default" data-row role="button" tabindex="0" title="点击复制 --edge-default">
+        <span class="token-row__name">--edge-default</span><span class="token-row__val">1px</span><span class="token-row__use">全部连接的默认线</span></div><div class="token-row" data-copy="--edge-primary" data-row role="button" tabindex="0" title="点击复制 --edge-primary">
+        <span class="token-row__name">--edge-primary</span><span class="token-row__val">2px</span><span class="token-row__use">主路径，每图仅一条</span></div><div class="token-row" data-copy="--tree-indent" data-row role="button" tabindex="0" title="点击复制 --tree-indent">
+        <span class="token-row__name">--tree-indent</span><span class="token-row__val">20px</span><span class="token-row__use">层级树每级缩进</span></div>
+    </div>
+  </div>
+  <div id="tempty" class="empty" hidden>
+    <div class="empty__t">没有匹配的令牌</div>
+    <div class="empty__s">换一个关键词，或清除筛选从头看起</div>
+  </div>
+</section>
+</div>
+</main>
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot__top">
+      <div>
+        <div class="foot__wm">SINOTAO</div>
+        <p class="foot__m">源裕兴设计系统全典 V7.0。五个实体不是五家割裂的公司，而是共用一套设计语法、各自生长出独立主色的价值共生体。本典不是画册，是施工图。</p>
+      </div>
+      <div>
+        <div class="foot__st">Volumes</div>
+        <a class="foot__l" href="volume-1.html">一 · 序与总纲</a>
+        <a class="foot__l" href="volume-2.html">二 · 基础</a>
+        <a class="foot__l" href="volume-3.html">三 · 表达</a>
+        <a class="foot__l" href="volume-4.html">四 · 数据与行为</a>
+        <a class="foot__l" href="volume-5.html">五 · 治理</a>
+      </div>
+      <div>
+        <div class="foot__st">Appendix</div>
+        <a class="foot__l" href="atlas.html">图谱 · 插图集</a>
+        <a class="foot__l" href="tokens.html">令牌总表</a>
+        <a class="foot__l" href="index.html">首页 · 总纲</a>
+      </div>
+      <div>
+        <div class="foot__st">Discipline</div>
+        <span class="foot__l">37 组件 · 421 令牌</span>
+        <span class="foot__l">九级字阶 · 四种图表</span>
+        <span class="foot__l">五种图解 · 四样动效</span>
+      </div>
+    </div>
+    <div class="foot__bot">
+      <span>源裕兴设计系统全典 V7.0 · 2026-09-06</span>
+      <span>守正 · 开物 · 共生</span>
+    </div>
+  </div>
+</footer>
+<div class="drawer" id="drawer" hidden>
+  <button class="drawer__scrim" type="button" aria-label="关闭目录"></button>
+  <nav class="drawer__panel" aria-label="全典目录">
+    <div class="drawer__sec">
+      <div class="drawer__st">Volumes</div>
+      <a class="drawer__l" href="volume-1.html"><i>一</i><span>序与总纲<br><small style="color:var(--text-subtle)">设计哲学 · 变更摘要 · 语境 · 文案</small></span></a>
+      <a class="drawer__l" href="volume-2.html"><i>二</i><span>基础<br><small style="color:var(--text-subtle)">色彩 · 色板 · 模块识别 · 字体 · 刻度 · 版面</small></span></a>
+      <a class="drawer__l" href="volume-3.html"><i>三</i><span>表达<br><small style="color:var(--text-subtle)">面板 · 图标系统 · 业务图标 · 字标</small></span></a>
+      <a class="drawer__l" href="volume-4.html"><i>四</i><span>数据与行为<br><small style="color:var(--text-subtle)">图表 · 图解 · 可视化与影像 · 动效</small></span></a>
+      <a class="drawer__l" href="volume-5.html"><i>五</i><span>治理<br><small style="color:var(--text-subtle)">组件令牌 · 产品面 · 仓库 · M3 · 来源</small></span></a>
+    </div>
+    <div class="drawer__sec">
+      <div class="drawer__st">Chapters</div>
+      <a class="drawer__l" href="volume-1.html#ch-prologue"><i>序</i><span>设计哲学</span></a>
+      <a class="drawer__l" href="volume-1.html#ch-00"><i>000</i><span>变更摘要</span></a>
+      <a class="drawer__l" href="volume-1.html#ch-01"><i>001</i><span>语境与实体</span></a>
+      <a class="drawer__l" href="volume-1.html#ch-02"><i>002</i><span>内容与文案</span></a>
+      <a class="drawer__l" href="volume-2.html#ch-03"><i>003</i><span>色彩</span></a>
+      <a class="drawer__l" href="volume-2.html#ch-04"><i>004</i><span>色板全景</span></a>
+      <a class="drawer__l" href="volume-2.html#ch-05"><i>005</i><span>模块识别</span></a>
+      <a class="drawer__l" href="volume-2.html#ch-06"><i>006</i><span>字体</span></a>
+      <a class="drawer__l" href="volume-2.html#ch-07"><i>007</i><span>刻度与断点</span></a>
+      <a class="drawer__l" href="volume-2.html#ch-08"><i>008</i><span>间距与版面</span></a>
+      <a class="drawer__l" href="volume-3.html#ch-09"><i>009</i><span>面板与边界</span></a>
+      <a class="drawer__l" href="volume-3.html#ch-10"><i>010</i><span>图标系统</span></a>
+      <a class="drawer__l" href="volume-3.html#ch-11"><i>011</i><span>业务图标清单</span></a>
+      <a class="drawer__l" href="volume-3.html#ch-12"><i>012</i><span>字标与应用</span></a>
+      <a class="drawer__l" href="volume-4.html#ch-13"><i>013</i><span>图表</span></a>
+      <a class="drawer__l" href="volume-4.html#ch-14"><i>014</i><span>图解语言</span></a>
+      <a class="drawer__l" href="volume-4.html#ch-15"><i>015</i><span>可视化与影像</span></a>
+      <a class="drawer__l" href="volume-4.html#ch-16"><i>016</i><span>动效与状态</span></a>
+      <a class="drawer__l" href="volume-5.html#ch-17"><i>017</i><span>组件与令牌总账</span></a>
+      <a class="drawer__l" href="volume-5.html#ch-18"><i>018</i><span>产品面与屏幕</span></a>
+      <a class="drawer__l" href="volume-5.html#ch-19"><i>019</i><span>仓库结构</span></a>
+      <a class="drawer__l" href="volume-5.html#ch-20"><i>020</i><span>M3 对照</span></a>
+      <a class="drawer__l" href="volume-5.html#ch-21"><i>021</i><span>来源与授权</span></a>
+    </div>
+    <div class="drawer__sec">
+      <div class="drawer__st">Appendix</div>
+      <a class="drawer__l" href="atlas.html"><i>图</i><span>图谱 · 生成式插图集</span></a>
+      <a class="drawer__l" href="tokens.html"><i>令</i><span>令牌总表</span></a>
+    </div>
+  </nav>
+</div>
+<div class="kmenu" id="kmenu" hidden>
+  <button class="kmenu__scrim" type="button" aria-label="关闭检索"></button>
+  <div class="kmenu__box" role="dialog" aria-modal="true" aria-label="全典检索">
+    <input class="kmenu__in" type="text" placeholder="检索全典 —— 章节、术语、令牌" aria-label="检索全典" autocomplete="off" spellcheck="false">
+    <div class="kmenu__list"></div>
+    <div class="kmenu__foot"><span><kbd>↑</kbd><kbd>↓</kbd> 移动</span><span><kbd>↵</kbd> 打开</span><span><kbd>esc</kbd> 关闭</span><span style="margin-left:auto"><kbd>G</kbd> 栅格</span></div>
+  </div>
+</div>
+<div class="gridlay" id="gridlay" aria-hidden="true"><div class="gridlay__in"><div class="gridlay__c"></div><div class="gridlay__c"></div><div class="gridlay__c"></div><div class="gridlay__c"></div><div class="gridlay__c"></div><div class="gridlay__c"></div><div class="gridlay__c"></div><div class="gridlay__c"></div><div class="gridlay__c"></div><div class="gridlay__c"></div><div class="gridlay__c"></div><div class="gridlay__c"></div></div></div>
+<script src="assets/js/lattice.js"></script>
+<script src="assets/js/charts.js"></script>
+<script src="assets/js/site.js"></script>
+<script>
+(function(){
+  var q = document.getElementById('tq');
+  var clear = document.getElementById('tclear');
+  var count = document.getElementById('tcount');
+  var empty = document.getElementById('tempty');
+  var secs = Array.prototype.slice.call(document.querySelectorAll('[data-fam-sec]'));
+  var fbtns = Array.prototype.slice.call(document.querySelectorAll('[data-fam]'));
+  var fam = '';
+
+  function run(){
+    var s = (q.value||'').trim().toLowerCase();
+    var shown = 0;
+    secs.forEach(function(sec){
+      var okFam = !fam || sec.dataset.famSec === fam;
+      var any = 0;
+      sec.querySelectorAll('[data-row]').forEach(function(r){
+        var hit = okFam && (!s || r.textContent.toLowerCase().indexOf(s) > -1);
+        r.hidden = !hit;
+        if(hit){ any++; shown++; }
+      });
+      sec.hidden = !any;
+      var note = sec.querySelector('.block__note');
+      if(note) note.textContent = any + ' 条';
+    });
+    count.textContent = shown + ' 条';
+    empty.hidden = shown > 0;
+  }
+
+  q.addEventListener('input', run);
+  clear.addEventListener('click', function(){ q.value=''; fam=''; sync(); run(); q.focus(); });
+  fbtns.forEach(function(b){
+    b.addEventListener('click', function(){ fam = b.dataset.fam; sync(); run(); });
+  });
+  function sync(){
+    fbtns.forEach(function(b){
+      var on = b.dataset.fam === fam;
+      b.setAttribute('aria-pressed', String(on));
+      b.className = 'tag tag--plain' + (on ? ' tag--brand' : '');
+      b.style.cursor='pointer'; b.style.border='0'; b.style.font='inherit';
+    });
+  }
+  sync();
+})();
+</script>
+</body>
+</html>

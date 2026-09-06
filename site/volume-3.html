@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="zh-Hans" data-theme="stg">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第三册 · 表达 · 源裕兴设计系统全典 V7.0</title>
+<meta name="description" content="面板与边界 · 图标系统 · 业务图标清单 · 字标与应用。">
+<meta name="color-scheme" content="light dark">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Noto+Sans+SC:wght@200;300;400;500;600&family=Noto+Serif+SC:wght@200;300;400;500&family=Poppins:wght@500;600&family=Space+Grotesk:wght@300;400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0..1,0&display=swap">
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/components.css">
+<link rel="stylesheet" href="assets/css/site.css">
+<script>
+/* 上色前先定主题与明暗，避免首帧闪白 */
+(function(){try{
+  var t=localStorage.getItem('sinotao.theme')||'stg';
+  document.documentElement.setAttribute('data-theme',t);
+  var s=localStorage.getItem('sinotao.scheme')||'auto';
+  var d=s==='dark'||(s==='auto'&&matchMedia('(prefers-color-scheme: dark)').matches);
+  document.documentElement.setAttribute('data-color-scheme',d?'dark':'light');
+}catch(e){}})();
+</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+<header class="topbar">
+  <div class="topbar__in">
+    <a class="topbar__brand" href="index.html">
+      <span class="topbar__wm">SINOTAO</span>
+      <span class="topbar__div"></span>
+      <span class="topbar__ent"><span class="topbar__tick"></span><span class="topbar__code" data-ent-code>STG</span></span>
+    </a>
+    <nav class="topbar__nav" aria-label="全典导航">
+      <a class="navlink" href="volume-1.html"><span class="navlink__i">一</span>序与总纲</a>
+      <a class="navlink" href="volume-2.html"><span class="navlink__i">二</span>基础</a>
+      <a class="navlink" href="volume-3.html" aria-current="page"><span class="navlink__i">三</span>表达</a>
+      <a class="navlink" href="volume-4.html"><span class="navlink__i">四</span>数据与行为</a>
+      <a class="navlink" href="volume-5.html"><span class="navlink__i">五</span>治理</a>
+      <a class="navlink" href="atlas.html">图谱</a>
+      <a class="navlink" href="tokens.html">令牌</a>
+    </nav>
+    <div class="topbar__tools">
+      <button class="kbtn" data-k-open type="button" aria-label="搜索全典"><span class="ms" style="font-size:16px" aria-hidden="true">search</span><span class="kbtn__t">检索</span><kbd>⌘K</kbd></button>
+      <div class="entsw" id="entsw">
+        <button class="iconbtn" data-entsw-btn type="button" aria-haspopup="menu" aria-expanded="false" aria-label="切换实体主题"><span class="ms" aria-hidden="true">hub</span></button>
+        <div class="entsw__menu" role="menu" hidden></div>
+      </div>
+      <button class="iconbtn" data-scheme-btn type="button" aria-label="切换明暗模式"><span class="ms" data-scheme-icon aria-hidden="true">contrast</span></button>
+      <button class="iconbtn" data-drawer-open type="button" aria-label="打开目录"><span class="ms" aria-hidden="true">menu</span></button>
+    </div>
+  </div>
+</header>
+<main id="main">
+
+<section class="vhero on-dark">
+  <canvas class="vhero__canvas" data-art="grid" aria-hidden="true"></canvas>
+  <div class="wrap vhero__in">
+    <div class="hero__eyebrow"><span class="seal" style="background:var(--gold-400)"></span><span class="u-eyebrow" style="color:var(--gold-300)">SINOTAO Design System · V7.0 · 第三册</span></div>
+    <h1 class="vhero__t">表达</h1>
+    <p class="vhero__s">面板 · 图标系统 · 业务图标 · 字标 —— 功能靠现成，品牌靠规则。缺件问题从「画 150 个」变成「定一条规则」。</p>
+    <nav class="vols" aria-label="分册导航">
+      <a class="vol-pill" href="volume-1.html"><i>一</i>序与总纲</a>
+      <a class="vol-pill" href="volume-2.html"><i>二</i>基础</a>
+      <a class="vol-pill" href="volume-3.html" aria-current="page"><i>三</i>表达</a>
+      <a class="vol-pill" href="volume-4.html"><i>四</i>数据与行为</a>
+      <a class="vol-pill" href="volume-5.html"><i>五</i>治理</a>
+    </nav>
+  </div>
+</section>
+<nav class="toc" aria-label="本册目录"><div class="wrap"><div class="toc__grid">
+  <a class="toc__l" href="#ch-09"><i>09</i><b>面板与边界</b></a>
+  <a class="toc__l" href="#ch-10"><i>10</i><b>图标系统</b></a>
+  <a class="toc__l" href="#ch-11"><i>11</i><b>业务图标清单</b></a>
+  <a class="toc__l" href="#ch-12"><i>12</i><b>字标与应用</b></a>
+</div></div></nav>
+
+<div class="wrap">
+
+<section class="chapter" id="ch-09" aria-labelledby="ch-09-t">
+<header class="chapter__head fx-reveal">
+  <span class="chapter__num">009 / 021</span>
+  <div style="min-width:0">
+    <div class="chapter__meta"><span class="seal"></span><span class="u-eyebrow">Surfaces</span></div>
+    <h2 class="chapter__title" id="ch-09-t">面板与边界：一重边界，不许第二重</h2>
+    <p class="chapter__lead">界面靠中性画布与纯白面板之间的明度差划界，不靠框线。白底加 1px 描边再加阴影，是三重边界，会让一屏十个同权重的框互相争抢。</p>
+  </div>
+</header>
+
+  <div class="block fx-reveal">
+  <div class="block__head"><span class="u-eyebrow">禁止 / 标准</span></div>
+  
+  <div class="contrast-pair">
+    <div class="demo">
+      <div class="demo__cap demo__cap--bad">禁止 · 四张并排 StatCard</div>
+      <div class="demo__body">
+        <div class="bad-cards">
+          <div class="bad-card"><div class="bad-card__l">发电量</div><div class="bad-card__v">1,284</div></div><div class="bad-card"><div class="bad-card__l">供汽量</div><div class="bad-card__v">3,410</div></div><div class="bad-card"><div class="bad-card__l">库存</div><div class="bad-card__v">18.6k</div></div><div class="bad-card"><div class="bad-card__l">配额</div><div class="bad-card__v">12.8k</div></div>
+        </div>
+      </div>
+      <p class="demo__note">四重边界叠加。StatCard 保留但只在单独出现时使用。</p>
+    </div>
+    <div class="demo">
+      <div class="demo__cap demo__cap--good">标准 · StatBand</div>
+      <div class="demo__body" style="padding:0;background:transparent">
+        <div class="statband">
+          <div class="statband__item"><span class="statband__label">发电量</span>
+            <span class="statband__value">1,284<span class="statband__unit">MWh</span></span></div><div class="statband__item"><span class="statband__label">供汽量</span>
+            <span class="statband__value">3,410<span class="statband__unit">t</span></span></div><div class="statband__item"><span class="statband__label">库存</span>
+            <span class="statband__value">18.6<span class="statband__unit">kt</span></span></div><div class="statband__item"><span class="statband__label">配额</span>
+            <span class="statband__value">12.8<span class="statband__unit">kt</span></span></div>
+        </div>
+      </div>
+      <p class="demo__note">三项以上的指标一律走 StatBand：一重边界，指标间靠 1px 墨线分栏，数值因此能升上一档字号。</p>
+    </div>
+  </div>
+</div>
+
+  <div class="block fx-reveal">
+  <div class="block__head"><span class="u-eyebrow">面板规则</span></div>
+  
+  <div class="table-scroll"><table class="tbl">
+    <caption class="u-sr">面板与边界的八条规则</caption>
+    <thead><tr><th scope="col">规则</th><th scope="col">值</th><th scope="col">说明</th></tr></thead>
+    <tbody><tr>
+      <td style="color:var(--text-heading);font-weight:var(--fw-medium)">默认平面</td>
+      <td class="mono" style="color:var(--text-brand)">#FFFEFB · 16px · 无描边无阴影</td><td>variant 三种：flat 默认 / outlined 仅与同色背景相邻 / elevated 仅真正悬浮层</td></tr><tr>
+      <td style="color:var(--text-heading);font-weight:var(--fw-medium)">描边与阴影</td>
+      <td class="mono" style="color:var(--text-brand)">不得同时出现</td><td>硬性规则</td></tr><tr>
+      <td style="color:var(--text-heading);font-weight:var(--fw-medium)">卡中卡</td>
+      <td class="mono" style="color:var(--text-brand)">禁止</td><td>需要分区用 1px 墨线；需要第二层说明这块内容该独立成面板</td></tr><tr>
+      <td style="color:var(--text-heading);font-weight:var(--fw-medium)">--panel-max-per-screen</td>
+      <td class="mono" style="color:var(--text-brand)">3</td><td>超出的内容直接放底色上用 1px 墨线分隔</td></tr><tr>
+      <td style="color:var(--text-heading);font-weight:var(--fw-medium)">--ring-hairline</td>
+      <td class="mono" style="color:var(--text-brand)">1px --ink-200 + 6px 圆角</td><td>输入类控件的静默边界。控件边界与面板边界分开管理，不冲突</td></tr><tr>
+      <td style="color:var(--text-heading);font-weight:var(--fw-medium)">面板标题</td>
+      <td class="mono" style="color:var(--text-brand)">宋体 24px</td><td>需要更小标题说明这块内容不该成为面板</td></tr><tr>
+      <td style="color:var(--text-heading);font-weight:var(--fw-medium)">表格行 48px · 表头 2px 墨线</td>
+      <td class="mono" style="color:var(--text-brand)">无竖线、无斑马纹</td><td>数值列右对齐 + tabular-nums，单位提到表头</td></tr><tr>
+      <td style="color:var(--text-heading);font-weight:var(--fw-medium)">阴影六级</td>
+      <td class="mono" style="color:var(--text-brand)">暖墨投影 rgba(26,22,18,α)</td><td>α .04–.10。卡片 sm、hover md、抽屉 lg、弹窗 xl。焦点光环单列一档</td></tr></tbody>
+  </table></div>
+  <div class="note note--warn" style="margin-top:var(--space-5)"><div class="note__b">
+    <div class="note__t">描边三级</div>
+    <div class="note__d">hairline 1px 默认分隔 · emphasis 2px 表头下划线与 Tabs 选中 · indicator 3px 选中行与 Toast 语义条。禁止只带彩色左边框的圆角卡片 —— 左侧 3px 色条只表示「当前选中」。</div>
+  </div></div>
+</div>
+</section>
+
+<section class="chapter" id="ch-10" aria-labelledby="ch-10-t">
+<header class="chapter__head fx-reveal">
+  <span class="chapter__num">010 / 021</span>
+  <div style="min-width:0">
+    <div class="chapter__meta"><span class="seal"></span><span class="u-eyebrow">Iconography</span></div>
+    <h2 class="chapter__title" id="ch-10-t">图标：功能靠现成，品牌靠规则</h2>
+    <p class="chapter__lead">此前的缺件清单上有 150 枚待画 SVG，全部废止。品牌标记改为同一套点在同一张网格上的排布变体 —— 缺件问题从「画 150 个」变成「定一条规则」。</p>
+  </div>
+</header>
+
+  <div class="block fx-reveal">
+  <div class="block__head"><span class="u-eyebrow">Entity lattice · 48 grid</span></div>
+  
+  <div class="grid grid--3" style="gap:0">
+    
+    <div style="padding:var(--space-6) var(--space-5);border-left:var(--hairline);border-top:var(--hairline)">
+      <div style="height:80px;display:flex;align-items:center;color:var(--text-heading)" data-lattice="stg" data-size="76" aria-hidden="true"></div>
+      <div class="u-eyebrow" style="margin-top:var(--space-4)">STG</div>
+      <div style="margin-top:var(--space-2);font-size:var(--fs-body-s);font-weight:var(--fw-medium);color:var(--text-heading)">环 · 八点等分</div>
+      <div class="u-label" style="margin-top:var(--space-1)">中枢环抱五实体</div>
+    </div>
+    <div style="padding:var(--space-6) var(--space-5);border-left:var(--hairline);border-top:var(--hairline)">
+      <div style="height:80px;display:flex;align-items:center;color:var(--text-heading)" data-lattice="ste" data-size="76" aria-hidden="true"></div>
+      <div class="u-eyebrow" style="margin-top:var(--space-4)">STE</div>
+      <div style="margin-top:var(--space-2);font-size:var(--fs-body-s);font-weight:var(--fw-medium);color:var(--text-heading)">方阵中空 · 炉膛</div>
+      <div class="u-label" style="margin-top:var(--space-1)">中心留空即燃烧室</div>
+    </div>
+    <div style="padding:var(--space-6) var(--space-5);border-left:var(--hairline);border-top:var(--hairline)">
+      <div style="height:80px;display:flex;align-items:center;color:var(--text-heading)" data-lattice="sti" data-size="76" aria-hidden="true"></div>
+      <div class="u-eyebrow" style="margin-top:var(--space-4)">STI</div>
+      <div style="margin-top:var(--space-2);font-size:var(--fs-body-s);font-weight:var(--fw-medium);color:var(--text-heading)">双向折线 · 航路</div>
+      <div class="u-label" style="margin-top:var(--space-1)">进与出同时成立</div>
+    </div>
+    <div style="padding:var(--space-6) var(--space-5);border-left:var(--hairline);border-top:var(--hairline)">
+      <div style="height:80px;display:flex;align-items:center;color:var(--text-heading)" data-lattice="sth" data-size="76" aria-hidden="true"></div>
+      <div class="u-eyebrow" style="margin-top:var(--space-4)">STH</div>
+      <div style="margin-top:var(--space-2);font-size:var(--fs-body-s);font-weight:var(--fw-medium);color:var(--text-heading)">核与六配位 · 分子</div>
+      <div class="u-label" style="margin-top:var(--space-1)">中心点独大</div>
+    </div>
+    <div style="padding:var(--space-6) var(--space-5);border-left:var(--hairline);border-top:var(--hairline)">
+      <div style="height:80px;display:flex;align-items:center;color:var(--text-heading)" data-lattice="edu" data-size="76" aria-hidden="true"></div>
+      <div class="u-eyebrow" style="margin-top:var(--space-4)">EDU</div>
+      <div style="margin-top:var(--space-2);font-size:var(--fs-body-s);font-weight:var(--fw-medium);color:var(--text-heading)">递进三阶</div>
+      <div class="u-label" style="margin-top:var(--space-1)">一生二、二生三</div>
+    </div>
+    <div style="padding:var(--space-6) var(--space-5);border-left:var(--hairline);border-top:var(--hairline);background:var(--surface-inverse)" class="on-dark">
+      <div style="height:80px;display:flex;align-items:center;color:var(--ink-50)" data-spin data-size="76" aria-hidden="true"></div>
+      <div class="u-eyebrow" style="margin-top:var(--space-4);color:var(--gold-300)">LatticeSpin</div>
+      <div style="margin-top:var(--space-2);font-size:var(--fs-body-s);font-weight:var(--fw-medium);color:var(--ink-50)">加载态 · 按序提亮</div>
+      <div class="u-label" style="margin-top:var(--space-1);color:var(--ink-500)">2400ms linear · 点不移动、不缩放</div>
+    </div>
+  </div>
+
+  <div class="panel" style="margin-top:var(--space-6)">
+    <h4>生成规则</h4>
+    <div class="grid grid--4" style="margin-top:var(--space-5);gap:0">
+      <div style="padding:var(--space-4) var(--space-5);border-left:var(--hairline)">
+        <div class="u-num" style="font-size:26px">48 × 48</div><div class="u-label">网格</div></div><div style="padding:var(--space-4) var(--space-5);border-left:var(--hairline)">
+        <div class="u-num" style="font-size:26px">2.0 – 3.4</div><div class="u-label">点径六档</div></div><div style="padding:var(--space-4) var(--space-5);border-left:var(--hairline)">
+        <div class="u-num" style="font-size:26px">6 – 8</div><div class="u-label">点数</div></div><div style="padding:var(--space-4) var(--space-5);border-left:var(--hairline)">
+        <div class="u-num" style="font-size:26px">0</div><div class="u-label">新增笔形</div></div>
+    </div>
+    <p style="margin-top:var(--space-5);font-size:var(--fs-body-s);line-height:1.85;max-width:44em;margin-bottom:0">
+      点径六档为 2.0 / 2.2 / 2.4 / 2.6 / 3.0 / 3.4，只改排布与点径，不改笔形、不加线、不加填充。同一实体在任何尺寸下点数与排布不变，仅整体缩放。深底用宣纸白，浅底用玄墨，<strong>禁止用实体色填充点阵</strong> —— 实体色仍只作 2px 细线刻度。加载态由同一点阵按序列依次提亮实现，不另画流纹。</p>
+  </div>
+
+  <div class="grid grid--4" style="margin-top:var(--space-5);gap:var(--space-4);align-items:end">
+    <div style="text-align:center">
+      <div style="display:flex;justify-content:center;align-items:flex-end;height:70px;color:var(--text-heading)" data-lattice="ste" data-size="16" aria-hidden="true"></div>
+      <div class="u-mono" style="margin-top:var(--space-2);font-size:11px;color:var(--text-subtle)">16px</div></div><div style="text-align:center">
+      <div style="display:flex;justify-content:center;align-items:flex-end;height:70px;color:var(--text-heading)" data-lattice="ste" data-size="24" aria-hidden="true"></div>
+      <div class="u-mono" style="margin-top:var(--space-2);font-size:11px;color:var(--text-subtle)">24px</div></div><div style="text-align:center">
+      <div style="display:flex;justify-content:center;align-items:flex-end;height:70px;color:var(--text-heading)" data-lattice="ste" data-size="40" aria-hidden="true"></div>
+      <div class="u-mono" style="margin-top:var(--space-2);font-size:11px;color:var(--text-subtle)">40px</div></div><div style="text-align:center">
+      <div style="display:flex;justify-content:center;align-items:flex-end;height:70px;color:var(--text-heading)" data-lattice="ste" data-size="64" aria-hidden="true"></div>
+      <div class="u-mono" style="margin-top:var(--space-2);font-size:11px;color:var(--text-subtle)">64px</div></div>
+  </div>
+  <p style="margin-top:var(--space-3);font-size:var(--fs-label);color:var(--text-subtle);text-align:center">同一实体在任何尺寸下点数与排布不变，仅整体缩放。</p>
+</div>
+
+  <div class="block fx-reveal">
+  <div class="block__head"><span class="u-eyebrow">类别与方案</span></div>
+  
+  <div class="table-scroll"><table class="tbl">
+    <caption class="u-sr">六类图标资产的方案与规格</caption>
+    <thead><tr><th scope="col">类别</th><th scope="col">方案</th><th scope="col">规格</th></tr></thead>
+    <tbody><tr>
+      <td style="color:var(--text-heading);font-weight:var(--fw-medium);white-space:nowrap">功能图标</td>
+      <td style="color:var(--text-brand)">Material Symbols Rounded</td><td>24 网格、wght 400、FILL 0，选中态切 FILL 1。尺寸四级 18 / 20 / 24 / 48。全系统只经 Icon 组件渲染</td></tr><tr>
+      <td style="color:var(--text-heading);font-weight:var(--fw-medium);white-space:nowrap">五实体标记</td>
+      <td style="color:var(--text-brand)">EntityLattice 点阵</td><td>五实体各一排布。业务子图标继续用 Material Symbols</td></tr><tr>
+      <td style="color:var(--text-heading);font-weight:var(--fw-medium);white-space:nowrap">加载态</td>
+      <td style="color:var(--text-brand)">点阵按序提亮</td><td>循环 2400ms linear。取代 TaijiSpinner 的临时几何占位</td></tr><tr>
+      <td style="color:var(--text-heading);font-weight:var(--fw-medium);white-space:nowrap">标签前缀</td>
+      <td style="color:var(--text-brand)">点与方块两种</td><td>章节 8px 朱方块，标签 6px 墨圆点。全系统一致</td></tr><tr>
+      <td style="color:var(--text-heading);font-weight:var(--fw-medium);white-space:nowrap">字标</td>
+      <td style="color:var(--text-brand)">三色版 SVG</td><td>禁止重绘、拉伸或改比例。最小留白 = 字标高度的 50%，最小尺寸 16px 屏幕 / 5mm 印刷</td></tr><tr>
+      <td style="color:var(--text-heading);font-weight:var(--fw-medium);white-space:nowrap">图形标志</td>
+      <td style="color:var(--text-brand)">没有，禁止自造</td><td>需要方形标记处用字标裁切或对应实体的点阵</td></tr></tbody>
+  </table></div>
+</div>
+</section>
+
+<section class="chapter" id="ch-11" aria-labelledby="ch-11-t">
+<header class="chapter__head fx-reveal">
+  <span class="chapter__num">011 / 021</span>
+  <div style="min-width:0">
+    <div class="chapter__meta"><span class="seal"></span><span class="u-eyebrow">Icon inventory</span></div>
+    <h2 class="chapter__title" id="ch-11-t">业务图标清单</h2>
+    <p class="chapter__lead">概念到 Material Symbols 的对照表。同一概念在全系统只允许一个图标 ——「燃料」不能这里用 grass 那里用 eco。下表即唯一映射。</p>
+  </div>
+</header>
+
+  <div class="block fx-reveal">
+  <div class="block__head"><span class="u-eyebrow">STE 九派国有能源</span></div>
+  <div class="icons">
+    <div class="icon-cell"><span class="ms" aria-hidden="true">grass</span>
+      <span class="icon-cell__t"><span class="icon-cell__n">种植 · 甜高粱</span><span class="icon-cell__k">grass</span></span></div><div class="icon-cell"><span class="ms" aria-hidden="true">local_shipping</span>
+      <span class="icon-cell__t"><span class="icon-cell__n">收储 · 进厂磅单</span><span class="icon-cell__k">local_shipping</span></span></div><div class="icon-cell"><span class="ms" aria-hidden="true">science</span>
+      <span class="icon-cell__t"><span class="icon-cell__n">化验 · 热值含水率</span><span class="icon-cell__k">science</span></span></div><div class="icon-cell"><span class="ms" aria-hidden="true">local_fire_department</span>
+      <span class="icon-cell__t"><span class="icon-cell__n">锅炉 · 燃烧工况</span><span class="icon-cell__k">local_fire_department</span></span></div><div class="icon-cell"><span class="ms" aria-hidden="true">bolt</span>
+      <span class="icon-cell__t"><span class="icon-cell__n">发电 · 机组负荷</span><span class="icon-cell__k">bolt</span></span></div><div class="icon-cell"><span class="ms" aria-hidden="true">heat_pump</span>
+      <span class="icon-cell__t"><span class="icon-cell__n">供汽 · 工业蒸汽</span><span class="icon-cell__k">heat_pump</span></span></div><div class="icon-cell"><span class="ms" aria-hidden="true">eco</span>
+      <span class="icon-cell__t"><span class="icon-cell__n">碳资产 · 减排量</span><span class="icon-cell__k">eco</span></span></div><div class="icon-cell"><span class="ms" aria-hidden="true">recycling</span>
+      <span class="icon-cell__t"><span class="icon-cell__n">灰渣 · 资源化</span><span class="icon-cell__k">recycling</span></span></div>
+  </div>
+</div>
+
+  <div class="block fx-reveal">
+  <div class="block__head"><span class="u-eyebrow">STI 进出口贸易</span></div>
+  <div class="icons">
+    <div class="icon-cell"><span class="ms" aria-hidden="true">directions_boat</span>
+      <span class="icon-cell__t"><span class="icon-cell__n">多式联运</span><span class="icon-cell__k">directions_boat</span></span></div><div class="icon-cell"><span class="ms" aria-hidden="true">receipt_long</span>
+      <span class="icon-cell__t"><span class="icon-cell__n">报关单</span><span class="icon-cell__k">receipt_long</span></span></div><div class="icon-cell"><span class="ms" aria-hidden="true">handshake</span>
+      <span class="icon-cell__t"><span class="icon-cell__n">订单与合约</span><span class="icon-cell__k">handshake</span></span></div>
+  </div>
+</div>
+
+  <div class="block fx-reveal">
+  <div class="block__head"><span class="u-eyebrow">STG · STH · EDU</span></div>
+  <div class="icons">
+    <div class="icon-cell"><span class="ms" aria-hidden="true">hub</span>
+      <span class="icon-cell__t"><span class="icon-cell__n">集团与实体矩阵</span><span class="icon-cell__k">hub</span></span></div><div class="icon-cell"><span class="ms" aria-hidden="true">gavel</span>
+      <span class="icon-cell__t"><span class="icon-cell__n">合规与审批</span><span class="icon-cell__k">gavel</span></span></div><div class="icon-cell"><span class="ms" aria-hidden="true">biotech</span>
+      <span class="icon-cell__t"><span class="icon-cell__n">PHA 医用材料</span><span class="icon-cell__k">biotech</span></span></div><div class="icon-cell"><span class="ms" aria-hidden="true">school</span>
+      <span class="icon-cell__t"><span class="icon-cell__n">教育与家校</span><span class="icon-cell__k">school</span></span></div>
+  </div>
+</div>
+
+  <div class="block fx-reveal">
+  <div class="block__head"><span class="u-eyebrow">尺寸四级 · 描边与实心</span></div>
+  
+  <div class="grid grid--2" style="gap:var(--space-6)">
+    <div class="panel">
+      <div class="u-eyebrow">Sizes</div>
+      <div style="display:flex;align-items:flex-end;gap:var(--space-7);margin-top:var(--space-5);color:var(--text-heading)">
+        <div style="text-align:center">
+          <span class="ms" style="font-size:18px" aria-hidden="true">bolt</span>
+          <div class="u-mono" style="margin-top:var(--space-2);font-size:11px;color:var(--text-subtle)">18</div></div><div style="text-align:center">
+          <span class="ms" style="font-size:20px" aria-hidden="true">bolt</span>
+          <div class="u-mono" style="margin-top:var(--space-2);font-size:11px;color:var(--text-subtle)">20</div></div><div style="text-align:center">
+          <span class="ms" style="font-size:24px" aria-hidden="true">bolt</span>
+          <div class="u-mono" style="margin-top:var(--space-2);font-size:11px;color:var(--text-subtle)">24</div></div><div style="text-align:center">
+          <span class="ms" style="font-size:48px" aria-hidden="true">bolt</span>
+          <div class="u-mono" style="margin-top:var(--space-2);font-size:11px;color:var(--text-subtle)">48</div></div>
+      </div>
+      <p style="margin-top:var(--space-5);font-size:var(--fs-label);color:var(--text-muted);margin-bottom:0">18 行内随文 · 20 按钮与表格行 · 24 导航与面板标题 · 48 空状态。中间尺寸不许自造。</p>
+    </div>
+    <div class="panel">
+      <div class="u-eyebrow">Fill</div>
+      <div style="display:flex;gap:var(--space-8);margin-top:var(--space-5);color:var(--text-heading)">
+        <div style="text-align:center"><span class="ms" style="font-size:36px" aria-hidden="true">eco</span>
+          <div class="u-label" style="margin-top:var(--space-2)">默认 FILL 0</div></div>
+        <div style="text-align:center"><span class="ms ms--fill" style="font-size:36px;color:var(--brand-600)" aria-hidden="true">eco</span>
+          <div class="u-label" style="margin-top:var(--space-2)">选中 FILL 1</div></div>
+      </div>
+      <p style="margin-top:var(--space-5);font-size:var(--fs-label);color:var(--text-muted);margin-bottom:0">描边为默认，只有导航选中态切实心。wght 400 固定，约 2px 笔画，不随字重变化。</p>
+    </div>
+  </div>
+  <div class="rules" style="margin-top:var(--space-5)">
+    <div class="rule"><span class="rule__n">01</span><span class="rule__t">一概念一图标，全系统唯一映射</span></div><div class="rule"><span class="rule__n">02</span><span class="rule__t">图标不单独承载语义 —— 状态必须图标 + 文字 + 语义色三重表达</span></div><div class="rule"><span class="rule__n">03</span><span class="rule__t">图标颜色跟随文字色，不独立上实体色（导航选中态除外）</span></div><div class="rule"><span class="rule__n">04</span><span class="rule__t">本表由业务方复核后定稿，新增概念须先入表再上界面</span></div>
+  </div>
+</div>
+</section>
+
+<section class="chapter" id="ch-12" aria-labelledby="ch-12-t">
+<header class="chapter__head fx-reveal">
+  <span class="chapter__num">012 / 021</span>
+  <div style="min-width:0">
+    <div class="chapter__meta"><span class="seal"></span><span class="u-eyebrow">Wordmark</span></div>
+    <h2 class="chapter__title" id="ch-12-t">字标：规范与应用</h2>
+    <p class="chapter__lead">品牌资产只有一件 —— SINOTAO 字标，重几何无衬线，比例 400 : 127（约 3.15 : 1）。没有图形标志，也不会有：任何需要方形标记的位置用字标裁切或实体点阵，不自造图形。</p>
+  </div>
+</header>
+
+  <div class="block fx-reveal">
+  <div class="block__head"><span class="u-eyebrow">三个版本</span></div>
+  
+  <div class="grid grid--3" style="gap:var(--space-4)">
+    <div>
+      <div style="background:var(--surface-sunken);border-radius:var(--shape-card);padding:var(--space-8) var(--space-5);display:flex;justify-content:center">
+        <span class="wordmark" style="font-size:30px;color:var(--ink-900)">SINOTAO</span></div>
+      <div class="u-mono" style="margin-top:var(--space-3);font-size:11px;color:var(--text-heading)">logo-sinotao-ink.svg</div>
+      <div class="u-label">玄墨版。浅底默认用这一版</div>
+    </div>
+    <div>
+      <div style="background:var(--ink-950);border-radius:var(--shape-card);padding:var(--space-8) var(--space-5);display:flex;justify-content:center">
+        <span class="wordmark" style="font-size:30px;color:var(--ink-50)">SINOTAO</span></div>
+      <div class="u-mono" style="margin-top:var(--space-3);font-size:11px;color:var(--text-heading)">logo-sinotao-paper.svg</div>
+      <div class="u-label">宣纸白版。深底与实景照片上用</div>
+    </div>
+    <div>
+      <div style="background:var(--brand-600);border-radius:var(--shape-card);padding:var(--space-8) var(--space-5);display:flex;justify-content:center">
+        <span class="wordmark" style="font-size:30px;color:var(--on-brand)">SINOTAO</span></div>
+      <div class="u-mono" style="margin-top:var(--space-3);font-size:11px;color:var(--text-heading)">logo-sinotao-current.svg</div>
+      <div class="u-label">随 currentColor。必须内联为 &lt;svg&gt; 使用</div>
+    </div>
+  </div>
+  <div class="note note--info" style="margin-top:var(--space-5)"><div class="note__b">
+    <div class="note__t">为什么 current 版必须内联</div>
+    <div class="note__d">经 &lt;img src&gt; 加载时 SVG 是独立文档，继承不到宿主页的 color，会渲染成黑色。上图第三格因此改用宣纸白版。</div>
+  </div></div>
+</div>
+
+  <div class="block fx-reveal">
+  <div class="block__head"><span class="u-eyebrow">留白与最小尺寸</span></div>
+  
+  <div class="grid grid--8-4" style="align-items:start">
+    <div style="background:var(--surface-sunken);border-radius:var(--shape-card);padding:var(--space-9);display:flex;justify-content:center">
+      <span style="display:inline-block;padding:22px;outline:1px dashed var(--border-strong);outline-offset:0">
+        <span class="wordmark" style="font-size:44px">SINOTAO</span></span>
+    </div>
+    <div>
+      <div style="display:flex;justify-content:space-between;gap:var(--space-4);padding:var(--space-3) 0;border-bottom:var(--border-hairline) solid var(--table-divider);font-size:var(--fs-body-s)">
+        <span>屏幕最小高度</span><span class="u-num">16px</span></div><div style="display:flex;justify-content:space-between;gap:var(--space-4);padding:var(--space-3) 0;border-bottom:var(--border-hairline) solid var(--table-divider);font-size:var(--fs-body-s)">
+        <span>印刷最小高度</span><span class="u-num">5mm</span></div><div style="display:flex;justify-content:space-between;gap:var(--space-4);padding:var(--space-3) 0;border-bottom:var(--border-hairline) solid var(--table-divider);font-size:var(--fs-body-s)">
+        <span>品牌页顶栏</span><span class="u-num">19–20px</span></div><div style="display:flex;justify-content:space-between;gap:var(--space-4);padding:var(--space-3) 0;border-bottom:var(--border-hairline) solid var(--table-divider);font-size:var(--fs-body-s)">
+        <span>比例</span><span class="u-num">400 : 127 锁定</span></div>
+      <p style="margin-top:var(--space-4);font-size:var(--fs-label);color:var(--text-subtle);line-height:1.7">虚线为最小留白边界。留白 = 字标高度的 50%，四边等距。留白内不得出现任何文字、线条或图像边缘。</p>
+      <div style="display:flex;align-items:flex-end;gap:var(--space-6);margin-top:var(--space-4)">
+        <div><span class="wordmark" style="font-size:20px">SINOTAO</span><div class="u-label">20px · 页脚</div></div>
+        <div><span class="wordmark" style="font-size:16px">SINOTAO</span><div class="u-label">16px · 屏幕下限</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <div class="block fx-reveal">
+  <div class="block__head"><span class="u-eyebrow">六种禁止用法</span></div>
+  
+  <div class="grid grid--3" style="gap:0">
+    
+    <div style="padding:var(--space-5);border-left:var(--hairline);border-top:var(--hairline)">
+      <div style="height:64px;display:flex;align-items:center;justify-content:center;background:var(--surface-sunken);border-radius:var(--shape-tag);overflow:hidden">
+        <span class="wordmark" style="font-size:22px;transform:scaleX(1.5);color:var(--ink-900)">SINOTAO</span>
+      </div>
+      <div style="margin-top:var(--space-3);display:flex;align-items:baseline;gap:var(--space-2)">
+        <span class="ms" style="font-size:14px;color:var(--status-error)" aria-hidden="true">block</span>
+        <span style="font-size:var(--fs-label);color:var(--text-body)">拉伸或压缩比例</span></div>
+    </div>
+    <div style="padding:var(--space-5);border-left:var(--hairline);border-top:var(--hairline)">
+      <div style="height:64px;display:flex;align-items:center;justify-content:center;background:var(--surface-sunken);border-radius:var(--shape-tag);overflow:hidden">
+        <span class="wordmark" style="font-size:22px;transform:rotate(-8deg);color:var(--ink-900)">SINOTAO</span>
+      </div>
+      <div style="margin-top:var(--space-3);display:flex;align-items:baseline;gap:var(--space-2)">
+        <span class="ms" style="font-size:14px;color:var(--status-error)" aria-hidden="true">block</span>
+        <span style="font-size:var(--fs-label);color:var(--text-body)">旋转或倾斜</span></div>
+    </div>
+    <div style="padding:var(--space-5);border-left:var(--hairline);border-top:var(--hairline)">
+      <div style="height:64px;display:flex;align-items:center;justify-content:center;background:var(--surface-sunken);border-radius:var(--shape-tag);overflow:hidden">
+        <span class="wordmark" style="font-size:22px;text-shadow:0 3px 8px rgba(0,0,0,.5);color:var(--ink-900)">SINOTAO</span>
+      </div>
+      <div style="margin-top:var(--space-3);display:flex;align-items:baseline;gap:var(--space-2)">
+        <span class="ms" style="font-size:14px;color:var(--status-error)" aria-hidden="true">block</span>
+        <span style="font-size:var(--fs-label);color:var(--text-body)">加投影、发光或描边</span></div>
+    </div>
+    <div style="padding:var(--space-5);border-left:var(--hairline);border-top:var(--hairline)">
+      <div style="height:64px;display:flex;align-items:center;justify-content:center;background:var(--surface-sunken);border-radius:var(--shape-tag);overflow:hidden">
+        <span class="wordmark" style="font-size:22px;color:#B2AA9C;">SINOTAO</span>
+      </div>
+      <div style="margin-top:var(--space-3);display:flex;align-items:baseline;gap:var(--space-2)">
+        <span class="ms" style="font-size:14px;color:var(--status-error)" aria-hidden="true">block</span>
+        <span style="font-size:var(--fs-label);color:var(--text-body)">底色对比不足</span></div>
+    </div>
+    <div style="padding:var(--space-5);border-left:var(--hairline);border-top:var(--hairline)">
+      <div style="height:64px;display:flex;align-items:center;justify-content:center;background:var(--surface-sunken);border-radius:var(--shape-tag);overflow:hidden">
+        <span style="display:flex;align-items:baseline;gap:2px"><span class="wordmark" style="font-size:20px">SINOTAO</span><span style="font-size:11px;color:var(--text-muted)">集团官网</span></span>
+      </div>
+      <div style="margin-top:var(--space-3);display:flex;align-items:baseline;gap:var(--space-2)">
+        <span class="ms" style="font-size:14px;color:var(--status-error)" aria-hidden="true">block</span>
+        <span style="font-size:var(--fs-label);color:var(--text-body)">紧贴文字，侵入最小留白</span></div>
+    </div>
+    <div style="padding:var(--space-5);border-left:var(--hairline);border-top:var(--hairline)">
+      <div style="height:64px;display:flex;align-items:center;justify-content:center;background:var(--ink-400);border-radius:var(--shape-tag);overflow:hidden">
+        <span class="wordmark" style="font-size:22px;;color:var(--ink-900)">SINOTAO</span>
+      </div>
+      <div style="margin-top:var(--space-3);display:flex;align-items:baseline;gap:var(--space-2)">
+        <span class="ms" style="font-size:14px;color:var(--status-error)" aria-hidden="true">block</span>
+        <span style="font-size:var(--fs-label);color:var(--text-body)">已废止色或非品牌色作底</span></div>
+    </div>
+  </div>
+  <p style="margin-top:var(--space-4);font-size:var(--fs-label);color:var(--text-subtle);max-width:44em">另外两条无需图示：禁止重绘字形（包括「按原样重画一遍」）、禁止在字标旁添加图形元素构成组合标志。字标只与文字并列，不与图形并列。</p>
+</div>
+
+  <div class="block fx-reveal">
+  <div class="block__head"><span class="u-eyebrow">与实体代号的组合 · 方形标记</span></div>
+  
+  <div class="grid grid--2" style="gap:var(--space-6)">
+    <div class="panel">
+      <h4>与实体代号的组合</h4>
+      <div style="margin-top:var(--space-6);display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+        <span class="wordmark" style="font-size:24px">SINOTAO</span>
+        <span style="width:1px;height:22px;background:var(--border-default)"></span>
+        <span style="width:2px;height:18px;background:var(--brand-600)"></span>
+        <span class="u-eyebrow" style="color:var(--text-body)" data-ent-code>STG</span>
+        <span style="font-size:var(--fs-body-s);font-weight:var(--fw-medium);color:var(--text-heading)" data-ent-name>源裕兴创新未来</span>
+      </div>
+      <p style="margin-top:var(--space-6);font-size:var(--fs-label);color:var(--text-muted);line-height:1.8;margin-bottom:0">字标 + 1px 竖分隔线 + 实体色刻度 + 代号。间距为字标高度的 70%。实体名称用中文时接在代号后，走界面黑体 500，不用宋体。</p>
+    </div>
+    <div class="panel">
+      <h4>方形标记 · favicon 与头像</h4>
+      <div style="margin-top:var(--space-6);display:flex;gap:var(--space-5);align-items:center">
+        <div style="width:72px;height:72px;border-radius:var(--radius-xl);background:var(--ink-950);display:flex;align-items:center;justify-content:center;color:var(--ink-50)" data-lattice="stg" data-size="44" aria-hidden="true"></div>
+        <div style="width:72px;height:72px;border-radius:var(--radius-xl);background:var(--brand-600);display:flex;align-items:center;justify-content:center">
+          <span class="u-eyebrow" style="color:var(--on-brand);font-size:15px" data-ent-code>STG</span></div>
+      </div>
+      <p style="margin-top:var(--space-6);font-size:var(--fs-label);color:var(--text-muted);line-height:1.8;margin-bottom:0">两种合法方案：STG 环点阵（集团层面），或实体色底 + 代号（实体层面）。字标本身不作方形裁切使用 —— 3.15 : 1 的比例塞进正方形只会两边留大量空白。</p>
+    </div>
+  </div>
+</div>
+</section>
+
+</div>
+</main>
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot__top">
+      <div>
+        <div class="foot__wm">SINOTAO</div>
+        <p class="foot__m">源裕兴设计系统全典 V7.0。五个实体不是五家割裂的公司，而是共用一套设计语法、各自生长出独立主色的价值共生体。本典不是画册，是施工图。</p>
+      </div>
+      <div>
+        <div class="foot__st">Volumes</div>
+        <a class="foot__l" href="volume-1.html">一 · 序与总纲</a>
+        <a class="foot__l" href="volume-2.html">二 · 基础</a>
+        <a class="foot__l" href="volume-3.html">三 · 表达</a>
+        <a class="foot__l" href="volume-4.html">四 · 数据与行为</a>
+        <a class="foot__l" href="volume-5.html">五 · 治理</a>
+      </div>
+      <div>
+        <div class="foot__st">Appendix</div>
+        <a class="foot__l" href="atlas.html">图谱 · 插图集</a>
+        <a class="foot__l" href="tokens.html">令牌总表</a>
+        <a class="foot__l" href="index.html">首页 · 总纲</a>
+      </div>
+      <div>
+        <div class="foot__st">Discipline</div>
+        <span class="foot__l">37 组件 · 421 令牌</span>
+        <span class="foot__l">九级字阶 · 四种图表</span>
+        <span class="foot__l">五种图解 · 四样动效</span>
+      </div>
+    </div>
+    <div class="foot__bot">
+      <span>源裕兴设计系统全典 V7.0 · 2026-09-06</span>
+      <span>守正 · 开物 · 共生</span>
+    </div>
+  </div>
+</footer>
+<div class="drawer" id="drawer" hidden>
+  <button class="drawer__scrim" type="button" aria-label="关闭目录"></button>
+  <nav class="drawer__panel" aria-label="全典目录">
+    <div class="drawer__sec">
+      <div class="drawer__st">Volumes</div>
+      <a class="drawer__l" href="volume-1.html"><i>一</i><span>序与总纲<br><small style="color:var(--text-subtle)">设计哲学 · 变更摘要 · 语境 · 文案</small></span></a>
+      <a class="drawer__l" href="volume-2.html"><i>二</i><span>基础<br><small style="color:var(--text-subtle)">色彩 · 色板 · 模块识别 · 字体 · 刻度 · 版面</small></span></a>
+      <a class="drawer__l" href="volume-3.html"><i>三</i><span>表达<br><small style="color:var(--text-subtle)">面板 · 图标系统 · 业务图标 · 字标</small></span></a>
+      <a class="drawer__l" href="volume-4.html"><i>四</i><span>数据与行为<br><small style="color:var(--text-subtle)">图表 · 图解 · 可视化与影像 · 动效</small></span></a>
+      <a class="drawer__l" href="volume-5.html"><i>五</i><span>治理<br><small style="color:var(--text-subtle)">组件令牌 · 产品面 · 仓库 · M3 · 来源</small></span></a>
+    </div>
+    <div class="drawer__sec">
+      <div class="drawer__st">Chapters</div>
+      <a class="drawer__l" href="volume-1.html#ch-prologue"><i>序</i><span>设计哲学</span></a>
+      <a class="drawer__l" href="volume-1.html#ch-00"><i>000</i><span>变更摘要</span></a>
+      <a class="drawer__l" href="volume-1.html#ch-01"><i>001</i><span>语境与实体</span></a>
+      <a class="drawer__l" href="volume-1.html#ch-02"><i>002</i><span>内容与文案</span></a>
+      <a class="drawer__l" href="volume-2.html#ch-03"><i>003</i><span>色彩</span></a>
+      <a class="drawer__l" href="volume-2.html#ch-04"><i>004</i><span>色板全景</span></a>
+      <a class="drawer__l" href="volume-2.html#ch-05"><i>005</i><span>模块识别</span></a>
+      <a class="drawer__l" href="volume-2.html#ch-06"><i>006</i><span>字体</span></a>
+      <a class="drawer__l" href="volume-2.html#ch-07"><i>007</i><span>刻度与断点</span></a>
+      <a class="drawer__l" href="volume-2.html#ch-08"><i>008</i><span>间距与版面</span></a>
+      <a class="drawer__l" href="volume-3.html#ch-09"><i>009</i><span>面板与边界</span></a>
+      <a class="drawer__l" href="volume-3.html#ch-10"><i>010</i><span>图标系统</span></a>
+      <a class="drawer__l" href="volume-3.html#ch-11"><i>011</i><span>业务图标清单</span></a>
+      <a class="drawer__l" href="volume-3.html#ch-12"><i>012</i><span>字标与应用</span></a>
+      <a class="drawer__l" href="volume-4.html#ch-13"><i>013</i><span>图表</span></a>
+      <a class="drawer__l" href="volume-4.html#ch-14"><i>014</i><span>图解语言</span></a>
+      <a class="drawer__l" href="volume-4.html#ch-15"><i>015</i><span>可视化与影像</span></a>
+      <a class="drawer__l" href="volume-4.html#ch-16"><i>016</i><span>动效与状态</span></a>
+      <a class="drawer__l" href="volume-5.html#ch-17"><i>017</i><span>组件与令牌总账</span></a>
+      <a class="drawer__l" href="volume-5.html#ch-18"><i>018</i><span>产品面与屏幕</span></a>
+      <a class="drawer__l" href="volume-5.html#ch-19"><i>019</i><span>仓库结构</span></a>
+      <a class="drawer__l" href="volume-5.html#ch-20"><i>020</i><span>M3 对照</span></a>
+      <a class="drawer__l" href="volume-5.html#ch-21"><i>021</i><span>来源与授权</span></a>
+    </div>
+    <div class="drawer__sec">
+      <div class="drawer__st">Appendix</div>
+      <a class="drawer__l" href="atlas.html"><i>图</i><span>图谱 · 生成式插图集</span></a>
+      <a class="drawer__l" href="tokens.html"><i>令</i><span>令牌总表</span></a>
+    </div>
+  </nav>
+</div>
+<div class="kmenu" id="kmenu" hidden>
+  <button class="kmenu__scrim" type="button" aria-label="关闭检索"></button>
+  <div class="kmenu__box" role="dialog" aria-modal="true" aria-label="全典检索">
+    <input class="kmenu__in" type="text" placeholder="检索全典 —— 章节、术语、令牌" aria-label="检索全典" autocomplete="off" spellcheck="false">
+    <div class="kmenu__list"></div>
+    <div class="kmenu__foot"><span><kbd>↑</kbd><kbd>↓</kbd> 移动</span><span><kbd>↵</kbd> 打开</span><span><kbd>esc</kbd> 关闭</span><span style="margin-left:auto"><kbd>G</kbd> 栅格</span></div>
+  </div>
+</div>
+<div class="gridlay" id="gridlay" aria-hidden="true"><div class="gridlay__in"><div class="gridlay__c"></div><div class="gridlay__c"></div><div class="gridlay__c"></div><div class="gridlay__c"></div><div class="gridlay__c"></div><div class="gridlay__c"></div><div class="gridlay__c"></div><div class="gridlay__c"></div><div class="gridlay__c"></div><div class="gridlay__c"></div><div class="gridlay__c"></div><div class="gridlay__c"></div></div></div>
+<script src="assets/js/lattice.js"></script>
+<script src="assets/js/charts.js"></script>
+<script src="assets/js/site.js"></script>
+
+</body>
+</html>

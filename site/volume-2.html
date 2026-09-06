@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="zh-Hans" data-theme="stg">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第二册 · 基础 · 源裕兴设计系统全典 V7.0</title>
+<meta name="description" content="色彩 · 色板全景 · 模块识别 · 字体 · 刻度与断点 · 间距与版面。">
+<meta name="color-scheme" content="light dark">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Noto+Sans+SC:wght@200;300;400;500;600&family=Noto+Serif+SC:wght@200;300;400;500&family=Poppins:wght@500;600&family=Space+Grotesk:wght@300;400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0..1,0&display=swap">
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/components.css">
+<link rel="stylesheet" href="assets/css/site.css">
+<script>
+/* 上色前先定主题与明暗，避免首帧闪白 */
+(function(){try{
+  var t=localStorage.getItem('sinotao.theme')||'stg';
+  document.documentElement.setAttribute('data-theme',t);
+  var s=localStorage.getItem('sinotao.scheme')||'auto';
+  var d=s==='dark'||(s==='auto'&&matchMedia('(prefers-color-scheme: dark)').matches);
+  document.documentElement.setAttribute('data-color-scheme',d?'dark':'light');
+}catch(e){}})();
+</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+<header class="topbar">
+  <div class="topbar__in">
+    <a class="topbar__brand" href="index.html">
+      <span class="topbar__wm">SINOTAO</span>
+      <span class="topbar__div"></span>
+      <span class="topbar__ent"><span class="topbar__tick"></span><span class="topbar__code" data-ent-code>STG</span></span>
+    </a>
+    <nav class="topbar__nav" aria-label="全典导航">
+      <a class="navlink" href="volume-1.html"><span class="navlink__i">一</span>序与总纲</a>
+      <a class="navlink" href="volume-2.html" aria-current="page"><span class="navlink__i">二</span>基础</a>
+      <a class="navlink" href="volume-3.html"><span class="navlink__i">三</span>表达</a>
+      <a class="navlink" href="volume-4.html"><span class="navlink__i">四</span>数据与行为</a>
+      <a class="navlink" href="volume-5.html"><span class="navlink__i">五</span>治理</a>
+      <a class="navlink" href="atlas.html">图谱</a>
+      <a class="navlink" href="tokens.html">令牌</a>
+    </nav>
+    <div class="topbar__tools">
+      <button class="kbtn" data-k-open type="button" aria-label="搜索全典"><span class="ms" style="font-size:16px" aria-hidden="true">search</span><span class="kbtn__t">检索</span><kbd>⌘K</kbd></button>
+      <div class="entsw" id="entsw">
+        <button class="iconbtn" data-entsw-btn type="button" aria-haspopup="menu" aria-expanded="false" aria-label="切换实体主题"><span class="ms" aria-hidden="true">hub</span></button>
+        <div class="entsw__menu" role="menu" hidden></div>
+      </div>
+      <button class="iconbtn" data-scheme-btn type="button" aria-label="切换明暗模式"><span class="ms" data-scheme-icon aria-hidden="true">contrast</span></button>
+      <button class="iconbtn" data-drawer-open type="button" aria-label="打开目录"><span class="ms" aria-hidden="true">menu</span></button>
+    </div>
+  </div>
+</header>
+<main id="main">
+
+<section class="vhero on-dark">
+  <canvas class="vhero__canvas" data-art="ramp" aria-hidden="true"></canvas>
+  <div class="wrap vhero__in">
+    <div class="hero__eyebrow"><span class="seal" style="background:var(--gold-400)"></span><span class="u-eyebrow" style="color:var(--gold-300)">SINOTAO Design System · V7.0 · 第二册</span></div>
+    <h1 class="vhero__t">基础</h1>
+    <p class="vhero__s">色彩 · 色板 · 模块识别 · 字体 · 刻度 · 版面 —— 结构是五层：墨为主、朱为章、金为贵、实体色为身份、状态色为语义。</p>
+    <nav class="vols" aria-label="分册导航">
+      <a class="vol-pill" href="volume-1.html"><i>一</i>序与总纲</a>
+      <a class="vol-pill" href="volume-2.html" aria-current="page"><i>二</i>基础</a>
+      <a class="vol-pill" href="volume-3.html"><i>三</i>表达</a>
+      <a class="vol-pill" href="volume-4.html"><i>四</i>数据与行为</a>
+      <a class="vol-pill" href="volume-5.html"><i>五</i>治理</a>
+    </nav>
+  </div>
+</section>
+<nav class="toc" aria-label="本册目录"><div class="wrap"><div class="toc__grid">
+  <a class="toc__l" href="#ch-03"><i>03</i><b>色彩</b></a>
+  <a class="toc__l" href="#ch-04"><i>04</i><b>色板全景</b></a>
+  <a class="toc__l" href="#ch-05"><i>05</i><b>模块识别</b></a>
+  <a class="toc__l" href="#ch-06"><i>06</i><b>字体</b></a>
+  <a class="toc__l" href="#ch-07"><i>07</i><b>刻度与断点</b></a>
+  <a class="toc__l" href="#ch-08"><i>08</i><b>间距与版面</b></a>
+</div></div></nav>
+
+<div class="wrap">
+
+<section class="chapter" id="ch-03" aria-labelledby="ch-03-t">
+<header class="chapter__head fx-reveal">
+  <span class="chapter__num">003 / 021</span>
+  <div style="min-width:0">
+    <div class="chapter__meta"><span class="seal"></span><span class="u-eyebrow">Color</span></div>
+    <h2 class="chapter__title" id="ch-03-t">色彩：高阶不靠色度，靠明度落差</h2>
+    <p class="chapter__lead">同一色相，oklch(0.32 0.09) 显贵，oklch(0.45 0.22) 显廉。宋瓷、明式家具、官式建筑的朱墨金用的都是掺了灰的矿物颜料；瑞士编辑设计同样是近乎单色加一个深色重点。</p>
+  </div>
+</header>
+
+  <div class="block fx-reveal">
+  <div class="block__head"><span class="u-eyebrow">配色配额 · 验收标准</span></div>
+  
+  <div class="grid grid--4 fx-reveal" style="gap:0">
+    
+    <div style="padding:var(--space-6) var(--space-5);border-left:var(--hairline)">
+      <div style="width:100%;height:4px;background:var(--ink-900);margin-bottom:var(--space-5)"></div>
+      <div class="u-num" style="font-size:34px;letter-spacing:-.02em">80%</div>
+      <div style="margin-top:var(--space-2);font-size:var(--fs-body-s);font-weight:var(--fw-medium);color:var(--text-heading)">墨与宣</div>
+      <p style="margin-top:var(--space-3);font-size:var(--fs-label);line-height:1.8;color:var(--text-muted)">底色 --ink-50 宣，正文 --ink-700，标题与主操作按钮 --ink-900</p>
+    </div>
+    <div style="padding:var(--space-6) var(--space-5);border-left:var(--hairline)">
+      <div style="width:100%;height:4px;background:var(--brand-600);margin-bottom:var(--space-5)"></div>
+      <div class="u-num" style="font-size:34px;letter-spacing:-.02em">15%</div>
+      <div style="margin-top:var(--space-2);font-size:var(--fs-body-s);font-weight:var(--fw-medium);color:var(--text-heading)">五实体矿物色</div>
+      <p style="margin-top:var(--space-3);font-size:var(--fs-label);line-height:1.8;color:var(--text-muted)">2px 细线刻度 + 代号，不是 40px 填色块。驱动选中态、导航激活、链接、焦点环、图表首序列</p>
+    </div>
+    <div style="padding:var(--space-6) var(--space-5);border-left:var(--hairline)">
+      <div style="width:100%;height:4px;background:var(--zhu-600);margin-bottom:var(--space-5)"></div>
+      <div class="u-num" style="font-size:34px;letter-spacing:-.02em">5%</div>
+      <div style="margin-top:var(--space-2);font-size:var(--fs-body-s);font-weight:var(--fw-medium);color:var(--text-heading)">印章朱 #8A3323</div>
+      <p style="margin-top:var(--space-3);font-size:var(--fs-label);line-height:1.8;color:var(--text-muted)">全站唯一重点色。每个章节仅一枚方块，错误态与之同值因而同享配额</p>
+    </div>
+    <div style="padding:var(--space-6) var(--space-5);border-left:var(--hairline)">
+      <div style="width:100%;height:4px;background:var(--gold-400);margin-bottom:var(--space-5)"></div>
+      <div class="u-num" style="font-size:34px;letter-spacing:-.02em">5%</div>
+      <div style="margin-top:var(--space-2);font-size:var(--fs-body-s);font-weight:var(--fw-medium);color:var(--text-heading)">古铜金 #B9A177</div>
+      <p style="margin-top:var(--space-3);font-size:var(--fs-label);line-height:1.8;color:var(--text-muted)">箔金不是镀金。营销 CTA、奖项资质、深底眼标。每屏最多一处</p>
+    </div>
+  </div>
+  <p style="margin-top:var(--space-5);font-size:var(--fs-body-s);color:var(--text-muted);max-width:40em">配额是验收标准，不是画法。出稿流程：任何新界面先全墨出一稿，再逐处论证加色，论证不出理由的地方保持墨色。</p>
+</div>
+
+  <div class="block fx-reveal">
+  <div class="block__head"><span class="u-eyebrow">状态色族 · V7.0 新立</span></div>
+  
+  <div class="grid grid--2" style="gap:var(--space-6)">
+    <div>
+      <div style="display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:var(--space-4);align-items:center;padding:var(--space-4) 0;border-bottom:var(--border-hairline) solid var(--table-divider)">
+        <span style="width:28px;height:28px;border-radius:var(--radius-full);background:#2F6B4F"></span>
+        <span><b class="u-mono" style="display:block;color:var(--text-heading)">--status-success</b>
+        <span class="u-label">达标 · 上涨 · 在线</span></span>
+        <button class="swatch__hex" style="border:0;background:none;cursor:pointer;font-family:var(--font-mono);color:var(--text-subtle)" data-copy="#2F6B4F">#2F6B4F</button>
+      </div><div style="display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:var(--space-4);align-items:center;padding:var(--space-4) 0;border-bottom:var(--border-hairline) solid var(--table-divider)">
+        <span style="width:28px;height:28px;border-radius:var(--radius-full);background:#8A6A1F"></span>
+        <span><b class="u-mono" style="display:block;color:var(--text-heading)">--status-warning</b>
+        <span class="u-label">临界 · 待核 · 需人工复核</span></span>
+        <button class="swatch__hex" style="border:0;background:none;cursor:pointer;font-family:var(--font-mono);color:var(--text-subtle)" data-copy="#8A6A1F">#8A6A1F</button>
+      </div><div style="display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:var(--space-4);align-items:center;padding:var(--space-4) 0;border-bottom:var(--border-hairline) solid var(--table-divider)">
+        <span style="width:28px;height:28px;border-radius:var(--radius-full);background:#8A3323"></span>
+        <span><b class="u-mono" style="display:block;color:var(--text-heading)">--status-error</b>
+        <span class="u-label">超限 · 下跌 · 失败</span></span>
+        <button class="swatch__hex" style="border:0;background:none;cursor:pointer;font-family:var(--font-mono);color:var(--text-subtle)" data-copy="#8A3323">#8A3323</button>
+      </div><div style="display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:var(--space-4);align-items:center;padding:var(--space-4) 0;border-bottom:var(--border-hairline) solid var(--table-divider)">
+        <span style="width:28px;height:28px;border-radius:var(--radius-full);background:#2B4A63"></span>
+        <span><b class="u-mono" style="display:block;color:var(--text-heading)">--status-info</b>
+        <span class="u-label">提示 · 进行中</span></span>
+        <button class="swatch__hex" style="border:0;background:none;cursor:pointer;font-family:var(--font-mono);color:var(--text-subtle)" data-copy="#2B4A63">#2B4A63</button>
+      </div>
+    </div>
+    <div class="panel">
+      <h4>涨跌双重编码</h4>
+      <p style="margin-top:var(--space-3);font-size:var(--fs-body-s);line-height:1.8">此前没有状态色族，涨跌只能借实体色，导致松烟绿同时表示「STE」与「上涨」，语义作废。涨跌一律颜色 + 方向图标双重编码，不靠颜色单打。</p>
+      <!-- 面板内分区用 1px 墨线，不做卡中卡 -->
+      <div class="statband" style="margin-top:var(--space-5);box-shadow:none;background:transparent;border-top:var(--hairline);border-radius:0">
+        <div class="statband__item"><span class="statband__label">今日发电量</span>
+          <span class="statband__value">1,284<span class="statband__unit">MWh</span></span>
+          <span class="statband__delta" data-dir="up"><span class="ms" style="font-size:14px" aria-hidden="true">arrow_upward</span>3.2%</span></div>
+        <div class="statband__item"><span class="statband__label">燃料库存</span>
+          <span class="statband__value">18.6<span class="statband__unit">kt</span></span>
+          <span class="statband__delta" data-dir="down"><span class="ms" style="font-size:14px" aria-hidden="true">arrow_downward</span>6.4%</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <div class="block fx-reveal">
+  <div class="block__head"><span class="u-eyebrow">主题切换 · 对比 · 已废止</span></div>
+  
+  <div class="grid grid--3" style="gap:0">
+    <div style="padding:var(--space-5);border-left:var(--hairline)">
+      <div class="u-eyebrow">Themes</div><h4 style="margin-top:var(--space-3)">主题切换</h4>
+      <p style="margin-top:var(--space-3);font-size:var(--fs-body-s);line-height:1.8"><code>data-theme="stg|ste|sti|sth|edu"</code> 重映射 <code>--brand-50…800</code> 整族；<code>data-color-scheme="dark"</code> 以焦墨为底，主操作翻转为宣纸白。不另写一套组件。</p>
+    </div>
+    <div style="padding:var(--space-5);border-left:var(--hairline)">
+      <div class="u-eyebrow">Contrast</div><h4 style="margin-top:var(--space-3)">对比与透明度</h4>
+      <p style="margin-top:var(--space-3);font-size:var(--fs-body-s);line-height:1.8">实体色 600 档在宣纸底上均 ≥8:1，白字在其上 ≥4.5:1。深底浅色文字换 ink 色阶实色，不用 alpha 调淡。透明度只三处合法：粘性顶栏、模态遮罩、压在实景上的溯源胶囊。</p>
+    </div>
+    <div style="padding:var(--space-5);border-left:var(--hairline)">
+      <div class="u-eyebrow">Deprecated</div><h4 style="margin-top:var(--space-3)">已废止色值</h4>
+      <div style="margin-top:var(--space-4);display:flex;flex-wrap:wrap;gap:var(--space-2)">
+        <span class="tag tag--dep"><i style="width:10px;height:10px;background:#851EA3;display:inline-block;margin-right:4px"></i>#851EA3</span><span class="tag tag--dep"><i style="width:10px;height:10px;background:#196B42;display:inline-block;margin-right:4px"></i>#196B42</span><span class="tag tag--dep"><i style="width:10px;height:10px;background:#1E4082;display:inline-block;margin-right:4px"></i>#1E4082</span><span class="tag tag--dep"><i style="width:10px;height:10px;background:#208F9B;display:inline-block;margin-right:4px"></i>#208F9B</span><span class="tag tag--dep"><i style="width:10px;height:10px;background:#B81E1E;display:inline-block;margin-right:4px"></i>#B81E1E</span>
+      </div>
+      <p style="margin-top:var(--space-4);font-size:var(--fs-label);color:var(--text-subtle);line-height:1.7">V6.0 高色度色值。色相关系保留，色度与明度整体重制。绝不用纯黑 #000；卡面用 #FFFEFB 而非纯白。</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<section class="chapter" id="ch-04" aria-labelledby="ch-04-t">
+<header class="chapter__head fx-reveal">
+  <span class="chapter__num">004 / 021</span>
+  <div style="min-width:0">
+    <div class="chapter__meta"><span class="seal"></span><span class="u-eyebrow">Palette</span></div>
+    <h2 class="chapter__title" id="ch-04-t">色板全景</h2>
+    <p class="chapter__lead">Primitive 色板与语义表面的完整取值。所有色值只经令牌引用，不在组件里硬编码。点击任意色块复制其十六进制值。</p>
+  </div>
+</header>
+
+  <div class="fx-reveal">
+  
+<div style="margin-bottom:var(--space-6)">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;gap:var(--space-4);margin-bottom:var(--space-3)">
+    <span class="u-eyebrow">宣纸墨色 Ink 十一阶 · 暖炭灰</span><span class="u-label">点击复制</span>
+  </div>
+  <div class="swatches">
+    <button class="swatch" type="button" data-copy="#FBF9F5" title="点击复制 #FBF9F5">
+      <span class="swatch__chip" style="background:#FBF9F5"></span>
+      <span class="swatch__name">50</span>
+      <span class="swatch__hex">#FBF9F5</span>
+      <span class="swatch__cn">宣 · 页面底</span>
+    </button><button class="swatch" type="button" data-copy="#F5F2EC" title="点击复制 #F5F2EC">
+      <span class="swatch__chip" style="background:#F5F2EC"></span>
+      <span class="swatch__name">100</span>
+      <span class="swatch__hex">#F5F2EC</span>
+      <span class="swatch__cn">轻霜</span>
+    </button><button class="swatch" type="button" data-copy="#E9E4DA" title="点击复制 #E9E4DA">
+      <span class="swatch__chip" style="background:#E9E4DA"></span>
+      <span class="swatch__name">200</span>
+      <span class="swatch__hex">#E9E4DA</span>
+      <span class="swatch__cn">薄雾 · 细线</span>
+    </button><button class="swatch" type="button" data-copy="#D3CCBF" title="点击复制 #D3CCBF">
+      <span class="swatch__chip" style="background:#D3CCBF"></span>
+      <span class="swatch__name">300</span>
+      <span class="swatch__hex">#D3CCBF</span>
+      <span class="swatch__cn">淡烟 · 描边</span>
+    </button><button class="swatch" type="button" data-copy="#B2AA9C" title="点击复制 #B2AA9C">
+      <span class="swatch__chip" style="background:#B2AA9C"></span>
+      <span class="swatch__name">400</span>
+      <span class="swatch__hex">#B2AA9C</span>
+      <span class="swatch__cn">古绢</span>
+    </button><button class="swatch" type="button" data-copy="#857E71" title="点击复制 #857E71">
+      <span class="swatch__chip" style="background:#857E71"></span>
+      <span class="swatch__name">500</span>
+      <span class="swatch__hex">#857E71</span>
+      <span class="swatch__cn">中灰</span>
+    </button><button class="swatch" type="button" data-copy="#635D53" title="点击复制 #635D53">
+      <span class="swatch__chip" style="background:#635D53"></span>
+      <span class="swatch__name">600</span>
+      <span class="swatch__hex">#635D53</span>
+      <span class="swatch__cn">砚灰</span>
+    </button><button class="swatch" type="button" data-copy="#45403A" title="点击复制 #45403A">
+      <span class="swatch__chip" style="background:#45403A"></span>
+      <span class="swatch__name">700</span>
+      <span class="swatch__hex">#45403A</span>
+      <span class="swatch__cn">墨灰 · 正文</span>
+    </button><button class="swatch" type="button" data-copy="#2A2622" title="点击复制 #2A2622">
+      <span class="swatch__chip" style="background:#2A2622"></span>
+      <span class="swatch__name">800</span>
+      <span class="swatch__hex">#2A2622</span>
+      <span class="swatch__cn">浓墨</span>
+    </button><button class="swatch" type="button" data-copy="#17140F" title="点击复制 #17140F">
+      <span class="swatch__chip" style="background:#17140F"></span>
+      <span class="swatch__name">900</span>
+      <span class="swatch__hex">#17140F</span>
+      <span class="swatch__cn">玄墨 · 主操作</span>
+    </button><button class="swatch" type="button" data-copy="#0D0B08" title="点击复制 #0D0B08">
+      <span class="swatch__chip" style="background:#0D0B08"></span>
+      <span class="swatch__name">950</span>
+      <span class="swatch__hex">#0D0B08</span>
+      <span class="swatch__cn">焦墨 · 暗色底</span>
+    </button>
+  </div>
+</div>
+  
+<div style="margin-bottom:var(--space-6)">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;gap:var(--space-4);margin-bottom:var(--space-3)">
+    <span class="u-eyebrow">印章朱 Zhu 七阶</span><span class="u-label">标准朱 --zhu-600 · 取自印泥与官式朱</span>
+  </div>
+  <div class="swatches">
+    <button class="swatch" type="button" data-copy="#F7EDEA" title="点击复制 #F7EDEA">
+      <span class="swatch__chip" style="background:#F7EDEA"></span>
+      <span class="swatch__name">50</span>
+      <span class="swatch__hex">#F7EDEA</span>
+      
+    </button><button class="swatch" type="button" data-copy="#EFD9D3" title="点击复制 #EFD9D3">
+      <span class="swatch__chip" style="background:#EFD9D3"></span>
+      <span class="swatch__name">100</span>
+      <span class="swatch__hex">#EFD9D3</span>
+      
+    </button><button class="swatch" type="button" data-copy="#DDAFA4" title="点击复制 #DDAFA4">
+      <span class="swatch__chip" style="background:#DDAFA4"></span>
+      <span class="swatch__name">200</span>
+      <span class="swatch__hex">#DDAFA4</span>
+      
+    </button><button class="swatch" type="button" data-copy="#A8452F" title="点击复制 #A8452F">
+      <span class="swatch__chip" style="background:#A8452F"></span>
+      <span class="swatch__name">400</span>
+      <span class="swatch__hex">#A8452F</span>
+      
+    </button><button class="swatch" type="button" data-copy="#8A3323" title="点击复制 #8A3323">
+      <span class="swatch__chip" style="background:#8A3323"></span>
+      <span class="swatch__name">600</span>
+      <span class="swatch__hex">#8A3323</span>
+      
+    </button><button class="swatch" type="button" data-copy="#6E2719" title="点击复制 #6E2719">
+      <span class="swatch__chip" style="background:#6E2719"></span>
+      <span class="swatch__name">700</span>
+      <span class="swatch__hex">#6E2719</span>
+      
+    </button><button class="swatch" type="button" data-copy="#541D12" title="点击复制 #541D12">
+      <span class="swatch__chip" style="background:#541D12"></span>
+      <span class="swatch__name">800</span>
+      <span class="swatch__hex">#541D12</span>
+      
+    </button>
+  </div>
+</div>
+  
+<div style="margin-bottom:var(--space-6)">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;gap:var(--space-4);margin-bottom:var(--space-3)">
+    <span class="u-eyebrow">古铜金 Gold 五阶</span><span class="u-label">标准金 --gold-400 · 去橙留灰</span>
+  </div>
+  <div class="swatches">
+    <button class="swatch" type="button" data-copy="#E8DCC4" title="点击复制 #E8DCC4">
+      <span class="swatch__chip" style="background:#E8DCC4"></span>
+      <span class="swatch__name">200</span>
+      <span class="swatch__hex">#E8DCC4</span>
+      
+    </button><button class="swatch" type="button" data-copy="#D4C29C" title="点击复制 #D4C29C">
+      <span class="swatch__chip" style="background:#D4C29C"></span>
+      <span class="swatch__name">300</span>
+      <span class="swatch__hex">#D4C29C</span>
+      
+    </button><button class="swatch" type="button" data-copy="#B9A177" title="点击复制 #B9A177">
+      <span class="swatch__chip" style="background:#B9A177"></span>
+      <span class="swatch__name">400</span>
+      <span class="swatch__hex">#B9A177</span>
+      
+    </button><button class="swatch" type="button" data-copy="#9A8259" title="点击复制 #9A8259">
+      <span class="swatch__chip" style="background:#9A8259"></span>
+      <span class="swatch__name">500</span>
+      <span class="swatch__hex">#9A8259</span>
+      
+    </button><button class="swatch" type="button" data-copy="#7A653F" title="点击复制 #7A653F">
+      <span class="swatch__chip" style="background:#7A653F"></span>
+      <span class="swatch__name">600</span>
+      <span class="swatch__hex">#7A653F</span>
+      
+    </button>
+  </div>
+</div>
+  </div>
+
+  <div class="block fx-reveal">
+  <div class="block__head"><span class="u-eyebrow">语义表面四层 · 层级只靠明度差，不靠框线</span></div>
+  
+  <div class="grid grid--4" style="gap:var(--space-4)">
+    <div>
+      <div style="height:88px;border-radius:var(--shape-card);background:var(--ink-50);box-shadow:inset 0 0 0 1px var(--border-subtle)"></div>
+      <div class="u-mono" style="margin-top:var(--space-3);color:var(--text-heading);font-size:var(--fs-label)">--surface-page</div>
+      <div class="u-label">ink-50 · 页面底</div></div><div>
+      <div style="height:88px;border-radius:var(--shape-card);background:var(--ink-100);box-shadow:inset 0 0 0 1px var(--border-subtle)"></div>
+      <div class="u-mono" style="margin-top:var(--space-3);color:var(--text-heading);font-size:var(--fs-label)">--surface-sunken</div>
+      <div class="u-label">ink-100 · 中性画布</div></div><div>
+      <div style="height:88px;border-radius:var(--shape-card);background:#FFFEFB;box-shadow:inset 0 0 0 1px var(--border-subtle)"></div>
+      <div class="u-mono" style="margin-top:var(--space-3);color:var(--text-heading);font-size:var(--fs-label)">--surface-card</div>
+      <div class="u-label">#FFFEFB · 面板，非纯白</div></div><div>
+      <div style="height:88px;border-radius:var(--shape-card);background:var(--ink-900);box-shadow:inset 0 0 0 1px var(--border-subtle)"></div>
+      <div class="u-mono" style="margin-top:var(--space-3);color:var(--text-heading);font-size:var(--fs-label)">--surface-inverse</div>
+      <div class="u-label">ink-900 · 反白区块</div></div>
+  </div>
+  <p style="margin-top:var(--space-5);font-size:var(--fs-body-s);color:var(--text-muted);max-width:42em">暗色模式走 <code>data-color-scheme="dark"</code>：page 翻为 ink-950，card #1A1713，sunken #131009，raised #221E19，遮罩 rgba(0,0,0,.62)，主操作翻转为宣纸白。不另写一套组件 —— 右上角切换即可验证本页每一处。</p>
+</div>
+
+  <div class="block fx-reveal">
+  <div class="block__head"><span class="u-eyebrow">V7.0 必须改动的源码别名</span></div>
+  
+  <div class="table-scroll"><table class="tbl">
+    <caption class="u-sr">四支状态色从别名实体色改为独立声明</caption>
+    <thead><tr><th scope="col">令牌</th><th scope="col">现源码</th><th scope="col">V7.0</th></tr></thead>
+    <tbody><tr><td class="mono" style="color:var(--text-heading)">--success-600</td>
+      <td class="mono" style="color:var(--text-subtle);text-decoration:line-through">var(--ste-600)</td>
+      <td class="mono" style="color:var(--text-brand)">#2F6B4F</td></tr><tr><td class="mono" style="color:var(--text-heading)">--warning-600</td>
+      <td class="mono" style="color:var(--text-subtle);text-decoration:line-through">#7A5F22</td>
+      <td class="mono" style="color:var(--text-brand)">#8A6A1F</td></tr><tr><td class="mono" style="color:var(--text-heading)">--error-600</td>
+      <td class="mono" style="color:var(--text-subtle);text-decoration:line-through">var(--zhu-600)</td>
+      <td class="mono" style="color:var(--text-brand)">#8A3323 · 同值但独立声明</td></tr><tr><td class="mono" style="color:var(--text-heading)">--info-600</td>
+      <td class="mono" style="color:var(--text-subtle);text-decoration:line-through">var(--sti-600)</td>
+      <td class="mono" style="color:var(--text-brand)">#2B4A63</td></tr>
+    </tbody></table></div>
+  <div class="note" style="margin-top:var(--space-5)"><div class="note__b">
+    <div class="note__t">为什么必须独立声明</div>
+    <div class="note__d">三支状态色在源码里直接别名实体色，这正是「松烟绿同时表示 STE 与上涨」的成因。V7.0 将四支全部独立声明，取值不再随 data-theme 变动。error 与印章朱同值是有意为之 —— 错误态因此自动继承「每屏一处」的配额。</div>
+  </div></div>
+</div>
+</section>
+
+<section class="chapter" id="ch-05" aria-labelledby="ch-05-t">
+<header class="chapter__head fx-reveal">
+  <span class="chapter__num">005 / 021</span>
+  <div style="min-width:0">
+    <div class="chapter__meta"><span class="seal"></span><span class="u-eyebrow">Module identity</span></div>
+    <h2 class="chapter__title" id="ch-05-t">模块识别：三层结构，色相只有一个</h2>
+    <p class="chapter__lead">实体色压到 2px 刻度之后，一家实体内部的多个业务模块就失去了识别手段。解法不是给每个模块发一个色相 —— 那会让 STE 一家公司里出现五种颜色，直接推翻配色配额；而是让模块走同一色相的明度档。</p>
+  </div>
+</header>
+
+  <div class="block fx-reveal">
+  <div class="block__head"><span class="u-eyebrow">三层结构</span></div>
+  
+  <div class="grid grid--3" style="gap:0">
+    
+    <div style="padding:var(--space-5);border-left:var(--hairline)">
+      <div style="display:flex;align-items:baseline;gap:var(--space-3)"><span class="u-eyebrow">Layer 1</span><span class="u-label">色相</span></div>
+      <h4 style="margin-top:var(--space-3)">实体层</h4>
+      <p style="margin-top:var(--space-3);font-size:var(--fs-body-s);line-height:1.8;margin-bottom:0">五实体各一色相，由 data-theme 切换。跨实体的差异只在这一层表达。</p>
+    </div>
+    <div style="padding:var(--space-5);border-left:var(--hairline)">
+      <div style="display:flex;align-items:baseline;gap:var(--space-3)"><span class="u-eyebrow">Layer 2</span><span class="u-label">明度 + 编号 + 点阵</span></div>
+      <h4 style="margin-top:var(--space-3)">模块层</h4>
+      <p style="margin-top:var(--space-3);font-size:var(--fs-body-s);line-height:1.8;margin-bottom:0">同一实体色阶的四个明度档（400 / 500 / 600 / 700）+ 模块编号 M1–M5 + 点阵密度。三重编码，不新增任何色相。</p>
+    </div>
+    <div style="padding:var(--space-5);border-left:var(--hairline)">
+      <div style="display:flex;align-items:baseline;gap:var(--space-3)"><span class="u-eyebrow">Layer 3</span><span class="u-label">状态色族</span></div>
+      <h4 style="margin-top:var(--space-3)">状态层</h4>
+      <p style="margin-top:var(--space-3);font-size:var(--fs-body-s);line-height:1.8;margin-bottom:0">四支独立状态色，与前两层不共用取值。因此「达标」在任何实体任何模块里都是同一个绿。</p>
+    </div>
+  </div>
+</div>
+
+  <div class="block fx-reveal">
+  <div class="block__head"><span class="u-eyebrow">STE 九派国有能源 · 五模块分配</span></div>
+  
+  <div class="grid grid--8-4" style="align-items:start">
+    <div>
+      <div style="display:grid;grid-template-columns:auto auto minmax(0,1fr);gap:var(--space-4);align-items:baseline;padding:var(--space-4) 0;border-bottom:var(--border-hairline) solid var(--table-divider)">
+        <span style="width:3px;height:34px;background:var(--ste-400);display:block"></span>
+        <span class="u-mono" style="color:var(--text-heading);width:2.2em">M1</span>
+        <span><b style="display:block;font-size:var(--fs-body-s);font-weight:var(--fw-medium);color:var(--text-heading)">种植与农户</b>
+        <span class="u-label">甜高粱与农林废弃物、种植合同</span></span>
+      </div><div style="display:grid;grid-template-columns:auto auto minmax(0,1fr);gap:var(--space-4);align-items:baseline;padding:var(--space-4) 0;border-bottom:var(--border-hairline) solid var(--table-divider)">
+        <span style="width:3px;height:34px;background:var(--ste-500);display:block"></span>
+        <span class="u-mono" style="color:var(--text-heading);width:2.2em">M2</span>
+        <span><b style="display:block;font-size:var(--fs-body-s);font-weight:var(--fw-medium);color:var(--text-heading)">收储与化验</b>
+        <span class="u-label">磅单、含水率与热值、供应商档案</span></span>
+      </div><div style="display:grid;grid-template-columns:auto auto minmax(0,1fr);gap:var(--space-4);align-items:baseline;padding:var(--space-4) 0;border-bottom:var(--border-hairline) solid var(--table-divider)">
+        <span style="width:3px;height:34px;background:var(--ste-600);display:block"></span>
+        <span class="u-mono" style="color:var(--text-heading);width:2.2em">M3</span>
+        <span><b style="display:block;font-size:var(--fs-body-s);font-weight:var(--fw-medium);color:var(--text-heading)">发电与供汽</b>
+        <span class="u-label">CFB 锅炉工况、机组负荷、蒸汽外供</span></span>
+      </div><div style="display:grid;grid-template-columns:auto auto minmax(0,1fr);gap:var(--space-4);align-items:baseline;padding:var(--space-4) 0;border-bottom:var(--border-hairline) solid var(--table-divider)">
+        <span style="width:3px;height:34px;background:var(--ste-700);display:block"></span>
+        <span class="u-mono" style="color:var(--text-heading);width:2.2em">M4</span>
+        <span><b style="display:block;font-size:var(--fs-body-s);font-weight:var(--fw-medium);color:var(--text-heading)">碳资产</b>
+        <span class="u-label">配额台账、CCER 开发、减排签发</span></span>
+      </div><div style="display:grid;grid-template-columns:auto auto minmax(0,1fr);gap:var(--space-4);align-items:baseline;padding:var(--space-4) 0;border-bottom:var(--border-hairline) solid var(--table-divider)">
+        <span style="width:3px;height:34px;background:var(--ink-500);display:block"></span>
+        <span class="u-mono" style="color:var(--text-heading);width:2.2em">M5</span>
+        <span><b style="display:block;font-size:var(--fs-body-s);font-weight:var(--fw-medium);color:var(--text-heading)">灰渣资源化</b>
+        <span class="u-label">灰渣回田与制建材、闭环收口</span></span>
+      </div>
+      <p style="margin-top:var(--space-5);font-size:var(--fs-body-s);color:var(--text-muted);max-width:40em">M1–M4 沿闭环顺序由浅入深，读者扫一眼刻度深浅就知道自己在链条的哪一段。M5 走中性墨阶 —— 灰渣是闭环的出口，不参与生产链的深浅序列，这个例外是有意的。四个明度档在宣纸底上的对比度均 ≥4.5:1。</p>
+    </div>
+    <div class="panel panel--sunken">
+      <div class="u-eyebrow">模块导航实样</div>
+      <div style="margin-top:var(--space-4)">
+        <div style="display:grid;grid-template-columns:auto auto minmax(0,1fr);gap:var(--space-3);align-items:center;padding:var(--space-3) var(--space-3);border-left:var(--border-indicator) solid transparent;background:transparent;border-radius:var(--shape-button)">
+          <span class="u-mono" style="font-size:11px;color:var(--text-subtle)">M1</span>
+          <span style="width:6px;height:6px;border-radius:var(--radius-full);background:var(--ink-300)"></span>
+          <span style="font-size:var(--fs-body-s);color:var(--text-muted)">种植与农户</span>
+        </div><div style="display:grid;grid-template-columns:auto auto minmax(0,1fr);gap:var(--space-3);align-items:center;padding:var(--space-3) var(--space-3);border-left:var(--border-indicator) solid transparent;background:transparent;border-radius:var(--shape-button)">
+          <span class="u-mono" style="font-size:11px;color:var(--text-subtle)">M2</span>
+          <span style="width:6px;height:6px;border-radius:var(--radius-full);background:var(--ink-300)"></span>
+          <span style="font-size:var(--fs-body-s);color:var(--text-muted)">收储与化验</span>
+        </div><div style="display:grid;grid-template-columns:auto auto minmax(0,1fr);gap:var(--space-3);align-items:center;padding:var(--space-3) var(--space-3);border-left:var(--border-indicator) solid var(--ste-600);background:color-mix(in oklch,var(--ste-600) 6%,transparent);border-radius:var(--shape-button)">
+          <span class="u-mono" style="font-size:11px;color:var(--text-heading)">M3</span>
+          <span style="width:6px;height:6px;border-radius:var(--radius-full);background:var(--ste-600)"></span>
+          <span style="font-size:var(--fs-body-s);color:var(--text-heading)">发电与供汽</span>
+        </div><div style="display:grid;grid-template-columns:auto auto minmax(0,1fr);gap:var(--space-3);align-items:center;padding:var(--space-3) var(--space-3);border-left:var(--border-indicator) solid transparent;background:transparent;border-radius:var(--shape-button)">
+          <span class="u-mono" style="font-size:11px;color:var(--text-subtle)">M4</span>
+          <span style="width:6px;height:6px;border-radius:var(--radius-full);background:var(--ink-300)"></span>
+          <span style="font-size:var(--fs-body-s);color:var(--text-muted)">碳资产</span>
+        </div><div style="display:grid;grid-template-columns:auto auto minmax(0,1fr);gap:var(--space-3);align-items:center;padding:var(--space-3) var(--space-3);border-left:var(--border-indicator) solid transparent;background:transparent;border-radius:var(--shape-button)">
+          <span class="u-mono" style="font-size:11px;color:var(--text-subtle)">M5</span>
+          <span style="width:6px;height:6px;border-radius:var(--radius-full);background:var(--ink-300)"></span>
+          <span style="font-size:var(--fs-body-s);color:var(--text-muted)">灰渣资源化</span>
+        </div>
+      </div>
+      <p style="margin-top:var(--space-4);font-size:var(--fs-label);color:var(--text-subtle);line-height:1.7;margin-bottom:0">未选中的模块不上色 —— 只有当前模块显示 3px 指示条与 6% 品牌底。侧轨不是色卡。</p>
+    </div>
+  </div>
+</div>
+
+  <div class="block fx-reveal">
+  <div class="block__head"><span class="u-eyebrow">四条使用限制</span></div>
+  
+  <div class="rules">
+    <div class="rule"><span class="rule__n">01</span><span class="rule__t">模块色只出现在 2–3px 刻度线、选中指示条、图表首序列。不用于填色块、不用于卡片底、不用于按钮</span></div><div class="rule"><span class="rule__n">02</span><span class="rule__t">一屏之内最多出现两个模块色。需要三个以上说明这屏该拆</span></div><div class="rule"><span class="rule__n">03</span><span class="rule__t">跨模块汇总视图（经营看板、驾驶舱）一律退回实体色 600，不做模块拼色</span></div><div class="rule"><span class="rule__n">04</span><span class="rule__t">模块编号 M1–M5 必须上界面并走 mono。颜色是辅助，编号是主编码 —— 打印成黑白后仍要能分辨</span></div>
+  </div>
+  <div class="table-scroll" style="margin-top:var(--space-6)"><table class="tbl">
+    <caption class="u-sr">五实体的模块划分与明度档分配</caption>
+    <thead><tr><th scope="col">实体</th><th scope="col">模块</th><th scope="col">明度档分配</th></tr></thead>
+    <tbody><tr><td class="mono" style="color:var(--text-heading)">STG</td><td>M1 战略与规划 · M2 审批中枢 · M3 合规台账 · M4 资本配置</td><td class="mono">400 / 500 / 600 / 700</td></tr><tr><td class="mono" style="color:var(--text-heading)">STE</td><td>M1 种植 · M2 收储 · M3 发电供汽 · M4 碳资产 · M5 灰渣</td><td class="mono">400 / 500 / 600 / 700 / ink-500</td></tr><tr><td class="mono" style="color:var(--text-heading)">STI</td><td>M1 订单与合约 · M2 报关合规 · M3 多式联运 · M4 结算</td><td class="mono">400 / 500 / 600 / 700</td></tr><tr><td class="mono" style="color:var(--text-heading)">STH</td><td>M1 中试 · M2 注册与质量 · M3 生产放行 · M4 临床与随访</td><td class="mono">400 / 500 / 600 / 700</td></tr><tr><td class="mono" style="color:var(--text-heading)">EDU</td><td>M1 学生档案 · M2 课程与教研 · M3 家校协同</td><td class="mono">400 / 600 / 700</td></tr></tbody>
+  </table></div>
+  <p style="margin-top:var(--space-4);font-size:var(--fs-label);color:var(--text-subtle);max-width:44em">模块划分取自各实体现有业务链条，需由业务负责人复核后定稿。EDU 只用三档是因为它只有三个模块 —— 档位不必凑满，宁缺不凑。</p>
+</div>
+</section>
+
+<section class="chapter" id="ch-06" aria-labelledby="ch-06-t">
+<header class="chapter__head fx-reveal">
+  <span class="chapter__num">006 / 021</span>
+  <div style="min-width:0">
+    <div class="chapter__meta"><span class="seal"></span><span class="u-eyebrow">Typography</span></div>
+    <h2 class="chapter__title" id="ch-06-t">字体：三轨分工，九级字阶</h2>
+    <p class="chapter__lead">字阶落差是大气的主要来源：同屏最大字与正文的比值不低于三倍，否则版面就平。四个字族按职责收成三轨 —— 展示、界面、标识 —— 各轨互不越界。</p>
+  </div>
+</header>
+
+  <div class="block fx-reveal">
+  <div class="block__head"><span class="u-eyebrow">三轨分工</span></div>
+  
+  <div class="grid grid--3" style="gap:0">
+    <div style="padding:var(--space-6) var(--space-5);border-left:var(--hairline)">
+      <div class="u-eyebrow">Track 01 · Display</div>
+      <div style="margin-top:var(--space-4);font-family:var(--font-display);font-size:30px;font-weight:200;letter-spacing:-.032em;color:var(--text-heading);word-break:keep-all">守正 · 开物 · 共生</div>
+      <p style="margin-top:var(--space-4);font-size:var(--fs-label);line-height:1.8;color:var(--text-muted);margin-bottom:0">Noto Serif SC 200–300。仅 H1/H2、章节标题与哲学引文。负字距 -0.032em。引文行高 1.9–2.1。</p>
+    </div>
+    <div style="padding:var(--space-6) var(--space-5);border-left:var(--hairline)">
+      <div class="u-eyebrow">Track 02 · Interface</div>
+      <div style="margin-top:var(--space-4);font-size:20px;font-weight:400;color:var(--text-heading)">今日碳配额剩余 <span class="u-num" style="font-size:22px">12,800</span> 吨</div>
+      <p style="margin-top:var(--space-4);font-size:var(--fs-label);line-height:1.8;color:var(--text-muted);margin-bottom:0">Noto Sans SC 承载中文，Space Grotesk 承载全部西文与数值。字距归零。数值统一 300 字重 + tabular-nums。</p>
+    </div>
+    <div style="padding:var(--space-6) var(--space-5);border-left:var(--hairline)">
+      <div class="u-eyebrow">Track 03 · Identifier</div>
+      <div class="u-mono" style="margin-top:var(--space-4);font-size:20px;color:var(--text-heading)">STE.RC.20260904</div>
+      <p style="margin-top:var(--space-4);font-size:var(--fs-label);line-height:1.8;color:var(--text-muted);margin-bottom:0">JetBrains Mono 承载单号、批次、哈希、日志时间戳与 Token 名。不承载计量数值。</p>
+    </div>
+  </div>
+</div>
+
+  <div class="block fx-reveal">
+  <div class="block__head"><span class="u-eyebrow">九级字阶 · 全部在用，无冗余档</span></div>
+  
+  <div>
+    <div class="spec">
+      <span class="spec__t" style="font-family:var(--font-display);font-size:clamp(30px,4.4vw,60px);font-weight:200;letter-spacing:-.032em;line-height:1.08">守正 · 开物 · 共生</span>
+      <span class="spec__meta">clamp(34,4.4vw,64) / 200<br><span style="color:var(--text-muted)">章节标题</span></span>
+    </div><div class="spec">
+      <span class="spec__t" style="font-family:var(--font-display);font-size:36px;font-weight:200;letter-spacing:-.032em">赤湖工业园经营看板</span>
+      <span class="spec__meta">36 / 200<br><span style="color:var(--text-muted)">页面标题</span></span>
+    </div><div class="spec">
+      <span class="spec__t" style="font-family:var(--font-display);font-size:24px;font-weight:300;letter-spacing:-.02em">燃料收储与化验</span>
+      <span class="spec__meta">24 / 300<br><span style="color:var(--text-muted)">面板标题</span></span>
+    </div><div class="spec">
+      <span class="spec__t" style="font-family:var(--font-western);font-size:32px;font-weight:300;font-variant-numeric:tabular-nums;letter-spacing:-.02em">18,600</span>
+      <span class="spec__meta">clamp(28,2.4vw,34) / 300<br><span style="color:var(--text-muted)">KPI 数值</span></span>
+    </div><div class="spec">
+      <span class="spec__t" style="font-size:20px;font-weight:500">今日碳配额</span>
+      <span class="spec__meta">20 / 500<br><span style="color:var(--text-muted)">区块小标题</span></span>
+    </div><div class="spec">
+      <span class="spec__t" style="font-size:16px;font-weight:400">含水率与热值逐车化验，不合格即退运。</span>
+      <span class="spec__meta">16 / 400<br><span style="color:var(--text-muted)">正文 · 度量 35em</span></span>
+    </div><div class="spec">
+      <span class="spec__t" style="font-size:14px;font-weight:400">磅单 · 供应商档案 · 质量追溯</span>
+      <span class="spec__meta">14 / 400<br><span style="color:var(--text-muted)">次级正文与表格</span></span>
+    </div><div class="spec">
+      <span class="spec__t" style="font-size:12px;font-weight:500">进厂磅单</span>
+      <span class="spec__meta">12 / 500 · 零字距<br><span style="color:var(--text-muted)">中文小标签</span></span>
+    </div><div class="spec">
+      <span class="spec__t" style="font-family:var(--font-western);font-size:12px;font-weight:500;letter-spacing:.18em;text-transform:uppercase">Fuel supply</span>
+      <span class="spec__meta">12 / 500 · +.18em<br><span style="color:var(--text-muted)">Eyebrow · western only</span></span>
+    </div>
+  </div>
+</div>
+
+  <div class="block fx-reveal">
+  <div class="block__head"><span class="u-eyebrow">四支字距令牌</span></div>
+  
+  <div class="tokens">
+    <div class="token-row" data-copy="--track-display" role="button" tabindex="0" title="点击复制">
+      <span class="token-row__name">--track-display</span><span class="token-row__val">-0.032em</span><span class="token-row__use">展示级负字距</span></div><div class="token-row" data-copy="--track-title" role="button" tabindex="0" title="点击复制">
+      <span class="token-row__name">--track-title</span><span class="token-row__val">-0.02em</span><span class="token-row__use">24–36px 档标题</span></div><div class="token-row" data-copy="--track-ui" role="button" tabindex="0" title="点击复制">
+      <span class="token-row__name">--track-ui</span><span class="token-row__val">0</span><span class="token-row__use">界面级一律归零，含中文小标签</span></div><div class="token-row" data-copy="--track-eyebrow" role="button" tabindex="0" title="点击复制">
+      <span class="token-row__name">--track-eyebrow</span><span class="token-row__val">0.18em</span><span class="token-row__use">只作用于西文眼标。汉字用 .u-label</span></div><div class="token-row" data-copy="--num-weight" role="button" tabindex="0" title="点击复制">
+      <span class="token-row__name">--num-weight</span><span class="token-row__val">300</span><span class="token-row__use">全部数值统一字重</span></div><div class="token-row" data-copy="--measure-cn" role="button" tabindex="0" title="点击复制">
+      <span class="token-row__name">--measure-cn</span><span class="token-row__val">35em</span><span class="token-row__use">写在元素自身上。写在父容器会按继承的正文字号解析</span></div>
+  </div>
+</div>
+
+  <div class="block fx-reveal">
+  <div class="block__head"><span class="u-eyebrow">宋体字重：200 有下限，不是全场通用</span></div>
+  
+  <div class="grid grid--3" style="gap:0">
+    <div style="padding:var(--space-6) var(--space-5);border-left:var(--hairline)">
+      <div style="font-family:var(--font-display);font-size:34px;font-weight:200;color:var(--text-heading);word-break:keep-all;min-height:2.2em">热电联产</div>
+      <div class="u-mono" style="margin-top:var(--space-4);font-size:11px;color:var(--text-brand)">≥ 32px · weight 200</div>
+      <p style="margin-top:var(--space-2);font-size:var(--fs-label);line-height:1.7;color:var(--text-muted);margin-bottom:0">成立。字越大越该细，这是宋体的正确用法</p>
+    </div><div style="padding:var(--space-6) var(--space-5);border-left:var(--hairline)">
+      <div style="font-family:var(--font-display);font-size:26px;font-weight:300;color:var(--text-heading);word-break:keep-all;min-height:2.2em">热电联产与碳资产开发</div>
+      <div class="u-mono" style="margin-top:var(--space-4);font-size:11px;color:var(--text-brand)">24 – 31px · weight 300</div>
+      <p style="margin-top:var(--space-2);font-size:var(--fs-label);line-height:1.7;color:var(--text-muted);margin-bottom:0">面板标题档。200 在此已开始发虚</p>
+    </div><div style="padding:var(--space-6) var(--space-5);border-left:var(--hairline)">
+      <div style="font-family:var(--font-display);font-size:18px;font-weight:400;color:var(--text-heading);word-break:keep-all;min-height:2.2em">含水率与热值逐车化验</div>
+      <div class="u-mono" style="margin-top:var(--space-4);font-size:11px;color:var(--text-brand)">&lt; 24px · weight 400</div>
+      <p style="margin-top:var(--space-2);font-size:var(--fs-label);line-height:1.7;color:var(--text-muted);margin-bottom:0">宋体在 24px 以下一律 400。低于 16px 不用宋体</p>
+    </div>
+  </div>
+  <div class="panel panel--inverse on-dark" style="margin-top:var(--space-5)">
+    <div class="grid grid--2" style="align-items:center">
+      <div>
+        <div style="font-family:var(--font-display);font-size:34px;font-weight:200;color:var(--ink-50);word-break:keep-all">守正 · 开物</div>
+        <div class="u-label" style="margin-top:var(--space-2);color:var(--ink-500)">weight 200 · 反白 —— 横画已经开始断</div>
+      </div>
+      <div>
+        <div style="font-family:var(--font-display);font-size:34px;font-weight:300;color:var(--ink-50);word-break:keep-all">守正 · 开物</div>
+        <div class="u-label" style="margin-top:var(--space-2);color:var(--gold-300)">weight 300 · 反白 · 正确</div>
+      </div>
+    </div>
+    <p style="margin-top:var(--space-5);font-size:var(--fs-body-s);color:var(--ink-400);max-width:42em;margin-bottom:0">深底反白时宋体一律 +100 字重补偿光学变细。这条对全部深色首屏与深色区块生效 —— 本站每一处深底标题都已按此补偿。</p>
+  </div>
+  <div class="tokens" style="margin-top:var(--space-5)">
+    <div class="token-row" data-copy="--serif-min-thin" role="button" tabindex="0"><span class="token-row__name">--serif-min-thin</span><span class="token-row__val">32px</span><span class="token-row__use">200 字重的字号下限</span></div><div class="token-row" data-copy="--serif-min-size" role="button" tabindex="0"><span class="token-row__name">--serif-min-size</span><span class="token-row__val">16px</span><span class="token-row__use">宋体本身的字号下限，再小改界面黑体</span></div><div class="token-row" data-copy="--serif-dark-comp" role="button" tabindex="0"><span class="token-row__name">--serif-dark-comp</span><span class="token-row__val">+100</span><span class="token-row__use">深底反白的字重补偿</span></div>
+  </div>
+</div>
+
+  <div class="block fx-reveal">
+  <div class="block__head"><span class="u-eyebrow">排版纪律 · 待补 · 有意替换</span></div>
+  
+  <div class="grid grid--3" style="gap:var(--space-5)">
+    <div class="panel"><div class="u-eyebrow">Discipline</div><h4 style="margin-top:var(--space-3)">排版纪律</h4>
+      <p style="margin-top:var(--space-3);font-size:var(--fs-body-s);line-height:1.8;margin-bottom:0">标题一律 <code>word-break: keep-all</code>，否则「热电联产」会被劈成两行；大标题加 <code>text-wrap: balance</code>。</p></div>
+    <div class="panel"><div class="u-eyebrow">Pending</div><h4 style="margin-top:var(--space-3)">字体文件待补</h4>
+      <p style="margin-top:var(--space-3);font-size:var(--fs-body-s);line-height:1.8;margin-bottom:0">原稿指定霞鹜文楷与思源系列但未提供文件。当前用 Noto Serif SC / Noto Sans SC 近似替代。提供授权字体文件后改为 @font-face 自托管。</p></div>
+    <div class="panel"><div class="u-eyebrow">Substitution</div><h4 style="margin-top:var(--space-3)">Space Grotesk 是有意替换</h4>
+      <p style="margin-top:var(--space-3);font-size:var(--fs-body-s);line-height:1.8;margin-bottom:0">原稿指定 Inter。Inter 过于通用，Space Grotesk 的几何骨架更贴近 SINOTAO 字标的重几何无衬线气质，此项不回退。</p></div>
+  </div>
+</div>
+</section>
+
+<section class="chapter" id="ch-07" aria-labelledby="ch-07-t">
+<header class="chapter__head fx-reveal">
+  <span class="chapter__num">007 / 021</span>
+  <div style="min-width:0">
+    <div class="chapter__meta"><span class="seal"></span><span class="u-eyebrow">Scale</span></div>
+    <h2 class="chapter__title" id="ch-07-t">刻度与断点</h2>
+    <p class="chapter__lead">4px 基准十二级，另加 --space-13: 128px 供 Web 展示面。间距只用刻度上的值 —— 18px、22px、28px、30px、72px 都不在刻度上，一律不用。</p>
+  </div>
+</header>
+
+  <div class="block fx-reveal">
+  <div class="block__head"><span class="u-eyebrow">间距刻度</span></div>
+  
+  <div>
+    <div class="scale-row">
+      <span class="scale-row__n">4</span>
+      <span class="scale-row__bar fx-reveal" style="width:3.1%"></span>
+      <span class="scale-row__u">图标与文字之间</span></div><div class="scale-row">
+      <span class="scale-row__n">8</span>
+      <span class="scale-row__bar fx-reveal" style="width:6.3%"></span>
+      <span class="scale-row__u">标签与数值之间</span></div><div class="scale-row">
+      <span class="scale-row__n">12</span>
+      <span class="scale-row__bar fx-reveal" style="width:9.4%"></span>
+      <span class="scale-row__u">行内元素</span></div><div class="scale-row">
+      <span class="scale-row__n">16</span>
+      <span class="scale-row__bar fx-reveal" style="width:12.5%"></span>
+      <span class="scale-row__u">栅格槽宽下限</span></div><div class="scale-row">
+      <span class="scale-row__n">24</span>
+      <span class="scale-row__bar fx-reveal" style="width:18.8%"></span>
+      <span class="scale-row__u">组件间距 · 面板密集档内边距</span></div><div class="scale-row">
+      <span class="scale-row__n">32</span>
+      <span class="scale-row__bar fx-reveal" style="width:25.0%"></span>
+      <span class="scale-row__u">段落间距 · 面板内边距（产品面）</span></div><div class="scale-row">
+      <span class="scale-row__n">40</span>
+      <span class="scale-row__bar fx-reveal" style="width:31.3%"></span>
+      <span class="scale-row__u">面板内边距 · 品牌面</span></div><div class="scale-row">
+      <span class="scale-row__n">48</span>
+      <span class="scale-row__bar fx-reveal" style="width:37.5%"></span>
+      <span class="scale-row__u">产品面区块节奏 · 表格行高</span></div><div class="scale-row">
+      <span class="scale-row__n">56</span>
+      <span class="scale-row__bar fx-reveal" style="width:43.8%"></span>
+      <span class="scale-row__u">面板内部大分段</span></div><div class="scale-row">
+      <span class="scale-row__n">64</span>
+      <span class="scale-row__bar fx-reveal" style="width:50.0%"></span>
+      <span class="scale-row__u">章节头到内容</span></div><div class="scale-row">
+      <span class="scale-row__n">80</span>
+      <span class="scale-row__bar fx-reveal" style="width:62.5%"></span>
+      <span class="scale-row__u">Web 小区块</span></div><div class="scale-row">
+      <span class="scale-row__n">96</span>
+      <span class="scale-row__bar fx-reveal" style="width:75.0%"></span>
+      <span class="scale-row__u">Web 中区块</span></div><div class="scale-row">
+      <span class="scale-row__n">128</span>
+      <span class="scale-row__bar fx-reveal" style="width:100.0%"></span>
+      <span class="scale-row__u">品牌面章节节奏</span></div>
+  </div>
+</div>
+
+  <div class="block fx-reveal">
+  <div class="block__head"><span class="u-eyebrow">断点与栅格</span></div>
+  
+  <div class="grid grid--2" style="gap:var(--space-6)">
+    <div class="table-scroll"><table class="tbl">
+      <caption class="u-sr">五级断点的列数与槽宽</caption>
+      <thead><tr><th scope="col">断点</th><th scope="col" class="num">列数</th><th scope="col" class="num">槽宽</th></tr></thead>
+      <tbody><tr><td class="mono">xs · 0</td><td class="num">4</td><td class="num">16px</td></tr><tr><td class="mono">sm · 600</td><td class="num">8</td><td class="num">16px</td></tr><tr><td class="mono">md · 905</td><td class="num">12</td><td class="num">24px</td></tr><tr><td class="mono">lg · 1240</td><td class="num">12</td><td class="num">24px</td></tr><tr><td class="mono">xl · 1440</td><td class="num">12</td><td class="num">24px</td></tr></tbody>
+    </table></div>
+    <div class="statband statband--wrap">
+      <div class="statband__item"><span class="statband__label">内容区上限 · 长文</span>
+        <span class="statband__value">1120<span class="statband__unit">px</span></span></div><div class="statband__item"><span class="statband__label">内容区上限 · 品牌页</span>
+        <span class="statband__value">1200<span class="statband__unit">px</span></span></div><div class="statband__item"><span class="statband__label">数据大屏</span>
+        <span class="statband__value">1440<span class="statband__unit">px</span></span></div><div class="statband__item"><span class="statband__label">主内容比侧栏</span>
+        <span class="statband__value">8 : 4<span class="statband__unit"></span></span></div><div class="statband__item"><span class="statband__label">中文阅读度量</span>
+        <span class="statband__value">35<span class="statband__unit">em</span></span></div><div class="statband__item"><span class="statband__label">触摸目标下限</span>
+        <span class="statband__value">44<span class="statband__unit">px</span></span></div>
+    </div>
+  </div>
+  <div class="note note--info" style="margin-top:var(--space-5)"><div class="note__b">
+    <div class="note__t">按 <kbd style="font-family:var(--font-mono);font-size:11px;border:1px solid var(--border-default);border-radius:2px;padding:1px 4px">G</kbd> 显示 12 列栅格</div>
+    <div class="note__d">除决稿、印刷与大屏之外，一切版面按预览宽度自适应：用 max-width 不用固定 width，栅格轨道 minmax(0,1fr) 可收缩，承载文字的盒子不设 nowrap 与固定高度。</div>
+  </div></div>
+</div>
+</section>
+
+<section class="chapter" id="ch-08" aria-labelledby="ch-08-t">
+<header class="chapter__head fx-reveal">
+  <span class="chapter__num">008 / 021</span>
+  <div style="min-width:0">
+    <div class="chapter__meta"><span class="seal"></span><span class="u-eyebrow">Spacing & layout</span></div>
+    <h2 class="chapter__title" id="ch-08-t">间距与版面：两档节奏，编号章节</h2>
+    <p class="chapter__lead">品牌面与产品面必须分档 —— 产品界面沿用品牌页的百余像素节奏，一屏就只装得下两个指标。编号章节制从可选升为标准。</p>
+  </div>
+</header>
+
+  <div class="block fx-reveal">
+  <div class="block__head"><span class="u-eyebrow">两档节奏</span></div>
+  
+  <div class="grid grid--2" style="gap:var(--space-6)">
+    <div class="panel panel--brand">
+      <div class="u-eyebrow">Brand surface</div>
+      <h4 style="margin-top:var(--space-3)">品牌面 · 呼吸档</h4>
+      <div style="margin-top:var(--space-5)">
+        <div style="display:flex;justify-content:space-between;padding:var(--space-3) 0;border-bottom:var(--border-hairline) solid var(--table-divider);font-size:var(--fs-body-s)">
+          <span>章节间距</span><span class="u-num">128px</span></div><div style="display:flex;justify-content:space-between;padding:var(--space-3) 0;border-bottom:var(--border-hairline) solid var(--table-divider);font-size:var(--fs-body-s)">
+          <span>章节头到内容</span><span class="u-num">64px</span></div><div style="display:flex;justify-content:space-between;padding:var(--space-3) 0;border-bottom:var(--border-hairline) solid var(--table-divider);font-size:var(--fs-body-s)">
+          <span>容器上限</span><span class="u-num">1120px</span></div><div style="display:flex;justify-content:space-between;padding:var(--space-3) 0;border-bottom:var(--border-hairline) solid var(--table-divider);font-size:var(--fs-body-s)">
+          <span>面板内边距</span><span class="u-num">40px</span></div>
+      </div>
+    </div>
+    <div class="panel panel--dense">
+      <div class="u-eyebrow">Product surface</div>
+      <h4 style="margin-top:var(--space-3)">产品面 · 密集档</h4>
+      <div style="margin-top:var(--space-5)">
+        <div style="display:flex;justify-content:space-between;padding:var(--space-3) 0;border-bottom:var(--border-hairline) solid var(--table-divider);font-size:var(--fs-body-s)">
+          <span>区块间距</span><span class="u-num">48px</span></div><div style="display:flex;justify-content:space-between;padding:var(--space-3) 0;border-bottom:var(--border-hairline) solid var(--table-divider);font-size:var(--fs-body-s)">
+          <span>面板间距</span><span class="u-num">24px</span></div><div style="display:flex;justify-content:space-between;padding:var(--space-3) 0;border-bottom:var(--border-hairline) solid var(--table-divider);font-size:var(--fs-body-s)">
+          <span>容器上限</span><span class="u-num">1440px</span></div><div style="display:flex;justify-content:space-between;padding:var(--space-3) 0;border-bottom:var(--border-hairline) solid var(--table-divider);font-size:var(--fs-body-s)">
+          <span>面板内边距</span><span class="u-num">32 / 24px</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="statband" style="margin-top:var(--space-5)">
+    <div class="statband__item"><span class="statband__label">行内 · 工具栏</span>
+      <span class="statband__value">36<span class="statband__unit">px</span></span></div><div class="statband__item"><span class="statband__label">表单与主操作</span>
+      <span class="statband__value">40 / 44<span class="statband__unit">px</span></span></div><div class="statband__item"><span class="statband__label">表格行</span>
+      <span class="statband__value">48<span class="statband__unit">px</span></span></div><div class="statband__item"><span class="statband__label">触摸目标下限</span>
+      <span class="statband__value">44<span class="statband__unit">px</span></span></div>
+  </div>
+</div>
+
+  <div class="block fx-reveal">
+  <div class="block__head"><span class="u-eyebrow">编号章节头 · 四件构成，缺一不可</span></div>
+  
+  <div class="panel panel--sunken">
+    <div class="chapter__head" style="margin-bottom:0">
+      <span class="chapter__num">004 / 012</span>
+      <div style="min-width:0">
+        <div class="chapter__meta"><span class="seal"></span><span class="u-eyebrow">Fuel supply</span></div>
+        <h3 style="margin-top:var(--space-5);font-family:var(--font-display);font-size:42px;font-weight:200;letter-spacing:-.032em;line-height:1.14;color:var(--text-heading);word-break:keep-all">燃料收储与化验</h3>
+        <p style="margin-top:var(--space-5);max-width:26em;font-family:var(--font-serif);line-height:1.95;margin-bottom:0">含水率与热值逐车化验，不合格即退运。质量档案随供应商长期累积。</p>
+      </div>
+    </div>
+  </div>
+  <div class="grid grid--4" style="margin-top:var(--space-5);gap:0">
+    <div style="padding:var(--space-4) var(--space-5);border-left:var(--hairline)">
+      <span class="u-mono" style="color:var(--seal)">①</span>
+      <div style="margin-top:var(--space-2);font-size:var(--fs-body-s);color:var(--text-body)">竖排三位序号与总数</div></div><div style="padding:var(--space-4) var(--space-5);border-left:var(--hairline)">
+      <span class="u-mono" style="color:var(--seal)">②</span>
+      <div style="margin-top:var(--space-2);font-size:var(--fs-body-s);color:var(--text-body)">8px 朱方块</div></div><div style="padding:var(--space-4) var(--space-5);border-left:var(--hairline)">
+      <span class="u-mono" style="color:var(--seal)">③</span>
+      <div style="margin-top:var(--space-2);font-size:var(--fs-body-s);color:var(--text-body)">西文眼标</div></div><div style="padding:var(--space-4) var(--space-5);border-left:var(--hairline)">
+      <span class="u-mono" style="color:var(--seal)">④</span>
+      <div style="margin-top:var(--space-2);font-size:var(--fs-body-s);color:var(--text-body)">宋体 200 章节标题</div></div>
+  </div>
+  <p style="margin-top:var(--space-4);font-size:var(--fs-label);color:var(--text-subtle);max-width:40em">留白刻意非对称 —— 序号列窄，右侧留到 26em 就停。本站每一个章节头都是这个构造。</p>
+</div>
+
+  <div class="block fx-reveal">
+  <div class="block__head"><span class="u-eyebrow">圆角七级 · 形状角色</span></div>
+  
+  <div class="grid grid--4" style="gap:var(--space-4)">
+    <div>
+      <div style="height:64px;background:var(--surface-sunken);border-radius:2px;box-shadow:inset 0 0 0 1px var(--border-subtle)"></div>
+      <div class="u-mono" style="margin-top:var(--space-2);font-size:11px;color:var(--text-heading)">2px</div>
+      <div class="u-label" style="font-size:11px">--radius-xs</div></div><div>
+      <div style="height:64px;background:var(--surface-sunken);border-radius:4px;box-shadow:inset 0 0 0 1px var(--border-subtle)"></div>
+      <div class="u-mono" style="margin-top:var(--space-2);font-size:11px;color:var(--text-heading)">4px</div>
+      <div class="u-label" style="font-size:11px">标签</div></div><div>
+      <div style="height:64px;background:var(--surface-sunken);border-radius:6px;box-shadow:inset 0 0 0 1px var(--border-subtle)"></div>
+      <div class="u-mono" style="margin-top:var(--space-2);font-size:11px;color:var(--text-heading)">6px</div>
+      <div class="u-label" style="font-size:11px">产品按钮与输入框</div></div><div>
+      <div style="height:64px;background:var(--surface-sunken);border-radius:10px;box-shadow:inset 0 0 0 1px var(--border-subtle)"></div>
+      <div class="u-mono" style="margin-top:var(--space-2);font-size:11px;color:var(--text-heading)">10px</div>
+      <div class="u-label" style="font-size:11px">下拉与气泡</div></div><div>
+      <div style="height:64px;background:var(--surface-sunken);border-radius:16px;box-shadow:inset 0 0 0 1px var(--border-subtle)"></div>
+      <div class="u-mono" style="margin-top:var(--space-2);font-size:11px;color:var(--text-heading)">16px</div>
+      <div class="u-label" style="font-size:11px">卡片与弹窗</div></div><div>
+      <div style="height:64px;background:var(--surface-sunken);border-radius:24px;box-shadow:inset 0 0 0 1px var(--border-subtle)"></div>
+      <div class="u-mono" style="margin-top:var(--space-2);font-size:11px;color:var(--text-heading)">24px</div>
+      <div class="u-label" style="font-size:11px">--radius-2xl</div></div><div>
+      <div style="height:64px;background:var(--surface-sunken);border-radius:9999px;box-shadow:inset 0 0 0 1px var(--border-subtle)"></div>
+      <div class="u-mono" style="margin-top:var(--space-2);font-size:11px;color:var(--text-heading)">9999px</div>
+      <div class="u-label" style="font-size:11px">营销 CTA · 状态点 · 溯源胶囊</div></div>
+  </div>
+  <p style="margin-top:var(--space-5);font-size:var(--fs-body-s);color:var(--text-muted);max-width:42em">全圆按钮在高密度表格里破坏对齐，故不通用 —— 产品按钮与输入框 6px，营销 CTA 才走全圆。这是本系统对原稿的唯一硬性偏离。</p>
+</div>
+</section>
+
+</div>
+</main>
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot__top">
+      <div>
+        <div class="foot__wm">SINOTAO</div>
+        <p class="foot__m">源裕兴设计系统全典 V7.0。五个实体不是五家割裂的公司，而是共用一套设计语法、各自生长出独立主色的价值共生体。本典不是画册，是施工图。</p>
+      </div>
+      <div>
+        <div class="foot__st">Volumes</div>
+        <a class="foot__l" href="volume-1.html">一 · 序与总纲</a>
+        <a class="foot__l" href="volume-2.html">二 · 基础</a>
+        <a class="foot__l" href="volume-3.html">三 · 表达</a>
+        <a class="foot__l" href="volume-4.html">四 · 数据与行为</a>
+        <a class="foot__l" href="volume-5.html">五 · 治理</a>
+      </div>
+      <div>
+        <div class="foot__st">Appendix</div>
+        <a class="foot__l" href="atlas.html">图谱 · 插图集</a>
+        <a class="foot__l" href="tokens.html">令牌总表</a>
+        <a class="foot__l" href="index.html">首页 · 总纲</a>
+      </div>
+      <div>
+        <div class="foot__st">Discipline</div>
+        <span class="foot__l">37 组件 · 421 令牌</span>
+        <span class="foot__l">九级字阶 · 四种图表</span>
+        <span class="foot__l">五种图解 · 四样动效</span>
+      </div>
+    </div>
+    <div class="foot__bot">
+      <span>源裕兴设计系统全典 V7.0 · 2026-09-06</span>
+      <span>守正 · 开物 · 共生</span>
+    </div>
+  </div>
+</footer>
+<div class="drawer" id="drawer" hidden>
+  <button class="drawer__scrim" type="button" aria-label="关闭目录"></button>
+  <nav class="drawer__panel" aria-label="全典目录">
+    <div class="drawer__sec">
+      <div class="drawer__st">Volumes</div>
+      <a class="drawer__l" href="volume-1.html"><i>一</i><span>序与总纲<br><small style="color:var(--text-subtle)">设计哲学 · 变更摘要 · 语境 · 文案</small></span></a>
+      <a class="drawer__l" href="volume-2.html"><i>二</i><span>基础<br><small style="color:var(--text-subtle)">色彩 · 色板 · 模块识别 · 字体 · 刻度 · 版面</small></span></a>
+      <a class="drawer__l" href="volume-3.html"><i>三</i><span>表达<br><small style="color:var(--text-subtle)">面板 · 图标系统 · 业务图标 · 字标</small></span></a>
+      <a class="drawer__l" href="volume-4.html"><i>四</i><span>数据与行为<br><small style="color:var(--text-subtle)">图表 · 图解 · 可视化与影像 · 动效</small></span></a>
+      <a class="drawer__l" href="volume-5.html"><i>五</i><span>治理<br><small style="color:var(--text-subtle)">组件令牌 · 产品面 · 仓库 · M3 · 来源</small></span></a>
+    </div>
+    <div class="drawer__sec">
+      <div class="drawer__st">Chapters</div>
+      <a class="drawer__l" href="volume-1.html#ch-prologue"><i>序</i><span>设计哲学</span></a>
+      <a class="drawer__l" href="volume-1.html#ch-00"><i>000</i><span>变更摘要</span></a>
+      <a class="drawer__l" href="volume-1.html#ch-01"><i>001</i><span>语境与实体</span></a>
+      <a class="drawer__l" href="volume-1.html#ch-02"><i>002</i><span>内容与文案</span></a>
+      <a class="drawer__l" href="volume-2.html#ch-03"><i>003</i><span>色彩</span></a>
+      <a class="drawer__l" href="volume-2.html#ch-04"><i>004</i><span>色板全景</span></a>
+      <a class="drawer__l" href="volume-2.html#ch-05"><i>005</i><span>模块识别</span></a>
+      <a class="drawer__l" href="volume-2.html#ch-06"><i>006</i><span>字体</span></a>
+      <a class="drawer__l" href="volume-2.html#ch-07"><i>007</i><span>刻度与断点</span></a>
+      <a class="drawer__l" href="volume-2.html#ch-08"><i>008</i><span>间距与版面</span></a>
+      <a class="drawer__l" href="volume-3.html#ch-09"><i>009</i><span>面板与边界</span></a>
+      <a class="drawer__l" href="volume-3.html#ch-10"><i>010</i><span>图标系统</span></a>
+      <a class="drawer__l" href="volume-3.html#ch-11"><i>011</i><span>业务图标清单</span></a>
+      <a class="drawer__l" href="volume-3.html#ch-12"><i>012</i><span>字标与应用</span></a>
+      <a class="drawer__l" href="volume-4.html#ch-13"><i>013</i><span>图表</span></a>
+      <a class="drawer__l" href="volume-4.html#ch-14"><i>014</i><span>图解语言</span></a>
+      <a class="drawer__l" href="volume-4.html#ch-15"><i>015</i><span>可视化与影像</span></a>
+      <a class="drawer__l" href="volume-4.html#ch-16"><i>016</i><span>动效与状态</span></a>
+      <a class="drawer__l" href="volume-5.html#ch-17"><i>017</i><span>组件与令牌总账</span></a>
+      <a class="drawer__l" href="volume-5.html#ch-18"><i>018</i><span>产品面与屏幕</span></a>
+      <a class="drawer__l" href="volume-5.html#ch-19"><i>019</i><span>仓库结构</span></a>
+      <a class="drawer__l" href="volume-5.html#ch-20"><i>020</i><span>M3 对照</span></a>
+      <a class="drawer__l" href="volume-5.html#ch-21"><i>021</i><span>来源与授权</span></a>
+    </div>
+    <div class="drawer__sec">
+      <div class="drawer__st">Appendix</div>
+      <a class="drawer__l" href="atlas.html"><i>图</i><span>图谱 · 生成式插图集</span></a>
+      <a class="drawer__l" href="tokens.html"><i>令</i><span>令牌总表</span></a>
+    </div>
+  </nav>
+</div>
+<div class="kmenu" id="kmenu" hidden>
+  <button class="kmenu__scrim" type="button" aria-label="关闭检索"></button>
+  <div class="kmenu__box" role="dialog" aria-modal="true" aria-label="全典检索">
+    <input class="kmenu__in" type="text" placeholder="检索全典 —— 章节、术语、令牌" aria-label="检索全典" autocomplete="off" spellcheck="false">
+    <div class="kmenu__list"></div>
+    <div class="kmenu__foot"><span><kbd>↑</kbd><kbd>↓</kbd> 移动</span><span><kbd>↵</kbd> 打开</span><span><kbd>esc</kbd> 关闭</span><span style="margin-left:auto"><kbd>G</kbd> 栅格</span></div>
+  </div>
+</div>
+<div class="gridlay" id="gridlay" aria-hidden="true"><div class="gridlay__in"><div class="gridlay__c"></div><div class="gridlay__c"></div><div class="gridlay__c"></div><div class="gridlay__c"></div><div class="gridlay__c"></div><div class="gridlay__c"></div><div class="gridlay__c"></div><div class="gridlay__c"></div><div class="gridlay__c"></div><div class="gridlay__c"></div><div class="gridlay__c"></div><div class="gridlay__c"></div></div></div>
+<script src="assets/js/lattice.js"></script>
+<script src="assets/js/charts.js"></script>
+<script src="assets/js/site.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="zh-Hans" data-theme="stg">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>图谱 · 生成式插图集 · 源裕兴设计系统全典 V7.0</title>
+<meta name="description" content="六幅生成式扉画与五实体点阵的构造规则。本典的插图不画，是长出来的。">
+<meta name="color-scheme" content="light dark">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Noto+Sans+SC:wght@200;300;400;500;600&family=Noto+Serif+SC:wght@200;300;400;500&family=Poppins:wght@500;600&family=Space+Grotesk:wght@300;400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0..1,0&display=swap">
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/components.css">
+<link rel="stylesheet" href="assets/css/site.css">
+<script>
+/* 上色前先定主题与明暗，避免首帧闪白 */
+(function(){try{
+  var t=localStorage.getItem('sinotao.theme')||'stg';
+  document.documentElement.setAttribute('data-theme',t);
+  var s=localStorage.getItem('sinotao.scheme')||'auto';
+  var d=s==='dark'||(s==='auto'&&matchMedia('(prefers-color-scheme: dark)').matches);
+  document.documentElement.setAttribute('data-color-scheme',d?'dark':'light');
+}catch(e){}})();
+</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+<header class="topbar">
+  <div class="topbar__in">
+    <a class="topbar__brand" href="index.html">
+      <span class="topbar__wm">SINOTAO</span>
+      <span class="topbar__div"></span>
+      <span class="topbar__ent"><span class="topbar__tick"></span><span class="topbar__code" data-ent-code>STG</span></span>
+    </a>
+    <nav class="topbar__nav" aria-label="全典导航">
+      <a class="navlink" href="volume-1.html"><span class="navlink__i">一</span>序与总纲</a>
+      <a class="navlink" href="volume-2.html"><span class="navlink__i">二</span>基础</a>
+      <a class="navlink" href="volume-3.html"><span class="navlink__i">三</span>表达</a>
+      <a class="navlink" href="volume-4.html"><span class="navlink__i">四</span>数据与行为</a>
+      <a class="navlink" href="volume-5.html"><span class="navlink__i">五</span>治理</a>
+      <a class="navlink" href="atlas.html" aria-current="page">图谱</a>
+      <a class="navlink" href="tokens.html">令牌</a>
+    </nav>
+    <div class="topbar__tools">
+      <button class="kbtn" data-k-open type="button" aria-label="搜索全典"><span class="ms" style="font-size:16px" aria-hidden="true">search</span><span class="kbtn__t">检索</span><kbd>⌘K</kbd></button>
+      <div class="entsw" id="entsw">
+        <button class="iconbtn" data-entsw-btn type="button" aria-haspopup="menu" aria-expanded="false" aria-label="切换实体主题"><span class="ms" aria-hidden="true">hub</span></button>
+        <div class="entsw__menu" role="menu" hidden></div>
+      </div>
+      <button class="iconbtn" data-scheme-btn type="button" aria-label="切换明暗模式"><span class="ms" data-scheme-icon aria-hidden="true">contrast</span></button>
+      <button class="iconbtn" data-drawer-open type="button" aria-label="打开目录"><span class="ms" aria-hidden="true">menu</span></button>
+    </div>
+  </div>
+</header>
+<main id="main">
+
+<section class="vhero on-dark">
+  <canvas class="vhero__canvas" data-art="field" aria-hidden="true"></canvas>
+  <div class="wrap vhero__in">
+    <div class="hero__eyebrow"><span class="seal" style="background:var(--gold-400)"></span><span class="u-eyebrow" style="color:var(--gold-300)">SINOTAO Design System · V7.0 · 附录</span></div>
+    <h1 class="vhero__t">图谱：插图不画，是长出来的</h1>
+    <p class="vhero__s">本典第 015 章把「空状态与场景叙事的插画」列为待定项，并判断它应改为影像而非插画。本站给出第三条路：<strong style="color:var(--ink-200)">既不摆拍也不手绘，让插图按规则生成</strong> —— 这正是「开物」在视觉上的落点。</p>
+    <nav class="vols" aria-label="分册导航">
+      <a class="vol-pill" href="volume-1.html"><i>一</i>序与总纲</a>
+      <a class="vol-pill" href="volume-2.html"><i>二</i>基础</a>
+      <a class="vol-pill" href="volume-3.html"><i>三</i>表达</a>
+      <a class="vol-pill" href="volume-4.html"><i>四</i>数据与行为</a>
+      <a class="vol-pill" href="volume-5.html"><i>五</i>治理</a>
+      <a class="vol-pill" href="atlas.html" aria-current="page"><i>附</i>图谱</a>
+    </nav>
+  </div>
+</section>
+
+<div class="wrap">
+
+<section class="chapter" id="atlas-why" aria-labelledby="atlas-why-t">
+<header class="chapter__head fx-reveal">
+  <span class="chapter__num">附 / APPENDIX</span>
+  <div style="min-width:0">
+    <div class="chapter__meta"><span class="seal"></span><span class="u-eyebrow">Rationale</span></div>
+    <h2 class="chapter__title" id="atlas-why-t">四条理由</h2>
+    <p class="chapter__lead">把水墨纹样铺在背景上不是东方，是装饰。生成式点阵是同一个意思的更克制的形 —— 与本典废止「太极流纹」十二个手绘变体、改由点阵按序旋转承担，是同一个判断。</p>
+  </div>
+</header>
+
+  <div class="rules fx-reveal">
+    <div class="rule">
+      <span class="rule__n">01</span>
+      <span class="rule__t"><b style="display:block;color:var(--text-heading);font-weight:var(--fw-semibold);margin-bottom:var(--space-2)">规则可复现</b>每幅扉画由一个纯函数与一个确定性种子生成，同一输入永远画出同一幅。不存在「设计师手上那一版」与「工程实现那一版」的差异。</span>
+    </div><div class="rule">
+      <span class="rule__n">02</span>
+      <span class="rule__t"><b style="display:block;color:var(--text-heading);font-weight:var(--fw-semibold);margin-bottom:var(--space-2)">插图即内容</b>六幅图画的都是本典自己的数据 —— 色阶、网格、闭环量级、令牌族规模。不带数的图是示意图，不是规范图；这条对图解成立，对插图同样成立。</span>
+    </div><div class="rule">
+      <span class="rule__n">03</span>
+      <span class="rule__t"><b style="display:block;color:var(--text-heading);font-weight:var(--fw-semibold);margin-bottom:var(--space-2)">不越配额</b>全部由宣纸白点与至多一处古铜金构成，落在焦墨底上。不引入任何新色相，不加渐变、发光与 3D —— 影像三条硬规则同样约束插图。</span>
+    </div><div class="rule">
+      <span class="rule__n">04</span>
+      <span class="rule__t"><b style="display:block;color:var(--text-heading);font-weight:var(--fw-semibold);margin-bottom:var(--space-2)">零资产负担</b>没有一个位图文件。缩放到任意尺寸不失真，暗色与实体切换后自动重绘，reduced-motion 下一次性静态渲染且完整可读。</span>
+    </div>
+  </div>
+</section>
+
+<section class="chapter" style="padding-bottom:0" aria-labelledby="plates-t">
+  <header class="chapter__head fx-reveal">
+    <span class="chapter__num">六幅 / SIX PLATES</span>
+    <div style="min-width:0">
+      <div class="chapter__meta"><span class="seal"></span><span class="u-eyebrow">Plates</span></div>
+      <h2 class="chapter__title" id="plates-t">六幅扉画</h2>
+      <p class="chapter__lead">每一幅都画的是它那一册自己的内容。移开视线再看回来，画面已经变了 —— 但规则一个字都没改。</p>
+    </div>
+  </header>
+</section>
+
+
+<section class="chapter" style="border-bottom:0;padding-block:0" aria-labelledby="plate-confluence">
+  <div style="position:relative;background:var(--ink-950);border-radius:var(--shape-card);overflow:hidden" class="on-dark fx-reveal">
+    <canvas data-art="confluence" style="display:block;width:100%;height:clamp(300px,42vw,460px)" aria-hidden="true"></canvas>
+    <div style="position:absolute;left:0;bottom:0;padding:clamp(20px,3vw,32px)">
+      <div style="display:flex;align-items:center;gap:10px">
+        <span class="seal" style="background:var(--gold-400)"></span>
+        <span class="u-eyebrow" style="color:var(--gold-300)">Confluence</span>
+      </div>
+      <div style="margin-top:12px;font-family:var(--font-display);font-size:clamp(26px,3.4vw,42px);font-weight:var(--fw-light);color:var(--ink-50);letter-spacing:var(--track-display);word-break:keep-all">三源合流</div>
+    </div>
+    <div style="position:absolute;right:0;top:0;padding:clamp(20px,3vw,32px)">
+      <span class="u-eyebrow" style="color:var(--ink-500)">扉画 一</span>
+    </div>
+  </div>
+  <div class="grid grid--2 fx-reveal" style="margin-top:var(--space-6);gap:var(--space-8);align-items:start">
+    <div>
+      <h3 id="plate-confluence" style="font-size:var(--fs-block);font-weight:var(--fw-medium)">怎么生成的</h3>
+      <p style="margin-top:var(--space-3);line-height:1.9;font-size:var(--fs-body-s)">三股源流各 46 点，起点相隔 120°，半径由 4.6R 旋进到 1.4R —— 收在环外，留一圈呼吸。环上八点按 1/8 周期相位差依次提亮，与 LatticeSpin 加载态是同一条规则，只是尺度不同。</p>
+    </div>
+    <div>
+      <h3 style="font-size:var(--fs-block);font-weight:var(--fw-medium)">为什么这样画</h3>
+      <p style="margin-top:var(--space-3);line-height:1.9;font-size:var(--fs-body-s)">守正 · 开物 · 共生。收束缓动取 p^0.55，点径与不透明度随收束同步上升，所以「近处密而亮、远处疏而淡」。中枢一点古铜金，是全幅唯一的一处金。构图刻意偏右：左栏留给标题，留白是构图元素，不是剩余空间。</p>
+      <a class="btn btn--secondary btn--s" href="volume-1.html" style="margin-top:var(--space-2)">读对应分册<span class="ms" style="font-size:16px" aria-hidden="true">arrow_forward</span></a>
+    </div>
+  </div>
+  <hr class="fx-rule" style="margin-block:clamp(var(--space-10),7vw,var(--space-12));background:var(--border-subtle);border:0;height:1px">
+</section>
+
+<section class="chapter" style="border-bottom:0;padding-block:0" aria-labelledby="plate-ramp">
+  <div style="position:relative;background:var(--ink-950);border-radius:var(--shape-card);overflow:hidden" class="on-dark fx-reveal">
+    <canvas data-art="ramp" style="display:block;width:100%;height:clamp(300px,42vw,460px)" aria-hidden="true"></canvas>
+    <div style="position:absolute;left:0;bottom:0;padding:clamp(20px,3vw,32px)">
+      <div style="display:flex;align-items:center;gap:10px">
+        <span class="seal" style="background:var(--gold-400)"></span>
+        <span class="u-eyebrow" style="color:var(--gold-300)">Ramp field</span>
+      </div>
+      <div style="margin-top:12px;font-family:var(--font-display);font-size:clamp(26px,3.4vw,42px);font-weight:var(--fw-light);color:var(--ink-50);letter-spacing:var(--track-display);word-break:keep-all">色阶场</div>
+    </div>
+    <div style="position:absolute;right:0;top:0;padding:clamp(20px,3vw,32px)">
+      <span class="u-eyebrow" style="color:var(--ink-500)">扉画 二</span>
+    </div>
+  </div>
+  <div class="grid grid--2 fx-reveal" style="margin-top:var(--space-6);gap:var(--space-8);align-items:start">
+    <div>
+      <h3 id="plate-ramp" style="font-size:var(--fs-block);font-weight:var(--fw-medium)">怎么生成的</h3>
+      <p style="margin-top:var(--space-3);line-height:1.9;font-size:var(--fs-body-s)">十一行对应 Ink 十一阶：点径随明度线性递减，最上一行是焦墨（点最大），最下一行是宣（点最小）。右起五列走实体明度档，按列相位起伏。</p>
+    </div>
+    <div>
+      <h3 style="font-size:var(--fs-block);font-weight:var(--fw-medium)">为什么这样画</h3>
+      <p style="margin-top:var(--space-3);line-height:1.9;font-size:var(--fs-body-s)">明度落差可以被数出来 —— 这正是「高阶不靠色度，靠明度落差」的字面呈现。底部一条 1px 基线，是全幅唯一的一条轴线。</p>
+      <a class="btn btn--secondary btn--s" href="volume-2.html" style="margin-top:var(--space-2)">读对应分册<span class="ms" style="font-size:16px" aria-hidden="true">arrow_forward</span></a>
+    </div>
+  </div>
+  <hr class="fx-rule" style="margin-block:clamp(var(--space-10),7vw,var(--space-12));background:var(--border-subtle);border:0;height:1px">
+</section>
+
+<section class="chapter" style="border-bottom:0;padding-block:0" aria-labelledby="plate-grid">
+  <div style="position:relative;background:var(--ink-950);border-radius:var(--shape-card);overflow:hidden" class="on-dark fx-reveal">
+    <canvas data-art="grid" style="display:block;width:100%;height:clamp(300px,42vw,460px)" aria-hidden="true"></canvas>
+    <div style="position:absolute;left:0;bottom:0;padding:clamp(20px,3vw,32px)">
+      <div style="display:flex;align-items:center;gap:10px">
+        <span class="seal" style="background:var(--gold-400)"></span>
+        <span class="u-eyebrow" style="color:var(--gold-300)">Construction grid</span>
+      </div>
+      <div style="margin-top:12px;font-family:var(--font-display);font-size:clamp(26px,3.4vw,42px);font-weight:var(--fw-light);color:var(--ink-50);letter-spacing:var(--track-display);word-break:keep-all">构造网格</div>
+    </div>
+    <div style="position:absolute;right:0;top:0;padding:clamp(20px,3vw,32px)">
+      <span class="u-eyebrow" style="color:var(--ink-500)">扉画 三</span>
+    </div>
+  </div>
+  <div class="grid grid--2 fx-reveal" style="margin-top:var(--space-6);gap:var(--space-8);align-items:start">
+    <div>
+      <h3 id="plate-grid" style="font-size:var(--fs-block);font-weight:var(--fw-medium)">怎么生成的</h3>
+      <p style="margin-top:var(--space-3);line-height:1.9;font-size:var(--fs-body-s)">把生成规则本身画出来：五张 48 × 48 网格并列，每 8 格一条构造线，五实体标记各落在自己那张网格上，按册序依次提亮。</p>
+    </div>
+    <div>
+      <h3 style="font-size:var(--fs-block);font-weight:var(--fw-medium)">为什么这样画</h3>
+      <p style="margin-top:var(--space-3);line-height:1.9;font-size:var(--fs-body-s)">缺件问题从「画 150 个」变成「定一条规则」。这幅图既是插图，也是那条规则的施工图 —— 读者可以照着它复现任意一枚标记。</p>
+      <a class="btn btn--secondary btn--s" href="volume-3.html" style="margin-top:var(--space-2)">读对应分册<span class="ms" style="font-size:16px" aria-hidden="true">arrow_forward</span></a>
+    </div>
+  </div>
+  <hr class="fx-rule" style="margin-block:clamp(var(--space-10),7vw,var(--space-12));background:var(--border-subtle);border:0;height:1px">
+</section>
+
+<section class="chapter" style="border-bottom:0;padding-block:0" aria-labelledby="plate-loop">
+  <div style="position:relative;background:var(--ink-950);border-radius:var(--shape-card);overflow:hidden" class="on-dark fx-reveal">
+    <canvas data-art="loop" style="display:block;width:100%;height:clamp(300px,42vw,460px)" aria-hidden="true"></canvas>
+    <div style="position:absolute;left:0;bottom:0;padding:clamp(20px,3vw,32px)">
+      <div style="display:flex;align-items:center;gap:10px">
+        <span class="seal" style="background:var(--gold-400)"></span>
+        <span class="u-eyebrow" style="color:var(--gold-300)">Closed loop</span>
+      </div>
+      <div style="margin-top:12px;font-family:var(--font-display);font-size:clamp(26px,3.4vw,42px);font-weight:var(--fw-light);color:var(--ink-50);letter-spacing:var(--track-display);word-break:keep-all">闭环</div>
+    </div>
+    <div style="position:absolute;right:0;top:0;padding:clamp(20px,3vw,32px)">
+      <span class="u-eyebrow" style="color:var(--ink-500)">扉画 四</span>
+    </div>
+  </div>
+  <div class="grid grid--2 fx-reveal" style="margin-top:var(--space-6);gap:var(--space-8);align-items:start">
+    <div>
+      <h3 id="plate-loop" style="font-size:var(--fs-block);font-weight:var(--fw-medium)">怎么生成的</h3>
+      <p style="margin-top:var(--space-3);line-height:1.9;font-size:var(--fs-body-s)">赤湖园区五段闭环。每段弧上的点数正比于该段量级：种植 34 · 收储 30 · 发电 26 · 碳资产 22 · 灰渣 12，读者可以数出来。</p>
+    </div>
+    <div>
+      <h3 style="font-size:var(--fs-block);font-weight:var(--fw-medium)">为什么这样画</h3>
+      <p style="margin-top:var(--space-3);line-height:1.9;font-size:var(--fs-body-s)">高亮段一图仅一段，在五段之间轮转，用古铜金与放大的点径标出。内环一条 1px 线承担「闭合」这个语义 —— 环上不写字。</p>
+      <a class="btn btn--secondary btn--s" href="volume-4.html" style="margin-top:var(--space-2)">读对应分册<span class="ms" style="font-size:16px" aria-hidden="true">arrow_forward</span></a>
+    </div>
+  </div>
+  <hr class="fx-rule" style="margin-block:clamp(var(--space-10),7vw,var(--space-12));background:var(--border-subtle);border:0;height:1px">
+</section>
+
+<section class="chapter" style="border-bottom:0;padding-block:0" aria-labelledby="plate-tokens">
+  <div style="position:relative;background:var(--ink-950);border-radius:var(--shape-card);overflow:hidden" class="on-dark fx-reveal">
+    <canvas data-art="tokens" style="display:block;width:100%;height:clamp(300px,42vw,460px)" aria-hidden="true"></canvas>
+    <div style="position:absolute;left:0;bottom:0;padding:clamp(20px,3vw,32px)">
+      <div style="display:flex;align-items:center;gap:10px">
+        <span class="seal" style="background:var(--gold-400)"></span>
+        <span class="u-eyebrow" style="color:var(--gold-300)">Token constellation</span>
+      </div>
+      <div style="margin-top:12px;font-family:var(--font-display);font-size:clamp(26px,3.4vw,42px);font-weight:var(--fw-light);color:var(--ink-50);letter-spacing:var(--track-display);word-break:keep-all">令牌星图</div>
+    </div>
+    <div style="position:absolute;right:0;top:0;padding:clamp(20px,3vw,32px)">
+      <span class="u-eyebrow" style="color:var(--ink-500)">扉画 五</span>
+    </div>
+  </div>
+  <div class="grid grid--2 fx-reveal" style="margin-top:var(--space-6);gap:var(--space-8);align-items:start">
+    <div>
+      <h3 id="plate-tokens" style="font-size:var(--fs-block);font-weight:var(--fw-medium)">怎么生成的</h3>
+      <p style="margin-top:var(--space-3);line-height:1.9;font-size:var(--fs-body-s)">十五列对应令牌文件，列高即该族令牌数，一枚点就是一个令牌。421 枚点，数量即内容。</p>
+    </div>
+    <div>
+      <h3 style="font-size:var(--fs-block);font-weight:var(--fw-medium)">为什么这样画</h3>
+      <p style="margin-top:var(--space-3);line-height:1.9;font-size:var(--fs-body-s)">semantic.css 那一列最高 —— 语义层承担了大部分主题化职责，这正是「只在语义层与组件层保留真正会被复用的部分」的形状。</p>
+      <a class="btn btn--secondary btn--s" href="volume-5.html" style="margin-top:var(--space-2)">读对应分册<span class="ms" style="font-size:16px" aria-hidden="true">arrow_forward</span></a>
+    </div>
+  </div>
+  <hr class="fx-rule" style="margin-block:clamp(var(--space-10),7vw,var(--space-12));background:var(--border-subtle);border:0;height:1px">
+</section>
+
+<section class="chapter" style="border-bottom:0;padding-block:0" aria-labelledby="plate-field">
+  <div style="position:relative;background:var(--ink-950);border-radius:var(--shape-card);overflow:hidden" class="on-dark fx-reveal">
+    <canvas data-art="field" style="display:block;width:100%;height:clamp(300px,42vw,460px)" aria-hidden="true"></canvas>
+    <div style="position:absolute;left:0;bottom:0;padding:clamp(20px,3vw,32px)">
+      <div style="display:flex;align-items:center;gap:10px">
+        <span class="seal" style="background:var(--gold-400)"></span>
+        <span class="u-eyebrow" style="color:var(--gold-300)">Density field</span>
+      </div>
+      <div style="margin-top:12px;font-family:var(--font-display);font-size:clamp(26px,3.4vw,42px);font-weight:var(--fw-light);color:var(--ink-50);letter-spacing:var(--track-display);word-break:keep-all">密度场</div>
+    </div>
+    <div style="position:absolute;right:0;top:0;padding:clamp(20px,3vw,32px)">
+      <span class="u-eyebrow" style="color:var(--ink-500)">扉画 六</span>
+    </div>
+  </div>
+  <div class="grid grid--2 fx-reveal" style="margin-top:var(--space-6);gap:var(--space-8);align-items:start">
+    <div>
+      <h3 id="plate-field" style="font-size:var(--fs-block);font-weight:var(--fw-medium)">怎么生成的</h3>
+      <p style="margin-top:var(--space-3);line-height:1.9;font-size:var(--fs-body-s)">DotDensity 的放大版：点径固定 1.5，密度按距中心衰减，叠一层确定性伪随机抖动 —— 同一种子永远画出同一幅。</p>
+    </div>
+    <div>
+      <h3 style="font-size:var(--fs-block);font-weight:var(--fw-medium)">为什么这样画</h3>
+      <p style="margin-top:var(--space-3);line-height:1.9;font-size:var(--fs-body-s)">不加渐变、不加发光、不改颜色。量感全部由点的疏密承担 —— 这是本系统对「大屏叙事」给出的唯一答案，取代彩色热力图。</p>
+      
+    </div>
+  </div>
+  
+</section>
+
+<section class="chapter" id="atlas-lattice" aria-labelledby="atlas-lattice-t">
+<header class="chapter__head fx-reveal">
+  <span class="chapter__num">构造 / CONSTRUCTION</span>
+  <div style="min-width:0">
+    <div class="chapter__meta"><span class="seal"></span><span class="u-eyebrow">Entity lattice</span></div>
+    <h2 class="chapter__title" id="atlas-lattice-t">一条规则如何取代 150 枚 SVG</h2>
+    <p class="chapter__lead">48 × 48 网格，点径六档，点数 6–8 枚。只改排布与点径，不改笔形、不加线、不加填充。下表即五实体的全部生成参数 —— 照着它可以复现每一枚标记。</p>
+  </div>
+</header>
+
+  <div class="block fx-reveal">
+  <div class="block__head"><span class="u-eyebrow">构造参数</span></div>
+  
+  <div class="table-scroll"><table class="tbl">
+    <caption class="u-sr">五实体点阵的构造参数</caption>
+    <thead><tr><th scope="col">标记</th><th scope="col">代号</th><th scope="col">排布</th><th scope="col" class="num">点数</th><th scope="col" class="num">点径</th><th scope="col">生成式</th></tr></thead>
+    <tbody><tr>
+      <td style="width:56px"><span data-lattice="stg" data-size="36" style="display:block;color:var(--text-heading)" aria-hidden="true"></span></td>
+      <td class="mono" style="color:var(--text-heading)">STG</td>
+      <td>环 · 八点等分</td><td class="num">8</td><td class="num">2.6</td>
+      <td class="mono" style="color:var(--text-muted)">cos/sin 等分 2π，半径 15，起始角 −90°</td></tr><tr>
+      <td style="width:56px"><span data-lattice="ste" data-size="36" style="display:block;color:var(--text-heading)" aria-hidden="true"></span></td>
+      <td class="mono" style="color:var(--text-heading)">STE</td>
+      <td>方阵中空 · 炉膛</td><td class="num">8</td><td class="num">2.4</td>
+      <td class="mono" style="color:var(--text-muted)">3 × 3 网格取 {10,24,38}，剔除中心一点</td></tr><tr>
+      <td style="width:56px"><span data-lattice="sti" data-size="36" style="display:block;color:var(--text-heading)" aria-hidden="true"></span></td>
+      <td class="mono" style="color:var(--text-heading)">STI</td>
+      <td>双向折线 · 航路</td><td class="num">7</td><td class="num">2.2</td>
+      <td class="mono" style="color:var(--text-muted)">上下两组对称人字 + 中心一点</td></tr><tr>
+      <td style="width:56px"><span data-lattice="sth" data-size="36" style="display:block;color:var(--text-heading)" aria-hidden="true"></span></td>
+      <td class="mono" style="color:var(--text-heading)">STH</td>
+      <td>核与六配位 · 分子</td><td class="num">7</td><td class="num">2.0 / 3.4</td>
+      <td class="mono" style="color:var(--text-muted)">中心点用最大档 3.4，六配位用最小档 2.0</td></tr><tr>
+      <td style="width:56px"><span data-lattice="edu" data-size="36" style="display:block;color:var(--text-heading)" aria-hidden="true"></span></td>
+      <td class="mono" style="color:var(--text-heading)">EDU</td>
+      <td>递进三阶</td><td class="num">6</td><td class="num">2.6</td>
+      <td class="mono" style="color:var(--text-muted)">一生二、二生三，行距 12 格</td></tr></tbody>
+  </table></div>
+</div>
+
+  <div class="block fx-reveal">
+  <div class="block__head"><span class="u-eyebrow">点径六档 · 不许自造中间值</span></div>
+  
+  <div style="display:flex;align-items:center;justify-content:space-around;flex-wrap:wrap;gap:var(--space-5);padding:var(--space-7) var(--space-5);background:var(--surface-sunken);border-radius:var(--shape-card)">
+    <div style="text-align:center">
+      <svg viewBox="0 0 12 12" width="28" height="28" aria-hidden="true" style="margin:0 auto">
+        <circle cx="6" cy="6" r="6" fill="var(--text-heading)"/></svg>
+      <div class="u-mono" style="margin-top:var(--space-3);font-size:11px;color:var(--text-subtle)">2.0</div></div><div style="text-align:center">
+      <svg viewBox="0 0 12 12" width="30.800000000000004" height="30.800000000000004" aria-hidden="true" style="margin:0 auto">
+        <circle cx="6" cy="6" r="6" fill="var(--text-heading)"/></svg>
+      <div class="u-mono" style="margin-top:var(--space-3);font-size:11px;color:var(--text-subtle)">2.2</div></div><div style="text-align:center">
+      <svg viewBox="0 0 12 12" width="33.6" height="33.6" aria-hidden="true" style="margin:0 auto">
+        <circle cx="6" cy="6" r="6" fill="var(--text-heading)"/></svg>
+      <div class="u-mono" style="margin-top:var(--space-3);font-size:11px;color:var(--text-subtle)">2.4</div></div><div style="text-align:center">
+      <svg viewBox="0 0 12 12" width="36.4" height="36.4" aria-hidden="true" style="margin:0 auto">
+        <circle cx="6" cy="6" r="6" fill="var(--text-heading)"/></svg>
+      <div class="u-mono" style="margin-top:var(--space-3);font-size:11px;color:var(--text-subtle)">2.6</div></div><div style="text-align:center">
+      <svg viewBox="0 0 12 12" width="42" height="42" aria-hidden="true" style="margin:0 auto">
+        <circle cx="6" cy="6" r="6" fill="var(--text-heading)"/></svg>
+      <div class="u-mono" style="margin-top:var(--space-3);font-size:11px;color:var(--text-subtle)">3.0</div></div><div style="text-align:center">
+      <svg viewBox="0 0 12 12" width="47.6" height="47.6" aria-hidden="true" style="margin:0 auto">
+        <circle cx="6" cy="6" r="6" fill="var(--text-heading)"/></svg>
+      <div class="u-mono" style="margin-top:var(--space-3);font-size:11px;color:var(--text-subtle)">3.4</div></div>
+  </div>
+</div>
+
+  <div class="block fx-reveal">
+  <div class="block__head"><span class="u-eyebrow">深浅双轨 · 禁止用实体色填充点阵</span></div>
+  
+  <div class="grid grid--2" style="gap:var(--space-5)">
+    <div style="background:var(--surface-sunken);border-radius:var(--shape-card);padding:var(--space-9);display:flex;justify-content:center;color:var(--ink-900)">
+      <span data-lattice="ste" data-size="110" aria-hidden="true"></span></div>
+    <div style="background:var(--ink-950);border-radius:var(--shape-card);padding:var(--space-9);display:flex;justify-content:center;color:var(--ink-50)">
+      <span data-lattice="ste" data-size="110" aria-hidden="true"></span></div>
+  </div>
+  <p style="margin-top:var(--space-4);font-size:var(--fs-body-s);color:var(--text-muted);max-width:44em">深底用宣纸白，浅底用玄墨。实体色仍只作 2px 细线刻度 —— 一枚 STE 标记不因为它属于 STE 就变成松烟绿。这条限制让五枚标记在任何底色上都是同一族。</p>
+</div>
+
+  <div class="block fx-reveal">
+  <div class="block__head"><span class="u-eyebrow">加载态由同一点阵承担</span></div>
+  
+  <div class="grid grid--3" style="gap:var(--space-5)">
+    <div class="panel panel--sunken" style="display:flex;flex-direction:column;align-items:center;gap:var(--space-4);padding-block:var(--space-9)">
+      <span data-spin data-size="52" style="color:var(--text-muted)" aria-hidden="true"></span>
+      <span class="u-label">浅底 · 载入中</span></div>
+    <div class="panel panel--inverse on-dark" style="display:flex;flex-direction:column;align-items:center;gap:var(--space-4);padding-block:var(--space-9)">
+      <span data-spin data-size="52" style="color:var(--ink-50)" aria-hidden="true"></span>
+      <span class="u-label" style="color:var(--ink-500)">深底 · 载入中</span></div>
+    <div class="panel" style="display:flex;flex-direction:column;justify-content:center">
+      <div class="u-eyebrow">LatticeSpin</div>
+      <p style="margin-top:var(--space-3);font-size:var(--fs-body-s);line-height:1.8;margin-bottom:0">点按序列依次由 ink-400 提亮至 ink-50，每点相位差 1/N 周期，2400ms linear 循环。<strong>点不移动、不缩放、不旋转整体。</strong>取代 TaijiSpinner 的临时几何占位。</p>
+    </div>
+  </div>
+</div>
+
+  <div class="note fx-reveal" style="margin-top:var(--space-8)"><div class="note__b">
+    <div class="note__t">这一项待你确认方向</div>
+    <div class="note__d">第 017 章将「空状态与场景叙事的插画」列为待补资料，并注明「按本典规则，这一项应改为影像而非插画，需你确认方向」。本站按第三条路实现 —— 生成式点阵与图解 —— 因为它同时满足「不用手绘插画」与「暂无实景图库」两个约束，且不违反影像三条硬规则中的任何一条。若最终决定走实景影像，本层可整体替换而不影响任何令牌与组件。</div>
+  </div></div>
+</section>
+
+</div>
+</main>
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot__top">
+      <div>
+        <div class="foot__wm">SINOTAO</div>
+        <p class="foot__m">源裕兴设计系统全典 V7.0。五个实体不是五家割裂的公司，而是共用一套设计语法、各自生长出独立主色的价值共生体。本典不是画册，是施工图。</p>
+      </div>
+      <div>
+        <div class="foot__st">Volumes</div>
+        <a class="foot__l" href="volume-1.html">一 · 序与总纲</a>
+        <a class="foot__l" href="volume-2.html">二 · 基础</a>
+        <a class="foot__l" href="volume-3.html">三 · 表达</a>
+        <a class="foot__l" href="volume-4.html">四 · 数据与行为</a>
+        <a class="foot__l" href="volume-5.html">五 · 治理</a>
+      </div>
+      <div>
+        <div class="foot__st">Appendix</div>
+        <a class="foot__l" href="atlas.html">图谱 · 插图集</a>
+        <a class="foot__l" href="tokens.html">令牌总表</a>
+        <a class="foot__l" href="index.html">首页 · 总纲</a>
+      </div>
+      <div>
+        <div class="foot__st">Discipline</div>
+        <span class="foot__l">37 组件 · 421 令牌</span>
+        <span class="foot__l">九级字阶 · 四种图表</span>
+        <span class="foot__l">五种图解 · 四样动效</span>
+      </div>
+    </div>
+    <div class="foot__bot">
+      <span>源裕兴设计系统全典 V7.0 · 2026-09-06</span>
+      <span>守正 · 开物 · 共生</span>
+    </div>
+  </div>
+</footer>
+<div class="drawer" id="drawer" hidden>
+  <button class="drawer__scrim" type="button" aria-label="关闭目录"></button>
+  <nav class="drawer__panel" aria-label="全典目录">
+    <div class="drawer__sec">
+      <div class="drawer__st">Volumes</div>
+      <a class="drawer__l" href="volume-1.html"><i>一</i><span>序与总纲<br><small style="color:var(--text-subtle)">设计哲学 · 变更摘要 · 语境 · 文案</small></span></a>
+      <a class="drawer__l" href="volume-2.html"><i>二</i><span>基础<br><small style="color:var(--text-subtle)">色彩 · 色板 · 模块识别 · 字体 · 刻度 · 版面</small></span></a>
+      <a class="drawer__l" href="volume-3.html"><i>三</i><span>表达<br><small style="color:var(--text-subtle)">面板 · 图标系统 · 业务图标 · 字标</small></span></a>
+      <a class="drawer__l" href="volume-4.html"><i>四</i><span>数据与行为<br><small style="color:var(--text-subtle)">图表 · 图解 · 可视化与影像 · 动效</small></span></a>
+      <a class="drawer__l" href="volume-5.html"><i>五</i><span>治理<br><small style="color:var(--text-subtle)">组件令牌 · 产品面 · 仓库 · M3 · 来源</small></span></a>
+    </div>
+    <div class="drawer__sec">
+      <div class="drawer__st">Chapters</div>
+      <a class="drawer__l" href="volume-1.html#ch-prologue"><i>序</i><span>设计哲学</span></a>
+      <a class="drawer__l" href="volume-1.html#ch-00"><i>000</i><span>变更摘要</span></a>
+      <a class="drawer__l" href="volume-1.html#ch-01"><i>001</i><span>语境与实体</span></a>
+      <a class="drawer__l" href="volume-1.html#ch-02"><i>002</i><span>内容与文案</span></a>
+      <a class="drawer__l" href="volume-2.html#ch-03"><i>003</i><span>色彩</span></a>
+      <a class="drawer__l" href="volume-2.html#ch-04"><i>004</i><span>色板全景</span></a>
+      <a class="drawer__l" href="volume-2.html#ch-05"><i>005</i><span>模块识别</span></a>
+      <a class="drawer__l" href="volume-2.html#ch-06"><i>006</i><span>字体</span></a>
+      <a class="drawer__l" href="volume-2.html#ch-07"><i>007</i><span>刻度与断点</span></a>
+      <a class="drawer__l" href="volume-2.html#ch-08"><i>008</i><span>间距与版面</span></a>
+      <a class="drawer__l" href="volume-3.html#ch-09"><i>009</i><span>面板与边界</span></a>
+      <a class="drawer__l" href="volume-3.html#ch-10"><i>010</i><span>图标系统</span></a>
+      <a class="drawer__l" href="volume-3.html#ch-11"><i>011</i><span>业务图标清单</span></a>
+      <a class="drawer__l" href="volume-3.html#ch-12"><i>012</i><span>字标与应用</span></a>
+      <a class="drawer__l" href="volume-4.html#ch-13"><i>013</i><span>图表</span></a>
+      <a class="drawer__l" href="volume-4.html#ch-14"><i>014</i><span>图解语言</span></a>
+      <a class="drawer__l" href="volume-4.html#ch-15"><i>015</i><span>可视化与影像</span></a>
+      <a class="drawer__l" href="volume-4.html#ch-16"><i>016</i><span>动效与状态</span></a>
+      <a class="drawer__l" href="volume-5.html#ch-17"><i>017</i><span>组件与令牌总账</span></a>
+      <a class="drawer__l" href="volume-5.html#ch-18"><i>018</i><span>产品面与屏幕</span></a>
+      <a class="drawer__l" href="volume-5.html#ch-19"><i>019</i><span>仓库结构</span></a>
+      <a class="drawer__l" href="volume-5.html#ch-20"><i>020</i><span>M3 对照</span></a>
+      <a class="drawer__l" href="volume-5.html#ch-21"><i>021</i><span>来源与授权</span></a>
+    </div>
+    <div class="drawer__sec">
+      <div class="drawer__st">Appendix</div>
+      <a class="drawer__l" href="atlas.html"><i>图</i><span>图谱 · 生成式插图集</span></a>
+      <a class="drawer__l" href="tokens.html"><i>令</i><span>令牌总表</span></a>
+    </div>
+  </nav>
+</div>
+<div class="kmenu" id="kmenu" hidden>
+  <button class="kmenu__scrim" type="button" aria-label="关闭检索"></button>
+  <div class="kmenu__box" role="dialog" aria-modal="true" aria-label="全典检索">
+    <input class="kmenu__in" type="text" placeholder="检索全典 —— 章节、术语、令牌" aria-label="检索全典" autocomplete="off" spellcheck="false">
+    <div class="kmenu__list"></div>
+    <div class="kmenu__foot"><span><kbd>↑</kbd><kbd>↓</kbd> 移动</span><span><kbd>↵</kbd> 打开</span><span><kbd>esc</kbd> 关闭</span><span style="margin-left:auto"><kbd>G</kbd> 栅格</span></div>
+  </div>
+</div>
+<div class="gridlay" id="gridlay" aria-hidden="true"><div class="gridlay__in"><div class="gridlay__c"></div><div class="gridlay__c"></div><div class="gridlay__c"></div><div class="gridlay__c"></div><div class="gridlay__c"></div><div class="gridlay__c"></div><div class="gridlay__c"></div><div class="gridlay__c"></div><div class="gridlay__c"></div><div class="gridlay__c"></div><div class="gridlay__c"></div><div class="gridlay__c"></div></div></div>
+<script src="assets/js/lattice.js"></script>
+<script src="assets/js/charts.js"></script>
+<script src="assets/js/site.js"></script>
+
+</body>
+</html>
